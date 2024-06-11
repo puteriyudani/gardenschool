@@ -53,34 +53,6 @@
                         <span class="hide-menu">Tahun</span>
                     </a>
                 </li>
-                {{-- <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Kelas</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-trophy"></i>
-                        </span>
-                        <span class="hide-menu">Kindergarten</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-puzzle"></i>
-                        </span>
-                        <span class="hide-menu">Playgroup</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-baby-carriage"></i>
-                        </span>
-                        <span class="hide-menu">Baby Camp</span>
-                    </a>
-                </li> --}}
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Montessory</span>
