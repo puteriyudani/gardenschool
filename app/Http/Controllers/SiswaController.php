@@ -63,9 +63,9 @@ class SiswaController extends Controller
 
             $input['image'] = $image_name;
         }
-    
+
         Siswa::create($input);
-    
+
         return redirect()->route('siswa.index')
                         ->with('success','Siswa created successfully.');
     }
@@ -75,7 +75,7 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        
+
     }
 
     /**
@@ -123,9 +123,9 @@ class SiswaController extends Controller
         } else{
             unset($input['image']);
         }
-    
+
         $siswa->update($input);
-    
+
         return redirect()->route('siswa.index')
                         ->with('success','Siswa updated successfully');
     }
@@ -136,7 +136,7 @@ class SiswaController extends Controller
     public function destroy(Siswa $siswa)
     {
         $siswa->delete();
-    
+
         return back()->with('success','Siswa deleted successfully');
     }
 

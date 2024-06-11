@@ -43,10 +43,10 @@
                                             <a href="{{ route('editPassword', $admin->id) }}" style="text-decoration: none; color: green;">
                                                 ubah password
                                             </a>
-            
+
                                             @csrf
                                             @method('DELETE')
-            
+
                                             <button class="btn mb-1" type="submit" style="color: red">
                                                 hapus
                                             </button>
@@ -84,10 +84,10 @@
                                             <a href="{{ route('editPassword', $guru->id) }}" style="text-decoration: none; color: green;">
                                                 ubah password
                                             </a>
-            
+
                                             @csrf
                                             @method('DELETE')
-            
+
                                             <button class="btn mb-1" type="submit" style="color: red">
                                                 hapus
                                             </button>
@@ -125,10 +125,10 @@
                                             <a href="{{ route('editPassword', $ortu->id) }}" style="text-decoration: none; color: green;">
                                                 ubah password
                                             </a>
-            
+
                                             @csrf
                                             @method('DELETE')
-            
+
                                             <button class="btn mb-1" type="submit" style="color: red">
                                                 hapus
                                             </button>
