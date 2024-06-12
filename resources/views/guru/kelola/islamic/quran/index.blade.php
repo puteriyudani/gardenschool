@@ -39,7 +39,7 @@
                         <tbody>
                             @foreach ($qurans as $quran)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($qurans->currentPage() - 1) * $qurans->perPage() + $loop->iteration }}</td>
                                     <td>{{ $quran->quran }}</td>
                                     <td>
                                         <form action="{{ route('quran.destroy', $quran->id) }}" method="POST">

@@ -39,7 +39,7 @@
                         <tbody>
                             @foreach ($doas as $doa)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($doas->currentPage() - 1) * $doas->perPage() + $loop->iteration }}</td>
                                     <td>{{ $doa->doa }}</td>
                                     <td>
                                         <form action="{{ route('doa.destroy', $doa->id) }}" method="POST">

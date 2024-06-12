@@ -39,7 +39,7 @@
                         <tbody>
                             @foreach ($hadists as $hadist)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($hadists->currentPage() - 1) * $hadists->perPage() + $loop->iteration }}</td>
                                     <td>{{ $hadist->hadist }}</td>
                                     <td>
                                         <form action="{{ route('hadist.destroy', $hadist->id) }}" method="POST">
