@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Preschool extends Model
 {
     use HasFactory;
+
+    protected $table = 'preschools';
+    protected $guarded = [];
+    protected $fillable = ['tanggal', 'siswa_id', 'huruf', 'angka', 'english'];
 }

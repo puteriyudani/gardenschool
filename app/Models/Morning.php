@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Morning extends Model
 {
     use HasFactory;
+
+    protected $table = 'mornings';
+    protected $guarded = [];
+    protected $fillable = ['tanggal', 'siswa_id', 'kegiatan', 'circletime', 'notifikasi'];
 }
