@@ -24,8 +24,9 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a href="{{ route('tkbreakfast.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
+                <a href="{{ route('breakfast.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
+                <p>{{ $siswa->nama }}</p>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>

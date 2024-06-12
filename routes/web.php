@@ -109,39 +109,32 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::resource('welcome-mood', WelcomeController::class);
 
     // morning booster
-    Route::get('/teacher-kindergarten/morning-booster', [MorningController::class, 'index'])->name('tkmorning.index');
-    Route::get('/teacher-kindergarten/morning-booster/individu', [MorningController::class, 'individu'])->name('tkmorning.individu');
-    Route::get('/teacher-kindergarten/morning-booster/create', [MorningController::class, 'create'])->name('tkmorning.create');
+    Route::get('/teacher-kindergarten/morning-booster/index/{id}', [MorningController::class, 'kindergarten'])->name('tkmorning.index');
+    Route::resource('morning-booster', MorningController::class);
 
     // breakfast
-    Route::get('/teacher-kindergarten/breakfast', [BreakfastController::class, 'index'])->name('tkbreakfast.index');
-    Route::get('/teacher-kindergarten/breakfast/individu', [BreakfastController::class, 'individu'])->name('tkbreakfast.individu');
-    Route::get('/teacher-kindergarten/breakfast/create', [BreakfastController::class, 'create'])->name('tkbreakfast.create');
+    Route::get('/teacher-kindergarten/breakfast/index/{id}', [BreakfastController::class, 'kindergarten'])->name('tkbreakfast.index');
+    Route::resource('breakfast', BreakfastController::class);
 
     // islamic base learning
-    Route::get('/teacher-kindergarten/islamic-base-learning', [IslamicController::class, 'index'])->name('tkislamic.index');
-    Route::get('/teacher-kindergarten/islamic-base-learning/individu', [IslamicController::class, 'individu'])->name('tkislamic.individu');
-    Route::get('/teacher-kindergarten/islamic-base-learning/create', [IslamicController::class, 'create'])->name('tkislamic.create');
+    Route::get('/teacher-kindergarten/islamic-base-learning/index/{id}', [IslamicController::class, 'kindergarten'])->name('tkislamic.index');
+    Route::resource('islamic-base-learning', IslamicController::class);
 
     // pre school
-    Route::get('/teacher-kindergarten/preschool', [PreschoolController::class, 'index'])->name('tkpreschool.index');
-    Route::get('/teacher-kindergarten/preschool/individu', [PreschoolController::class, 'individu'])->name('tkpreschool.individu');
-    Route::get('/teacher-kindergarten/preschool/create', [PreschoolController::class, 'create'])->name('tkpreschool.create');
+    Route::get('/teacher-kindergarten/pre-school/index/{id}', [PreschoolController::class, 'kindergarten'])->name('tkpreschool.index');
+    Route::resource('pre-school', PreschoolController::class);
 
     // tematik
-    Route::get('/teacher-kindergarten/tematik', [TematikController::class, 'index'])->name('tktematik.index');
-    Route::get('/teacher-kindergarten/tematik/individu', [TematikController::class, 'individu'])->name('tktematik.individu');
-    Route::get('/teacher-kindergarten/tematik/create', [TematikController::class, 'create'])->name('tktematik.create');
+    Route::get('/teacher-kindergarten/tematik/index/{id}', [TematikController::class, 'kindergarten'])->name('tktematik.index');
+    Route::resource('tematik', TematikController::class);
 
     // poop & pee
-    Route::get('/teacher-kindergarten/pooppee', [PoopPeeController::class, 'index'])->name('tkpooppee.index');
-    Route::get('/teacher-kindergarten/pooppee/individu', [PoopPeeController::class, 'individu'])->name('tkpooppee.individu');
-    Route::get('/teacher-kindergarten/pooppee/create', [PoopPeeController::class, 'create'])->name('tkpooppee.create');
+    Route::get('/teacher-kindergarten/poop-pee/index/{id}', [PoopPeeController::class, 'kindergarten'])->name('tkpooppee.index');
+    Route::resource('poop-pee', PoopPeeController::class);
 
     // re calling
-    Route::get('/teacher-kindergarten/recalling', [RecallingController::class, 'index'])->name('tkrecalling.index');
-    Route::get('/teacher-kindergarten/recalling/individu', [RecallingController::class, 'individu'])->name('tkrecalling.individu');
-    Route::get('/teacher-kindergarten/recalling/create', [RecallingController::class, 'create'])->name('tkrecalling.create');
+    Route::get('/teacher-kindergarten/re-calling/index/{id}', [RecallingController::class, 'kindergarten'])->name('tkrecalling.index');
+    Route::resource('re-calling', RecallingController::class);
 
     // PLAYGROUP
     Route::get('/teacher-playgroup', [GuruController::class, 'playgroup'])->name('teacher.playgroup');

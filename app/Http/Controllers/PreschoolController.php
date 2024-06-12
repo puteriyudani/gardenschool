@@ -10,15 +10,11 @@ class PreschoolController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function kindergarten($id)
     {
-        $siswas = Siswa::get();
-        return view('guru.kindergarten.preschool.index', compact('siswas'));
-    }
-
-    public function individu()
-    {
-        return view('guru.kindergarten.preschool.individu');
+        $siswa = Siswa::findOrFail($id);
+        session(['siswa_id' => $id]);
+        return view('guru.kindergarten.preschool.index', compact('siswa'));
     }
 
     /**
@@ -26,7 +22,9 @@ class PreschoolController extends Controller
      */
     public function create()
     {
-        return view('guru.activity.preschool.create');
+        $siswa_id = session('siswa_id');
+        $siswa = Siswa::findOrFail($siswa_id);
+        return view('guru.activity.preschool.create', compact('siswa'));
     }
 
     /**

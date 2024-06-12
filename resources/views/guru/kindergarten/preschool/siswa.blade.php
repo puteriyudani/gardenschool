@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('judul')
-    <title>Guru - Breakfast</title>
+    <title>Guru - Pre School</title>
     <style>
         .btn.btn-primary.disabled,
         .btn.btn-warning.disabled,
@@ -34,7 +34,7 @@
                                             <img src="{{ asset('storage/images/' . $siswa->image) }}" class="card-img-top"
                                                 alt="...">
                                             <div class="card-body">
-                                                <a href="{{ route('tkbreakfast.index', $siswa->id) }}" class="btn"
+                                                <a href="{{ route('tkpreschool.index', $siswa->id) }}" class="btn"
                                                     style="background-color: #6FAC45; color: white">{{ $siswa->nama }}</a>
                                             </div>
                                         </div>
