@@ -12,4 +12,9 @@ class Recalling extends Model
     protected $table = 'recallings';
     protected $guarded = [];
     protected $fillable = ['tanggal', 'siswa_id', 'indikator', 'keterangan', 'notifikasi'];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
 }

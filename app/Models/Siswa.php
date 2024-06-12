@@ -23,11 +23,6 @@ class Siswa extends Model
         return $this->belongsTo(Tahun::class);
     }
 
-    public function breakfast()
-    {
-        return $this->belongsTo(Breakfast::class);
-    }
-
     public function catatanguru()
     {
         return $this->belongsTo(Catatanguru::class);
@@ -36,5 +31,38 @@ class Siswa extends Model
     public function catatanorangtua()
     {
         return $this->belongsTo(Catatanorangtua::class);
+    }
+
+    public function breakfasts()
+    {
+        return $this->hasMany(Breakfast::class);
+    }
+    public function mornings()
+    {
+        return $this->hasMany(Morning::class);
+    }
+    public function welcomes()
+    {
+        return $this->hasMany(Welcome::class);
+    }
+    public function islamics()
+    {
+        return $this->hasMany(Islamic::class);
+    }
+    public function preschools()
+    {
+        return $this->hasMany(Preschool::class);
+    }
+    public function tematiks()
+    {
+        return $this->hasMany(Tematik::class);
+    }
+    public function pooppees()
+    {
+        return $this->hasMany(Pooppee::class);
+    }
+    public function recallings()
+    {
+        return $this->hasMany(Recalling::class);
     }
 }

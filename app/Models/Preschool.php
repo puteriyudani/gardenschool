@@ -12,4 +12,9 @@ class Preschool extends Model
     protected $table = 'preschools';
     protected $guarded = [];
     protected $fillable = ['tanggal', 'siswa_id', 'huruf', 'angka', 'english'];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
 }

@@ -12,4 +12,9 @@ class Tematik extends Model
     protected $table = 'tematiks';
     protected $guarded = [];
     protected $fillable = ['tanggal', 'siswa_id', 'judul1', 'judul2', 'kegiatan1', 'kegiatan2'];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
 }

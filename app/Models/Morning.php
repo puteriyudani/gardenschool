@@ -12,4 +12,9 @@ class Morning extends Model
     protected $table = 'mornings';
     protected $guarded = [];
     protected $fillable = ['tanggal', 'siswa_id', 'kegiatan', 'circletime', 'notifikasi'];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
 }

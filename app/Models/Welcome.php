@@ -12,4 +12,9 @@ class Welcome extends Model
     protected $table = 'welcomes';
     protected $guarded = [];
     protected $fillable = ['tanggal', 'siswa_id', 'indikator', 'keterangan', 'notifikasi'];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
 }

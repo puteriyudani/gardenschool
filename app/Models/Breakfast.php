@@ -12,4 +12,9 @@ class Breakfast extends Model
     protected $table = 'breakfasts';
     protected $guarded = [];
     protected $fillable = ['tanggal', 'siswa_id', 'menu_id', 'keterangan', 'indikator', 'catatan'];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
 }

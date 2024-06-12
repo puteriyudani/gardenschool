@@ -12,4 +12,9 @@ class Pooppee extends Model
     protected $table = 'pooppees';
     protected $guarded = [];
     protected $fillable = ['tanggal', 'siswa_id', 'poop', 'pee', 'catatan'];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
 }
