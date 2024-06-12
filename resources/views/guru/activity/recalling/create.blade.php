@@ -72,8 +72,8 @@
                                         <fieldset disabled>
                                             <div class="mb-3">
                                                 <label for="siswa_id" class="form-label">Nama Siswa</label>
-                                                <select id="siswa_id" class="form-select">
-                                                    <option>Fatimah</option>
+                                                <select id="siswa_id" name="siswa_id" class="form-select">
+                                                    <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
                                                 </select>
                                             </div>
                                         </fieldset>

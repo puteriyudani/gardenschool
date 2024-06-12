@@ -89,6 +89,13 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     // KINDERGARTEN
     Route::get('/teacher-kindergarten', [GuruController::class, 'kindergarten'])->name('teacher.kindergarten');
     Route::get('/teacher-kindergarten/welcome-mood', [KindergartenController::class, 'welcome'])->name('tkwelcome.siswa');
+    Route::get('/teacher-kindergarten/morning-booster', [KindergartenController::class, 'morning'])->name('tkmorning.siswa');
+    Route::get('/teacher-kindergarten/breakfast', [KindergartenController::class, 'breakfast'])->name('tkbreakfast.siswa');
+    Route::get('/teacher-kindergarten/islamic-base-learning', [KindergartenController::class, 'islamic'])->name('tkislamic.siswa');
+    Route::get('/teacher-kindergarten/pre-school', [KindergartenController::class, 'preschool'])->name('tkpreschool.siswa');
+    Route::get('/teacher-kindergarten/tematik', [KindergartenController::class, 'tematik'])->name('tktematik.siswa');
+    Route::get('/teacher-kindergarten/poop-pee', [KindergartenController::class, 'pooppee'])->name('tkpooppee.siswa');
+    Route::get('/teacher-kindergarten/re-calling', [KindergartenController::class, 'recalling'])->name('tkrecalling.siswa');
 
     // kelola menu
     Route::resource('menu', MenuController::class);

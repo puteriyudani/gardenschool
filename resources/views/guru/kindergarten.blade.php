@@ -40,7 +40,7 @@
                                     <div class="card">
                                         <img src="{{ asset('auth') }}/images/activity/morning.png" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <a target="_blank" href="{{ route('tkmorning.index') }}" class="btn" style="background-color: #FFF27F; color: white">Morning Booster</a>
+                                            <a target="_blank" href="{{ route('tkmorning.siswa') }}" class="btn" style="background-color: #FFF27F; color: white">Morning Booster</a>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                     <div class="card">
                                         <img src="{{ asset('auth') }}/images/activity/breakfast.png" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <a target="_blank" href="{{ route('tkbreakfast.index') }}" class="btn" style="background-color: #EEC997; color: white">Breakfast</a>
+                                            <a target="_blank" href="{{ route('tkbreakfast.siswa') }}" class="btn" style="background-color: #EEC997; color: white">Breakfast</a>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                     <div class="card">
                                         <img src="{{ asset('auth') }}/images/activity/islamic.png" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <a target="_blank" href="{{ route('tkislamic.index') }}" class="btn" style="background-color: #364F35; color: white">Islamic Base Learning</a>
+                                            <a target="_blank" href="{{ route('tkislamic.siswa') }}" class="btn" style="background-color: #364F35; color: white">Islamic Base Learning</a>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                     <div class="card">
                                         <img src="{{ asset('auth') }}/images/activity/preschool.png" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <a target="_blank" href="{{ route('tkpreschool.index') }}" class="btn" style="background-color: #627FAB; color: white">Pre School</a>
+                                            <a target="_blank" href="{{ route('tkpreschool.siswa') }}" class="btn" style="background-color: #627FAB; color: white">Pre School</a>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                                     <div class="card">
                                         <img src="{{ asset('auth') }}/images/activity/tematik.png" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <a target="_blank" href="{{ route('tktematik.index') }}" class="btn" style="background-color: #C4ABD9; color: white">Tematik</a>
+                                            <a target="_blank" href="{{ route('tktematik.siswa') }}" class="btn" style="background-color: #C4ABD9; color: white">Tematik</a>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
                                     <div class="card">
                                         <img src="{{ asset('auth') }}/images/activity/pooppee.png" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <a target="_blank" href="{{ route('tkpooppee.index') }}" class="btn" style="background-color: #7D776E; color: white">Poop & Pee</a>
+                                            <a target="_blank" href="{{ route('tkpooppee.siswa') }}" class="btn" style="background-color: #7D776E; color: white">Poop & Pee</a>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                     <div class="card">
                                         <img src="{{ asset('auth') }}/images/activity/recalling.png" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <a target="_blank" href="{{ route('tkrecalling.index') }}" class="btn" style="background-color: #947252; color: white">Re Calling</a>
+                                            <a target="_blank" href="{{ route('tkrecalling.siswa') }}" class="btn" style="background-color: #947252; color: white">Re Calling</a>
                                         </div>
                                     </div>
                                 </div>
