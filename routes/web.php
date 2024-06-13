@@ -137,7 +137,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
     // poop & pee
     Route::get('/teacher-kindergarten/poop-pee/index/{id}', [PoopPeeController::class, 'kindergarten'])->name('tkpooppee.index');
-    Route::resource('poop-pee', PoopPeeController::class);
+    Route::resource('pooppee', PoopPeeController::class);
 
     // re calling
     Route::get('/teacher-kindergarten/re-calling/index/{id}', [RecallingController::class, 'kindergarten'])->name('tkrecalling.index');

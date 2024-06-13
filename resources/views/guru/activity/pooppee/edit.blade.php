@@ -30,51 +30,77 @@
                             <h5 class="card-title fw-semibold mb-4">Edit Poop & Pee</h5>
                             <div class="card">
                                 <div class="card-body">
-                                    <form>
+                                    <form action="{{ route('pooppee.update', $pooppee->id) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+
                                         <div class="mb-3">
                                             <label for="tanggal" class="form-label">Tanggal</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                                value="{{ $pooppee->tanggal }}">
                                         </div>
+                                        @error('tanggal')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <fieldset disabled>
                                             <div class="mb-3">
-                                                <label for="siswa_id" class="form-label">Nama Siswa</label>
-                                                <select id="siswa_id" class="form-select">
-                                                    <option>Fatimah</option>
+                                                <label for="siswa_id_display" class="form-label">Nama Siswa</label>
+                                                <select id="siswa_id_display" name="siswa_id_display" class="form-select">
+                                                    <option value="{{ $siswa->id }}" selected>{{ $siswa->nama }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </fieldset>
+
+                                        <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
+
+                                        @error('siswa_id')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="mb-3">
                                             <label for="poop" class="form-label">Poop</label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="poop"
-                                                    id="ya">
+                                                <input class="form-check-input" type="radio" name="poop" id="ya"
+                                                    value="Ya" {{ $pooppee->poop == 'Ya' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="ya">Ya</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="poop"
-                                                    id="tidak">
+                                                <input class="form-check-input" type="radio" name="poop" id="tidak"
+                                                    value="Tidak" {{ $pooppee->poop == 'Tidak' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="tidak">Tidak</label>
                                             </div>
                                         </div>
+                                        @error('poop')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
                                         <div class="mb-3">
                                             <label for="pee" class="form-label">Pee</label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="pee"
-                                                    id="ya">
+                                                <input class="form-check-input" type="radio" name="pee" id="ya"
+                                                    value="Ya" {{ $pooppee->pee == 'Ya' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="ya">Ya</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="pee"
-                                                    id="tidak">
+                                                <input class="form-check-input" type="radio" name="pee" id="tidak"
+                                                    value="Tidak" {{ $pooppee->pee == 'Tidak' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="tidak">Tidak</label>
                                             </div>
                                         </div>
+                                        @error('pee')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
                                         <div class="mb-3">
                                             <label for="catatan" class="form-label">Catatan</label>
-                                            <textarea class="form-control" id="catatan" name="catatan" rows="5"></textarea>
+                                            <textarea class="form-control" id="catatan" name="catatan" rows="5">{{ $pooppee->catatan }}</textarea>
                                         </div>
+                                        @error('catatan')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
                                 </div>

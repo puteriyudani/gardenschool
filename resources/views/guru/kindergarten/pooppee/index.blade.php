@@ -24,7 +24,8 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a href="{{ route('poop-pee.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
+                <a href="{{ route('pooppee.create') }}"><button type="button"
+                        class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
                 <div class="table-responsive">
@@ -40,25 +41,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>27/05/2024</td>
-                                <td>Ya</td>
-                                <td>Ya</td>
-                                <td>catatan</td>
-                                <td>
-                                    <form action="#" method="POST">
-                                        <a href="" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
+                            @foreach ($pooppees as $pooppee)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $pooppee->tanggal }}</td>
+                                    <td>{{ $pooppee->poop }}</td>
+                                    <td>{{ $pooppee->pee }}</td>
+                                    <td>{{ $pooppee->catatan }}</td>
+                                    <td>
+                                        <form action="{{ route('pooppee.destroy', $pooppee->id) }}" method="POST">
+                                            <a href="{{ route('pooppee.edit', $pooppee->id) }}"
+                                                style="text-decoration: none; color: #28a745"><i
+                                                    class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 
-                                        @csrf
-                                        @method('DELETE')
+                                            @csrf
+                                            @method('DELETE')
 
-                                        <button class="btn mb-1" type="submit" style="color: red">
-                                            <i class="ti ti-trash nav-small-cap-icon fs-4"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                                            <button class="btn mb-1" type="submit" style="color: red">
+                                                <i class="ti ti-trash nav-small-cap-icon fs-4"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
