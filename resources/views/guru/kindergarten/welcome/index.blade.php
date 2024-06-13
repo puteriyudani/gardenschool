@@ -24,7 +24,7 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a href="{{ route('welcome-mood.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
+                <a target="_blank" href="{{ route('welcome-mood.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
                 <div class="table-responsive">
@@ -48,7 +48,7 @@
                                 <td>alasan dari indikator</td>
                                 <td>
                                     <form action="#" method="POST">
-                                        <a href="" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
+                                        <a target="_blank" href="" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 
                                         @csrf
                                         @method('DELETE')

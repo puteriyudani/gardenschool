@@ -24,7 +24,7 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a href="{{ route('preschool.create') }}"><button type="button"
+                <a target="_blank" href="{{ route('preschool.create') }}"><button type="button"
                         class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
@@ -50,7 +50,7 @@
                                     <td>{{ $preschool->english }}</td>
                                     <td>
                                         <form action="{{ route('preschool.destroy', $preschool->id) }}" method="POST">
-                                            <a href="{{ route('preschool.edit', $preschool->id) }}"
+                                            <a target="_blank" href="{{ route('preschool.edit', $preschool->id) }}"
                                                 style="text-decoration: none; color: #28a745"><i
                                                     class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 

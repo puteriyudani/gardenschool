@@ -24,7 +24,7 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a href="{{ route('morning.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
+                <a target="_blank" href="{{ route('morning.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
                 <div class="table-responsive">
@@ -49,7 +49,7 @@
                                 <td>{{ $morning->notifikasi }}</td>
                                 <td>
                                     <form action="{{ route('morning.destroy', $morning->id) }}" method="POST">
-                                        <a href="{{ route('morning.edit', $morning->id) }}" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
+                                        <a target="_blank" href="{{ route('morning.edit', $morning->id) }}" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 
                                         @csrf
                                         @method('DELETE')

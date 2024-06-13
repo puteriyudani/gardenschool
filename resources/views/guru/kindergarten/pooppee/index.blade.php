@@ -24,7 +24,7 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a href="{{ route('pooppee.create') }}"><button type="button"
+                <a target="_blank" href="{{ route('pooppee.create') }}"><button type="button"
                         class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
@@ -50,7 +50,7 @@
                                     <td>{{ $pooppee->catatan }}</td>
                                     <td>
                                         <form action="{{ route('pooppee.destroy', $pooppee->id) }}" method="POST">
-                                            <a href="{{ route('pooppee.edit', $pooppee->id) }}"
+                                            <a target="_blank" href="{{ route('pooppee.edit', $pooppee->id) }}"
                                                 style="text-decoration: none; color: #28a745"><i
                                                     class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 

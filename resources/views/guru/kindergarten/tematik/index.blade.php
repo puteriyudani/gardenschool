@@ -24,7 +24,7 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a href="{{ route('tematik.create') }}"><button type="button"
+                <a target="_blank" href="{{ route('tematik.create') }}"><button type="button"
                         class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
@@ -52,7 +52,7 @@
                                     <td>{{ $tematik->kegiatan2 }}</td>
                                     <td>
                                         <form action="{{ route('tematik.destroy', $tematik->id) }}" method="POST">
-                                            <a href="{{ route('tematik.edit', $tematik->id) }}" style="text-decoration: none; color: #28a745"><i
+                                            <a target="_blank" href="{{ route('tematik.edit', $tematik->id) }}" style="text-decoration: none; color: #28a745"><i
                                                     class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 
                                             @csrf
