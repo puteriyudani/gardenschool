@@ -30,31 +30,53 @@
                             <h5 class="card-title fw-semibold mb-4">Create Pre School</h5>
                             <div class="card">
                                 <div class="card-body">
-                                    <form>
+                                    <form action="{{ route('preschool.store') }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+
                                         <div class="mb-3">
                                             <label for="tanggal" class="form-label">Tanggal</label>
                                             <input type="date" class="form-control" id="tanggal" name="tanggal">
                                         </div>
+                                        @error('tanggal')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <fieldset disabled>
                                             <div class="mb-3">
-                                                <label for="siswa_id" class="form-label">Nama Siswa</label>
-                                                <select id="siswa_id" name="siswa_id" class="form-select">
-                                                    <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
+                                                <label for="siswa_id_display" class="form-label">Nama Siswa</label>
+                                                <select id="siswa_id_display" name="siswa_id_display" class="form-select">
+                                                    <option value="{{ $siswa->id }}" selected>{{ $siswa->nama }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </fieldset>
+
+                                        <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
+
+                                        @error('siswa_id')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="mb-3">
                                             <label for="huruf" class="form-label">Huruf & Membaca</label>
                                             <textarea class="form-control" id="huruf" name="huruf" rows="5"></textarea>
                                         </div>
+                                        @error('huruf')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="mb-3">
                                             <label for="angka" class="form-label">Angka & Berhitung</label>
                                             <textarea class="form-control" id="angka" name="angka" rows="5"></textarea>
                                         </div>
+                                        @error('angka')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="mb-3">
                                             <label for="english" class="form-label">Pre Basic English</label>
                                             <textarea class="form-control" id="english" name="english" rows="5"></textarea>
                                         </div>
+                                        @error('english')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
                                 </div>

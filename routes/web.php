@@ -129,7 +129,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
     // pre school
     Route::get('/teacher-kindergarten/pre-school/index/{id}', [PreschoolController::class, 'kindergarten'])->name('tkpreschool.index');
-    Route::resource('pre-school', PreschoolController::class);
+    Route::resource('preschool', PreschoolController::class);
 
     // tematik
     Route::get('/teacher-kindergarten/tematik/index/{id}', [TematikController::class, 'kindergarten'])->name('tktematik.index');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Preschool;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class PreschoolController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         session(['siswa_id' => $id]);
-        return view('guru.kindergarten.preschool.index', compact('siswa'));
+        $preschools = Preschool::where('siswa_id', $siswa->id)->get();
+        return view('guru.kindergarten.preschool.index', compact('siswa', 'preschools'));
     }
 
     /**
@@ -32,7 +34,17 @@ class PreschoolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tanggal' => 'required',
+            'siswa_id' => 'required',
+            'huruf' => 'required',
+            'angka' => 'required',
+            'english' => 'required',
+        ]);
+
+        Preschool::create($request->all());
+
+        return redirect()->back()->with('success', 'Pre School created successfully.');
     }
 
     /**
@@ -46,24 +58,38 @@ class PreschoolController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Preschool $preschool)
     {
-        //
+        $siswa_id = session('siswa_id');
+        $siswa = Siswa::findOrFail($siswa_id);
+        return view('guru.activity.preschool.edit', compact('preschool', 'siswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Preschool $preschool)
     {
-        //
+        $request->validate([
+            'tanggal' => 'required',
+            'siswa_id' => 'required',
+            'huruf' => 'required',
+            'angka' => 'required',
+            'english' => 'required',
+        ]);
+
+        $preschool->update($request->all());
+
+        return redirect()->back()->with('success','Pre School updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Preschool $preschool)
     {
-        //
+        $preschool->delete();
+
+        return back()->with('success','Pre School deleted successfully');
     }
 }

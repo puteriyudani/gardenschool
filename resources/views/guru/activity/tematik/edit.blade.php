@@ -30,38 +30,65 @@
                             <h5 class="card-title fw-semibold mb-4">Edit Tematik</h5>
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('tematik.update', $tematik->id) }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('tematik.update', $tematik->id) }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
 
                                         <div class="mb-3">
                                             <label for="tanggal" class="form-label">Tanggal</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $tematik->tanggal }}">
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                                value="{{ $tematik->tanggal }}">
                                         </div>
+                                        @error('tanggal')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <fieldset disabled>
                                             <div class="mb-3">
-                                                <label for="siswa_id" class="form-label">Nama Siswa</label>
-                                                <select id="siswa_id" name="siswa_id" class="form-select">
-                                                    <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
+                                                <label for="siswa_id_display" class="form-label">Nama Siswa</label>
+                                                <select id="siswa_id_display" name="siswa_id_display" class="form-select">
+                                                    <option value="{{ $siswa->id }}" selected>{{ $siswa->nama }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </fieldset>
+
+                                        <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
+
+                                        @error('siswa_id')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
                                         <div class="mb-3">
                                             <label for="judul1" class="form-label">Judul Kegiatan 1</label>
-                                            <input type="text" class="form-control" id="judul1" name="judul1" value="{{ $tematik->judul1 }}">
+                                            <input type="text" class="form-control" id="judul1" name="judul1"
+                                                value="{{ $tematik->judul1 }}">
                                         </div>
+                                        @error('judul1')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="mb-3">
                                             <label for="kegiatan1" class="form-label">Kegiatan 1</label>
                                             <textarea class="form-control" id="kegiatan1" name="kegiatan1" rows="5">{{ $tematik->kegiatan1 }}</textarea>
                                         </div>
+                                        @error('kegiatan1')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="mb-3">
                                             <label for="judul2" class="form-label">Judul Kegiatan 2</label>
-                                            <input type="text" class="form-control" id="judul2" name="judul2" {{ $tematik->judul2 }}>
+                                            <input type="text" class="form-control" id="judul2" name="judul2"
+                                                value="{{ $tematik->judul2 }}">
                                         </div>
+                                        @error('judul2')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="mb-3">
                                             <label for="kegiatan2" class="form-label">Kegiatan 2</label>
                                             <textarea class="form-control" id="kegiatan2" name="kegiatan2" rows="5">{{ $tematik->kegiatan2 }}</textarea>
                                         </div>
+                                        @error('kegiatan2')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
                                 </div>
