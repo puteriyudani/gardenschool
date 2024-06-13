@@ -117,7 +117,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
     // morning booster
     Route::get('/teacher-kindergarten/morning-booster/index/{id}', [MorningController::class, 'kindergarten'])->name('tkmorning.index');
-    Route::resource('morning-booster', MorningController::class);
+    Route::resource('morning', MorningController::class);
 
     // breakfast
     Route::get('/teacher-kindergarten/breakfast/index/{id}', [BreakfastController::class, 'kindergarten'])->name('tkbreakfast.index');

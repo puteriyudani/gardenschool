@@ -43,6 +43,7 @@
                                         @error('tanggal')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
+
                                         <fieldset disabled>
                                             <div class="mb-3">
                                                 <label for="siswa_id_display" class="form-label">Nama Siswa</label>
@@ -58,6 +59,7 @@
                                         @error('siswa_id')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
+
                                         <div class="mb-3">
                                             <label for="poop" class="form-label">Poop</label>
                                             <br>

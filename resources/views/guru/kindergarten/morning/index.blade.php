@@ -24,7 +24,7 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a href="{{ route('morning-booster.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
+                <a href="{{ route('morning.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
                 <div class="table-responsive">
@@ -40,15 +40,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($mornings as $morning)
                             <tr>
-                                <td>1</td>
-                                <td>27/05/2024</td>
-                                <td>Senam Pagi</td>
-                                <td>Ice Breaking</td>
-                                <td>notifikasi kegiatan anak</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $morning->tanggal }}</td>
+                                <td>{{ $morning->kegiatan }}</td>
+                                <td>{{ $morning->circletime }}</td>
+                                <td>{{ $morning->notifikasi }}</td>
                                 <td>
-                                    <form action="#" method="POST">
-                                        <a href="" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
+                                    <form action="{{ route('morning.destroy', $morning->id) }}" method="POST">
+                                        <a href="{{ route('morning.edit', $morning->id) }}" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 
                                         @csrf
                                         @method('DELETE')
@@ -59,6 +60,7 @@
                                     </form>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
