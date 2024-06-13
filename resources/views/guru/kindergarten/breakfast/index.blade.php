@@ -24,7 +24,8 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a target="_blank" href="{{ route('breakfast.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
+                <a target="_blank" href="{{ route('breakfast.create') }}"><button type="button"
+                        class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
                 <div class="table-responsive">
@@ -41,26 +42,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>27/05/2024</td>
-                                <td>Variasi nasi, sop ayam dan tempe goreng</td>
-                                <td>Habis</td>
-                                <td>100%</td>
-                                <td>anak tidak suka makanan tahu</td>
-                                <td>
-                                    <form action="#" method="POST">
-                                        <a target="_blank" href="" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
+                            @foreach ($breakfasts as $breakfast)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $breakfast->tanggal }}</td>
+                                    <td>{{ $breakfast->menu->menu }}</td>
+                                    <td>{{ $breakfast->keterangan }}</td>
+                                    <td>{{ $breakfast->indikator }}%</td>
+                                    <td>{{ $breakfast->catatan }}</td>
+                                    <td>
+                                        <form action="{{ route('breakfast.destroy', $breakfast->id) }}" method="POST">
+                                            <a target="_blank" href="{{ route('breakfast.edit', $breakfast->id) }}"
+                                                style="text-decoration: none; color: #28a745"><i
+                                                    class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 
-                                        @csrf
-                                        @method('DELETE')
+                                            @csrf
+                                            @method('DELETE')
 
-                                        <button class="btn mb-1" type="submit" style="color: red">
-                                            <i class="ti ti-trash nav-small-cap-icon fs-4"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                                            <button class="btn mb-1" type="submit" style="color: red">
+                                                <i class="ti ti-trash nav-small-cap-icon fs-4"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
