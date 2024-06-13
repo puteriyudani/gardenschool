@@ -24,7 +24,8 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a href="{{ route('tematik.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
+                <a href="{{ route('tematik.create') }}"><button type="button"
+                        class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
                 <div class="table-responsive">
@@ -34,33 +35,36 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Judul 1</th>
-                                <th scope="col">Judul 2</th>
                                 <th scope="col">Kegiatan 1</th>
+                                <th scope="col">Judul 2</th>
                                 <th scope="col">Kegiatan 2</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>27/05/2024</td>
-                                <td>Culture Paradise</td>
-                                <td>Culture Paradise</td>
-                                <td>Hari ini anak belajar bermain congklak</td>
-                                <td>Hari ini anak belajar bermain congklak</td>
-                                <td>
-                                    <form action="#" method="POST">
-                                        <a href="" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
+                            @foreach ($tematiks as $tematik)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $tematik->tanggal }}</td>
+                                    <td>{{ $tematik->judul1 }}</td>
+                                    <td>{{ $tematik->kegiatan1 }}</td>
+                                    <td>{{ $tematik->judul2 }}</td>
+                                    <td>{{ $tematik->kegiatan2 }}</td>
+                                    <td>
+                                        <form action="{{ route('tematik.destroy', $tematik->id) }}" method="POST">
+                                            <a href="{{ route('tematik.edit', $tematik->id) }}" style="text-decoration: none; color: #28a745"><i
+                                                    class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 
-                                        @csrf
-                                        @method('DELETE')
+                                            @csrf
+                                            @method('DELETE')
 
-                                        <button class="btn mb-1" type="submit" style="color: red">
-                                            <i class="ti ti-trash nav-small-cap-icon fs-4"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                                            <button class="btn mb-1" type="submit" style="color: red">
+                                                <i class="ti ti-trash nav-small-cap-icon fs-4"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

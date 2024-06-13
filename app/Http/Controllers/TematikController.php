@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\Tematik;
 use Illuminate\Http\Request;
 
 class TematikController extends Controller
@@ -14,7 +15,8 @@ class TematikController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         session(['siswa_id' => $id]);
-        return view('guru.kindergarten.tematik.index', compact('siswa'));
+        $tematiks = Tematik::where('siswa_id', $siswa->id)->get();
+        return view('guru.kindergarten.tematik.index', compact('siswa', 'tematiks'));
     }
 
     /**
@@ -32,7 +34,18 @@ class TematikController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tanggal' => 'required',
+            'siswa_id' => 'required',
+            'judul1' => 'required',
+            'judul2' => 'required',
+            'kegiatan1' => 'required',
+            'kegiatan2' => 'required',
+        ]);
+
+        Tematik::create($request->all());
+
+        return redirect()->back()->with('success', 'Tematik created successfully.');
     }
 
     /**
@@ -46,24 +59,39 @@ class TematikController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Tematik $tematik)
     {
-        //
+        $siswa_id = session('siswa_id');
+        $siswa = Siswa::findOrFail($siswa_id);
+        return view('guru.activity.tematik.edit', compact('tematik', 'siswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Tematik $tematik)
     {
-        //
+        $request->validate([
+            'tanggal' => 'required',
+            'siswa_id' => 'required',
+            'judul1' => 'required',
+            'judul2' => 'required',
+            'kegiatan1' => 'required',
+            'kegiatan2' => 'required',
+        ]);
+
+        $tematik->update($request->all());
+
+        return redirect()->back()->with('success','Tematik updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Tematik $tematik)
     {
-        //
+        $tematik->delete();
+
+        return back()->with('success','Tematik deleted successfully');
     }
 }
