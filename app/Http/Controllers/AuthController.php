@@ -48,6 +48,9 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt(['nohp' => $request->nohp, 'password' => $request->password])) {
+            // Simpan nama pengguna dalam sesi
+            $request->session()->put('name', Auth::user()->name);
+
             if(Auth::user()->level == 'admin') {
                 return redirect()->route('admin');
             } else if(Auth::user()->level == 'guru') {

@@ -152,16 +152,12 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
 //ortu
 Route::middleware(['auth', 'user-access:ortu'])->group(function () {
-    Route::get('/halaman-orangtua', [OrtuController::class, 'index'])->name('ortu');
+    Route::get('/halaman-orangtua', [OrtuController::class, 'index'])->name('ortu')->middleware('auth');
     Route::get('/halaman-orangtua-siswa', [OrtuController::class, 'siswa'])->name('ortu.siswa');
 
     Route::get('halaman-orangtua-siswa/{siswa}/kindergarten', [OrtuController::class, 'kindergarten'])->name('ortu.kindergarten');
     Route::get('halaman-orangtua-siswa/{siswa}/playgroup', [OrtuController::class, 'playgroup'])->name('ortu.playgroup');
     Route::get('halaman-orangtua-siswa/{siswa}/babycamp', [OrtuController::class, 'babycamp'])->name('ortu.babycamp');
-
-    // catatan orangtua
-    Route::resource('catatanorangtua', CatatanOrangtuaController::class);
-    Route::get('catatan-orangtua/create/{siswa}/{tanggal}', [CatatanOrangtuaController::class, 'create'])->name('catatanorangtua.create');
 
     Route::get('/halaman-orangtua-test', [OrtuController::class, 'test'])->name('ortu.test');
 });
