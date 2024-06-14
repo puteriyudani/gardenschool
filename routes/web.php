@@ -141,7 +141,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
     // re calling
     Route::get('/teacher-kindergarten/re-calling/index/{id}', [RecallingController::class, 'kindergarten'])->name('tkrecalling.index');
-    Route::resource('re-calling', RecallingController::class);
+    Route::resource('recalling', RecallingController::class);
 
     // PLAYGROUP
     Route::get('/teacher-playgroup', [GuruController::class, 'playgroup'])->name('teacher.playgroup');

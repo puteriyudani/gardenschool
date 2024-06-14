@@ -24,7 +24,7 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a target="_blank" href="{{ route('re-calling.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
+                <a target="_blank" href="{{ route('recalling.create') }}"><button type="button" class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
                 <div class="table-responsive">
@@ -40,25 +40,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>27/05/2024</td>
-                                <td>100%</td>
-                                <td>I'm Perfect Happy</td>
-                                <td>alasan dari indikator</td>
-                                <td>
-                                    <form action="#" method="POST">
-                                        <a target="_blank" href="" style="text-decoration: none; color: #28a745"><i class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
+                            @foreach ($recallings as $recalling)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $recalling->tanggal }}</td>
+                                    <td>{{ $recalling->indikator }}%</td>
+                                    <td>{{ $recalling->keterangan }}</td>
+                                    <td>{{ $recalling->notifikasi }}</td>
+                                    <td>
+                                        <form action="{{ route('recalling.destroy', $recalling->id) }}" method="POST">
+                                            <a target="_blank" href="{{ route('recalling.edit', $recalling->id) }}"
+                                                style="text-decoration: none; color: #28a745"><i
+                                                    class="ti ti-pencil nav-small-cap-icon fs-4"></i></a>
 
-                                        @csrf
-                                        @method('DELETE')
+                                            @csrf
+                                            @method('DELETE')
 
-                                        <button class="btn mb-1" type="submit" style="color: red">
-                                            <i class="ti ti-trash nav-small-cap-icon fs-4"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                                            <button class="btn mb-1" type="submit" style="color: red">
+                                                <i class="ti ti-trash nav-small-cap-icon fs-4"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

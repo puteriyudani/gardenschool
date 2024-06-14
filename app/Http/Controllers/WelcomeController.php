@@ -80,7 +80,7 @@ class WelcomeController extends Controller
 
         $welcome->update($request->all());
 
-        return redirect()->back()->with('success','Tematik updated successfully');
+        return redirect()->back()->with('success','Welcome updated successfully');
     }
 
     /**

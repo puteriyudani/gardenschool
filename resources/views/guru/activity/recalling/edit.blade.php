@@ -80,23 +80,41 @@
 
                             <div class="card">
                                 <div class="card-body">
-                                    <form>
+                                    <form action="{{ route('recalling.update', $recalling->id) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+
                                         <div class="mb-3">
                                             <label for="tanggal" class="form-label">Tanggal</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $recalling->tanggal }}">
                                         </div>
+                                        @error('tanggal')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
                                         <fieldset disabled>
                                             <div class="mb-3">
-                                                <label for="siswa_id" class="form-label">Nama Siswa</label>
-                                                <select id="siswa_id" class="form-select">
-                                                    <option>Fatimah</option>
+                                                <label for="siswa_id_display" class="form-label">Nama Siswa</label>
+                                                <select id="siswa_id_display" name="siswa_id_display" class="form-select">
+                                                    <option value="{{ $siswa->id }}" selected>{{ $siswa->nama }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </fieldset>
+
+                                        <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
+
+                                        @error('siswa_id')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
                                         <div class="mb-3">
                                             <label for="keterangan" class="form-label">Keterangan</label>
-                                            <select id="keterangan" class="form-select hidden-select">
+                                            <select id="keterangan" name="keterangan" class="form-select hidden-select">
+                                                <option value="{{ $recalling->keterangan }}" selected>{{ $recalling->keterangan }}</option>
                                                 <option value="Happy">Happy</option>
+                                                <option value="Neutral">Neutral</option>
                                                 <option value="Sad">Sad</option>
                                             </select>
                                             <div class="custom-select-container" id="customSelectContainer">
@@ -106,25 +124,37 @@
                                                     data-value="Sad">
                                             </div>
                                         </div>
+                                        @error('keterangan')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
 
                                         <div class="mb-3">
-                                            <label for="progressBar" class="form-label" id="progressLabel">Progress: 0%</label>
-                                            <input type="range" class="progress-bar" id="progressBar" value="0"
-                                                min="0" max="100">
+                                            <label for="indikator" class="form-label" id="progressLabel">Indikator:
+                                                {{ $recalling->indikator }}%</label>
+                                            <input type="range" class="progress-bar" id="progressBar" name="indikator"
+                                                value="{{ $recalling->indikator }}" min="0" max="100">
                                         </div>
-
-                                        <div class="popup-overlay" id="popupOverlay">
+                                        <div class="popup-overlay" id="popupOverlay" style="display: none;">
                                             <div class="popup-content">
-                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF" id="happyGif" class="popup-gif" style="display: none;">
-                                                <img src="{{ asset('auth') }}/gif/sad.gif" alt="Sad GIF" id="sadGif" class="popup-gif" style="display: none;">
+                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF" id="happyGif"
+                                                    class="popup-gif" style="display: none;">
+                                                <img src="{{ asset('auth') }}/gif/sad.gif" alt="Sad GIF" id="sadGif"
+                                                    class="popup-gif" style="display: none;">
                                                 <button class="popup-close btn btn-danger" id="popupClose">Close</button>
                                             </div>
                                         </div>
+                                        @error('indikator')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
 
                                         <div class="mb-3">
                                             <label for="notifikasi" class="form-label">Notifikasi</label>
-                                            <textarea class="form-control" id="notifikasi" name="notifikasi" rows="5"></textarea>
+                                            <textarea class="form-control" id="notifikasi" name="notifikasi" rows="5">{{ $recalling->notifikasi }}</textarea>
                                         </div>
+                                        @error('notifikasi')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
                                 </div>
