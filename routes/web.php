@@ -113,7 +113,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
     // welcome mood
     Route::get('/teacher-kindergarten/welcome-mood/index/{id}', [WelcomeController::class, 'kindergarten'])->name('tkwelcome.index');
-    Route::resource('welcome-mood', WelcomeController::class);
+    Route::resource('welcome', WelcomeController::class);
 
     // morning booster
     Route::get('/teacher-kindergarten/morning-booster/index/{id}', [MorningController::class, 'kindergarten'])->name('tkmorning.index');

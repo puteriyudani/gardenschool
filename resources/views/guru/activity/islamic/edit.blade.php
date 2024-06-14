@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('judul')
-    <title>Guru - Edit Morning Booster</title>
+    <title>Guru - Edit Islamic Base Learning</title>
     <style>
         .btn.btn-primary.disabled,
         .btn.btn-warning.disabled,
@@ -27,7 +27,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title fw-semibold mb-4">Edit Morning Booster</h5>
+                            <h5 class="card-title fw-semibold mb-4">Edit Islamic Base Learning</h5>
                             @if (Session::has('success'))
                                 <div class="alert alert-success" role="alert">
                                     {{ Session::get('success') }}
