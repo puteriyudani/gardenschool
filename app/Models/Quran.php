@@ -12,4 +12,9 @@ class Quran extends Model
     protected $table = 'qurans';
     protected $guarded = [];
     protected $fillable = ['quran'];
+
+    public function islamics()
+    {
+        return $this->hasMany(Islamic::class);
+    }
 }

@@ -25,19 +25,25 @@
             @include('include.header-admin')
             <div class="container-fluid">
                 <div class="container-fluid">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fw-semibold mb-4">Edit Al-Qur'an</h5>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <div class="card">
                                 <div class="card-body">
                                     <form action="{{ route('quran.update', $quran->id) }}" method="POST" enctype="multipart/form-data">

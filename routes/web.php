@@ -104,7 +104,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::resource('video', VideosController::class);
 
     // kelola islamic
-    Route::get('/islamic', function () {
+    Route::get('/islamic-kelola', function () {
         return view('guru.kelola.islamic.index');
     })->name('tkislamic.kelola');
     Route::resource('doa', DoaController::class);
@@ -125,7 +125,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
     // islamic base learning
     Route::get('/teacher-kindergarten/islamic-base-learning/index/{id}', [IslamicController::class, 'kindergarten'])->name('tkislamic.index');
-    Route::resource('islamic-base-learning', IslamicController::class);
+    Route::resource('islamic', IslamicController::class);
 
     // pre school
     Route::get('/teacher-kindergarten/pre-school/index/{id}', [PreschoolController::class, 'kindergarten'])->name('tkpreschool.index');

@@ -28,6 +28,22 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fw-semibold mb-4">Create Poop & Pee</h5>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <div class="card">
                                 <div class="card-body">
                                     <form action="{{ route('pooppee.store') }}" method="POST"
@@ -60,13 +76,13 @@
                                             <label for="poop" class="form-label">Poop</label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="poop"
-                                                    id="ya" value="Ya">
+                                                <input class="form-check-input" type="radio" name="poop" id="ya"
+                                                    value="Ya">
                                                 <label class="form-check-label" for="ya">Ya</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="poop"
-                                                    id="tidak" value="Tidak">
+                                                <input class="form-check-input" type="radio" name="poop" id="tidak"
+                                                    value="Tidak">
                                                 <label class="form-check-label" for="tidak">Tidak</label>
                                             </div>
                                         </div>
@@ -77,13 +93,13 @@
                                             <label for="pee" class="form-label">Pee</label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="pee"
-                                                    id="ya" value="Ya">
+                                                <input class="form-check-input" type="radio" name="pee" id="ya"
+                                                    value="Ya">
                                                 <label class="form-check-label" for="ya">Ya</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="pee"
-                                                    id="tidak" value="Tidak">
+                                                <input class="form-check-input" type="radio" name="pee" id="tidak"
+                                                    value="Tidak">
                                                 <label class="form-check-label" for="tidak">Tidak</label>
                                             </div>
                                         </div>

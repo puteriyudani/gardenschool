@@ -12,4 +12,9 @@ class Hadist extends Model
     protected $table = 'hadists';
     protected $guarded = [];
     protected $fillable = ['hadist'];
+
+    public function islamics()
+    {
+        return $this->hasMany(Islamic::class);
+    }
 }

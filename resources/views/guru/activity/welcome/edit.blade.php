@@ -62,6 +62,22 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fw-semibold mb-4">Edit Welcome Mood</h5>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <div class="card">
                                 <div class="card-body">
                                     <form>
@@ -95,15 +111,18 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="indikator" class="form-label" id="progressLabel">Indikator: 0%</label>
-                                            <input type="range" class="progress-bar" id="indikator" name="indikator" value="0"
-                                                min="0" max="100">
+                                            <label for="indikator" class="form-label" id="progressLabel">Indikator:
+                                                0%</label>
+                                            <input type="range" class="progress-bar" id="indikator" name="indikator"
+                                                value="0" min="0" max="100">
                                         </div>
 
                                         <div class="popup-overlay" id="popupOverlay">
                                             <div class="popup-content">
-                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF" id="happyGif" class="popup-gif" style="display: none;">
-                                                <img src="{{ asset('auth') }}/gif/sad.gif" alt="Sad GIF" id="sadGif" class="popup-gif" style="display: none;">
+                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF" id="happyGif"
+                                                    class="popup-gif" style="display: none;">
+                                                <img src="{{ asset('auth') }}/gif/sad.gif" alt="Sad GIF" id="sadGif"
+                                                    class="popup-gif" style="display: none;">
                                                 <button class="popup-close btn btn-danger" id="popupClose">Close</button>
                                             </div>
                                         </div>

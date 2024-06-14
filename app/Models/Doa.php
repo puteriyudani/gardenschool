@@ -12,4 +12,9 @@ class Doa extends Model
     protected $table = 'doas';
     protected $guarded = [];
     protected $fillable = ['doa'];
+
+    public function islamics()
+    {
+        return $this->hasMany(Islamic::class);
+    }
 }
