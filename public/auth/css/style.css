@@ -251,6 +251,20 @@
     width: 20px;
 }
 
+.bg-darkgreen .darkgreen-catatan p {
+    font-weight: 500;
+    font-size: 14px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bg-darkgreen .darkgreen-catatan a {
+    text-decoration: none;
+    font-weight: 200;
+    font-size: 14px;
+}
+
 /* bg-brown */
 .bg-brown {
     background-color: #833B0B;
@@ -440,7 +454,7 @@
     padding: 35px 5px;
     text-align: center;
     width: 100%;
-    font-size: 32px;
+    font-size: 28px;
 }
 
 .bg-orange .gizi {
@@ -778,6 +792,17 @@
         margin-top: -15px;
     }
 
+    .bg-darkgreen .darkgreen-catatan p {
+        font-size: 8px;
+        padding: 8px;
+        border-radius: 8px;
+        margin-left: 0px;
+    }
+
+    .bg-darkgreen .darkgreen-catatan a {
+        font-size: 8px;
+    }
+
     /* bg-brown */
     .bg-brown .blockquote-custom-icon {
         width: 80px;
@@ -901,7 +926,7 @@
 
     .bg-orange .persentase h1 {
         padding: 23px 1px;
-        font-size: 16px;
+        font-size: 14px;
         border-radius: 10px;
     }
 
@@ -972,7 +997,7 @@
     .bg-mustard p {
         font-size: 8px;
         padding: 5px 5px 0px 5px;
-        height: 75%;
+        height: 65%;
     }
 
     .bg-mustard .emot {
@@ -986,11 +1011,14 @@
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #ff0000; /* Red background color */
+    background-color: #ff0000;
+    /* Red background color */
     color: white;
     border: none;
-    border-radius: 30px; /* Oval shape */
-    width: 120px; /* Wider width for oval shape */
+    border-radius: 30px;
+    /* Oval shape */
+    width: 120px;
+    /* Wider width for oval shape */
     height: 40px;
     font-size: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -1007,6 +1035,7 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
 .custom-select-container img {
     width: 100px;
     height: 100px;
@@ -1014,9 +1043,11 @@
     margin: 10px;
     transition: transform 0.2s;
 }
+
 .custom-select-container img:hover {
     transform: scale(1.1);
 }
+
 .hidden-select {
     display: none;
 }
