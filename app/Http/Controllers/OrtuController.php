@@ -27,23 +27,27 @@ class OrtuController extends Controller
         if ($siswa) {
             session(['siswa_id' => $siswa->id]);
 
-            // Ambil welcome records terkait siswa
-            $welcomes = Welcome::where('siswa_id', $siswa->id)->get();
-            $mornings = Morning::where('siswa_id', $siswa->id)->get();
-            $breakfasts = Breakfast::with('menu')->where('siswa_id', $siswa->id)->get();
-            $islamics = Islamic::with('hadist', 'quran', 'doa')->where('siswa_id', $siswa->id)->get();
-            $preschools = Preschool::where('siswa_id', $siswa->id)->get();
-            $pooppees = Pooppee::where('siswa_id', $siswa->id)->get();
-            $tematiks = Tematik::where('siswa_id', $siswa->id)->get();
-            $recallings = Recalling::where('siswa_id', $siswa->id)->get();
-            $videos = Video::get();
+            // Dapatkan tanggal hari ini
+            $today = date('Y-m-d');
 
-            return view('orangtua.laporan', compact('user', 'siswa', 'welcomes', 'mornings', 'breakfasts', 'islamics', 'preschools', 'pooppees', 'tematiks', 'videos', 'recallings'));
+            // Ambil welcome records terkait siswa untuk tanggal hari ini
+            $welcomes = Welcome::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $mornings = Morning::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $breakfasts = Breakfast::with('menu')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $islamics = Islamic::with('hadist', 'quran', 'doa')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $preschools = Preschool::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $pooppees = Pooppee::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $tematiks = Tematik::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $recallings = Recalling::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $videos = Video::whereDate('tanggal', $today)->get();
+
+            return view('orangtua.laporan', compact('user', 'siswa', 'welcomes', 'mornings', 'breakfasts', 'islamics', 'preschools', 'pooppees', 'tematiks', 'videos', 'recallings', 'today'));
         } else {
             // Jika siswa tidak ditemukan, kembalikan pesan kesalahan atau tindakan lainnya
             return redirect()->back()->with('error', 'Siswa tidak ditemukan untuk orangtua ini.');
         }
     }
+
 
     public function index()
     {

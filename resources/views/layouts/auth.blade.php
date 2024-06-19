@@ -31,6 +31,7 @@
     <script src="{{ asset('auth/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('auth/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('auth/js/dashboard.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 </body>
 
 </html>
