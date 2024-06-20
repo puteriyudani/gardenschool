@@ -50,7 +50,7 @@ class SiswaController extends Controller
             'nama_ayah' => 'required',
             'nama_ibu' => 'required',
             'alamat' => 'required',
-            'image' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
         ]);
 
         $input = $request->all();
@@ -108,20 +108,23 @@ class SiswaController extends Controller
             'nama_ayah' => 'required',
             'nama_ibu' => 'required',
             'alamat' => 'required',
-            'image' => 'required',
+            'image.*' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
         ]);
 
-        $input = $request->all();
+        $input = $request->only(['orangtua_id', 'tahun_id', 'nama', 'panggilan', 'noinduk', 'kelompok', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'anakke', 'nama_ayah', 'nama_ibu', 'alamat']);
 
         if ($request->hasFile('image')) {
-            $destinationPath = 'public/images';
-            $image = $request->file('image');
-            $image_name = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $path = $request->file('image')->storeAs($destinationPath,$image_name);
+            $imageData = [];
 
-            $input['image'] = $image_name;
-        } else{
-            unset($input['image']);
+            foreach ($request->file('image') as $key => $file) {
+                $destinationPath = 'public/images';
+                $image_name = date('YmdHis') . '-' . $key . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs($destinationPath, $image_name);
+
+                $imageData[] = $image_name;
+            }
+
+            $input['image'] = $imageData[0];
         }
 
         $siswa->update($input);
