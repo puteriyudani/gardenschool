@@ -19,6 +19,14 @@ class MorningController extends Controller
         return view('guru.kindergarten.morning.index', compact('siswa', 'mornings'));
     }
 
+    public function playgroup($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        session(['siswa_id' => $id]);
+        $mornings = Morning::where('siswa_id', $siswa->id)->get();
+        return view('guru.playgroup.morning.index', compact('siswa', 'mornings'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -19,6 +19,14 @@ class PreschoolController extends Controller
         return view('guru.kindergarten.preschool.index', compact('siswa', 'preschools'));
     }
 
+    public function playgroup($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        session(['siswa_id' => $id]);
+        $preschools = Preschool::where('siswa_id', $siswa->id)->get();
+        return view('guru.playgroup.preschool.index', compact('siswa', 'preschools'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

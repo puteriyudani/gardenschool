@@ -19,6 +19,14 @@ class RecallingController extends Controller
         return view('guru.kindergarten.recalling.index', compact('siswa', 'recallings'));
     }
 
+    public function playgroup($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        session(['siswa_id' => $id]);
+        $recallings = Recalling::where('siswa_id', $siswa->id)->get();
+        return view('guru.playgroup.recalling.index', compact('siswa', 'recallings'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

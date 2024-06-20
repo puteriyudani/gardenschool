@@ -15,6 +15,7 @@ use App\Http\Controllers\MorningController;
 use App\Http\Controllers\OrtuController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PlaygroupController;
 use App\Http\Controllers\PoopPeeController;
 use App\Http\Controllers\PreschoolController;
 use App\Http\Controllers\QuranController;
@@ -145,6 +146,14 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
     // PLAYGROUP
     Route::get('/teacher-playgroup', [GuruController::class, 'playgroup'])->name('teacher.playgroup');
+    Route::get('/teacher-playgroup/welcome-mood', [PlaygroupController::class, 'welcome'])->name('tpwelcome.siswa');
+    Route::get('/teacher-playgroup/morning-booster', [PlaygroupController::class, 'morning'])->name('tpmorning.siswa');
+    Route::get('/teacher-playgroup/breakfast', [PlaygroupController::class, 'breakfast'])->name('tpbreakfast.siswa');
+    Route::get('/teacher-playgroup/islamic-base-learning', [PlaygroupController::class, 'islamic'])->name('tpislamic.siswa');
+    Route::get('/teacher-playgroup/pre-school', [PlaygroupController::class, 'preschool'])->name('tppreschool.siswa');
+    Route::get('/teacher-playgroup/tematik', [PlaygroupController::class, 'tematik'])->name('tptematik.siswa');
+    Route::get('/teacher-playgroup/poop-pee', [PlaygroupController::class, 'pooppee'])->name('tppooppee.siswa');
+    Route::get('/teacher-playgroup/re-calling', [PlaygroupController::class, 'recalling'])->name('tprecalling.siswa');
 
     // BABYCAMP
     Route::get('/teacher-babycamp', [GuruController::class, 'babycamp'])->name('teacher.babycamp');

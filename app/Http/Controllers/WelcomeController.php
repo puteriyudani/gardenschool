@@ -19,6 +19,14 @@ class WelcomeController extends Controller
         return view('guru.kindergarten.welcome.index', compact('siswa', 'welcomes'));
     }
 
+    public function playgroup($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        session(['siswa_id' => $id]);
+        $welcomes = Welcome::where('siswa_id', $siswa->id)->get();
+        return view('guru.playgroup.welcome.index', compact('siswa', 'welcomes'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

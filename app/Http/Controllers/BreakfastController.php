@@ -22,6 +22,16 @@ class BreakfastController extends Controller
         return view('guru.kindergarten.breakfast.index', compact('siswa', 'breakfasts'));
     }
 
+    public function playgroup($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        session(['siswa_id' => $id]);
+        $breakfasts = Breakfast::with('menu')
+            ->where('siswa_id', $siswa->id)
+            ->get();
+        return view('guru.playgroup.breakfast.index', compact('siswa', 'breakfasts'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -19,6 +19,14 @@ class TematikController extends Controller
         return view('guru.kindergarten.tematik.index', compact('siswa', 'tematiks'));
     }
 
+    public function playgroup($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        session(['siswa_id' => $id]);
+        $tematiks = Tematik::where('siswa_id', $siswa->id)->get();
+        return view('guru.playgroup.tematik.index', compact('siswa', 'tematiks'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

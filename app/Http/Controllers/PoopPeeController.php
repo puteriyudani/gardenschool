@@ -19,6 +19,14 @@ class PoopPeeController extends Controller
         return view('guru.kindergarten.pooppee.index', compact('siswa', 'pooppees'));
     }
 
+    public function playgroup($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        session(['siswa_id' => $id]);
+        $pooppees = Pooppee::where('siswa_id', $siswa->id)->get();
+        return view('guru.playgroup.pooppee.index', compact('siswa', 'pooppees'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
