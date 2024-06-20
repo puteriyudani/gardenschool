@@ -27,6 +27,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
+                            <h5 class="card-title fw-semibold mb-4">Kindergarten - Poop & Pee</h5>
                             <div class="row text-center">
                                 @foreach ($siswas as $siswa)
                                     <div class="col-md-2">
