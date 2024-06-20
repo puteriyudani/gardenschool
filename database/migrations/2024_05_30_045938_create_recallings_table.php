@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('siswa_id');
             $table->string('indikator');
             $table->string('keterangan');
-            $table->string('notifikasi');
+            $table->string('notifikasi')->nullable();
             $table->timestamps();
         });
     }

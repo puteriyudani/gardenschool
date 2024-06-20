@@ -47,7 +47,7 @@ class WelcomeController extends Controller
             'siswa_id' => 'required',
             'indikator' => 'required',
             'keterangan' => 'required',
-            'notifikasi' => 'required',
+            'notifikasi' => 'nullable',
         ]);
 
         Welcome::create($request->all());
@@ -83,7 +83,7 @@ class WelcomeController extends Controller
             'siswa_id' => 'required',
             'indikator' => 'required',
             'keterangan' => 'required',
-            'notifikasi' => 'required',
+            'notifikasi' => 'nullable',
         ]);
 
         $welcome->update($request->all());

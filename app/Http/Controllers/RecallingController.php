@@ -47,7 +47,7 @@ class RecallingController extends Controller
             'siswa_id' => 'required',
             'indikator' => 'required',
             'keterangan' => 'required',
-            'notifikasi' => 'required',
+            'notifikasi' => 'nullable',
         ]);
 
         Recalling::create($request->all());
@@ -83,7 +83,7 @@ class RecallingController extends Controller
             'siswa_id' => 'required',
             'indikator' => 'required',
             'keterangan' => 'required',
-            'notifikasi' => 'required',
+            'notifikasi' => 'nullable',
         ]);
 
         $recalling->update($request->all());
