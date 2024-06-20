@@ -87,17 +87,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::get('/teacher', [GuruController::class, 'index'])->name('teacher.index');
 
-    // KINDERGARTEN
-    Route::get('/teacher-kindergarten', [GuruController::class, 'kindergarten'])->name('teacher.kindergarten');
-    Route::get('/teacher-kindergarten/welcome-mood', [KindergartenController::class, 'welcome'])->name('tkwelcome.siswa');
-    Route::get('/teacher-kindergarten/morning-booster', [KindergartenController::class, 'morning'])->name('tkmorning.siswa');
-    Route::get('/teacher-kindergarten/breakfast', [KindergartenController::class, 'breakfast'])->name('tkbreakfast.siswa');
-    Route::get('/teacher-kindergarten/islamic-base-learning', [KindergartenController::class, 'islamic'])->name('tkislamic.siswa');
-    Route::get('/teacher-kindergarten/pre-school', [KindergartenController::class, 'preschool'])->name('tkpreschool.siswa');
-    Route::get('/teacher-kindergarten/tematik', [KindergartenController::class, 'tematik'])->name('tktematik.siswa');
-    Route::get('/teacher-kindergarten/poop-pee', [KindergartenController::class, 'pooppee'])->name('tkpooppee.siswa');
-    Route::get('/teacher-kindergarten/re-calling', [KindergartenController::class, 'recalling'])->name('tkrecalling.siswa');
-
     // kelola menu
     Route::resource('menu', MenuController::class);
 
@@ -111,6 +100,17 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::resource('doa', DoaController::class);
     Route::resource('hadist', HadistController::class);
     Route::resource('quran', QuranController::class);
+
+    // KINDERGARTEN
+    Route::get('/teacher-kindergarten', [GuruController::class, 'kindergarten'])->name('teacher.kindergarten');
+    Route::get('/teacher-kindergarten/welcome-mood', [KindergartenController::class, 'welcome'])->name('tkwelcome.siswa');
+    Route::get('/teacher-kindergarten/morning-booster', [KindergartenController::class, 'morning'])->name('tkmorning.siswa');
+    Route::get('/teacher-kindergarten/breakfast', [KindergartenController::class, 'breakfast'])->name('tkbreakfast.siswa');
+    Route::get('/teacher-kindergarten/islamic-base-learning', [KindergartenController::class, 'islamic'])->name('tkislamic.siswa');
+    Route::get('/teacher-kindergarten/pre-school', [KindergartenController::class, 'preschool'])->name('tkpreschool.siswa');
+    Route::get('/teacher-kindergarten/tematik', [KindergartenController::class, 'tematik'])->name('tktematik.siswa');
+    Route::get('/teacher-kindergarten/poop-pee', [KindergartenController::class, 'pooppee'])->name('tkpooppee.siswa');
+    Route::get('/teacher-kindergarten/re-calling', [KindergartenController::class, 'recalling'])->name('tkrecalling.siswa');
 
     // welcome mood
     Route::get('/teacher-kindergarten/welcome-mood/index/{id}', [WelcomeController::class, 'kindergarten'])->name('tkwelcome.index');
@@ -154,6 +154,38 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::get('/teacher-playgroup/tematik', [PlaygroupController::class, 'tematik'])->name('tptematik.siswa');
     Route::get('/teacher-playgroup/poop-pee', [PlaygroupController::class, 'pooppee'])->name('tppooppee.siswa');
     Route::get('/teacher-playgroup/re-calling', [PlaygroupController::class, 'recalling'])->name('tprecalling.siswa');
+
+    // welcome mood
+    Route::get('/teacher-playgroup/welcome-mood/index/{id}', [WelcomeController::class, 'playgroup'])->name('tpwelcome.index');
+    Route::resource('welcome', WelcomeController::class);
+
+    // morning booster
+    Route::get('/teacher-playgroup/morning-booster/index/{id}', [MorningController::class, 'playgroup'])->name('tpmorning.index');
+    Route::resource('morning', MorningController::class);
+
+    // breakfast
+    Route::get('/teacher-playgroup/breakfast/index/{id}', [BreakfastController::class, 'playgroup'])->name('tpbreakfast.index');
+    Route::resource('breakfast', BreakfastController::class);
+
+    // islamic base learning
+    Route::get('/teacher-playgroup/islamic-base-learning/index/{id}', [IslamicController::class, 'playgroup'])->name('tpislamic.index');
+    Route::resource('islamic', IslamicController::class);
+
+    // pre school
+    Route::get('/teacher-playgroup/pre-school/index/{id}', [PreschoolController::class, 'playgroup'])->name('tppreschool.index');
+    Route::resource('preschool', PreschoolController::class);
+
+    // tematik
+    Route::get('/teacher-playgroup/tematik/index/{id}', [TematikController::class, 'playgroup'])->name('tptematik.index');
+    Route::resource('tematik', TematikController::class);
+
+    // poop & pee
+    Route::get('/teacher-playgroup/poop-pee/index/{id}', [PoopPeeController::class, 'playgroup'])->name('tppooppee.index');
+    Route::resource('pooppee', PoopPeeController::class);
+
+    // re calling
+    Route::get('/teacher-playgroup/re-calling/index/{id}', [RecallingController::class, 'playgroup'])->name('tprecalling.index');
+    Route::resource('recalling', RecallingController::class);
 
     // BABYCAMP
     Route::get('/teacher-babycamp', [GuruController::class, 'babycamp'])->name('teacher.babycamp');
