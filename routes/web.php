@@ -24,6 +24,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TahunController;
 use App\Http\Controllers\TematikController;
 use App\Http\Controllers\VideosController;
+use App\Http\Controllers\VocabularyController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\YoutubeController;
 use Illuminate\Support\Facades\Auth;
@@ -111,6 +112,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::get('/teacher-kindergarten/tematik', [KindergartenController::class, 'tematik'])->name('tktematik.siswa');
     Route::get('/teacher-kindergarten/poop-pee', [KindergartenController::class, 'pooppee'])->name('tkpooppee.siswa');
     Route::get('/teacher-kindergarten/re-calling', [KindergartenController::class, 'recalling'])->name('tkrecalling.siswa');
+    Route::get('/teacher-kindergarten/vocabulary', [KindergartenController::class, 'vocabulary'])->name('tkvocabulary.siswa');
 
     // welcome mood
     Route::get('/teacher-kindergarten/welcome-mood/index/{id}', [WelcomeController::class, 'kindergarten'])->name('tkwelcome.index');
@@ -144,6 +146,10 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::get('/teacher-kindergarten/re-calling/index/{id}', [RecallingController::class, 'kindergarten'])->name('tkrecalling.index');
     Route::resource('recalling', RecallingController::class);
 
+    // vocabulary
+    Route::get('/teacher-kindergarten/vocabulary/index/{id}', [VocabularyController::class, 'kindergarten'])->name('tkvocabulary.index');
+    Route::resource('vocabulary', VocabularyController::class);
+
     // PLAYGROUP
     Route::get('/teacher-playgroup', [GuruController::class, 'playgroup'])->name('teacher.playgroup');
     Route::get('/teacher-playgroup/welcome-mood', [PlaygroupController::class, 'welcome'])->name('tpwelcome.siswa');
@@ -154,6 +160,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::get('/teacher-playgroup/tematik', [PlaygroupController::class, 'tematik'])->name('tptematik.siswa');
     Route::get('/teacher-playgroup/poop-pee', [PlaygroupController::class, 'pooppee'])->name('tppooppee.siswa');
     Route::get('/teacher-playgroup/re-calling', [PlaygroupController::class, 'recalling'])->name('tprecalling.siswa');
+    Route::get('/teacher-playgroup/vocabulary', [PlaygroupController::class, 'vocabulary'])->name('tpvocabulary.siswa');
 
     // welcome mood
     Route::get('/teacher-playgroup/welcome-mood/index/{id}', [WelcomeController::class, 'playgroup'])->name('tpwelcome.index');
@@ -186,6 +193,10 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     // re calling
     Route::get('/teacher-playgroup/re-calling/index/{id}', [RecallingController::class, 'playgroup'])->name('tprecalling.index');
     Route::resource('recalling', RecallingController::class);
+
+    // vocabulary
+    Route::get('/teacher-playgroup/vocabulary/index/{id}', [VocabularyController::class, 'playgroup'])->name('tpvocabulary.index');
+    Route::resource('vocabulary', VocabularyController::class);
 
     // BABYCAMP
     Route::get('/teacher-babycamp', [GuruController::class, 'babycamp'])->name('teacher.babycamp');

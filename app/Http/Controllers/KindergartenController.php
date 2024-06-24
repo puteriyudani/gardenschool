@@ -47,4 +47,10 @@ class KindergartenController extends Controller
         $siswas = Siswa::where('kelompok', 'kindergarten')->get();
         return view('guru.kindergarten.recalling.siswa', compact('siswas'));
     }
+
+    public function vocabulary()
+    {
+        $siswas = Siswa::where('kelompok', 'kindergarten')->get();
+        return view('guru.kindergarten.vocabulary.siswa', compact('siswas'));
+    }
 }

@@ -97,6 +97,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="{{ asset('auth') }}/images/activity/vocabulary.png" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <a target="_blank" href="{{ route('tkvocabulary.siswa') }}" class="btn" style="background-color: #527894; color: white">Vocabulary</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

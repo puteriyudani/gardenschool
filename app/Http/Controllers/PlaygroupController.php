@@ -47,4 +47,9 @@ class PlaygroupController extends Controller
         $siswas = Siswa::where('kelompok', 'playgroup')->get();
         return view('guru.playgroup.recalling.siswa', compact('siswas'));
     }
+    public function vocabulary()
+    {
+        $siswas = Siswa::where('kelompok', 'playgroup')->get();
+        return view('guru.playgroup.vocabulary.siswa', compact('siswas'));
+    }
 }
