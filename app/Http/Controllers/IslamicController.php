@@ -34,6 +34,16 @@ class IslamicController extends Controller
         return view('guru.playgroup.islamic.index', compact('siswa', 'islamics'));
     }
 
+    public function babycamp($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        session(['siswa_id' => $id]);
+        $islamics = Islamic::with('hadist', 'quran', 'doa')
+            ->where('siswa_id', $siswa->id)
+            ->get();
+        return view('guru.babycamp.islamic.index', compact('siswa', 'islamics'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

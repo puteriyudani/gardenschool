@@ -97,7 +97,7 @@
                                     <img src="{{ asset('auth') }}/images/activity/lunch.png" class="card-img-top"
                                         alt="...">
                                     <div class="card-body">
-                                        <a target="_blank" href="{{ route('tbpooppee.siswa') }}" class="btn"
+                                        <a target="_blank" href="{{ route('tblunch.siswa') }}" class="btn"
                                             style="background-color: #ED6565; color: white">Lunch</a>
                                     </div>
                                 </div>

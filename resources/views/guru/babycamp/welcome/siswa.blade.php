@@ -27,7 +27,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title fw-semibold mb-4">Playgroup - Welcome Mood</h5>
+                            <h5 class="card-title fw-semibold mb-4">Babycamp - Welcome Mood</h5>
                             <div class="row text-center">
                                 @foreach ($siswas as $siswa)
                                     <div class="col-md-2">
@@ -35,7 +35,7 @@
                                             <img src="{{ asset('storage/images/' . $siswa->image) }}" class="card-img-top"
                                                 alt="...">
                                             <div class="card-body">
-                                                <a href="{{ route('tpwelcome.index', $siswa->id) }}" class="btn"
+                                                <a href="{{ route('tbwelcome.index', $siswa->id) }}" class="btn"
                                                     style="background-color: #6FAC45; color: white">{{ $siswa->nama }}</a>
                                             </div>
                                         </div>
