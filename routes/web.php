@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BabycampController;
 use App\Http\Controllers\BreakfastController;
 use App\Http\Controllers\CatatanOrangtuaController;
 use App\Http\Controllers\DoaController;
@@ -200,6 +201,15 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
     // BABYCAMP
     Route::get('/teacher-babycamp', [GuruController::class, 'babycamp'])->name('teacher.babycamp');
+    Route::get('/teacher-playgroup/welcome-mood', [BabycampController::class, 'welcome'])->name('tbwelcome.siswa');
+    Route::get('/teacher-playgroup/morning-booster', [BabycampController::class, 'morning'])->name('tbmorning.siswa');
+    Route::get('/teacher-playgroup/breakfast', [BabycampController::class, 'breakfast'])->name('tbbreakfast.siswa');
+    Route::get('/teacher-playgroup/islamic-base-learning', [BabycampController::class, 'islamic'])->name('tbislamic.siswa');
+    Route::get('/teacher-playgroup/act-base-learning', [BabycampController::class, 'act'])->name('tbact.siswa');
+    Route::get('/teacher-playgroup/fun-activities', [BabycampController::class, 'fun'])->name('tbfun.siswa');
+    Route::get('/teacher-playgroup/poop-pee', [BabycampController::class, 'pooppee'])->name('tbpooppee.siswa');
+    Route::get('/teacher-playgroup/re-calling', [BabycampController::class, 'recalling'])->name('tbrecalling.siswa');
+    Route::get('/teacher-playgroup/vocabulary', [BabycampController::class, 'vocabulary'])->name('tbvocabulary.siswa');
 });
 
 //ortu
