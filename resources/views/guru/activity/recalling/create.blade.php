@@ -47,31 +47,37 @@
         }
 
         .modal {
-            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: fixed;
             z-index: 1000;
-            /* Lower z-index value for the modal */
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
         }
 
         .modal-content {
             background-color: #fefefe;
-            margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
+            max-width: 600px;
+            margin: auto;
+            transform: translateY(-50%);
+            top: 50%;
+            /* Untuk browser yang lebih lama, tambahkan posisi absolute */
+            position: absolute;
         }
+
 
         .close {
             color: #aaa;
-            float: right;
+            position: absolute;
+            top: 10px;
+            right: 10px;
             font-size: 28px;
             font-weight: bold;
         }
@@ -102,6 +108,19 @@
         .custom-select-container img:hover {
             transform: scale(1.1);
             /* Slightly enlarges the image on hover */
+        }
+
+        .progress-bar {
+            width: 80%;
+            /* Set width to 80% */
+            margin: 0 auto;
+            /* Center the range input */
+            display: block;
+            /* Ensure it's centered as a block element */
+        }
+
+        .indikator {
+            text-align: center;
         }
     </style>
 @endsection
@@ -172,7 +191,7 @@
                                             Form</button>
 
                                         <!-- The Modal -->
-                                        <div class="modal" id="formModal" style="display: none;">
+                                        <div class="modal" id="formModal">
                                             <div class="modal-content">
                                                 <span class="close" id="closeModalButton">&times;</span>
 
@@ -198,11 +217,13 @@
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
 
-                                                <div class="mb-3">
+                                                <div class="indikator mb-3">
                                                     <label for="indikator" class="form-label" id="progressLabel">Indikator:
                                                         0%</label>
-                                                    <input type="range" class="progress-bar" id="progressBar"
-                                                        name="indikator" value="0" min="0" max="100">
+                                                    <div class="range-container">
+                                                        <input type="range" class="progress-bar" id="progressBar"
+                                                            name="indikator" value="0" min="0" max="100">
+                                                    </div>
                                                 </div>
                                                 @error('indikator')
                                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -324,7 +345,7 @@
             // Create a form to submit the data
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = '{{ route('welcome.store') }}'; // Update the form action URL
+            form.action = '{{ route('recalling.store') }}'; // Update the form action URL
 
             // Add CSRF token if necessary
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

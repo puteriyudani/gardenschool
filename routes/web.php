@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\ActController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BabycampController;
 use App\Http\Controllers\BreakfastController;
 use App\Http\Controllers\CatatanOrangtuaController;
 use App\Http\Controllers\DoaController;
+use App\Http\Controllers\FunController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HadistController;
 use App\Http\Controllers\HomeController;
@@ -158,6 +160,14 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::get('/teacher-babycamp/lunch/index/{id}', [LunchController::class, 'babycamp'])->name('tblunch.index');
     Route::resource('lunch', LunchController::class);
 
+    // act base learning
+    Route::get('/teacher-babycamp/act-base-learning/index/{id}', [ActController::class, 'babycamp'])->name('tbact.index');
+    Route::resource('act', ActController::class);
+
+    // fun activities
+    Route::get('/teacher-babycamp/fun-activities/index/{id}', [FunController::class, 'babycamp'])->name('tbfun.index');
+    Route::resource('fun', FunController::class);
+
     // KINDERGARTEN
     Route::get('/teacher-kindergarten', [GuruController::class, 'kindergarten'])->name('teacher.kindergarten');
     Route::get('/teacher-kindergarten/welcome-mood', [KindergartenController::class, 'welcome'])->name('tkwelcome.siswa');
@@ -184,15 +194,14 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 
     // BABYCAMP
     Route::get('/teacher-babycamp', [GuruController::class, 'babycamp'])->name('teacher.babycamp');
-    Route::get('/teacher-playgroup/welcome-mood', [BabycampController::class, 'welcome'])->name('tbwelcome.siswa');
-    Route::get('/teacher-playgroup/morning-booster', [BabycampController::class, 'morning'])->name('tbmorning.siswa');
-    Route::get('/teacher-playgroup/breakfast', [BabycampController::class, 'breakfast'])->name('tbbreakfast.siswa');
-    Route::get('/teacher-playgroup/islamic-base-learning', [BabycampController::class, 'islamic'])->name('tbislamic.siswa');
-    Route::get('/teacher-playgroup/act-base-learning', [BabycampController::class, 'act'])->name('tbact.siswa');
-    Route::get('/teacher-playgroup/fun-activities', [BabycampController::class, 'fun'])->name('tbfun.siswa');
-    Route::get('/teacher-playgroup/lunch', [BabycampController::class, 'lunch'])->name('tblunch.siswa');
-    Route::get('/teacher-playgroup/re-calling', [BabycampController::class, 'recalling'])->name('tbrecalling.siswa');
-    Route::get('/teacher-playgroup/vocabulary', [BabycampController::class, 'vocabulary'])->name('tbvocabulary.siswa');
+    Route::get('/teacher-babycamp/welcome-mood', [BabycampController::class, 'welcome'])->name('tbwelcome.siswa');
+    Route::get('/teacher-babycamp/morning-booster', [BabycampController::class, 'morning'])->name('tbmorning.siswa');
+    Route::get('/teacher-babycamp/breakfast', [BabycampController::class, 'breakfast'])->name('tbbreakfast.siswa');
+    Route::get('/teacher-babycamp/islamic-base-learning', [BabycampController::class, 'islamic'])->name('tbislamic.siswa');
+    Route::get('/teacher-babycamp/act-base-learning', [BabycampController::class, 'act'])->name('tbact.siswa');
+    Route::get('/teacher-babycamp/fun-activities', [BabycampController::class, 'fun'])->name('tbfun.siswa');
+    Route::get('/teacher-babycamp/lunch', [BabycampController::class, 'lunch'])->name('tblunch.siswa');
+    Route::get('/teacher-babycamp/re-calling', [BabycampController::class, 'recalling'])->name('tbrecalling.siswa');
 });
 
 //ortu

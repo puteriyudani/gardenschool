@@ -27,7 +27,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title fw-semibold mb-4">Playgroup - Fun Activities</h5>
+                            <h5 class="card-title fw-semibold mb-4">Babycamp - Fun Activities</h5>
                             <div class="row text-center">
                                 @foreach ($siswas as $siswa)
                                     <div class="col-md-2">

@@ -34,6 +34,12 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Tanggal</th>
+                                <th scope="col">Practical Life</th>
+                                <th scope="col">Sensorial</th>
+                                <th scope="col">Language</th>
+                                <th scope="col">Mathematics</th>
+                                <th scope="col">Culture</th>
+                                <th scope="col">Notifikasi</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -42,6 +48,12 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $act->tanggal }}</td>
+                                    <td>{{ $act->practical }}</td>
+                                    <td>{{ $act->sensorial }}</td>
+                                    <td>{{ $act->language }}</td>
+                                    <td>{{ $act->math }}</td>
+                                    <td>{{ $act->culture }}</td>
+                                    <td>{{ $act->notifikasi }}</td>
                                     <td>
                                         <form action="{{ route('act.destroy', $act->id) }}" method="POST">
                                             <a target="_blank" href="{{ route('act.edit', $act->id) }}"

@@ -72,7 +72,7 @@
                         <span>
                             <i class="ti ti-bread"></i>
                         </span>
-                        <span class="hide-menu">Breakfast Menu</span>
+                        <span class="hide-menu">Menu</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

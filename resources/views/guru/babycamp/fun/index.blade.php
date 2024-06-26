@@ -34,6 +34,11 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Tanggal</th>
+                                <th scope="col">Tidur Siang</th>
+                                <th scope="col">Buang Air Besar</th>
+                                <th scope="col">Buang Air Kecil</th>
+                                <th scope="col">Mandi Sore</th>
+                                <th scope="col">Notifikasi</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -42,6 +47,11 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $fun->tanggal }}</td>
+                                    <td>{{ $fun->tidur }}</td>
+                                    <td>{{ $fun->poop }}</td>
+                                    <td>{{ $fun->pee }}</td>
+                                    <td>{{ $fun->mandi }}</td>
+                                    <td>{{ $fun->notifikasi }}</td>
                                     <td>
                                         <form action="{{ route('fun.destroy', $fun->id) }}" method="POST">
                                             <a target="_blank" href="{{ route('fun.edit', $fun->id) }}" style="text-decoration: none; color: #28a745"><i
