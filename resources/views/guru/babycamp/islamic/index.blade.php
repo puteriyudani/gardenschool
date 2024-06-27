@@ -24,7 +24,7 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <a target="_blank" href="{{ route('islamic.create') }}"><button type="button"
+                <a target="_blank" href="{{ route('islamic.createbaby') }}"><button type="button"
                         class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
                 <p>{{ $siswa->nama }}</p>
@@ -73,7 +73,7 @@
                                     <td>{{ $islamic->notifikasi }}</td>
                                     <td>
                                         <form action="{{ route('islamic.destroy', $islamic->id) }}" method="POST">
-                                            <a target="_blank" href="{{ route('islamic.edit', $islamic->id) }}"
+                                            <a target="_blank" href="{{ route('islamic.editbaby', $islamic->id) }}"
                                                 style="text-decoration: none; color: #28a745">
                                                 <i class="ti ti-pencil nav-small-cap-icon fs-4"></i>
                                             </a>

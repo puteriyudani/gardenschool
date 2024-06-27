@@ -6,9 +6,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BabycampController;
 use App\Http\Controllers\BreakfastController;
 use App\Http\Controllers\CatatanOrangtuaController;
+use App\Http\Controllers\DoaBabyController;
 use App\Http\Controllers\DoaController;
 use App\Http\Controllers\FunController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\HadistBabyController;
 use App\Http\Controllers\HadistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IslamicController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PlaygroupController;
 use App\Http\Controllers\PoopPeeController;
 use App\Http\Controllers\PreschoolController;
+use App\Http\Controllers\QuranBabyController;
 use App\Http\Controllers\QuranController;
 use App\Http\Controllers\RecallingController;
 use App\Http\Controllers\SiswaController;
@@ -105,6 +108,9 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::resource('doa', DoaController::class);
     Route::resource('hadist', HadistController::class);
     Route::resource('quran', QuranController::class);
+    Route::resource('doababy', DoaBabyController::class);
+    Route::resource('hadistbaby', HadistBabyController::class);
+    Route::resource('quranbaby', QuranBabyController::class);
 
     // welcome mood
     Route::get('/teacher-kindergarten/welcome-mood/index/{id}', [WelcomeController::class, 'kindergarten'])->name('tkwelcome.index');
@@ -129,6 +135,8 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::get('/teacher-playgroup/islamic-base-learning/index/{id}', [IslamicController::class, 'playgroup'])->name('tpislamic.index');
     Route::get('/teacher-babycamp/islamic-base-learning/index/{id}', [IslamicController::class, 'babycamp'])->name('tbislamic.index');
     Route::resource('islamic', IslamicController::class);
+    Route::get('/islamicbaby/create', [IslamicController::class, 'createbaby'])->name('islamic.createbaby');
+    Route::get('/islamicbaby/{islamic}/edit', [IslamicController::class, 'editbaby'])->name('islamic.editbaby');
 
     // pre school
     Route::get('/teacher-kindergarten/pre-school/index/{id}', [PreschoolController::class, 'kindergarten'])->name('tkpreschool.index');

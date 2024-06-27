@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doa;
+use App\Models\DoaBaby;
 use App\Models\Hadist;
+use App\Models\HadistBaby;
 use App\Models\Islamic;
 use App\Models\Quran;
+use App\Models\QuranBaby;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
@@ -54,6 +57,16 @@ class IslamicController extends Controller
         $hadists = Hadist::get();
         $qurans = Quran::get();
         $doas = Doa::get();
+        return view('guru.activity.islamic.create', compact('siswa', 'hadists', 'qurans', 'doas'));
+    }
+
+    public function createbaby()
+    {
+        $siswa_id = session('siswa_id');
+        $siswa = Siswa::findOrFail($siswa_id);
+        $hadists = HadistBaby::get();
+        $qurans = QuranBaby::get();
+        $doas = DoaBaby::get();
         return view('guru.activity.islamic.create', compact('siswa', 'hadists', 'qurans', 'doas'));
     }
 
@@ -113,6 +126,18 @@ class IslamicController extends Controller
         $hadists = Hadist::get();
         $qurans = Quran::get();
         $doas = Doa::get();
+
+        return view('guru.activity.islamic.edit', compact('islamic', 'siswa', 'hadists', 'qurans', 'doas'));
+    }
+
+    public function editbaby(Islamic $islamic)
+    {
+        $siswa_id = session('siswa_id');
+        $siswa = Siswa::findOrFail($siswa_id);
+        $hadists = HadistBaby::get();
+        $qurans = QuranBaby::get();
+        $doas = DoaBaby::get();
+
         return view('guru.activity.islamic.edit', compact('islamic', 'siswa', 'hadists', 'qurans', 'doas'));
     }
 
