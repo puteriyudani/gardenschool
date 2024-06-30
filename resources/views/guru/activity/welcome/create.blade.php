@@ -60,18 +60,30 @@
         }
 
         .modal-content {
-            background-color: #fefefe;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
+            background-image: url('{{ asset('auth') }}/images/bg.png');
+            /* Replace with the correct path */
+            background-size: cover;
+            /* Cover the entire modal */
+            background-position: center;
+            /* Center the background image */
+            width: 100%;
+            height: 100%;
+            max-width: none;
             margin: auto;
-            transform: translateY(-50%);
-            top: 50%;
-            /* Untuk browser yang lebih lama, tambahkan posisi absolute */
-            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        .modal-inner {
+            /* background-color: rgba(255, 255, 255, 0.8); */
+            /* Optional for better readability */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
 
         .close {
             color: #aaa;
@@ -92,11 +104,15 @@
         .custom-select-container {
             display: flex;
             justify-content: center;
-            /* Centers images horizontally */
             align-items: center;
-            /* Centers images vertically */
-            gap: 10px;
+            gap: 20px;
             /* Adds some space between the images */
+        }
+
+        .custom-select-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .custom-select-container img {
@@ -108,6 +124,10 @@
         .custom-select-container img:hover {
             transform: scale(1.1);
             /* Slightly enlarges the image on hover */
+        }
+
+        .custom-select-item p {
+            margin-top: 2px;
         }
 
         .progress-bar {
@@ -195,43 +215,55 @@
                                             <div class="modal-content">
                                                 <span class="close" id="closeModalButton">&times;</span>
 
-                                                <!-- Form elements inside the modal -->
-                                                <div class="mb-3">
-                                                    <label for="keterangan" class="form-label">Keterangan</label>
-                                                    <select id="keterangan" name="keterangan"
-                                                        class="form-select hidden-select">
-                                                        <option value="Happy">Happy</option>
-                                                        <option value="Neutral">Neutral</option>
-                                                        <option value="Sad">Sad</option>
-                                                    </select>
-                                                    <div class="custom-select-container" id="customSelectContainer">
-                                                        <img src="{{ asset('auth') }}/images/face/happy.png" alt="Happy"
-                                                            data-value="Happy">
-                                                        <img src="{{ asset('auth') }}/images/face/neutral.png"
-                                                            alt="Neutral" data-value="Neutral">
-                                                        <img src="{{ asset('auth') }}/images/face/sad.png" alt="Sad"
-                                                            data-value="Sad">
+                                                <div class="modal-inner">
+                                                    <!-- Form elements inside the modal -->
+                                                    <div class="mb-3">
+                                                        <label for="keterangan" class="form-label">Keterangan</label>
+                                                        <select id="keterangan" name="keterangan"
+                                                            class="form-select hidden-select">
+                                                            <option value="Happy">Happy</option>
+                                                            <option value="Neutral">Neutral</option>
+                                                            <option value="Sad">Sad</option>
+                                                        </select>
+                                                        <div class="custom-select-container" id="customSelectContainer">
+                                                            <div class="custom-select-item">
+                                                                <img src="{{ asset('auth') }}/images/face/happy.png"
+                                                                    alt="Happy" data-value="Happy">
+                                                                <p>Happy</p>
+                                                            </div>
+                                                            <div class="custom-select-item">
+                                                                <img src="{{ asset('auth') }}/images/face/neutral.png"
+                                                                    alt="Neutral" data-value="Neutral">
+                                                                <p>Neutral</p>
+                                                            </div>
+                                                            <div class="custom-select-item">
+                                                                <img src="{{ asset('auth') }}/images/face/sad.png"
+                                                                    alt="Sad" data-value="Sad">
+                                                                <p>Sad</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                @error('keterangan')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
+                                                    @error('keterangan')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
 
-                                                <div class="indikator mb-3">
-                                                    <label for="indikator" class="form-label" id="progressLabel">Indikator:
-                                                        0%</label>
-                                                    <div class="range-container">
-                                                        <input type="range" class="progress-bar" id="progressBar"
-                                                            name="indikator" value="0" min="0" max="100">
+                                                    <div class="indikator mb-3">
+                                                        <label for="indikator" class="form-label"
+                                                            id="progressLabel">Indikator: 0%</label>
+                                                        <div class="range-container">
+                                                            <input type="range" class="progress-bar" id="progressBar"
+                                                                name="indikator" value="0" min="0"
+                                                                max="100">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                @error('indikator')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
+                                                    @error('indikator')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
 
-                                                <!-- Submit button inside the modal -->
-                                                <button type="button" class="btn btn-success"
-                                                    id="submitFormButton">Submit</button>
+                                                    <!-- Submit button inside the modal -->
+                                                    <button type="button" class="btn btn-success"
+                                                        id="submitFormButton">Submit</button>
+                                                </div>
                                             </div>
                                         </div>
 
