@@ -60,7 +60,7 @@
         }
 
         .modal-content {
-            background-image: url('{{ asset('auth') }}/images/bg.png');
+            background-image: url('{{ asset('auth') }}/images/bg1.jpg');
             /* Replace with the correct path */
             background-size: cover;
             /* Cover the entire modal */
@@ -78,11 +78,25 @@
         }
 
         .modal-inner {
-            /* background-color: rgba(255, 255, 255, 0.8); */
-            /* Optional for better readability */
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            position: absolute;
+            /* Make position absolute */
+            top: 2%;
+            /* Adjust as needed */
+            right: 15%;
+            /* Adjust as needed */
+        }
+
+        .modal-inner label {
+            /* color: white; */
+            font-size: 20px;
+        }
+
+        .modal-inner .keterangan label {
+            /* color: white; */
+            font-size: 30px;
         }
 
         .close {
@@ -116,6 +130,10 @@
         }
 
         .custom-select-container img {
+            width: 170px !important;
+            /* Adjust the width as needed */
+            height: auto !important;
+            /* Maintain the aspect ratio */
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
             /* Adds a smooth transition effect */
@@ -128,6 +146,267 @@
 
         .custom-select-item p {
             margin-top: 2px;
+            font-size: 20px
+                /* color: white; */
+        }
+
+        .progress-bar {
+            width: 60%;
+            /* Set width to 80% */
+            margin: 0 auto;
+            /* Center the range input */
+            display: block;
+            /* Ensure it's centered as a block element */
+        }
+
+        .indikator {
+            text-align: center;
+        }
+
+        /* Additional text "Please Welcome" styles */
+        .welcome-text {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            .modal-content {
+                background-image: url('{{ asset('auth') }}/images/bg1.jpg');
+                /* Replace with the correct path */
+                background-size: cover;
+                /* Cover the entire modal */
+                background-position: center;
+                /* Center the background image */
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .modal-inner {
+                /* background-color: rgba(255, 255, 255, 0.4); */
+                /* Background color with transparency */
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+            }
+
+            .close {
+                color: #aaa;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .custom-select-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                /* Adds some space between the images */
+            }
+
+            .custom-select-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .custom-select-container img {
+                width: 50px !important;
+                /* Adjust the width as needed */
+                height: auto !important;
+                /* Maintain the aspect ratio */
+                cursor: pointer;
+                transition: transform 0.2s ease-in-out;
+                /* Adds a smooth transition effect */
+            }
+
+            .custom-select-container img:hover {
+                transform: scale(1.1);
+                /* Slightly enlarges the image on hover */
+            }
+
+            .custom-select-item p {
+                margin-top: 2px;
+            }
+
+            .progress-bar {
+                width: 80%;
+                /* Set width to 80% */
+                margin: 0 auto;
+                /* Center the range input */
+                display: block;
+                /* Ensure it's centered as a block element */
+            }
+        }
+    </style>
+    {{-- <style>
+        .btn.btn-primary.disabled,
+        .btn.btn-warning.disabled,
+        .btn.btn-success.disabled,
+        .btn.btn-danger.disabled {
+            pointer-events: none;
+            opacity: 1;
+        }
+
+        .progress-bar {
+            width: 100%;
+        }
+
+        /* Pop-up styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+            /* Higher z-index value for the popup overlay */
+        }
+
+        .popup-content {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .popup-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .popup-close {
+            cursor: pointer;
+        }
+
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-image: url('{{ asset('auth') }}/images/bg2.jpeg');
+            /* Replace with the correct path */
+            background-size: cover;
+            /* Cover the entire modal */
+            background-position: center;
+            /* Center the background image */
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-inner {
+            background-color: rgba(255, 255, 255, 0.4);
+            /* Background color with transparency */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal-inner label {
+            color: white;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .custom-select-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* Adds some space between the images */
+        }
+
+        .custom-select-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .custom-select-container img {
+            width: 200px !important;
+            /* Adjust the width as needed */
+            height: auto !important;
+            /* Maintain the aspect ratio */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            /* Adds a smooth transition effect */
+        }
+
+        .custom-select-container img:hover {
+            transform: scale(1.1);
+            /* Slightly enlarges the image on hover */
+        }
+
+        .custom-select-item p {
+            margin-top: 2px;
+            color: white;
         }
 
         .progress-bar {
@@ -142,7 +421,16 @@
         .indikator {
             text-align: center;
         }
-    </style>
+
+        @media (max-width: 768px) {
+            .custom-select-container img {
+                width: 80px !important;
+                /* Adjust the width for mobile */
+                height: auto !important;
+                /* Maintain the aspect ratio */
+            }
+        }
+    </style> --}}
 @endsection
 
 @section('content')
@@ -215,15 +503,20 @@
                                             <div class="modal-content">
                                                 <span class="close" id="closeModalButton">&times;</span>
 
+                                                <!-- Tambahkan tulisan "Please Welcome" di sini -->
+                                                <div class="welcome-text">
+                                                    <p>Please Welcome</p>
+                                                </div>
+
                                                 <div class="modal-inner">
                                                     <!-- Form elements inside the modal -->
-                                                    <div class="mb-3">
-                                                        <label for="keterangan" class="form-label">Keterangan</label>
+                                                    <div class="mb-3 keterangan">
+                                                        <label for="keterangan" class="form-label">My Mood</label>
                                                         <select id="keterangan" name="keterangan"
                                                             class="form-select hidden-select">
                                                             <option value="Happy">Happy</option>
-                                                            <option value="Neutral">Neutral</option>
-                                                            <option value="Sad">Sad</option>
+                                                            <option value="Neutral">Bored</option>
+                                                            <option value="Sad">Downed</option>
                                                         </select>
                                                         <div class="custom-select-container" id="customSelectContainer">
                                                             <div class="custom-select-item">
@@ -234,12 +527,12 @@
                                                             <div class="custom-select-item">
                                                                 <img src="{{ asset('auth') }}/images/face/neutral.png"
                                                                     alt="Neutral" data-value="Neutral">
-                                                                <p>Neutral</p>
+                                                                <p>Bored</p>
                                                             </div>
                                                             <div class="custom-select-item">
                                                                 <img src="{{ asset('auth') }}/images/face/sad.png"
                                                                     alt="Sad" data-value="Sad">
-                                                                <p>Sad</p>
+                                                                <p>Downed</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -256,13 +549,10 @@
                                                                 max="100">
                                                         </div>
                                                     </div>
+
                                                     @error('indikator')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
-
-                                                    <!-- Submit button inside the modal -->
-                                                    <button type="button" class="btn btn-success"
-                                                        id="submitFormButton">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
