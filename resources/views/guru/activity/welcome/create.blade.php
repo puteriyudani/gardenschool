@@ -166,12 +166,19 @@
         /* Additional text "Please Welcome" styles */
         .welcome-text {
             position: absolute;
-            top: 10px;
+            bottom: 10px;
             left: 10px;
-            font-size: 16px;
+            font-size: 30px;
             font-weight: bold;
-            color: #333;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffbb00;
+            text-shadow:
+                -1px -1px 0 #ffffff,
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff,
+                1px 1px 0 #ffffff;
         }
+
 
         @media (max-width: 768px) {
             .modal {
