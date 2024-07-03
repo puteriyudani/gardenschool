@@ -60,18 +60,44 @@
         }
 
         .modal-content {
-            background-color: #fefefe;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
+            background-image: url('{{ asset('auth') }}/images/bg1.jpg');
+            /* Replace with the correct path */
+            background-size: cover;
+            /* Cover the entire modal */
+            background-position: center;
+            /* Center the background image */
+            width: 100%;
+            height: 100%;
+            max-width: none;
             margin: auto;
-            transform: translateY(-50%);
-            top: 50%;
-            /* Untuk browser yang lebih lama, tambahkan posisi absolute */
-            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        .modal-inner {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: absolute;
+            /* Make position absolute */
+            top: 2%;
+            /* Adjust as needed */
+            right: 15%;
+            /* Adjust as needed */
+        }
+
+        .modal-inner label {
+            /* color: white; */
+            font-size: 20px;
+        }
+
+        .modal-inner .keterangan label {
+            /* color: white; */
+            font-size: 30px;
+        }
 
         .close {
             color: #aaa;
@@ -92,14 +118,22 @@
         .custom-select-container {
             display: flex;
             justify-content: center;
-            /* Centers images horizontally */
             align-items: center;
-            /* Centers images vertically */
-            gap: 10px;
+            gap: 20px;
             /* Adds some space between the images */
         }
 
+        .custom-select-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .custom-select-container img {
+            width: 170px !important;
+            /* Adjust the width as needed */
+            height: auto !important;
+            /* Maintain the aspect ratio */
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
             /* Adds a smooth transition effect */
@@ -110,8 +144,14 @@
             /* Slightly enlarges the image on hover */
         }
 
+        .custom-select-item p {
+            margin-top: 2px;
+            font-size: 20px
+                /* color: white; */
+        }
+
         .progress-bar {
-            width: 80%;
+            width: 60%;
             /* Set width to 80% */
             margin: 0 auto;
             /* Center the range input */
@@ -121,6 +161,122 @@
 
         .indikator {
             text-align: center;
+        }
+
+        /* Additional text "Please Welcome" styles */
+        .welcome-text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffbb00;
+            text-shadow:
+                -1px -1px 0 #ffffff,
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff,
+                1px 1px 0 #ffffff;
+        }
+
+
+        @media (max-width: 768px) {
+            .modal {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            .modal-content {
+                background-image: url('{{ asset('auth') }}/images/bg1.jpg');
+                /* Replace with the correct path */
+                background-size: cover;
+                /* Cover the entire modal */
+                background-position: center;
+                /* Center the background image */
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .modal-inner {
+                /* background-color: rgba(255, 255, 255, 0.4); */
+                /* Background color with transparency */
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+            }
+
+            .close {
+                color: #aaa;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .custom-select-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                /* Adds some space between the images */
+            }
+
+            .custom-select-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .custom-select-container img {
+                width: 50px !important;
+                /* Adjust the width as needed */
+                height: auto !important;
+                /* Maintain the aspect ratio */
+                cursor: pointer;
+                transition: transform 0.2s ease-in-out;
+                /* Adds a smooth transition effect */
+            }
+
+            .custom-select-container img:hover {
+                transform: scale(1.1);
+                /* Slightly enlarges the image on hover */
+            }
+
+            .custom-select-item p {
+                margin-top: 2px;
+            }
+
+            .progress-bar {
+                width: 80%;
+                /* Set width to 80% */
+                margin: 0 auto;
+                /* Center the range input */
+                display: block;
+                /* Ensure it's centered as a block element */
+            }
         }
     </style>
 @endsection
@@ -195,43 +351,57 @@
                                             <div class="modal-content">
                                                 <span class="close" id="closeModalButton">&times;</span>
 
-                                                <!-- Form elements inside the modal -->
-                                                <div class="mb-3">
-                                                    <label for="keterangan" class="form-label">Keterangan</label>
-                                                    <select id="keterangan" name="keterangan"
-                                                        class="form-select hidden-select">
-                                                        <option value="Happy">Happy</option>
-                                                        <option value="Neutral">Neutral</option>
-                                                        <option value="Sad">Sad</option>
-                                                    </select>
-                                                    <div class="custom-select-container" id="customSelectContainer">
-                                                        <img src="{{ asset('auth') }}/images/face/happy.png" alt="Happy"
-                                                            data-value="Happy">
-                                                        <img src="{{ asset('auth') }}/images/face/neutral.png"
-                                                            alt="Neutral" data-value="Neutral">
-                                                        <img src="{{ asset('auth') }}/images/face/sad.png" alt="Sad"
-                                                            data-value="Sad">
-                                                    </div>
+                                                <!-- Tambahkan tulisan "Please Welcome" di sini -->
+                                                <div class="welcome-text">
+                                                    <p>Please Welcome</p>
                                                 </div>
-                                                @error('keterangan')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
 
-                                                <div class="indikator mb-3">
-                                                    <label for="indikator" class="form-label" id="progressLabel">Indikator:
-                                                        0%</label>
-                                                    <div class="range-container">
-                                                        <input type="range" class="progress-bar" id="progressBar"
-                                                            name="indikator" value="0" min="0" max="100">
+                                                <div class="modal-inner">
+                                                    <!-- Form elements inside the modal -->
+                                                    <div class="mb-3 keterangan">
+                                                        <label for="keterangan" class="form-label">My Mood</label>
+                                                        <select id="keterangan" name="keterangan"
+                                                            class="form-select hidden-select">
+                                                            <option value="Happy">Happy</option>
+                                                            <option value="Neutral">Bored</option>
+                                                            <option value="Sad">Downed</option>
+                                                        </select>
+                                                        <div class="custom-select-container" id="customSelectContainer">
+                                                            <div class="custom-select-item">
+                                                                <img src="{{ asset('auth') }}/images/face/happy.png"
+                                                                    alt="Happy" data-value="Happy">
+                                                                <p>Happy</p>
+                                                            </div>
+                                                            <div class="custom-select-item">
+                                                                <img src="{{ asset('auth') }}/images/face/neutral.png"
+                                                                    alt="Neutral" data-value="Neutral">
+                                                                <p>Bored</p>
+                                                            </div>
+                                                            <div class="custom-select-item">
+                                                                <img src="{{ asset('auth') }}/images/face/sad.png"
+                                                                    alt="Sad" data-value="Sad">
+                                                                <p>Downed</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                @error('indikator')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
+                                                    @error('keterangan')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
 
-                                                <!-- Submit button inside the modal -->
-                                                <button type="button" class="btn btn-success"
-                                                    id="submitFormButton">Submit</button>
+                                                    <div class="indikator mb-3">
+                                                        <label for="indikator" class="form-label"
+                                                            id="progressLabel">Indikator: 0%</label>
+                                                        <div class="range-container">
+                                                            <input type="range" class="progress-bar" id="progressBar"
+                                                                name="indikator" value="0" min="0"
+                                                                max="100">
+                                                        </div>
+                                                    </div>
+
+                                                    @error('indikator')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
 
@@ -345,7 +515,7 @@
             // Create a form to submit the data
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = '{{ route('recalling.store') }}'; // Update the form action URL
+            form.action = '{{ route('welcome.store') }}'; // Update the form action URL
 
             // Add CSRF token if necessary
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
