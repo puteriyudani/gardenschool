@@ -798,18 +798,26 @@
 
                                     @foreach ($vocabularys as $vocabulary)
                                         <div class="sub">
-                                            <div class="row mobile-no-gutters">
+                                            <div class="row mobile-no-gutters mb-3">
                                                 <div class="col-1">
                                                     <img class="check" src="{{ asset('auth') }}/images/icon/check.png"
                                                         alt="">
                                                 </div>
                                                 <div class="col">
-                                                    <p>Progress Vocabulary</p>
+                                                    <p>Vocabulary & Sentence</p>
                                                 </div>
                                             </div>
-                                            <div class="brown-notif">
-                                                <p class="mb-0"><a>{{ $vocabulary->vocabulary }}</a>
-                                                </p>
+                                            <div class="brown-notif mt-1">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="mb-0"><a>{{ $vocabulary->vocabulary }}</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="mb-0"><a>{{ $vocabulary->sentence }}</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     @endforeach
@@ -819,7 +827,7 @@
                             @if ($recallings->isNotEmpty())
                                 <blockquote class="blockquote blockquote-custom shadow rounded mt-4 bg-mustard">
                                     <div class="blockquote-custom-icon shadow-sm">
-                                        <h5>Re Calling</h5>
+                                        <h5>Re-Calling</h5>
                                     </div>
                                     @foreach ($recallings as $recalling)
                                         <div class="row">
