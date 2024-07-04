@@ -2057,7 +2057,7 @@
 
             </div>
 
-            <button class="floating-button" id="download-button">Download</button>
+            <button class="floating-button" id="download-button">I Have Read</button>
         </div>
     </div>
 
