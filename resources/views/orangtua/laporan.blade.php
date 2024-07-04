@@ -63,7 +63,7 @@
                                     @foreach ($islamics as $islamic)
                                         <div class="row mobile-no-gutters">
                                             <div class="col-4 text-center hadist">
-                                                <img src="{{ asset('auth') }}/images/rcq.jpg" class="mt-2" alt="">
+                                                <img src="{{ asset('auth') }}/images/rcq.png" class="mt-2" alt="">
                                                 <h6>Support By:</h6>
                                                 <a>RUMAH CERDAS QURAN</a>
                                                 <div class="card text-justify hadist">
@@ -139,7 +139,7 @@
                                                                     ->toArray();
                                                             @endphp
 
-                                                            @foreach ($doa_list as $doa_id => $doa_name)
+                                                            @foreach ($doa_list_array as $doa_id => $doa_name)
                                                                 <div class="row mobile-no-gutters yellow">
                                                                     <div class="col-1">
                                                                         <img class="{{ in_array($doa_id, json_decode($islamic->doa)) ? 'check' : 'cross' }}"

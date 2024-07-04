@@ -105,11 +105,11 @@
     padding: 10px;
     border-radius: 30px;
     max-width: 300px;
-    height: 500px;
+    height: 450px;
 }
 
 .bg-yellow .hadist .card {
-    height: 220px;
+    height: 418px;
 }
 
 .bg-yellow .baby .hadist .card {
@@ -737,7 +737,7 @@
     }
 
     .bg-yellow .hadist .card {
-        height: 230px;
+        height: 222px;
     }
 
     .bg-yellow .baby .hadist .card {
