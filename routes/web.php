@@ -5,7 +5,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BabycampController;
 use App\Http\Controllers\BreakfastController;
-use App\Http\Controllers\CatatanOrangtuaController;
 use App\Http\Controllers\DoaBabyController;
 use App\Http\Controllers\DoaController;
 use App\Http\Controllers\FunController;
@@ -221,5 +220,6 @@ Route::middleware(['auth', 'user-access:ortu'])->group(function () {
     Route::get('halaman-orangtua-siswa/{siswa}/playgroup', [OrtuController::class, 'playgroup'])->name('ortu.playgroup');
     Route::get('halaman-orangtua-siswa/{siswa}/babycamp', [OrtuController::class, 'babycamp'])->name('ortu.babycamp');
 
-    Route::get('/halaman-orangtua-laporan', [OrtuController::class, 'laporan'])->name('ortu.laporan');
+    Route::get('/halaman-orangtua-laporan', [OrtuController::class, 'indexlaporan'])->name('ortu.indexlaporan');
+    Route::get('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'laporan'])->name('ortu.laporan');
 });

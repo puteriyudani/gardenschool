@@ -39,7 +39,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('ortu.laporan') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('ortu.indexlaporan') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-plus"></i>
                         </span>

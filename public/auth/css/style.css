@@ -99,24 +99,32 @@
 }
 
 .bg-yellow .card {
+    display: flex;
+    flex-direction: column;
     background-color: #5D99D7;
-    padding: 20px;
+    padding: 10px;
     border-radius: 30px;
+    max-width: 300px;
+    height: 500px;
 }
 
-.bg-yellow .card.hadist .gap {
-    height: 52px;
+.bg-yellow .hadist .card {
+    height: 220px;
 }
 
-.bg-yellow .card.quran .gap {
-    height: 20px;
+.bg-yellow .baby .hadist .card {
+    height: 220px;
+}
+
+.bg-yellow .baby .card {
+    height: 350px;
 }
 
 .bg-yellow p {
     font-size: 10px;
     background-color: white;
     border-radius: 30px;
-    padding: 3px 15px;
+    padding: 3px 5px;
 }
 
 .bg-yellow h4 {
@@ -128,6 +136,10 @@
 .bg-yellow .cross {
     width: 20px;
     margin-top: -13px;
+}
+
+.bg-yellow .status {
+    margin-top: auto;
 }
 
 .bg-yellow .status h3 {
@@ -717,6 +729,23 @@
 
     .bg-yellow .yellow-notif a {
         font-size: 8px;
+    }
+
+    .bg-yellow .card {
+        max-width: 70px;
+        height: 250px;
+    }
+
+    .bg-yellow .hadist .card {
+        height: 230px;
+    }
+
+    .bg-yellow .baby .hadist .card {
+        height: 150px;
+    }
+
+    .bg-yellow .baby .card {
+        height: 178px;
     }
 
     /* bg-grey */
