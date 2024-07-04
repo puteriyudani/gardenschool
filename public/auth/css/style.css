@@ -104,20 +104,19 @@
     background-color: #5D99D7;
     padding: 10px;
     border-radius: 30px;
-    max-width: 300px;
     height: 450px;
 }
 
-.bg-yellow .hadist .card {
-    height: 418px;
+.bg-yellow .hadists .card {
+    height: 320px;
 }
 
-.bg-yellow .baby .hadist .card {
-    height: 220px;
+.bg-yellow .baby .hadists .card {
+    height: 200px;
 }
 
 .bg-yellow .baby .card {
-    height: 350px;
+    height: 330px;
 }
 
 .bg-yellow p {
@@ -161,6 +160,7 @@
     background-color: white;
     padding: 10px;
     border-radius: 10px;
+    height: 80px;
 }
 
 .bg-yellow .yellow-notif a {
@@ -269,6 +269,7 @@
     background-color: white;
     padding: 10px;
     border-radius: 10px;
+    height: 100px;
 }
 
 .bg-darkgreen .darkgreen-catatan a {
@@ -380,6 +381,7 @@
     background-color: white;
     padding: 10px;
     border-radius: 10px;
+    height: 100px;
 }
 
 .bg-blue a {
@@ -434,6 +436,7 @@
     background-color: white;
     padding: 10px;
     border-radius: 10px;
+    height: 130px;
 }
 
 .bg-orange a {
@@ -511,7 +514,7 @@
 
 /* bg-mustard */
 .recalling {
-    margin-top: -350px;
+    margin-top: -430px;
 }
 
 .bg-mustard {
@@ -642,7 +645,7 @@
     }
 
     .bg-green h1 {
-        font-size: 30px;
+        font-size: 24px;
     }
 
     .bg-green h2 {
@@ -652,7 +655,7 @@
     .bg-green p {
         font-size: 8px;
         padding: 5px 5px 0px 5px;
-        height: 75%;
+        height: 65%;
     }
 
     .bg-green .blockquote-custom-icon {
@@ -690,11 +693,6 @@
         font-size: 5px;
     }
 
-    .bg-yellow .card {
-        padding: 0px;
-        border-radius: 5px;
-    }
-
     .bg-yellow p {
         font-size: 8px;
         padding: 1px;
@@ -725,6 +723,7 @@
         padding: 8px;
         border-radius: 8px;
         margin-left: 0px;
+        height: 50px;
     }
 
     .bg-yellow .yellow-notif a {
@@ -732,15 +731,16 @@
     }
 
     .bg-yellow .card {
-        max-width: 70px;
+        padding: 0px;
+        border-radius: 5px;
         height: 250px;
     }
 
-    .bg-yellow .hadist .card {
+    .bg-yellow .hadists .card {
         height: 222px;
     }
 
-    .bg-yellow .baby .hadist .card {
+    .bg-yellow .baby .hadists .card {
         height: 150px;
     }
 
@@ -794,7 +794,7 @@
     }
 
     .bg-darkgreen .blockquote-custom-icon {
-        width: 80px;
+        width: 100px;
         top: -10px;
         left: 50%;
         transform: translateX(-50%);
@@ -826,6 +826,7 @@
         padding: 8px;
         border-radius: 8px;
         margin-left: 0px;
+        height: 50px;
     }
 
     .bg-darkgreen .darkgreen-catatan a {
@@ -903,6 +904,7 @@
         margin-top: -25px;
         margin-left: 0px;
         margin-right: 0px;
+        height: 70px;
     }
 
     .bg-blue a {
@@ -927,8 +929,11 @@
         padding: 8px;
     }
 
-    .bg-orange .menu,
-    .bg-orange .catatan {
+    .bg-orange .catatan p {
+        height: 70px;
+    }
+
+    .bg-orange .menu {
         margin-top: -10px;
     }
 
@@ -997,7 +1002,7 @@
 
     /* bg-mustard */
     .recalling {
-        margin-top: -235px;
+        margin-top: -280px;
     }
 
     .bg-mustard .blockquote-custom-icon {

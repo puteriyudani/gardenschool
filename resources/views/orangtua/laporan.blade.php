@@ -61,8 +61,8 @@
                                         <h5>Islamic Base Learning</h5>
                                     </div>
                                     @foreach ($islamics as $islamic)
-                                        <div class="row mobile-no-gutters">
-                                            <div class="col-4 text-center hadist">
+                                        <div class="row mobile-no-gutters hadist">
+                                            <div class="col-4 text-center hadists">
                                                 <img src="{{ asset('auth') }}/images/rcq.png" class="mt-2" alt="">
                                                 <h6>Support By:</h6>
                                                 <a>RUMAH CERDAS QURAN</a>
@@ -784,7 +784,12 @@
                                     @endforeach
                                 </blockquote>
                             @endif
+                        </div>
+                    </div>
 
+                    <div class="row align-items-start mobile-no-gutters">
+                        <div class="col-4"></div>
+                        <div class="col-8 recalling">
                             @if ($vocabularys->isNotEmpty())
                                 <blockquote class="blockquote blockquote-custom shadow rounded mt-3 bg-brown">
                                     <div class="blockquote-custom-icon shadow-sm">
@@ -810,14 +815,9 @@
                                     @endforeach
                                 </blockquote>
                             @endif
-                        </div>
-                    </div>
 
-                    <div class="row align-items-start mobile-no-gutters">
-                        <div class="col-4"></div>
-                        <div class="col-8 recalling">
                             @if ($recallings->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded mt-3 bg-mustard">
+                                <blockquote class="blockquote blockquote-custom shadow rounded mt-4 bg-mustard">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Re Calling</h5>
                                     </div>
@@ -886,8 +886,8 @@
                                         <h5>Islamic Base Learning</h5>
                                     </div>
                                     @foreach ($islamics as $islamic)
-                                        <div class="row mobile-no-gutters baby">
-                                            <div class="col-4 text-center hadist">
+                                        <div class="row mobile-no-gutters hadist baby">
+                                            <div class="col-4 text-center hadists">
                                                 <img src="{{ asset('auth') }}/images/rcq.png" class="mt-2"
                                                     alt="">
                                                 <h6>Support By:</h6>
@@ -2100,7 +2100,7 @@
                 }, // Sesuaikan skala (default adalah 2)
                 jsPDF: {
                     unit: 'in',
-                    format: [13, 20],
+                    format: [13, 21],
                     orientation: 'portrait'
                 } // Format halaman lebih besar
             };
