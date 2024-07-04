@@ -74,15 +74,15 @@
                                         @enderror
 
                                         <div class="mb-3 mt-3">
-                                            <label for="menu" class="form-label">Menu</label>
-                                            <select id="menu" name="menu" class="form-select">
+                                            <label for="menu_id" class="form-label">Menu</label>
+                                            <select id="menu_id" name="menu_id" class="form-select">
                                                 <option selected>- Pilih -</option>
                                                 @foreach ($menus as $menu)
                                                     <option value="{{ $menu->id }}">{{ $menu->menu }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('menu')
+                                        @error('menu_id')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 

@@ -77,8 +77,8 @@
                                         @enderror
 
                                         <div class="mb-3 mt-3">
-                                            <label for="menu" class="form-label">Menu</label>
-                                            <select id="menu" name="menu" class="form-select">
+                                            <label for="menu_id" class="form-label">Menu</label>
+                                            <select id="menu_id" name="menu_id" class="form-select">
                                                 <option value="{{ $lunch->menu_id }}" selected>
                                                     {{ $lunch->menu->menu }}</option>
                                                 @foreach ($menus as $menu)
@@ -86,7 +86,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('menu')
+                                        @error('menu_id')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
