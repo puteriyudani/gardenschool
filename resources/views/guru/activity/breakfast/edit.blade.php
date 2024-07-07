@@ -76,6 +76,16 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
+                                        <div class="mb-3 mt-3">
+                                            <label for="menu" class="form-label">Menu</label>
+                                            <select id="menu" name="menu" class="form-select">
+                                                <option value="{{ $breakfast->menu_id }}" selected>
+                                                    {{ $breakfast->menu->menu }}</option>
+                                                @foreach ($menus as $menu)
+                                                    <option value="{{ $menu->id }}">{{ $menu->menu }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <div class="mb-3">
                                             <label for="menu_id" class="form-label">Menu</label>
                                             <br>
@@ -137,7 +147,8 @@
                                         <div class="mb-3 mt-3">
                                             <label for="catatan" class="form-label">Catatan</label>
                                             <select id="catatan" name="catatan" class="form-select">
-                                                <option value="{{ $breakfast->catatan }}" selected>{{ $breakfast->catatan }}</option>
+                                                <option value="{{ $breakfast->catatan }}" selected>
+                                                    {{ $breakfast->catatan }}</option>
                                                 <option value="Tidur Cukup">Tidur Cukup</option>
                                                 <option value="Tidur Kurang">Tidur Kurang</option>
                                                 <option value="Lainnya">Lainnya</option>
