@@ -35,7 +35,7 @@
                                             <img src="{{ asset('storage/images/' . $siswa->image) }}" class="card-img-top"
                                                 alt="...">
                                             <div class="card-body">
-                                                <a href="{{ route('tppreschool.index', $siswa->id) }}" class="btn"
+                                                <a target="_blank" href="{{ route('tppreschool.index', $siswa->id) }}" class="btn"
                                                     style="background-color: #6FAC45; color: white">{{ $siswa->nama }}</a>
                                             </div>
                                         </div>
