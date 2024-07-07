@@ -11,7 +11,7 @@ class Vocabulary extends Model
 
     protected $table = 'vocabularys';
     protected $guarded = [];
-    protected $fillable = ['tanggal', 'siswa_id', 'vocabulary'];
+    protected $fillable = ['tanggal', 'siswa_id', 'vocabulary', 'sentence'];
 
     public function siswa()
     {
