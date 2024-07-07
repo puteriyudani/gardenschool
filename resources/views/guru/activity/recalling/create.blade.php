@@ -60,7 +60,7 @@
         }
 
         .modal-content {
-            background-image: url('{{ asset('auth') }}/images/bg1.jpg');
+            background-image: url('{{ asset('auth') }}/images/bg.jpeg');
             /* Replace with the correct path */
             background-size: cover;
             /* Cover the entire modal */
@@ -168,9 +168,10 @@
             position: absolute;
             bottom: 10px;
             left: 10px;
-            font-size: 30px;
+            font-size: 100px;
             font-weight: bold;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: cursive;
+            font-style: italic;
             color: #ffbb00;
             text-shadow:
                 -1px -1px 0 #ffffff,
@@ -416,9 +417,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-3">
+                                        <div class="mb-3 mt-3">
                                             <label for="notifikasi" class="form-label">Notifikasi</label>
-                                            <textarea class="form-control" id="notifikasi" name="notifikasi" rows="5"></textarea>
+                                            <select id="notifikasi" name="notifikasi" class="form-select">
+                                                <option selected>- Pilih -</option>
+                                                <option value="Tidur Cukup">Tidur Cukup</option>
+                                                <option value="Tidur Kurang">Tidur Kurang</option>
+                                                <option value="Lainnya">Lainnya</option>
+                                            </select>
                                         </div>
                                         @error('notifikasi')
                                             <div class="alert alert-danger">{{ $message }}</div>

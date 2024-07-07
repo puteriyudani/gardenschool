@@ -112,9 +112,14 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
-                                        <div class="mb-3">
+                                        <div class="mb-3 mt-3">
                                             <label for="catatan" class="form-label">Catatan</label>
-                                            <textarea class="form-control" id="catatan" name="catatan" rows="5">{{ $pooppee->catatan }}</textarea>
+                                            <select id="catatan" name="catatan" class="form-select">
+                                                <option value="{{ $pooppee->catatan }}" selected>{{ $pooppee->catatan }}</option>
+                                                <option value="Tidur Cukup">Tidur Cukup</option>
+                                                <option value="Tidur Kurang">Tidur Kurang</option>
+                                                <option value="Lainnya">Lainnya</option>
+                                            </select>
                                         </div>
                                         @error('catatan')
                                             <div class="alert alert-danger">{{ $message }}</div>
