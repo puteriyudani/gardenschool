@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->bigInteger('siswa_id');
             $table->string('vocabulary');
+            $table->string('sentence');
             $table->timestamps();
         });
     }

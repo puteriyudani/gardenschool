@@ -35,6 +35,7 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Vocabulary</th>
+                                <th scope="col">Sentence</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -44,6 +45,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $vocabulary->tanggal }}</td>
                                     <td>{{ $vocabulary->vocabulary }}</td>
+                                    <td>{{ $vocabulary->sentence }}</td>
                                     <td>
                                         <form action="{{ route('vocabulary.destroy', $vocabulary->id) }}" method="POST">
                                             <a target="_blank" href="{{ route('vocabulary.edit', $vocabulary->id) }}" style="text-decoration: none; color: #28a745"><i

@@ -46,6 +46,7 @@ class VocabularyController extends Controller
             'tanggal' => 'required',
             'siswa_id' => 'required',
             'vocabulary' => 'required',
+            'sentence' => 'required',
         ]);
 
         Vocabulary::create($request->all());
@@ -80,6 +81,7 @@ class VocabularyController extends Controller
             'tanggal' => 'required',
             'siswa_id' => 'required',
             'vocabulary' => 'required',
+            'sentence' => 'required',
         ]);
 
         $vocabulary->update($request->all());

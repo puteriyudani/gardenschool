@@ -76,9 +76,17 @@
 
                                         <div class="mb-3">
                                             <label for="vocabulary" class="form-label">Vocabulary</label>
-                                            <textarea class="form-control" id="vocabulary" name="vocabulary" rows="5"></textarea>
+                                            <input type="text" class="form-control" id="vocabulary" name="vocabulary">
                                         </div>
                                         @error('vocabulary')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
+                                        <div class="mb-3">
+                                            <label for="sentence" class="form-label">Sentence</label>
+                                            <input type="text" class="form-control" id="sentence" name="sentence">
+                                        </div>
+                                        @error('sentence')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                         <button type="submit" class="btn btn-primary">Submit</button>
