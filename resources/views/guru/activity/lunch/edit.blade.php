@@ -76,18 +76,15 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
-                                        <div class="mb-3">
-                                            <label for="menu_id" class="form-label">Menu</label>
-                                            <br>
-                                            @foreach ($menus as $menu)
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="menu_id"
-                                                        id="{{ $menu->id }}" value="{{ $menu->id }}"
-                                                        {{ $menu->id == $lunch->menu_id ? 'checked' : '' }}>
-                                                    <label class="form-check-label"
-                                                        for="{{ $menu->id }}">{{ $menu->menu }}</label>
-                                                </div>
-                                            @endforeach
+                                        <div class="mb-3 mt-3">
+                                            <label for="menu" class="form-label">Menu</label>
+                                            <select id="menu" name="menu" class="form-select">
+                                                <option value="{{ $lunch->menu_id }}" selected>
+                                                    {{ $lunch->menu->menu }}</option>
+                                                @foreach ($menus as $menu)
+                                                    <option value="{{ $menu->id }}">{{ $menu->menu }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         @error('menu')
                                             <div class="alert alert-danger">{{ $message }}</div>

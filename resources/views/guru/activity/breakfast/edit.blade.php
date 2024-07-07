@@ -86,19 +86,6 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="menu_id" class="form-label">Menu</label>
-                                            <br>
-                                            @foreach ($menus as $menu)
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="menu_id"
-                                                        id="{{ $menu->id }}" value="{{ $menu->id }}"
-                                                        {{ $menu->id == $breakfast->menu_id ? 'checked' : '' }}>
-                                                    <label class="form-check-label"
-                                                        for="{{ $menu->id }}">{{ $menu->menu }}</label>
-                                                </div>
-                                            @endforeach
-                                        </div>
                                         @error('menu')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
