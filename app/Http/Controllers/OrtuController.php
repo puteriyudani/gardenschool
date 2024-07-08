@@ -22,6 +22,7 @@ use App\Models\Tematik;
 use App\Models\Video;
 use App\Models\Vocabulary;
 use App\Models\Welcome;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrtuController extends Controller
@@ -34,7 +35,8 @@ class OrtuController extends Controller
         return view('orangtua.indexlaporan', compact('siswas'));
     }
 
-    public function laporan($id)
+    // Method untuk menampilkan halaman laporan
+    public function showLaporan($id)
     {
         $user = Auth::user();
         session(['orangtua_id' => $user->id]);
@@ -45,10 +47,93 @@ class OrtuController extends Controller
         if ($siswa) {
             session(['siswa_id' => $siswa->id]);
 
-            // Dapatkan tanggal hari ini
-            $today = date('Y-m-d');
+            // Buat array tanggal untuk 7 hari terakhir
+            $dates = [];
+            for ($i = 0; $i < 31; $i++) {
+                $dates[] = date('Y-m-d', strtotime("-$i days"));
+            }
 
-            // Ambil welcome records terkait siswa untuk tanggal hari ini
+            // Tentukan kelompok siswa
+            $kelompok = $siswa->kelompok;
+
+            // Default selected date is today
+            $selected = date('Y-m-d');
+
+            // Definisikan variabel laporan kosong
+            $welcomes = collect([]);
+            $mornings = collect([]);
+            $breakfasts = collect([]);
+            $islamics = collect([]);
+            $preschools = collect([]);
+            $pooppees = collect([]);
+            $tematiks = collect([]);
+            $recallings = collect([]);
+            $vocabularys = collect([]);
+            $videos = collect([]);
+            $acts = collect([]);
+            $funs = collect([]);
+            $lunchs = collect([]);
+            $hadist_list = collect([]);
+            $quran_list = collect([]);
+            $doa_list = collect([]);
+            $hadistbaby_list = collect([]);
+            $quranbaby_list = collect([]);
+            $doababy_list = collect([]);
+
+            return view('orangtua.laporan', compact(
+                'user',
+                'siswa',
+                'dates',
+                'kelompok',
+                'selected',
+                'welcomes',
+                'mornings',
+                'breakfasts',
+                'islamics',
+                'preschools',
+                'pooppees',
+                'tematiks',
+                'recallings',
+                'vocabularys',
+                'videos',
+                'acts',
+                'funs',
+                'lunchs',
+                'hadist_list',
+                'quran_list',
+                'doa_list',
+                'hadistbaby_list',
+                'quranbaby_list',
+                'doababy_list'
+            ));
+        } else {
+            // Jika siswa tidak ditemukan, kembalikan pesan kesalahan atau tindakan lainnya
+            return redirect()->back()->with('error', 'Siswa tidak ditemukan untuk orangtua ini.');
+        }
+    }
+
+    // Method untuk menangani form submission
+    public function laporan(Request $request)
+    {
+        $user = Auth::user();
+        session(['orangtua_id' => $user->id]);
+
+        // Ambil siswa terkait orangtua yang sedang login
+        $siswa = Siswa::findOrFail(session('siswa_id'));
+
+        if ($siswa) {
+            session(['siswa_id' => $siswa->id]);
+
+            // Ambil tanggal yang dipilih dari form
+            $today = $request->input('tanggal');
+
+            // Buat array tanggal untuk 7 hari terakhir
+            $dates = [];
+            for ($i = 0; $i < 7; $i++) {
+                $dates[] = date('Y-m-d', strtotime("-$i days"));
+            }
+
+            // Ambil data laporan terkait siswa untuk tanggal yang dipilih
             $welcomes = Welcome::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
             $mornings = Morning::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
             $breakfasts = Breakfast::with('menu')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
@@ -75,7 +160,36 @@ class OrtuController extends Controller
             // Tentukan kelompok siswa
             $kelompok = $siswa->kelompok;
 
-            return view('orangtua.laporan', compact('user', 'siswa', 'welcomes', 'mornings', 'breakfasts', 'islamics', 'preschools', 'pooppees', 'tematiks', 'videos', 'recallings', 'vocabularys', 'acts', 'funs', 'lunchs', 'today', 'kelompok', 'hadist_list', 'quran_list', 'doa_list', 'hadistbaby_list', 'quranbaby_list', 'doababy_list'));
+            // Set the selected date
+            $selected = $today;
+
+            return view('orangtua.laporan', compact(
+                'user',
+                'siswa',
+                'welcomes',
+                'mornings',
+                'breakfasts',
+                'islamics',
+                'preschools',
+                'pooppees',
+                'tematiks',
+                'recallings',
+                'vocabularys',
+                'videos',
+                'acts',
+                'funs',
+                'lunchs',
+                'today',
+                'kelompok',
+                'hadist_list',
+                'quran_list',
+                'doa_list',
+                'hadistbaby_list',
+                'quranbaby_list',
+                'doababy_list',
+                'dates',
+                'selected'
+            ));
         } else {
             // Jika siswa tidak ditemukan, kembalikan pesan kesalahan atau tindakan lainnya
             return redirect()->back()->with('error', 'Siswa tidak ditemukan untuk orangtua ini.');

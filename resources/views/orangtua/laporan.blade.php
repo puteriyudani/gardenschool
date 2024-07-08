@@ -16,12 +16,19 @@
             @include('include.header-admin')
             <div class="container-fluid" id="download-container">
                 <p>{{ $siswa->nama }}</p>
-                <fieldset disabled>
+                <form method="POST" action="{{ route('laporan.tanggal') }}">
+                    @csrf
+                    <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                        <select class="form-control" id="tanggal" name="tanggal" required>
+                            @foreach ($dates as $date)
+                                <option value="{{ $date }}" {{ $date == $selected ? 'selected' : '' }}>{{ $date }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                </fieldset>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
 
                 @if ($kelompok == 'kindergarten' || $kelompok == 'playgroup')
                     <div class="row align-items-start mobile-no-gutters">
@@ -63,7 +70,8 @@
                                     @foreach ($islamics as $islamic)
                                         <div class="row mobile-no-gutters hadist">
                                             <div class="col-4 text-center hadists">
-                                                <img src="{{ asset('auth') }}/images/rcq.png" class="mt-2" alt="">
+                                                <img src="{{ asset('auth') }}/images/rcq.png" class="mt-2"
+                                                    alt="">
                                                 <h6>Support By:</h6>
                                                 <a>RUMAH CERDAS QURAN</a>
                                                 <div class="card text-justify hadist">
