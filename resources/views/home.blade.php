@@ -278,7 +278,7 @@
         </section><!-- End About Section -->
 
         <!-- ======= Program Section ======= -->
-        <section id="program" class="program">
+        {{-- <section id="program" class="program">
             <div class="container" data-aos="fade-up">
                 <div class="tree">
                     <ul>
@@ -304,7 +304,7 @@
                     </ul>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- End Program Section -->
 
         <!-- ======= Testimonials Section ======= -->
