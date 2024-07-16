@@ -3,6 +3,16 @@
 @section('judul')
     <title>Guru - Create Welcome Mood</title>
     <style>
+        @font-face {
+            font-family: 'Princess Sofia Regular';
+            src: url('{{ asset('auth') }}/font/PrincessSofia-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: 'Henny Penny Regular';
+            src: url('{{ asset('auth') }}/font/HennyPenny-Regular.ttf');
+        }
+
         .btn.btn-primary.disabled,
         .btn.btn-warning.disabled,
         .btn.btn-success.disabled,
@@ -160,6 +170,7 @@
         }
 
         .indikator {
+            display: none;
             text-align: center;
         }
 
@@ -168,18 +179,42 @@
             position: absolute;
             bottom: 10px;
             left: 10px;
-            font-size: 100px;
+            font-size: 80px;
             font-weight: bold;
-            font-family: cursive;
+            font-family: 'Henny Penny Regular';
             font-style: italic;
-            color: #ffbb00;
-            text-shadow:
-                -1px -1px 0 #ffffff,
-                1px -1px 0 #ffffff,
-                -1px 1px 0 #ffffff,
-                1px 1px 0 #ffffff;
+            color: #ffffff;
         }
 
+        /* Gaya untuk modal gambar */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Latar belakang semi-transparan */
+        }
+
+        .image-modal-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            height: auto;
+        }
 
         @media (max-width: 768px) {
             .modal {
@@ -350,7 +385,6 @@
                                         <!-- The Modal -->
                                         <div class="modal" id="formModal">
                                             <div class="modal-content">
-                                                <span class="close" id="closeModalButton">&times;</span>
 
                                                 <!-- Tambahkan tulisan "Please Welcome" di sini -->
                                                 <div class="welcome-text">
@@ -359,10 +393,11 @@
 
                                                 <div class="modal-inner">
                                                     <!-- Form elements inside the modal -->
-                                                    <div class="mb-3 keterangan">
+                                                    <div class="mb-2 keterangan">
                                                         <label for="keterangan" class="form-label">My Mood</label>
                                                         <select id="keterangan" name="keterangan"
                                                             class="form-select hidden-select">
+                                                            <option selected></option>
                                                             <option value="Happy">Happy</option>
                                                             <option value="Neutral">Bored</option>
                                                             <option value="Sad">Downed</option>
@@ -389,7 +424,10 @@
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
 
-                                                    <div class="indikator mb-3">
+                                                    <button type="button" class="btn btn-success"
+                                                        id="closeModalButton">Submit</button>
+
+                                                    <div class="indikator mb-3 mt-2">
                                                         <label for="indikator" class="form-label"
                                                             id="progressLabel">Indikator: 0%</label>
                                                         <div class="range-container">
@@ -406,11 +444,20 @@
                                             </div>
                                         </div>
 
+                                        <!-- Modal untuk gambar popup -->
+                                        <div id="imageModal" class="image-modal" style="display: none;">
+                                            <div class="image-modal-content">
+                                                <img id="popupImage" src="{{ asset('auth') }}/gif/thankyou.gif"
+                                                    alt="Response Image">
+                                            </div>
+                                        </div>
+
+
                                         <!-- Overlay for popup GIFs -->
                                         <div class="popup-overlay" id="popupOverlay" style="display: none;">
                                             <div class="popup-content">
-                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF" id="happyGif"
-                                                    class="popup-gif" style="display: none;">
+                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF"
+                                                    id="happyGif" class="popup-gif" style="display: none;">
                                                 <img src="{{ asset('auth') }}/gif/sad.gif" alt="Sad GIF" id="sadGif"
                                                     class="popup-gif" style="display: none;">
                                                 <button class="popup-close btn btn-danger" id="popupClose">Close</button>
@@ -461,6 +508,7 @@
             const popupClose = document.getElementById('popupClose');
             const happyGif = document.getElementById('happyGif');
             const sadGif = document.getElementById('sadGif');
+            const indikatorContainer = document.querySelector('.indikator');
 
             const checkConditions = () => {
                 happyGif.style.display = 'none';
@@ -470,9 +518,15 @@
                     if (hiddenSelect.value === 'Happy') {
                         happyGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
+                        // Putar suara
+                        var audio = new Audio('{{ asset('auth') }}/sound/happy.mp3');
+                        audio.play();
                     } else if (hiddenSelect.value === 'Sad') {
                         sadGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
+                        // Putar suara
+                        var audio = new Audio('{{ asset('auth') }}/sound/sad.mp3');
+                        audio.play();
                     } else {
                         popupOverlay.style.display = 'none';
                     }
@@ -487,6 +541,11 @@
                     images.forEach(img => img.style.border = 'none');
                     this.style.border = '2px solid blue';
                     checkConditions();
+
+                    // Tampilkan indikator setelah memilih keterangan
+                    if (hiddenSelect.value !== '') {
+                        indikatorContainer.style.display = 'block';
+                    }
                 });
             });
 
@@ -509,10 +568,23 @@
             document.getElementById('formModal').style.display = 'block';
         };
 
-        document.getElementById('closeModalButton').onclick = function() {
+        document.getElementById('closeModalButton').addEventListener('click', function() {
+            // Tutup modal
             document.getElementById('formModal').style.display = 'none';
-        };
 
+            // Putar suara
+            var audio = new Audio('{{ asset('auth') }}/sound/close.mp3');
+            audio.play();
+
+            // Tampilkan modal gambar
+            var imageModal = document.getElementById('imageModal');
+            imageModal.style.display = 'block';
+
+            // Sembunyikan modal gambar setelah 5 detik
+            setTimeout(function() {
+                imageModal.style.display = 'none';
+            }, 6000);
+        });
         document.getElementById('submitFormButton').onclick = function() {
             // Gather form data
             const keterangan = document.getElementById('keterangan').value;

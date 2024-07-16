@@ -47,7 +47,7 @@ class OrtuController extends Controller
         if ($siswa) {
             session(['siswa_id' => $siswa->id]);
 
-            // Buat array tanggal untuk 7 hari terakhir
+            // Buat array tanggal
             $dates = [];
             for ($i = 0; $i < 31; $i++) {
                 $dates[] = date('Y-m-d', strtotime("-$i days"));
@@ -127,9 +127,9 @@ class OrtuController extends Controller
             // Ambil tanggal yang dipilih dari form
             $today = $request->input('tanggal');
 
-            // Buat array tanggal untuk 7 hari terakhir
+            // Buat array tanggal
             $dates = [];
-            for ($i = 0; $i < 7; $i++) {
+            for ($i = 0; $i < 31; $i++) {
                 $dates[] = date('Y-m-d', strtotime("-$i days"));
             }
 

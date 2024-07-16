@@ -3,6 +3,16 @@
 @section('judul')
     <title>Guru - Edit Welcome Mood</title>
     <style>
+        @font-face {
+            font-family: 'Princess Sofia Regular';
+            src: url('{{ asset('auth') }}/font/PrincessSofia-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: 'Henny Penny Regular';
+            src: url('{{ asset('auth') }}/font/HennyPenny-Regular.ttf');
+        }
+
         .btn.btn-primary.disabled,
         .btn.btn-warning.disabled,
         .btn.btn-success.disabled,
@@ -26,7 +36,8 @@
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 1100;
+            /* Higher z-index value for the popup overlay */
         }
 
         .popup-content {
@@ -43,6 +54,236 @@
 
         .popup-close {
             cursor: pointer;
+        }
+
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-image: url('{{ asset('auth') }}/images/bg1.jpg');
+            /* Replace with the correct path */
+            background-size: cover;
+            /* Cover the entire modal */
+            background-position: center;
+            /* Center the background image */
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-inner {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: absolute;
+            /* Make position absolute */
+            top: 2%;
+            /* Adjust as needed */
+            right: 15%;
+            /* Adjust as needed */
+        }
+
+        .modal-inner label {
+            /* color: white; */
+            font-size: 20px;
+        }
+
+        .modal-inner .keterangan label {
+            /* color: white; */
+            font-size: 30px;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .custom-select-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* Adds some space between the images */
+        }
+
+        .custom-select-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .custom-select-container img {
+            width: 170px !important;
+            /* Adjust the width as needed */
+            height: auto !important;
+            /* Maintain the aspect ratio */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            /* Adds a smooth transition effect */
+        }
+
+        .custom-select-container img:hover {
+            transform: scale(1.1);
+            /* Slightly enlarges the image on hover */
+        }
+
+        .custom-select-item p {
+            margin-top: 2px;
+            font-size: 20px
+                /* color: white; */
+        }
+
+        .progress-bar {
+            width: 60%;
+            /* Set width to 80% */
+            margin: 0 auto;
+            /* Center the range input */
+            display: block;
+            /* Ensure it's centered as a block element */
+        }
+
+        .indikator {
+            display: none;
+            text-align: center;
+        }
+
+        /* Additional text "Please Welcome" styles */
+        .welcome-text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 80px;
+            font-weight: bold;
+            font-family: 'Henny Penny Regular';
+            font-style: italic;
+            color: #ffffff;
+        }
+
+
+        @media (max-width: 768px) {
+            .modal {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            .modal-content {
+                background-image: url('{{ asset('auth') }}/images/bg1.jpg');
+                /* Replace with the correct path */
+                background-size: cover;
+                /* Cover the entire modal */
+                background-position: center;
+                /* Center the background image */
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .modal-inner {
+                /* background-color: rgba(255, 255, 255, 0.4); */
+                /* Background color with transparency */
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+            }
+
+            .close {
+                color: #aaa;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .custom-select-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                /* Adds some space between the images */
+            }
+
+            .custom-select-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .custom-select-container img {
+                width: 50px !important;
+                /* Adjust the width as needed */
+                height: auto !important;
+                /* Maintain the aspect ratio */
+                cursor: pointer;
+                transition: transform 0.2s ease-in-out;
+                /* Adds a smooth transition effect */
+            }
+
+            .custom-select-container img:hover {
+                transform: scale(1.1);
+                /* Slightly enlarges the image on hover */
+            }
+
+            .custom-select-item p {
+                margin-top: 2px;
+            }
+
+            .progress-bar {
+                width: 80%;
+                /* Set width to 80% */
+                margin: 0 auto;
+                /* Center the range input */
+                display: block;
+                /* Ensure it's centered as a block element */
+            }
         }
     </style>
 @endsection
@@ -87,7 +328,8 @@
 
                                         <div class="mb-3">
                                             <label for="tanggal" class="form-label">Tanggal</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $welcome->tanggal }}">
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                                value="{{ $welcome->tanggal }}">
                                         </div>
                                         @error('tanggal')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -109,33 +351,74 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
-                                        <div class="mb-3">
-                                            <label for="keterangan" class="form-label">Keterangan</label>
-                                            <select id="keterangan" name="keterangan" class="form-select hidden-select">
-                                                <option value="{{ $welcome->keterangan }}" selected>{{ $welcome->keterangan }}</option>
-                                                <option value="Happy">Happy</option>
-                                                <option value="Neutral">Neutral</option>
-                                                <option value="Sad">Sad</option>
-                                            </select>
-                                            <div class="custom-select-container" id="customSelectContainer">
-                                                <img src="{{ asset('auth') }}/images/face/happy.png" alt="Happy"
-                                                    data-value="Happy">
-                                                <img src="{{ asset('auth') }}/images/face/neutral.png" alt="Neutral"
-                                                    data-value="Neutral">
-                                                <img src="{{ asset('auth') }}/images/face/sad.png" alt="Sad"
-                                                    data-value="Sad">
+                                        <!-- Button to open the modal -->
+                                        <button type="button" class="btn btn-primary" id="openModalButton">Open
+                                            Form</button>
+
+                                        <!-- The Modal -->
+                                        <div class="modal" id="formModal">
+                                            <div class="modal-content">
+
+                                                <!-- Tambahkan tulisan "Please Welcome" di sini -->
+                                                <div class="welcome-text">
+                                                    <p>Please Welcome</p>
+                                                </div>
+
+                                                <div class="modal-inner">
+                                                    <!-- Form elements inside the modal -->
+                                                    <div class="mb-2 keterangan">
+                                                        <label for="keterangan" class="form-label">My Mood</label>
+                                                        <select id="keterangan" name="keterangan"
+                                                            class="form-select hidden-select">
+                                                            <option value="{{ $welcome->keterangan }}" selected>
+                                                                {{ $welcome->keterangan }}</option>
+                                                            <option value="Happy">Happy</option>
+                                                            <option value="Neutral">Bored</option>
+                                                            <option value="Sad">Downed</option>
+                                                        </select>
+                                                        <div class="custom-select-container" id="customSelectContainer">
+                                                            <div class="custom-select-item">
+                                                                <img src="{{ asset('auth') }}/images/face/happy.png"
+                                                                    alt="Happy" data-value="Happy">
+                                                                <p>Happy</p>
+                                                            </div>
+                                                            <div class="custom-select-item">
+                                                                <img src="{{ asset('auth') }}/images/face/neutral.png"
+                                                                    alt="Neutral" data-value="Neutral">
+                                                                <p>Bored</p>
+                                                            </div>
+                                                            <div class="custom-select-item">
+                                                                <img src="{{ asset('auth') }}/images/face/sad.png"
+                                                                    alt="Sad" data-value="Sad">
+                                                                <p>Downed</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @error('keterangan')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+
+                                                    <button type="button" class="btn btn-success"
+                                                        id="closeModalButton">Submit</button>
+
+                                                    <div class="indikator mb-3 mt-2">
+                                                        <label for="indikator" class="form-label"
+                                                            id="progressLabel">Indikator: 0%</label>
+                                                        <div class="range-container">
+                                                            <input type="range" class="progress-bar" id="progressBar"
+                                                                name="indikator" value="{{ $welcome->indikator }}"
+                                                                min="0" max="100">
+                                                        </div>
+                                                    </div>
+
+                                                    @error('indikator')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                        @error('keterangan')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
 
-                                        <div class="mb-3">
-                                            <label for="indikator" class="form-label" id="progressLabel">Indikator:
-                                                {{ $welcome->indikator }}%</label>
-                                            <input type="range" class="progress-bar" id="progressBar" name="indikator"
-                                                value="{{ $welcome->indikator }}" min="0" max="100">
-                                        </div>
+                                        <!-- Overlay for popup GIFs -->
                                         <div class="popup-overlay" id="popupOverlay" style="display: none;">
                                             <div class="popup-content">
                                                 <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF" id="happyGif"
@@ -145,14 +428,12 @@
                                                 <button class="popup-close btn btn-danger" id="popupClose">Close</button>
                                             </div>
                                         </div>
-                                        @error('indikator')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
 
                                         <div class="mb-3 mt-3">
                                             <label for="notifikasi" class="form-label">Notifikasi</label>
                                             <select id="notifikasi" name="notifikasi" class="form-select">
-                                                <option value="{{ $welcome->notifikasi }}" selected>{{ $welcome->notifikasi }}</option>
+                                                <option value="{{ $welcome->notifikasi }}" selected>
+                                                    {{ $welcome->notifikasi }}</option>
                                                 <option value="Tidur Cukup">Tidur Cukup</option>
                                                 <option value="Tidur Kurang">Tidur Kurang</option>
                                                 <option value="Lainnya">Lainnya</option>
@@ -193,6 +474,7 @@
             const popupClose = document.getElementById('popupClose');
             const happyGif = document.getElementById('happyGif');
             const sadGif = document.getElementById('sadGif');
+            const indikatorContainer = document.querySelector('.indikator');
 
             const checkConditions = () => {
                 happyGif.style.display = 'none';
@@ -219,11 +501,16 @@
                     images.forEach(img => img.style.border = 'none');
                     this.style.border = '2px solid blue';
                     checkConditions();
+
+                    // Tampilkan indikator setelah memilih keterangan
+                    if (hiddenSelect.value !== '') {
+                        indikatorContainer.style.display = 'block';
+                    }
                 });
             });
 
             progressBar.addEventListener('input', () => {
-                progressLabel.textContent = `Progress: ${progressBar.value}%`;
+                progressLabel.textContent = `Indikator: ${progressBar.value}%`;
                 checkConditions();
             });
 
@@ -235,5 +522,50 @@
             // Initial trigger to set the indicator based on the default select value and progress bar value
             checkConditions();
         });
+
+        // Modal display handling
+        document.getElementById('openModalButton').onclick = function() {
+            document.getElementById('formModal').style.display = 'block';
+        };
+
+        document.getElementById('closeModalButton').onclick = function() {
+            document.getElementById('formModal').style.display = 'none';
+        };
+
+        document.getElementById('submitFormButton').onclick = function() {
+            // Gather form data
+            const keterangan = document.getElementById('keterangan').value;
+            const indikator = document.getElementById('progressBar').value;
+
+            // Create a form to submit the data
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ route('welcome.store') }}'; // Update the form action URL
+
+            // Add CSRF token if necessary
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = '_token';
+            csrfInput.value = csrfToken;
+            form.appendChild(csrfInput);
+
+            // Append form data
+            const keteranganInput = document.createElement('input');
+            keteranganInput.type = 'hidden';
+            keteranganInput.name = 'keterangan';
+            keteranganInput.value = keterangan;
+            form.appendChild(keteranganInput);
+
+            const indikatorInput = document.createElement('input');
+            indikatorInput.type = 'hidden';
+            indikatorInput.name = 'indikator';
+            indikatorInput.value = indikator;
+            form.appendChild(indikatorInput);
+
+            // Append the form to the body and submit
+            document.body.appendChild(form);
+            form.submit();
+        };
     </script>
 @endsection
