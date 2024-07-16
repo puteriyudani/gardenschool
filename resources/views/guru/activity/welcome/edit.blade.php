@@ -186,6 +186,35 @@
             color: #ffffff;
         }
 
+        /* Gaya untuk modal gambar */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Latar belakang semi-transparan */
+        }
+
+        .image-modal-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            height: auto;
+        }
 
         @media (max-width: 768px) {
             .modal {
@@ -418,6 +447,14 @@
                                             </div>
                                         </div>
 
+                                        <!-- Modal untuk gambar popup -->
+                                        <div id="imageModal" class="image-modal" style="display: none;">
+                                            <div class="image-modal-content">
+                                                <img id="popupImage" src="{{ asset('auth') }}/gif/thankyou.gif"
+                                                    alt="Response Image">
+                                            </div>
+                                        </div>
+
                                         <!-- Overlay for popup GIFs -->
                                         <div class="popup-overlay" id="popupOverlay" style="display: none;">
                                             <div class="popup-content">
@@ -484,9 +521,15 @@
                     if (hiddenSelect.value === 'Happy') {
                         happyGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
+                        // Putar suara
+                        var audio = new Audio('{{ asset('auth') }}/sound/happy.mp3');
+                        audio.play();
                     } else if (hiddenSelect.value === 'Sad') {
                         sadGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
+                        // Putar suara
+                        var audio = new Audio('{{ asset('auth') }}/sound/sad.mp3');
+                        audio.play();
                     } else {
                         popupOverlay.style.display = 'none';
                     }
@@ -528,10 +571,23 @@
             document.getElementById('formModal').style.display = 'block';
         };
 
-        document.getElementById('closeModalButton').onclick = function() {
+        document.getElementById('closeModalButton').addEventListener('click', function() {
+            // Tutup modal
             document.getElementById('formModal').style.display = 'none';
-        };
 
+            // Putar suara
+            var audio = new Audio('{{ asset('auth') }}/sound/close.mp3');
+            audio.play();
+
+            // Tampilkan modal gambar
+            var imageModal = document.getElementById('imageModal');
+            imageModal.style.display = 'block';
+
+            // Sembunyikan modal gambar setelah 5 detik
+            setTimeout(function() {
+                imageModal.style.display = 'none';
+            }, 6000);
+        });
         document.getElementById('submitFormButton').onclick = function() {
             // Gather form data
             const keterangan = document.getElementById('keterangan').value;

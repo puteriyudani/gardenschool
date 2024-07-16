@@ -452,7 +452,6 @@
                                             </div>
                                         </div>
 
-
                                         <!-- Overlay for popup GIFs -->
                                         <div class="popup-overlay" id="popupOverlay" style="display: none;">
                                             <div class="popup-content">
