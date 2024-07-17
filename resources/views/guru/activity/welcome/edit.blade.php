@@ -216,7 +216,7 @@
             height: auto;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .modal {
                 display: flex;
                 justify-content: center;
@@ -312,6 +312,10 @@
                 /* Center the range input */
                 display: block;
                 /* Ensure it's centered as a block element */
+            }
+
+            .welcome-text {
+                font-size: 50px;
             }
         }
     </style>
