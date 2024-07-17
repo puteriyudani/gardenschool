@@ -387,20 +387,17 @@
                                         <!-- The Modal -->
                                         <div class="modal" id="formModal">
                                             <div class="modal-content">
-
                                                 <!-- Tambahkan tulisan "Please Welcome" di sini -->
                                                 <div class="welcome-text">
                                                     <p>Please Welcome</p>
                                                 </div>
-
                                                 <div class="modal-inner">
                                                     <!-- Form elements inside the modal -->
                                                     <div class="mb-2 keterangan">
                                                         <label for="keterangan" class="form-label">My Mood</label>
                                                         <select id="keterangan" name="keterangan"
                                                             class="form-select hidden-select">
-                                                            <option value="{{ $welcome->keterangan }}" selected>
-                                                                {{ $welcome->keterangan }}</option>
+                                                            <option selected value="{{ $welcome->keterangan }}">{{ $welcome->keterangan }}</option>
                                                             <option value="Happy">Happy</option>
                                                             <option value="Neutral">Bored</option>
                                                             <option value="Sad">Downed</option>
@@ -427,16 +424,19 @@
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
 
-                                                    <button type="button" class="btn btn-success"
-                                                        id="closeModalButton">Submit</button>
+                                                    <!-- Initially hidden submit button -->
+                                                    <div id="submitContainer" style="display: none;">
+                                                        <button type="button" class="btn btn-success"
+                                                            id="closeModalButton">Submit</button>
+                                                    </div>
 
                                                     <div class="indikator mb-3 mt-2">
                                                         <label for="indikator" class="form-label"
-                                                            id="progressLabel">Indikator: 0%</label>
+                                                            id="progressLabel">Indikator: {{ $welcome->indikator }}%</label>
                                                         <div class="range-container">
                                                             <input type="range" class="progress-bar" id="progressBar"
-                                                                name="indikator" value="{{ $welcome->indikator }}"
-                                                                min="0" max="100">
+                                                                name="indikator" value="{{ $welcome->indikator }}" min="0"
+                                                                max="100">
                                                         </div>
                                                     </div>
 
@@ -512,6 +512,7 @@
             const happyGif = document.getElementById('happyGif');
             const sadGif = document.getElementById('sadGif');
             const indikatorContainer = document.querySelector('.indikator');
+            const submitContainer = document.getElementById('submitContainer');
 
             const checkConditions = () => {
                 happyGif.style.display = 'none';
@@ -535,6 +536,13 @@
                     }
                 } else {
                     popupOverlay.style.display = 'none';
+                }
+
+                // Tampilkan tombol submit jika opsi keterangan dipilih
+                if (hiddenSelect.value !== '') {
+                    submitContainer.style.display = 'block';
+                } else {
+                    submitContainer.style.display = 'none';
                 }
             };
 
@@ -572,56 +580,25 @@
         };
 
         document.getElementById('closeModalButton').addEventListener('click', function() {
-            // Tutup modal
-            document.getElementById('formModal').style.display = 'none';
+            // Konfirmasi sebelum submit
+            const isConfirmed = confirm("Apakah yakin dengan isianmu?");
+            if (isConfirmed) {
+                // Tutup modal
+                document.getElementById('formModal').style.display = 'none';
 
-            // Putar suara
-            var audio = new Audio('{{ asset('auth') }}/sound/close.mp3');
-            audio.play();
+                // Putar suara
+                var audio = new Audio('{{ asset('auth') }}/sound/close.mp3');
+                audio.play();
 
-            // Tampilkan modal gambar
-            var imageModal = document.getElementById('imageModal');
-            imageModal.style.display = 'block';
+                // Tampilkan modal gambar
+                var imageModal = document.getElementById('imageModal');
+                imageModal.style.display = 'block';
 
-            // Sembunyikan modal gambar setelah 5 detik
-            setTimeout(function() {
-                imageModal.style.display = 'none';
-            }, 6000);
+                // Sembunyikan modal gambar setelah 5 detik
+                setTimeout(function() {
+                    imageModal.style.display = 'none';
+                }, 5000);
+            }
         });
-        document.getElementById('submitFormButton').onclick = function() {
-            // Gather form data
-            const keterangan = document.getElementById('keterangan').value;
-            const indikator = document.getElementById('progressBar').value;
-
-            // Create a form to submit the data
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '{{ route('welcome.store') }}'; // Update the form action URL
-
-            // Add CSRF token if necessary
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-            const csrfInput = document.createElement('input');
-            csrfInput.type = 'hidden';
-            csrfInput.name = '_token';
-            csrfInput.value = csrfToken;
-            form.appendChild(csrfInput);
-
-            // Append form data
-            const keteranganInput = document.createElement('input');
-            keteranganInput.type = 'hidden';
-            keteranganInput.name = 'keterangan';
-            keteranganInput.value = keterangan;
-            form.appendChild(keteranganInput);
-
-            const indikatorInput = document.createElement('input');
-            indikatorInput.type = 'hidden';
-            indikatorInput.name = 'indikator';
-            indikatorInput.value = indikator;
-            form.appendChild(indikatorInput);
-
-            // Append the form to the body and submit
-            document.body.appendChild(form);
-            form.submit();
-        };
     </script>
 @endsection
