@@ -3,16 +3,6 @@
 @section('judul')
     <title>Guru - Create Welcome Mood</title>
     <style>
-        @font-face {
-            font-family: 'Princess Sofia Regular';
-            src: url('{{ asset('auth') }}/font/PrincessSofia-Regular.ttf');
-        }
-
-        @font-face {
-            font-family: 'Henny Penny Regular';
-            src: url('{{ asset('auth') }}/font/HennyPenny-Regular.ttf');
-        }
-
         .btn.btn-primary.disabled,
         .btn.btn-warning.disabled,
         .btn.btn-success.disabled,
@@ -41,7 +31,7 @@
         }
 
         .popup-content {
-            background: white;
+            background: rgba(255, 255, 255, 0);
             padding: 10px;
             border-radius: 10px;
             text-align: center;
@@ -174,18 +164,6 @@
             text-align: center;
         }
 
-        /* Additional text "Please Welcome" styles */
-        .welcome-text {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            font-size: 80px;
-            font-weight: bold;
-            font-family: 'Henny Penny Regular';
-            font-style: italic;
-            color: #ffffff;
-        }
-
         /* Gaya untuk modal gambar */
         .image-modal {
             display: none;
@@ -205,10 +183,10 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             text-align: center;
+            background: rgba(255, 255, 255, 0);
         }
 
         .image-modal-content img {
@@ -313,10 +291,6 @@
                 display: block;
                 /* Ensure it's centered as a block element */
             }
-
-            .welcome-text {
-                font-size: 50px;
-            }
         }
     </style>
 @endsection
@@ -386,13 +360,12 @@
                                         <button type="button" class="btn btn-primary" id="openModalButton">Open
                                             Form</button>
 
+                                        <!-- Audio element for modal open sound -->
+                                        <audio id="modalOpenSound" src="{{ asset('auth') }}/sound/modal-open.mp3"></audio>
+
                                         <!-- The Modal -->
                                         <div class="modal" id="formModal">
                                             <div class="modal-content">
-                                                <!-- Tambahkan tulisan "Please Welcome" di sini -->
-                                                <div class="welcome-text">
-                                                    <p>Please Welcome</p>
-                                                </div>
                                                 <div class="modal-inner">
                                                     <!-- Form elements inside the modal -->
                                                     <div class="mb-2 keterangan">
