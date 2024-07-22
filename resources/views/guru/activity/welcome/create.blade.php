@@ -488,6 +488,8 @@
             const indikatorContainer = document.querySelector('.indikator');
             const submitContainer = document.getElementById('submitContainer');
 
+            let audio; // Reference to the audio object
+
             const checkConditions = () => {
                 happyGif.style.display = 'none';
                 sadGif.style.display = 'none';
@@ -497,13 +499,13 @@
                         happyGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
                         // Putar suara
-                        var audio = new Audio('{{ asset('auth') }}/sound/happy.mp3');
+                        audio = new Audio('{{ asset('auth') }}/sound/happy.mp3');
                         audio.play();
                     } else if (hiddenSelect.value === 'Sad') {
                         sadGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
                         // Putar suara
-                        var audio = new Audio('{{ asset('auth') }}/sound/sad.mp3');
+                        audio = new Audio('{{ asset('auth') }}/sound/sad.mp3');
                         audio.play();
                     } else {
                         popupOverlay.style.display = 'none';
@@ -542,6 +544,10 @@
             popupClose.addEventListener('click', (event) => {
                 popupOverlay.style.display = 'none';
                 event.preventDefault();
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0; // Reset audio to the beginning
+                }
             });
 
             // Initial trigger to set the indicator based on the default select value and progress bar value
