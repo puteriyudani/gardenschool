@@ -15,13 +15,26 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
-                <div class="container-fluid">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title fw-semibold mb-4">Welcome {{ session('name') }}</h5>
-                        </div>
-                    </div>
-                </div>
+                <h5>Siswa</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Nama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($siswas as $siswa)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td><img src="{{ asset('/storage/images/' . $siswa->image) }}" class="img-thumbnail"
+                                        style="width:200px" /></td>
+                                <td><a href="{{ route('ortu.laporan', $siswa->id) }}">{{ $siswa->nama }}</a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

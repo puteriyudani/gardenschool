@@ -27,12 +27,12 @@ use Illuminate\Support\Facades\Auth;
 
 class OrtuController extends Controller
 {
-    public function indexlaporan()
+    public function index()
     {
         $ortu = Auth::user();
         $siswas = $ortu->siswa()->get();
 
-        return view('orangtua.indexlaporan', compact('siswas'));
+        return view('orangtua.index', compact('siswas'));
     }
 
     // Method untuk menampilkan halaman laporan
@@ -194,11 +194,6 @@ class OrtuController extends Controller
             // Jika siswa tidak ditemukan, kembalikan pesan kesalahan atau tindakan lainnya
             return redirect()->back()->with('error', 'Siswa tidak ditemukan untuk orangtua ini.');
         }
-    }
-
-    public function index()
-    {
-        return view('orangtua.index');
     }
 
     public function siswa()

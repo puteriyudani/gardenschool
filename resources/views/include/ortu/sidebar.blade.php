@@ -25,7 +25,7 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-small-cap">
+                {{-- <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Data</span>
                 </li>
@@ -45,7 +45,7 @@
                         </span>
                         <span class="hide-menu">Laporan</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
