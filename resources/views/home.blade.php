@@ -147,12 +147,12 @@
             <div class="row tombol">
                 <div class="col">
                     <a href="/#about">
-                        <img src="{{ asset('assets') }}/img/buttonprofile.jpg" alt="...">
+                        <img src="{{ asset('assets') }}/img/buttonprofile.png" alt="...">
                     </a>
                 </div>
                 <div class="col">
                     <a href="#" onclick="showPopup()">
-                        <img src="{{ asset('assets') }}/img/buttonprogram.jpg" alt="...">
+                        <img src="{{ asset('assets') }}/img/buttonprogram.png" alt="...">
                     </a>
                 </div>
                 <div class="col hugsme">
@@ -162,12 +162,12 @@
                 </div>
                 <div class="col">
                     <a href="#" onclick="showPopup()">
-                        <img src="{{ asset('assets') }}/img/buttonsupport.jpg" alt="...">
+                        <img src="{{ asset('assets') }}/img/buttonsupport.png" alt="...">
                     </a>
                 </div>
                 <div class="col">
                     <a href="#" onclick="showPopup()">
-                        <img src="{{ asset('assets') }}/img/buttonshop.jpg" alt="...">
+                        <img src="{{ asset('assets') }}/img/buttonshop.png" alt="...">
                     </a>
                 </div>
             </div>
