@@ -212,6 +212,7 @@
     background-color: #FFF1CC;
     padding: 10px;
     border-radius: 10px;
+    height: 60px;
 }
 
 .bg-grey .grey-notif a {
@@ -269,7 +270,7 @@
     background-color: white;
     padding: 10px;
     border-radius: 10px;
-    height: 245px;
+    height: 180px;
 }
 
 .bg-darkgreen .darkgreen-catatan a {
@@ -281,6 +282,7 @@
 /* bg-brown */
 .bg-brown {
     background-color: #833B0B;
+    height: 232px;
 }
 
 .bg-brown .blockquote-custom-icon {
@@ -320,70 +322,13 @@
     background-color: #FFF1CC;
     padding: 10px;
     border-radius: 10px;
+    height: 40px;
 }
 
 .bg-brown .brown-notif a {
     text-decoration: none;
     font-weight: 200;
     font-size: 14px;
-}
-
-/* bg-purple */
-.bg-purple {
-    background-color: #d65b5b;
-    margin-top: -71px;
-}
-
-.bg-purple .blockquote-custom-icon {
-    background-color: #B43F3F;
-    width: 200px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.bg-purple .sub .row {
-    background-color: white;
-    border-radius: 30px;
-    margin: 0px 1px;
-}
-
-.bg-purple .sub p {
-    font-size: 14px;
-    margin-bottom: 8px;
-    margin-top: 6px;
-}
-
-.bg-purple .check,
-.bg-purple .cross {
-    width: 20px;
-    /* margin-top: -8px; */
-}
-
-.bg-purple .vocab {
-    margin-bottom: 10px;
-}
-
-.bg-purple .aozora img {
-    width: 100px;
-}
-
-.bg-purple .aozora p {
-    font-weight: 500;
-    font-size: 14px;
-    margin-bottom: -40px;
-    margin-top: 5px;
-}
-
-.bg-purple .aozora a {
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 700
 }
 
 /* bg-blue */
@@ -494,7 +439,7 @@
     background-color: white;
     padding: 10px;
     border-radius: 10px;
-    height: 130px;
+    height: 110px;
 }
 
 .bg-orange a {
@@ -547,6 +492,7 @@
     background-color: #000000;
     padding: 10px;
     margin-top: 33px;
+    height: 232px;
 }
 
 .bg-black .blockquote-custom-icon {
@@ -567,7 +513,7 @@
 }
 
 .bg-black .youtube {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 /* bg-mustard */
@@ -625,6 +571,64 @@
 .bg-mustard a {
     text-decoration: none;
     font-weight: 200;
+}
+
+/* bg-purple */
+.bg-purple {
+    background-color: #d65b5b;
+    margin-top: -70px;
+}
+
+.bg-purple .blockquote-custom-icon {
+    background-color: #B43F3F;
+    width: 200px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bg-purple .sub .row {
+    background-color: white;
+    border-radius: 30px;
+    margin: 0px 1px;
+}
+
+.bg-purple .sub p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-top: 6px;
+}
+
+.bg-purple .check,
+.bg-purple .cross {
+    width: 20px;
+    /* margin-top: -8px; */
+}
+
+.bg-purple .vocab {
+    margin-bottom: 10px;
+}
+
+.bg-purple .aozora img {
+    width: 100px;
+}
+
+.bg-purple .aozora p {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: -40px;
+    margin-top: 5px;
+}
+
+.bg-purple .aozora a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700
 }
 
 /* Tab styles */
@@ -1452,62 +1456,6 @@
         font-size: 8px;
     }
 
-    /* bg-purple */
-    .bg-purple {
-        margin-top: 20px;
-    }
-
-    .bg-purple .blockquote-custom-icon {
-        width: 80px;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .bg-purple .sub .row {
-        margin: 0px;
-        border-radius: 20px;
-        height: 20px;
-    }
-
-    .bg-purple .sub p {
-        font-size: 8px;
-        margin: 4px 0px 5px 8px;
-    }
-
-    .bg-purple .check,
-    .bg-purple .cross {
-        width: 15px;
-        margin-top: -15px;
-    }
-
-    .bg-purple .vocab {
-        margin-bottom: 10px;
-    }
-
-    .bg-purple .aozora {
-        margin-left: -10px;
-    }
-
-    .bg-purple .aozora img {
-        width: 60px;
-    }
-
-    .bg-purple .aozora p {
-        font-weight: 500;
-        font-size: 9px;
-        margin-bottom: -40px;
-        margin-top: 5px;
-        color: white;
-    }
-
-    .bg-purple .aozora a {
-        text-decoration: none;
-        font-size: 8px;
-        font-weight: 700;
-        color: white;
-    }
-
     /* bg-blue */
     .bg-blue .blockquote-custom-icon {
         width: 100px;
@@ -1675,6 +1623,62 @@
 
     .bg-mustard .emot {
         margin-left: -20px;
+    }
+
+    /* bg-purple */
+    .bg-purple {
+        margin-top: 20px;
+    }
+
+    .bg-purple .blockquote-custom-icon {
+        width: 80px;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .bg-purple .sub .row {
+        margin: 0px;
+        border-radius: 20px;
+        height: 20px;
+    }
+
+    .bg-purple .sub p {
+        font-size: 8px;
+        margin: 4px 0px 5px 8px;
+    }
+
+    .bg-purple .check,
+    .bg-purple .cross {
+        width: 15px;
+        margin-top: -15px;
+    }
+
+    .bg-purple .vocab {
+        margin-bottom: 10px;
+    }
+
+    .bg-purple .aozora {
+        margin-left: -10px;
+    }
+
+    .bg-purple .aozora img {
+        width: 60px;
+    }
+
+    .bg-purple .aozora p {
+        font-weight: 500;
+        font-size: 9px;
+        margin-bottom: -40px;
+        margin-top: 5px;
+        color: white;
+    }
+
+    .bg-purple .aozora a {
+        text-decoration: none;
+        font-size: 8px;
+        font-weight: 700;
+        color: white;
     }
 }
 
