@@ -34,18 +34,8 @@
                     @csrf
                     <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
                     <div class="mb-3 d-flex align-items-center">
+                        <input class="form-control me-2" id="tanggal" name="tanggal" type="date" required value="{{ \Carbon\Carbon::parse($selected)->format('Y-m-d') }}">
                         <button type="submit" class="btn btn-primary">Tanggal</button>
-                        <select class="form-control me-2" id="tanggal" name="tanggal" required>
-                            @foreach ($dates as $date)
-                                @php
-                                    $formattedDate = \Carbon\Carbon::parse($date)->translatedFormat('d F Y');
-                                    $selectedDate = \Carbon\Carbon::parse($selected)->translatedFormat('d F Y');
-                                @endphp
-                                <option value="{{ $date }}" {{ $formattedDate == $selectedDate ? 'selected' : '' }}>
-                                    {{ $formattedDate }}
-                                </option>
-                            @endforeach
-                        </select>
                     </div>
                 </form>
 
@@ -2120,15 +2110,11 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', function() {
             const dateInput = document.getElementById('tanggal');
             if (!dateInput.value) {
                 const today = new Date();
-                const months = [
-                    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
-                    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-                ];
-                const formattedToday = ('0' + today.getDate()).slice(-2) + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+                const formattedToday = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
                 dateInput.value = formattedToday;
             }
         });

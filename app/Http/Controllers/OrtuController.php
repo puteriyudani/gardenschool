@@ -46,12 +46,6 @@ class OrtuController extends Controller
         if ($siswa) {
             session(['siswa_id' => $siswa->id]);
 
-            // Buat array tanggal
-            $dates = [];
-            for ($i = 0; $i < 31; $i++) {
-                $dates[] = date('Y-m-d', strtotime("-$i days"));
-            }
-
             // Tentukan kelompok siswa
             $kelompok = $siswa->kelompok;
 
@@ -82,7 +76,6 @@ class OrtuController extends Controller
             return view('orangtua.laporan', compact(
                 'user',
                 'siswa',
-                'dates',
                 'kelompok',
                 'selected',
                 'welcomes',
@@ -124,12 +117,6 @@ class OrtuController extends Controller
 
             // Ambil tanggal yang dipilih dari form
             $today = $request->input('tanggal');
-
-            // Buat array tanggal
-            $dates = [];
-            for ($i = 0; $i < 31; $i++) {
-                $dates[] = date('Y-m-d', strtotime("-$i days"));
-            }
 
             // Ambil data laporan terkait siswa untuk tanggal yang dipilih
             $welcomes = Welcome::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
@@ -185,7 +172,6 @@ class OrtuController extends Controller
                 'hadistbaby_list',
                 'quranbaby_list',
                 'doababy_list',
-                'dates',
                 'selected'
             ));
         } else {

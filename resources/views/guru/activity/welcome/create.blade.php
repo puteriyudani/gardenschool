@@ -194,7 +194,7 @@
             height: auto;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 640px) {
             .modal {
                 display: flex;
                 justify-content: center;
@@ -210,11 +210,8 @@
 
             .modal-content {
                 background-image: url('{{ asset('auth') }}/images/bg1.jpg');
-                /* Replace with the correct path */
                 background-size: cover;
-                /* Cover the entire modal */
                 background-position: center;
-                /* Center the background image */
                 width: 100%;
                 height: 100%;
                 max-width: none;
@@ -227,8 +224,6 @@
             }
 
             .modal-inner {
-                /* background-color: rgba(255, 255, 255, 0.4); */
-                /* Background color with transparency */
                 padding: 20px;
                 border-radius: 10px;
                 text-align: center;
@@ -255,7 +250,6 @@
                 justify-content: center;
                 align-items: center;
                 gap: 20px;
-                /* Adds some space between the images */
             }
 
             .custom-select-item {
@@ -266,17 +260,13 @@
 
             .custom-select-container img {
                 width: 50px !important;
-                /* Adjust the width as needed */
                 height: auto !important;
-                /* Maintain the aspect ratio */
                 cursor: pointer;
                 transition: transform 0.2s ease-in-out;
-                /* Adds a smooth transition effect */
             }
 
             .custom-select-container img:hover {
                 transform: scale(1.1);
-                /* Slightly enlarges the image on hover */
             }
 
             .custom-select-item p {
@@ -285,11 +275,8 @@
 
             .progress-bar {
                 width: 80%;
-                /* Set width to 80% */
                 margin: 0 auto;
-                /* Center the range input */
                 display: block;
-                /* Ensure it's centered as a block element */
             }
         }
     </style>
@@ -355,6 +342,16 @@
                                         @error('siswa_id')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
+
+                                        <!-- Notification for rotating screen -->
+                                        <div id="rotateNotification"
+                                            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1200; justify-content: center; align-items: center;">
+                                            <div
+                                                style="background-color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                                                <p>Please rotate your screen for the best experience.</p>
+                                                <button id="closeNotification" style="margin-top: 10px;">Close</button>
+                                            </div>
+                                        </div>
 
                                         <!-- Button to open the modal -->
                                         <button type="button" class="btn btn-primary" id="openModalButton">Open
@@ -487,6 +484,8 @@
             const sadGif = document.getElementById('sadGif');
             const indikatorContainer = document.querySelector('.indikator');
             const submitContainer = document.getElementById('submitContainer');
+            const rotateNotification = document.getElementById('rotateNotification');
+            const closeNotification = document.getElementById('closeNotification');
 
             let audio; // Reference to the audio object
 
@@ -552,33 +551,41 @@
 
             // Initial trigger to set the indicator based on the default select value and progress bar value
             checkConditions();
-        });
 
-        // Modal display handling
-        document.getElementById('openModalButton').onclick = function() {
-            document.getElementById('formModal').style.display = 'block';
-        };
+            // Modal display handling
+            document.getElementById('openModalButton').onclick = function() {
+                if (window.innerWidth >= 640 && window.innerWidth <= 1024) {
+                    rotateNotification.style.display = 'flex';
+                } else {
+                    document.getElementById('formModal').style.display = 'block';
+                }
+            };
 
-        document.getElementById('closeModalButton').addEventListener('click', function() {
-            // Konfirmasi sebelum submit
-            const isConfirmed = confirm("Apakah yakin dengan isianmu?");
-            if (isConfirmed) {
-                // Tutup modal
-                document.getElementById('formModal').style.display = 'none';
+            closeNotification.onclick = function() {
+                rotateNotification.style.display = 'none';
+            };
 
-                // Putar suara
-                var audio = new Audio('{{ asset('auth') }}/sound/close.mp3');
-                audio.play();
+            document.getElementById('closeModalButton').addEventListener('click', function() {
+                // Konfirmasi sebelum submit
+                const isConfirmed = confirm("Apakah yakin dengan isianmu?");
+                if (isConfirmed) {
+                    // Tutup modal
+                    document.getElementById('formModal').style.display = 'none';
 
-                // Tampilkan modal gambar
-                var imageModal = document.getElementById('imageModal');
-                imageModal.style.display = 'block';
+                    // Putar suara
+                    var audio = new Audio('{{ asset('auth') }}/sound/close.mp3');
+                    audio.play();
 
-                // Sembunyikan modal gambar setelah 5 detik
-                setTimeout(function() {
-                    imageModal.style.display = 'none';
-                }, 5000);
-            }
+                    // Tampilkan modal gambar
+                    var imageModal = document.getElementById('imageModal');
+                    imageModal.style.display = 'block';
+
+                    // Sembunyikan modal gambar setelah 5 detik
+                    setTimeout(function() {
+                        imageModal.style.display = 'none';
+                    }, 5000);
+                }
+            });
         });
     </script>
 
