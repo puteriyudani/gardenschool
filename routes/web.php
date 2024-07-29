@@ -46,6 +46,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/montessory-youtube', [HomeController::class, 'youtube'])->name('montessory.youtube');
@@ -220,7 +221,6 @@ Route::middleware(['auth', 'user-access:ortu'])->group(function () {
     Route::get('halaman-orangtua-siswa/{siswa}/playgroup', [OrtuController::class, 'playgroup'])->name('ortu.playgroup');
     Route::get('halaman-orangtua-siswa/{siswa}/babycamp', [OrtuController::class, 'babycamp'])->name('ortu.babycamp');
 
-    // Route::get('/halaman-orangtua-laporan', [OrtuController::class, 'indexlaporan'])->name('ortu.indexlaporan');
     Route::get('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'showLaporan'])->name('ortu.laporan');
-    Route::post('/halaman-orangtua-laporan', [OrtuController::class, 'laporan'])->name('laporan.tanggal');
+    Route::post('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'laporan'])->name('laporan.tanggal');
 });

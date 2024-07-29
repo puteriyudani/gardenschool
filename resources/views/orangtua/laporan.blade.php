@@ -30,7 +30,7 @@
                 </div>
 
 
-                <form method="POST" action="{{ route('laporan.tanggal') }}">
+                <form method="POST" action="{{ route('laporan.tanggal', ['id' => $siswa->id]) }}">
                     @csrf
                     <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
                     <div class="mb-3 d-flex align-items-center">

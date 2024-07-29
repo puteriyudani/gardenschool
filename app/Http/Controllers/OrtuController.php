@@ -35,7 +35,6 @@ class OrtuController extends Controller
         return view('orangtua.index', compact('siswas'));
     }
 
-    // Method untuk menampilkan halaman laporan
     public function showLaporan($id)
     {
         $user = Auth::user();
@@ -112,14 +111,13 @@ class OrtuController extends Controller
         }
     }
 
-    // Method untuk menangani form submission
-    public function laporan(Request $request)
+    public function laporan(Request $request, $id)
     {
         $user = Auth::user();
         session(['orangtua_id' => $user->id]);
 
         // Ambil siswa terkait orangtua yang sedang login
-        $siswa = Siswa::findOrFail(session('siswa_id'));
+        $siswa = Siswa::findOrFail($id);
 
         if ($siswa) {
             session(['siswa_id' => $siswa->id]);
