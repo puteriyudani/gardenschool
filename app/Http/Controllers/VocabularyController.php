@@ -47,6 +47,8 @@ class VocabularyController extends Controller
             'siswa_id' => 'required',
             'vocabulary' => 'required',
             'sentence' => 'required',
+            'tale' => 'required',
+            'song' => 'required',
         ]);
 
         Vocabulary::create($request->all());
@@ -82,6 +84,8 @@ class VocabularyController extends Controller
             'siswa_id' => 'required',
             'vocabulary' => 'required',
             'sentence' => 'required',
+            'tale' => 'required',
+            'song' => 'required',
         ]);
 
         $vocabulary->update($request->all());

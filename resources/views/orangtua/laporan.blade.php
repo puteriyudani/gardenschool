@@ -14,20 +14,39 @@
         <!--  Main wrapper -->
         <div class="body-wrapper">
             @include('include.header-admin')
-            <div class="container-fluid" id="download-container">
-                <p>{{ $siswa->nama }}</p>
+            <div class="container-fluid" id="download-container" style="background-color: rgb(207, 207, 207);">
+                <div class="row">
+                    <div class="col-2"><a class="text-nowrap logo-img">
+                        <img src="{{ asset('assets') }}/img/logo.png" width="180" alt="" />
+                    </a></div>
+                    <div class="col-2"></div>
+                    <div class="col-2"></div>
+                    <div class="col-2"></div>
+                    <div class="col-1"></div>
+                    <div class="col-3 d-flex justify-content-end align-items-center">
+                        <p class="me-2">{{ $siswa->nama }}</p>
+                        <img src="{{ asset('/storage/images/' . $siswa->image) }}" alt="" width="80" height="80" class="rounded-circle">
+                    </div>
+                </div>
+
+
                 <form method="POST" action="{{ route('laporan.tanggal') }}">
                     @csrf
                     <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
-                    <div class="mb-3">
-                        <label for="tanggal" class="form-label">Tanggal</label>
-                        <select class="form-control" id="tanggal" name="tanggal" required>
+                    <div class="mb-3 d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary">Tanggal</button>
+                        <select class="form-control me-2" id="tanggal" name="tanggal" required>
                             @foreach ($dates as $date)
-                                <option value="{{ $date }}" {{ $date == $selected ? 'selected' : '' }}>{{ $date }}</option>
+                                @php
+                                    $formattedDate = \Carbon\Carbon::parse($date)->translatedFormat('d F Y');
+                                    $selectedDate = \Carbon\Carbon::parse($selected)->translatedFormat('d F Y');
+                                @endphp
+                                <option value="{{ $date }}" {{ $formattedDate == $selectedDate ? 'selected' : '' }}>
+                                    {{ $formattedDate }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
                 @if ($kelompok == 'kindergarten' || $kelompok == 'playgroup')
@@ -799,36 +818,59 @@
                         <div class="col-4"></div>
                         <div class="col-8 recalling">
                             @if ($vocabularys->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded mt-3 bg-brown">
+                                <blockquote class="blockquote blockquote-custom shadow rounded bg-purple">
                                     <div class="blockquote-custom-icon shadow-sm">
-                                        <h5>Vocabulary</h5>
+                                        <h5>English Skill</h5>
                                     </div>
 
-                                    @foreach ($vocabularys as $vocabulary)
-                                        <div class="sub">
-                                            <div class="row mobile-no-gutters mb-3">
-                                                <div class="col-1">
-                                                    <img class="check" src="{{ asset('auth') }}/images/icon/check.png"
-                                                        alt="">
-                                                </div>
-                                                <div class="col">
-                                                    <p>Vocabulary & Sentence</p>
-                                                </div>
-                                            </div>
-                                            <div class="brown-notif mt-1">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <p class="mb-0"><a>{{ $vocabulary->vocabulary }}</a>
-                                                        </p>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            @foreach ($vocabularys as $vocabulary)
+                                                <div class="sub">
+                                                    <div class="vocab">
+                                                        <div class="row mobile-no-gutters">
+                                                            <div class="col-1">
+                                                                <img class="check"
+                                                                    src="{{ asset('auth') }}/images/icon/check.png"
+                                                                    alt="">
+                                                            </div>
+                                                            <div class="col">
+                                                                <p>Vocabulary & Sentence</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col">
-                                                        <p class="mb-0"><a>{{ $vocabulary->sentence }}</a>
-                                                        </p>
+                                                    <div class="row mobile-no-gutters mb-2">
+                                                        <div class="col">
+                                                            <p><a>{{ $vocabulary->vocabulary }} vocab</a>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col">
+                                                            <p><a>{{ $vocabulary->sentence }} sentence</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mobile-no-gutters">
+                                                        <div class="col">
+                                                            <p><a>{{ $vocabulary->tale }} tale</a>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col">
+                                                            <p><a>{{ $vocabulary->song }} song</a>
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endforeach
                                         </div>
-                                    @endforeach
+
+                                        <div class="col-4 aozora text-center" style="margin-top: -15px; color:white;">
+                                            <img src="{{ asset('auth') }}/images/english.png" class="mt-2"
+                                                alt="">
+                                            <p>Support By:</p>
+                                            <br>
+                                            <a>AOZORA</a>
+                                        </div>
+                                    </div>
                                 </blockquote>
                             @endif
 
@@ -2078,12 +2120,16 @@
     </div>
 
     <script>
-        // JavaScript to set the date input value to today's date if it's not manually changed
         document.addEventListener('DOMContentLoaded', (event) => {
             const dateInput = document.getElementById('tanggal');
             if (!dateInput.value) {
-                const today = new Date().toISOString().substr(0, 10);
-                dateInput.value = today;
+                const today = new Date();
+                const months = [
+                    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                ];
+                const formattedToday = ('0' + today.getDate()).slice(-2) + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+                dateInput.value = formattedToday;
             }
         });
     </script>
