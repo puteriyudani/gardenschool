@@ -3,16 +3,6 @@
 @section('judul')
     <title>Guru - Edit Welcome Mood</title>
     <style>
-        @font-face {
-            font-family: 'Princess Sofia Regular';
-            src: url('{{ asset('auth') }}/font/PrincessSofia-Regular.ttf');
-        }
-
-        @font-face {
-            font-family: 'Henny Penny Regular';
-            src: url('{{ asset('auth') }}/font/HennyPenny-Regular.ttf');
-        }
-
         .btn.btn-primary.disabled,
         .btn.btn-warning.disabled,
         .btn.btn-success.disabled,
@@ -41,7 +31,7 @@
         }
 
         .popup-content {
-            background: white;
+            background: rgba(255, 255, 255, 0);
             padding: 10px;
             border-radius: 10px;
             text-align: center;
@@ -174,18 +164,6 @@
             text-align: center;
         }
 
-        /* Additional text "Please Welcome" styles */
-        .welcome-text {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            font-size: 80px;
-            font-weight: bold;
-            font-family: 'Henny Penny Regular';
-            font-style: italic;
-            color: #ffffff;
-        }
-
         /* Gaya untuk modal gambar */
         .image-modal {
             display: none;
@@ -205,10 +183,10 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             text-align: center;
+            background: rgba(255, 255, 255, 0);
         }
 
         .image-modal-content img {
@@ -216,7 +194,7 @@
             height: auto;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 640px) {
             .modal {
                 display: flex;
                 justify-content: center;
@@ -232,11 +210,8 @@
 
             .modal-content {
                 background-image: url('{{ asset('auth') }}/images/bg1.jpg');
-                /* Replace with the correct path */
                 background-size: cover;
-                /* Cover the entire modal */
                 background-position: center;
-                /* Center the background image */
                 width: 100%;
                 height: 100%;
                 max-width: none;
@@ -249,8 +224,6 @@
             }
 
             .modal-inner {
-                /* background-color: rgba(255, 255, 255, 0.4); */
-                /* Background color with transparency */
                 padding: 20px;
                 border-radius: 10px;
                 text-align: center;
@@ -277,7 +250,6 @@
                 justify-content: center;
                 align-items: center;
                 gap: 20px;
-                /* Adds some space between the images */
             }
 
             .custom-select-item {
@@ -288,17 +260,13 @@
 
             .custom-select-container img {
                 width: 50px !important;
-                /* Adjust the width as needed */
                 height: auto !important;
-                /* Maintain the aspect ratio */
                 cursor: pointer;
                 transition: transform 0.2s ease-in-out;
-                /* Adds a smooth transition effect */
             }
 
             .custom-select-container img:hover {
                 transform: scale(1.1);
-                /* Slightly enlarges the image on hover */
             }
 
             .custom-select-item p {
@@ -307,15 +275,8 @@
 
             .progress-bar {
                 width: 80%;
-                /* Set width to 80% */
                 margin: 0 auto;
-                /* Center the range input */
                 display: block;
-                /* Ensure it's centered as a block element */
-            }
-
-            .welcome-text {
-                font-size: 50px;
             }
         }
     </style>
@@ -384,17 +345,26 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
+                                        <!-- Notification for rotating screen -->
+                                        <div id="rotateNotification"
+                                            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1200; justify-content: center; align-items: center;">
+                                            <div
+                                                style="background-color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                                                <p>Please rotate your screen for the best experience.</p>
+                                                <button id="closeNotification" style="margin-top: 10px;">Close</button>
+                                            </div>
+                                        </div>
+
                                         <!-- Button to open the modal -->
                                         <button type="button" class="btn btn-primary" id="openModalButton">Open
                                             Form</button>
 
+                                        <!-- Audio element for modal open sound -->
+                                        <audio id="modalOpenSound" src="{{ asset('auth') }}/sound/modal-open.mp3"></audio>
+
                                         <!-- The Modal -->
                                         <div class="modal" id="formModal">
                                             <div class="modal-content">
-                                                <!-- Tambahkan tulisan "Please Welcome" di sini -->
-                                                <div class="welcome-text">
-                                                    <p>Please Welcome</p>
-                                                </div>
                                                 <div class="modal-inner">
                                                     <!-- Form elements inside the modal -->
                                                     <div class="mb-2 keterangan">
@@ -436,10 +406,10 @@
 
                                                     <div class="indikator mb-3 mt-2">
                                                         <label for="indikator" class="form-label"
-                                                            id="progressLabel">Indikator: {{ $welcome->indikator }}%</label>
+                                                            id="progressLabel">Indikator: 0%</label>
                                                         <div class="range-container">
                                                             <input type="range" class="progress-bar" id="progressBar"
-                                                                name="indikator" value="{{ $welcome->indikator }}" min="0"
+                                                                name="indikator" value="0" min="0"
                                                                 max="100">
                                                         </div>
                                                     </div>
@@ -462,8 +432,8 @@
                                         <!-- Overlay for popup GIFs -->
                                         <div class="popup-overlay" id="popupOverlay" style="display: none;">
                                             <div class="popup-content">
-                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF" id="happyGif"
-                                                    class="popup-gif" style="display: none;">
+                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF"
+                                                    id="happyGif" class="popup-gif" style="display: none;">
                                                 <img src="{{ asset('auth') }}/gif/sad.gif" alt="Sad GIF" id="sadGif"
                                                     class="popup-gif" style="display: none;">
                                                 <button class="popup-close btn btn-danger" id="popupClose">Close</button>
