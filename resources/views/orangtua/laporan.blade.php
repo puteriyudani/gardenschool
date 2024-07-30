@@ -15,20 +15,18 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid" id="download-container" style="background-color: rgb(207, 207, 207);">
-                <div class="row">
+                <div class="row kepala">
                     <div class="col-2"><a class="text-nowrap logo-img">
-                        <img src="{{ asset('assets') }}/img/logo.png" width="180" alt="" />
+                        <img src="{{ asset('assets') }}/img/logo.png" alt="" />
                     </a></div>
                     <div class="col-2"></div>
                     <div class="col-2"></div>
                     <div class="col-2"></div>
-                    <div class="col-1"></div>
-                    <div class="col-3 d-flex justify-content-end align-items-center">
+                    <div class="col-4 d-flex justify-content-end align-items-center profile">
                         <p class="me-2">{{ $siswa->nama }}</p>
-                        <img src="{{ asset('/storage/images/' . $siswa->image) }}" alt="" width="80" height="80" class="rounded-circle">
+                        <img src="{{ asset('/storage/images/' . $siswa->image) }}" alt="" class="rounded-circle">
                     </div>
                 </div>
-
 
                 <form method="POST" action="{{ route('laporan.tanggal', ['id' => $siswa->id]) }}">
                     @csrf
@@ -899,7 +897,7 @@
                     <div class="row align-items-start mobile-no-gutters">
                         <div class="col-8">
                             @if ($welcomes->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded mt-3 bg-green">
+                                <blockquote class="blockquote blockquote-custom shadow rounded mt-3 bg-tosca">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Welcome Mood</h5>
                                     </div>
@@ -929,7 +927,7 @@
                             @endif
 
                             @if ($islamics->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded bg-yellow">
+                                <blockquote class="blockquote blockquote-custom shadow rounded bg-darkblue">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Islamic Base Learning</h5>
                                     </div>
@@ -939,7 +937,7 @@
                                                 <img src="{{ asset('auth') }}/images/rcq.png" class="mt-2"
                                                     alt="">
                                                 <h6>Support By:</h6>
-                                                <a>RUMAH CERDAS QURAN</a>
+                                                <a style="color: white">RUMAH CERDAS QURAN</a>
                                                 <div class="card text-justify hadist">
                                                     <h4>Hafalan Hadist:</h4>
 
@@ -950,7 +948,7 @@
                                                     @endphp
 
                                                     @foreach ($hadistbaby_list_array as $hadist_id => $hadist_name)
-                                                        <div class="row mobile-no-gutters yellow">
+                                                        <div class="row mobile-no-gutters darkblue">
                                                             <div class="col-1">
                                                                 <img class="{{ in_array($hadist_id, json_decode($islamic->hadist)) ? 'check' : 'cross' }}"
                                                                     src="{{ asset('auth') }}/images/icon/{{ in_array($hadist_id, json_decode($islamic->hadist)) ? 'check' : 'cross' }}.png"
@@ -984,7 +982,7 @@
                                                             @endphp
 
                                                             @foreach ($quranbaby_list_array as $quran_id => $quran_name)
-                                                                <div class="row mobile-no-gutters yellow">
+                                                                <div class="row mobile-no-gutters darkblue">
                                                                     <div class="col-1">
                                                                         <img class="{{ in_array($quran_id, json_decode($islamic->quran)) ? 'check' : 'cross' }}"
                                                                             src="{{ asset('auth') }}/images/icon/{{ in_array($quran_id, json_decode($islamic->quran)) ? 'check' : 'cross' }}.png"
@@ -1014,7 +1012,7 @@
                                                             @endphp
 
                                                             @foreach ($doababy_list_array as $doa_id => $doa_name)
-                                                                <div class="row mobile-no-gutters yellow">
+                                                                <div class="row mobile-no-gutters darkblue">
                                                                     <div class="col-1">
                                                                         <img class="{{ in_array($doa_id, json_decode($islamic->doa)) ? 'check' : 'cross' }}"
                                                                             src="{{ asset('auth') }}/images/icon/{{ in_array($doa_id, json_decode($islamic->doa)) ? 'check' : 'cross' }}.png"
@@ -1034,7 +1032,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="yellow-notif">
+                                        <div class="darkblue-notif">
                                             <p class="mb-0 mt-2">Notifikasi : <a>{{ $islamic->notifikasi }}</a></p>
                                         </div>
                                     @endforeach
@@ -1172,7 +1170,7 @@
                             @endif
 
                             @if ($acts->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded bg-darkgreen">
+                                <blockquote class="blockquote blockquote-custom shadow rounded bg-greyb">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Act Base Learning</h5>
                                     </div>
@@ -1318,7 +1316,7 @@
                                             </div>
                                         @endif
 
-                                        <div class="darkgreen-catatan">
+                                        <div class="greyb-catatan">
                                             <p class="mb-0 mt-2">Notifikasi : <a>{{ $act->notifikasi }}</a></p>
                                         </div>
                                     @endforeach
@@ -1330,7 +1328,7 @@
                     <div class="row align-items-start mobile-no-gutters">
                         <div class="col-4">
                             @if ($funs->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded bg-darkgreen">
+                                <blockquote class="blockquote blockquote-custom shadow rounded bg-brownb">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Fun Activities</h5>
                                     </div>
@@ -1448,7 +1446,7 @@
                                             </div>
                                         @endif
 
-                                        <div class="darkgreen-catatan">
+                                        <div class="brownb-catatan">
                                             <p class="mb-0 mt-2">Notifikasi : <a>{{ $fun->notifikasi }}</a></p>
                                         </div>
                                     @endforeach
@@ -1456,25 +1454,25 @@
                             @endif
 
                             @if ($videos->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded bg-black">
+                                <blockquote class="blockquote blockquote-custom shadow rounded bg-blackb">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Today Videos</h5>
                                     </div>
 
                                     @foreach ($videos as $video)
-                                        <div class="youtube text-center">
-                                            <iframe width="280" src="{{ $video->video }}"
-                                                title="YouTube video player" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                        </div>
-                                    @endforeach
+                                    <div class="youtube text-center">
+                                        <iframe class="responsive-iframe" width="280" height="200" src="{{ $video->video }}"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                    </div>
+                                @endforeach
                                 </blockquote>
                             @endif
                         </div>
                         <div class="col-4">
                             @if ($breakfasts->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded bg-orange">
+                                <blockquote class="blockquote blockquote-custom shadow rounded bg-lemon">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Breakfast</h5>
                                     </div>
@@ -1555,7 +1553,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mobile-no-gutters orange">
+                                        <div class="row mobile-no-gutters lemon">
                                             <div class="col-7">
                                                 @if ($breakfast->keterangan == 'Habis')
                                                     <div class="sub">
@@ -1770,7 +1768,7 @@
                         </div>
                         <div class="col-4">
                             @if ($lunchs->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded bg-orange">
+                                <blockquote class="blockquote blockquote-custom shadow rounded bg-pink">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Lunch</h5>
                                     </div>
@@ -1851,7 +1849,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mobile-no-gutters orange">
+                                        <div class="row mobile-no-gutters pink">
                                             <div class="col-7">
                                                 @if ($lunch->keterangan == 'Habis')
                                                     <div class="sub">
@@ -2069,7 +2067,7 @@
                     <div class="row align-items-start mobile-no-gutters">
                         <div class="col">
                             @if ($recallings->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded mt-3 bg-mustard">
+                                <blockquote class="blockquote blockquote-custom shadow rounded bg-turquoise">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Re Calling</h5>
                                     </div>
