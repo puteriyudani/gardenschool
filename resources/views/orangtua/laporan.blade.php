@@ -865,7 +865,7 @@
                             @endif
 
                             @if ($recallings->isNotEmpty())
-                                <blockquote class="blockquote blockquote-custom shadow rounded mt-4 bg-mustard">
+                                <blockquote class="blockquote blockquote-custom shadow rounded bg-mustard">
                                     <div class="blockquote-custom-icon shadow-sm">
                                         <h5>Re-Calling</h5>
                                     </div>

@@ -518,11 +518,12 @@
 
 /* bg-mustard */
 .recalling {
-    margin-top: -430px;
+    margin-top: -425px;
 }
 
 .bg-mustard {
     background-color: #BE9000;
+    margin-top: 20px;
 }
 
 .bg-mustard .blockquote-custom-icon {
@@ -631,534 +632,8 @@
     font-weight: 700
 }
 
-/* Tab styles */
-@media (max-width: 1007px) {
-
-    .row.mobile-no-gutters>[class^="col-"],
-    .row.mobile-no-gutters>[class*=" col-"],
-    .row.mobile-no-gutters>[class^="col"],
-    .row.mobile-no-gutters>[class*=" col"] {
-        padding-right: 3px;
-        padding-left: 3px;
-    }
-
-    .row.mobile-no-gutters.hadist>[class^="col-4"] {
-        padding-left: 10px;
-    }
-
-    .row.mobile-no-gutters.hadist>[class^="col-8"] {
-        padding-right: 20px;
-    }
-
-    .row.mobile-no-gutters.quran-doa {
-        margin-left: -3px;
-    }
-
-    .row.mobile-no-gutters.pretem>[class^="col-6 grey"] {
-        padding-left: 15px;
-    }
-
-    .row.mobile-no-gutters.pretem>[class^="col-6 brown"] {
-        padding-right: 15px;
-    }
-
-    .row.mobile-no-gutters.orange>[class^="col-7"] {
-        padding-left: 10px;
-    }
-
-    .row.mobile-no-gutters.orange>[class^="col-5"] {
-        padding-right: 10px;
-    }
-
-    .row.mobile-no-gutters.blue {
-        padding-left: 5px;
-        padding-right: 5px;
-        margin-top: -10px;
-        margin-bottom: -3px;
-    }
-
-    .row.mobile-no-gutters.blue.sub {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .row.mobile-no-gutters.yellow {
-        padding-left: 12px;
-        padding-right: 12px;
-        margin-top: -10px;
-    }
-
-    .blockquote-custom {
-        font-size: 1rem;
-        padding: 30px 10px 10px 10px;
-    }
-
-    .blockquote-custom-icon h5 {
-        font-size: 10px;
-    }
-
-    .pretem {
-        margin-top: -15px;
-    }
-
-    /* bg-green */
-    .bg-green img {
-        width: 50px;
-    }
-
-    .bg-green h1 {
-        font-size: 24px;
-    }
-
-    .bg-green h2 {
-        font-size: 18px;
-    }
-
-    .bg-green p {
-        font-size: 8px;
-        padding: 5px 5px 0px 5px;
-        height: 65%;
-    }
-
-    .bg-green .blockquote-custom-icon {
-        width: 100px;
-        top: -10px;
-        right: 20px;
-    }
-
-    /* bg-yellow */
-    .bg-yellow {
-        margin-top: 10px;
-    }
-
-    .bg-yellow .blockquote-custom-icon {
-        width: 160px;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .bg-yellow img {
-        width: 50px;
-    }
-
-    .bg-yellow h2 {
-        font-size: 18px;
-    }
-
-    .bg-yellow h6 {
-        font-size: 8px;
-        margin-bottom: -18px;
-    }
-
-    .bg-yellow a {
-        font-size: 5px;
-    }
-
-    .bg-yellow p {
-        font-size: 8px;
-        padding: 1px;
-        margin: 4px 0px 5px 8px;
-    }
-
-    .bg-yellow h4 {
-        font-size: 10px;
-    }
-
-    .bg-yellow .check,
-    .bg-yellow .cross {
-        width: 15px;
-        margin-top: -12px;
-    }
-
-    .bg-yellow .status h3 {
-        font-size: 8px;
-        padding: 2px 10px;
-    }
-
-    .bg-yellow .yellow-notif {
-        margin-top: -30px;
-    }
-
-    .bg-yellow .yellow-notif p {
-        font-size: 8px;
-        padding: 8px;
-        border-radius: 8px;
-        margin-left: 0px;
-        height: 50px;
-    }
-
-    .bg-yellow .yellow-notif a {
-        font-size: 8px;
-    }
-
-    .bg-yellow .card {
-        padding: 0px;
-        border-radius: 5px;
-        height: 250px;
-    }
-
-    .bg-yellow .hadists .card {
-        height: 222px;
-    }
-
-    .bg-yellow .baby .hadists .card {
-        height: 150px;
-    }
-
-    .bg-yellow .baby .card {
-        height: 178px;
-    }
-
-    /* bg-grey */
-    .bg-grey {
-        margin-top: 10px;
-    }
-
-    .bg-grey .blockquote-custom-icon {
-        width: 80px;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .bg-grey .sub .row {
-        margin: 0px;
-        border-radius: 20px;
-        height: 20px;
-    }
-
-    .bg-grey .sub p {
-        font-size: 8px;
-        margin: 4px 0px 5px 8px;
-    }
-
-    .bg-grey .check,
-    .bg-grey .cross {
-        width: 15px;
-        margin-top: -15px;
-    }
-
-    .bg-grey .grey-notif p {
-        font-size: 8px;
-        padding: 8px;
-        border-radius: 8px;
-        margin-left: 0px;
-    }
-
-    .bg-grey .grey-notif a {
-        font-size: 8px;
-    }
-
-    /* bg-darkgreen */
-    .bg-darkgreen {
-        margin-top: 10px;
-    }
-
-    .bg-darkgreen .blockquote-custom-icon {
-        width: 100px;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .bg-darkgreen .blockquote-custom-icon h5 {
-        font-size: 10px;
-    }
-
-    .bg-darkgreen .sub .row {
-        margin: 0px 0px 2px 0px;
-        border-radius: 20px;
-        height: 20px;
-    }
-
-    .bg-darkgreen .sub p {
-        font-size: 8px;
-        margin: 4px 0px 5px 8px;
-    }
-
-    .bg-darkgreen .check,
-    .bg-darkgreen .check-none {
-        width: 15px;
-        margin-top: -15px;
-    }
-
-    .bg-darkgreen .darkgreen-catatan p {
-        font-size: 8px;
-        padding: 8px;
-        border-radius: 8px;
-        margin-left: 0px;
-        height: 100px;
-    }
-
-    .bg-darkgreen .darkgreen-catatan a {
-        font-size: 8px;
-    }
-
-    /* bg-brown */
-    .bg-brown .blockquote-custom-icon {
-        width: 80px;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .bg-brown .sub .row {
-        margin: 0px;
-        border-radius: 20px;
-        height: 20px;
-    }
-
-    .bg-brown .sub p {
-        font-size: 8px;
-        margin: 4px 0px 5px 8px;
-    }
-
-    .bg-brown .check,
-    .bg-brown .cross {
-        width: 15px;
-        margin-top: -15px;
-    }
-
-    .bg-brown .brown-notif p {
-        font-size: 8px;
-        padding: 8px;
-        border-radius: 8px;
-        margin-left: 0px;
-    }
-
-    .bg-brown .brown-notif a {
-        font-size: 8px;
-    }
-
-    /* bg-purple */
-    .bg-purple {
-        margin-top: 20px;
-    }
-
-    .bg-purple .blockquote-custom-icon {
-        width: 80px;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .bg-purple .sub .row {
-        margin: 0px;
-        border-radius: 20px;
-        height: 20px;
-    }
-
-    .bg-purple .sub p {
-        font-size: 8px;
-        margin: 4px 0px 5px 8px;
-    }
-
-    .bg-purple .check,
-    .bg-purple .cross {
-        width: 15px;
-        margin-top: -15px;
-    }
-
-    .bg-purple .vocab {
-        margin-bottom: 10px;
-    }
-
-    .bg-purple .aozora {
-        margin-left: -10px;
-    }
-
-    .bg-purple .aozora img {
-        width: 60px;
-    }
-
-    .bg-purple .aozora p {
-        font-weight: 500;
-        font-size: 9px;
-        margin-bottom: -40px;
-        margin-top: 5px;
-        color: white;
-    }
-
-    .bg-purple .aozora a {
-        text-decoration: none;
-        font-size: 8px;
-        font-weight: 700;
-        color: white;
-    }
-
-    /* bg-blue */
-    .bg-blue .blockquote-custom-icon {
-        width: 100px;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .bg-blue p {
-        font-size: 8px;
-        padding: 1px;
-        margin: 4px 0px 5px 8px;
-    }
-
-    .bg-blue .check,
-    .bg-blue .cross {
-        width: 15px;
-        margin-top: -12px;
-    }
-
-    .bg-blue .card {
-        border-radius: 20px;
-    }
-
-    .bg-blue .card p {
-        font-size: 8px;
-    }
-
-    .bg-blue .notifikasi p {
-        font-size: 8px;
-        padding: 8px;
-        border-radius: 8px;
-        margin-top: -25px;
-        margin-left: 0px;
-        margin-right: 0px;
-        height: 70px;
-    }
-
-    .bg-blue a {
-        font-weight: 300;
-    }
-
-    /* bg-orange */
-    .bg-orange {
-        margin-top: 10px;
-    }
-
-    .bg-orange .blockquote-custom-icon {
-        width: 80px;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .bg-orange .menu p,
-    .bg-orange .catatan p {
-        font-size: 8px;
-        padding: 8px;
-    }
-
-    .bg-orange .catatan p {
-        height: 70px;
-    }
-
-    .bg-orange .menu {
-        margin-top: -10px;
-    }
-
-    .bg-orange p {
-        font-size: 8px;
-    }
-
-    .bg-orange .sub .row {
-        margin: 0px 0px 2px 0px;
-        border-radius: 20px;
-        height: 20px;
-    }
-
-    .bg-orange .sub p {
-        font-size: 8px;
-        margin: 4px 0px 5px 10px;
-    }
-
-    .bg-orange .check,
-    .bg-orange .check-none {
-        width: 15px;
-        margin-top: -15px;
-    }
-
-    .bg-orange .persentase h1 {
-        padding: 23px 1px;
-        font-size: 14px;
-        border-radius: 10px;
-    }
-
-    .bg-orange .gizi {
-        margin-bottom: -15px;
-    }
-
-    .bg-orange .gizi .progress {
-        margin-top: 1px;
-        height: 10px;
-        width: 90%;
-        margin-left: 5px;
-    }
-
-    /* bg-black */
-    .bg-black {
-        margin-top: 10px;
-    }
-
-    .bg-black .blockquote-custom-icon {
-        width: 80px;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .bg-black .blockquote-custom-icon h5 {
-        font-size: 10px;
-    }
-
-    .bg-black .youtube {
-        margin-top: -20px;
-    }
-
-    .bg-black .youtube iframe {
-        width: 100%;
-        height: 80%;
-    }
-
-    /* bg-mustard */
-    .recalling {
-        margin-top: -280px;
-    }
-
-    .bg-mustard .blockquote-custom-icon {
-        width: 100px;
-        top: -10px;
-        left: 20px;
-    }
-
-    .bg-mustard .blockquote-custom-icon h5 {
-        margin-top: 8px;
-        font-size: 10px;
-    }
-
-    .bg-mustard img {
-        width: 50px;
-    }
-
-    .bg-mustard h1 {
-        font-size: 25px;
-    }
-
-    .bg-mustard h2 {
-        font-size: 18px;
-    }
-
-    .bg-mustard p {
-        font-size: 8px;
-        padding: 5px 5px 0px 5px;
-        height: 65%;
-    }
-
-    .bg-mustard .emot {
-        margin-left: -20px;
-    }
-}
-
 /* Mobile styles */
-@media (max-width: 640px) {
+@media (max-width: 767px) {
     .row.mobile-no-gutters>[class^="col-"],
     .row.mobile-no-gutters>[class*=" col-"],
     .row.mobile-no-gutters>[class^="col"],
@@ -1413,7 +888,7 @@
         padding: 8px;
         border-radius: 8px;
         margin-left: 0px;
-        height: 100px;
+        height: 60px;
     }
 
     .bg-darkgreen .darkgreen-catatan a {
@@ -1421,6 +896,10 @@
     }
 
     /* bg-brown */
+    .bg-brown {
+        height: 180px;
+    }
+
     .bg-brown .blockquote-custom-icon {
         width: 80px;
         top: -10px;
@@ -1564,7 +1043,8 @@
 
     /* bg-black */
     .bg-black {
-        margin-top: 10px;
+        margin-top: 20px;
+        height: 180px;
     }
 
     .bg-black .blockquote-custom-icon {
@@ -1579,7 +1059,7 @@
     }
 
     .bg-black .youtube {
-        margin-top: -20px;
+        margin-top: -10px;
     }
 
     .bg-black .youtube iframe {
@@ -1589,7 +1069,11 @@
 
     /* bg-mustard */
     .recalling {
-        margin-top: -280px;
+        margin-top: -293px;
+    }
+
+    .bg-mustard {
+        margin-top: 10px;
     }
 
     .bg-mustard .blockquote-custom-icon {
@@ -1627,7 +1111,7 @@
 
     /* bg-purple */
     .bg-purple {
-        margin-top: 20px;
+        margin-top: 0px;
     }
 
     .bg-purple .blockquote-custom-icon {
