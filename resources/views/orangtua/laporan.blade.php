@@ -19,21 +19,18 @@
                     <div class="col-2"><a class="text-nowrap logo-img">
                         <img src="{{ asset('assets') }}/img/logo.png" alt="" />
                     </a></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-4 d-flex justify-content-end align-items-center profile">
+                    <div class="col-10 d-flex justify-content-end align-items-center profile">
                         <p class="me-2">{{ $siswa->nama }}</p>
                         <img src="{{ asset('/storage/images/' . $siswa->image) }}" alt="" class="rounded-circle">
                     </div>
                 </div>
 
-                <form method="POST" action="{{ route('laporan.tanggal', ['id' => $siswa->id]) }}">
+                <form method="POST" action="{{ route('laporan.tanggal', ['id' => $siswa->id]) }}" id="tanggalForm">
                     @csrf
                     <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
                     <div class="mb-3 d-flex align-items-center">
                         <input class="form-control me-2" id="tanggal" name="tanggal" type="date" required value="{{ \Carbon\Carbon::parse($selected)->format('Y-m-d') }}">
-                        <button type="submit" class="btn btn-primary">Tanggal</button>
+                        <button type="submit" class="btn btn-primary" hidden>Tanggal</button>
                     </div>
                 </form>
 
@@ -2104,11 +2101,18 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dateInput = document.getElementById('tanggal');
+
+            // Set today's date if the input is empty
             if (!dateInput.value) {
                 const today = new Date();
                 const formattedToday = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
                 dateInput.value = formattedToday;
             }
+
+            // Submit form when date is changed
+            dateInput.addEventListener('change', function() {
+                document.getElementById('tanggalForm').submit();
+            });
         });
     </script>
 
