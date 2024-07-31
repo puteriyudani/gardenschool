@@ -156,7 +156,7 @@
                     </a>
                 </div>
                 <div class="col hugsme">
-                    <a href="{{ route('login') }}" onclick="showPopup()">
+                    <a href="{{ route('login') }}">
                         <img src="{{ asset('assets') }}/img/buttonhugs.png" alt="...">
                     </a>
                 </div>
