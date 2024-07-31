@@ -812,15 +812,13 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-sm-8 col-md-9 col-lg-9">
                                             @foreach ($vocabularys as $vocabulary)
                                                 <div class="sub">
                                                     <div class="vocab">
                                                         <div class="row mobile-no-gutters">
                                                             <div class="col-1">
-                                                                <img class="check"
-                                                                    src="{{ asset('auth') }}/images/icon/check.png"
-                                                                    alt="">
+                                                                <img class="check" src="{{ asset('auth') }}/images/icon/check.png" alt="">
                                                             </div>
                                                             <div class="col">
                                                                 <p>Vocabulary & Sentence</p>
@@ -829,36 +827,32 @@
                                                     </div>
                                                     <div class="row mobile-no-gutters mb-2">
                                                         <div class="col">
-                                                            <p><a>{{ $vocabulary->vocabulary }} vocab</a>
-                                                            </p>
+                                                            <p><a>{{ $vocabulary->vocabulary }} vocab</a></p>
                                                         </div>
                                                         <div class="col">
-                                                            <p><a>{{ $vocabulary->sentence }} sentence</a>
-                                                            </p>
+                                                            <p><a>{{ $vocabulary->sentence }} sentence</a></p>
                                                         </div>
                                                     </div>
                                                     <div class="row mobile-no-gutters">
                                                         <div class="col">
-                                                            <p><a>{{ $vocabulary->tale }} tale</a>
-                                                            </p>
+                                                            <p><a>{{ $vocabulary->tale }} tale</a></p>
                                                         </div>
                                                         <div class="col">
-                                                            <p><a>{{ $vocabulary->song }} song</a>
-                                                            </p>
+                                                            <p><a>{{ $vocabulary->song }} song</a></p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             @endforeach
                                         </div>
 
-                                        <div class="col-4 aozora text-center" style="margin-top: -15px; color:white;">
-                                            <img src="{{ asset('auth') }}/images/english.png" class="mt-2"
-                                                alt="">
+                                        <div class="col-sm-4 col-md-3 col-lg-3 aozora text-center" style="margin-top: -15px; color:white;">
+                                            <img src="{{ asset('auth') }}/images/english.png" class="mt-2" alt="">
                                             <p>Support By:</p>
                                             <br>
                                             <a>AOZORA</a>
                                         </div>
                                     </div>
+
                                 </blockquote>
                             @endif
 

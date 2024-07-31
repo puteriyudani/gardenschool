@@ -1756,12 +1756,12 @@
     }
 
     .bg-purple .aozora img {
-        width: 60px;
+        width: 50px;
     }
 
     .bg-purple .aozora p {
         font-weight: 500;
-        font-size: 9px;
+        font-size: 8px;
         margin-bottom: -40px;
         margin-top: 5px;
         color: white;

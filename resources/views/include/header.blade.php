@@ -9,7 +9,7 @@
             <li><a href="#" onclick="showPopup()" class="nav-link scrollto"><i class="bx bx-server"></i>
                     <span>Program</span></a>
             </li>
-            <li><a href="#" onclick="showPopup()" class="nav-link scrollto"><img
+            <li><a href="{{ route('login') }}" onclick="showPopup()" class="nav-link scrollto"><img
                         src="{{ asset('assets') }}/img/logo.svg" width="20px"></i>
                     <span>Hugs Me</span></a>
             </li>
