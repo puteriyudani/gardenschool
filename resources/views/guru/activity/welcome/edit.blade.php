@@ -371,7 +371,7 @@
                                                         <label for="keterangan" class="form-label">My Mood</label>
                                                         <select id="keterangan" name="keterangan"
                                                             class="form-select hidden-select">
-                                                            <option selected value="{{ $welcome->keterangan }}">{{ $welcome->keterangan }}</option>
+                                                            <option value="{{ $welcome->keterangan }}" selected>{{ $welcome->keterangan }}</option>
                                                             <option value="Happy">Happy</option>
                                                             <option value="Neutral">Bored</option>
                                                             <option value="Sad">Downed</option>
@@ -406,10 +406,10 @@
 
                                                     <div class="indikator mb-3 mt-2">
                                                         <label for="indikator" class="form-label"
-                                                            id="progressLabel">Indikator: 0%</label>
+                                                            id="progressLabel">Indikator: {{ $welcome->indikator }}%</label>
                                                         <div class="range-container">
                                                             <input type="range" class="progress-bar" id="progressBar"
-                                                                name="indikator" value="0" min="0"
+                                                                name="indikator" value="{{ $welcome->indikator }}" min="0"
                                                                 max="100">
                                                         </div>
                                                     </div>
@@ -487,6 +487,10 @@
             const sadGif = document.getElementById('sadGif');
             const indikatorContainer = document.querySelector('.indikator');
             const submitContainer = document.getElementById('submitContainer');
+            const rotateNotification = document.getElementById('rotateNotification');
+            const closeNotification = document.getElementById('closeNotification');
+
+            let audio; // Reference to the audio object
 
             const checkConditions = () => {
                 happyGif.style.display = 'none';
@@ -497,13 +501,13 @@
                         happyGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
                         // Putar suara
-                        var audio = new Audio('{{ asset('auth') }}/sound/happy.mp3');
+                        audio = new Audio('{{ asset('auth') }}/sound/happy.mp3');
                         audio.play();
                     } else if (hiddenSelect.value === 'Sad') {
                         sadGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
                         // Putar suara
-                        var audio = new Audio('{{ asset('auth') }}/sound/sad.mp3');
+                        audio = new Audio('{{ asset('auth') }}/sound/sad.mp3');
                         audio.play();
                     } else {
                         popupOverlay.style.display = 'none';
@@ -542,37 +546,49 @@
             popupClose.addEventListener('click', (event) => {
                 popupOverlay.style.display = 'none';
                 event.preventDefault();
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0; // Reset audio to the beginning
+                }
             });
 
             // Initial trigger to set the indicator based on the default select value and progress bar value
             checkConditions();
-        });
 
-        // Modal display handling
-        document.getElementById('openModalButton').onclick = function() {
-            document.getElementById('formModal').style.display = 'block';
-        };
+            // Modal display handling
+            document.getElementById('openModalButton').onclick = function() {
+                if (window.innerWidth >= 640 && window.innerWidth <= 1024) {
+                    rotateNotification.style.display = 'flex';
+                } else {
+                    document.getElementById('formModal').style.display = 'block';
+                }
+            };
 
-        document.getElementById('closeModalButton').addEventListener('click', function() {
-            // Konfirmasi sebelum submit
-            const isConfirmed = confirm("Apakah yakin dengan isianmu?");
-            if (isConfirmed) {
-                // Tutup modal
-                document.getElementById('formModal').style.display = 'none';
+            closeNotification.onclick = function() {
+                rotateNotification.style.display = 'none';
+            };
 
-                // Putar suara
-                var audio = new Audio('{{ asset('auth') }}/sound/close.mp3');
-                audio.play();
+            document.getElementById('closeModalButton').addEventListener('click', function() {
+                // Konfirmasi sebelum submit
+                const isConfirmed = confirm("Apakah yakin dengan isianmu?");
+                if (isConfirmed) {
+                    // Tutup modal
+                    document.getElementById('formModal').style.display = 'none';
 
-                // Tampilkan modal gambar
-                var imageModal = document.getElementById('imageModal');
-                imageModal.style.display = 'block';
+                    // Putar suara
+                    var audio = new Audio('{{ asset('auth') }}/sound/close.mp3');
+                    audio.play();
 
-                // Sembunyikan modal gambar setelah 5 detik
-                setTimeout(function() {
-                    imageModal.style.display = 'none';
-                }, 5000);
-            }
+                    // Tampilkan modal gambar
+                    var imageModal = document.getElementById('imageModal');
+                    imageModal.style.display = 'block';
+
+                    // Sembunyikan modal gambar setelah 5 detik
+                    setTimeout(function() {
+                        imageModal.style.display = 'none';
+                    }, 5000);
+                }
+            });
         });
     </script>
 @endsection

@@ -32,8 +32,10 @@
                                 @foreach ($siswas as $siswa)
                                     <div class="col-md-2">
                                         <div class="card">
-                                            <img src="{{ asset('storage/images/' . $siswa->image) }}" class="card-img-top"
+                                            <a target="_blank" href="{{ route('tbwelcome.index', $siswa->id) }}">
+                                                <img src="{{ asset('storage/images/' . $siswa->image) }}" class="card-img-top"
                                                 alt="...">
+                                            </a>
                                             <div class="card-body">
                                                 <a target="_blank" href="{{ route('tbwelcome.index', $siswa->id) }}" class="btn"
                                                     style="background-color: #6FAC45; color: white">{{ $siswa->nama }}</a>

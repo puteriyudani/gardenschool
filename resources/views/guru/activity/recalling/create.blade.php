@@ -31,7 +31,7 @@
         }
 
         .popup-content {
-            background: white;
+            background: rgba(255, 255, 255, 0);
             padding: 10px;
             border-radius: 10px;
             text-align: center;
@@ -60,7 +60,7 @@
         }
 
         .modal-content {
-            background-image: url('{{ asset('auth') }}/images/bg.jpeg');
+            background-image: url('{{ asset('auth') }}/images/bg1.jpg');
             /* Replace with the correct path */
             background-size: cover;
             /* Cover the entire modal */
@@ -160,28 +160,41 @@
         }
 
         .indikator {
+            display: none;
             text-align: center;
         }
 
-        /* Additional text "Please Welcome" styles */
-        .welcome-text {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            font-size: 100px;
-            font-weight: bold;
-            font-family: cursive;
-            font-style: italic;
-            color: #ffbb00;
-            text-shadow:
-                -1px -1px 0 #ffffff,
-                1px -1px 0 #ffffff,
-                -1px 1px 0 #ffffff,
-                1px 1px 0 #ffffff;
+        /* Gaya untuk modal gambar */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Latar belakang semi-transparan */
         }
 
+        .image-modal-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0);
+        }
 
-        @media (max-width: 768px) {
+        .image-modal-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 640px) {
             .modal {
                 display: flex;
                 justify-content: center;
@@ -197,11 +210,8 @@
 
             .modal-content {
                 background-image: url('{{ asset('auth') }}/images/bg1.jpg');
-                /* Replace with the correct path */
                 background-size: cover;
-                /* Cover the entire modal */
                 background-position: center;
-                /* Center the background image */
                 width: 100%;
                 height: 100%;
                 max-width: none;
@@ -214,8 +224,6 @@
             }
 
             .modal-inner {
-                /* background-color: rgba(255, 255, 255, 0.4); */
-                /* Background color with transparency */
                 padding: 20px;
                 border-radius: 10px;
                 text-align: center;
@@ -242,7 +250,6 @@
                 justify-content: center;
                 align-items: center;
                 gap: 20px;
-                /* Adds some space between the images */
             }
 
             .custom-select-item {
@@ -253,17 +260,13 @@
 
             .custom-select-container img {
                 width: 50px !important;
-                /* Adjust the width as needed */
                 height: auto !important;
-                /* Maintain the aspect ratio */
                 cursor: pointer;
                 transition: transform 0.2s ease-in-out;
-                /* Adds a smooth transition effect */
             }
 
             .custom-select-container img:hover {
                 transform: scale(1.1);
-                /* Slightly enlarges the image on hover */
             }
 
             .custom-select-item p {
@@ -272,11 +275,8 @@
 
             .progress-bar {
                 width: 80%;
-                /* Set width to 80% */
                 margin: 0 auto;
-                /* Center the range input */
                 display: block;
-                /* Ensure it's centered as a block element */
             }
         }
     </style>
@@ -343,26 +343,33 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
+                                        <!-- Notification for rotating screen -->
+                                        <div id="rotateNotification"
+                                            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1200; justify-content: center; align-items: center;">
+                                            <div
+                                                style="background-color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                                                <p>Please rotate your screen for the best experience.</p>
+                                                <button id="closeNotification" style="margin-top: 10px;">Close</button>
+                                            </div>
+                                        </div>
+
                                         <!-- Button to open the modal -->
                                         <button type="button" class="btn btn-primary" id="openModalButton">Open
                                             Form</button>
 
+                                        <!-- Audio element for modal open sound -->
+                                        <audio id="modalOpenSound" src="{{ asset('auth') }}/sound/modal-open.mp3"></audio>
+
                                         <!-- The Modal -->
                                         <div class="modal" id="formModal">
                                             <div class="modal-content">
-                                                <span class="close" id="closeModalButton">&times;</span>
-
-                                                <!-- Tambahkan tulisan "Please Welcome" di sini -->
-                                                <div class="welcome-text">
-                                                    <p>Please Welcome</p>
-                                                </div>
-
                                                 <div class="modal-inner">
                                                     <!-- Form elements inside the modal -->
-                                                    <div class="mb-3 keterangan">
+                                                    <div class="mb-2 keterangan">
                                                         <label for="keterangan" class="form-label">My Mood</label>
                                                         <select id="keterangan" name="keterangan"
                                                             class="form-select hidden-select">
+                                                            <option selected></option>
                                                             <option value="Happy">Happy</option>
                                                             <option value="Neutral">Bored</option>
                                                             <option value="Sad">Downed</option>
@@ -389,7 +396,13 @@
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
 
-                                                    <div class="indikator mb-3">
+                                                    <!-- Initially hidden submit button -->
+                                                    <div id="submitContainer" style="display: none;">
+                                                        <button type="button" class="btn btn-success"
+                                                            id="closeModalButton">Submit</button>
+                                                    </div>
+
+                                                    <div class="indikator mb-3 mt-2">
                                                         <label for="indikator" class="form-label"
                                                             id="progressLabel">Indikator: 0%</label>
                                                         <div class="range-container">
@@ -406,11 +419,19 @@
                                             </div>
                                         </div>
 
+                                        <!-- Modal untuk gambar popup -->
+                                        <div id="imageModal" class="image-modal" style="display: none;">
+                                            <div class="image-modal-content">
+                                                <img id="popupImage" src="{{ asset('auth') }}/gif/thankyou.gif"
+                                                    alt="Response Image">
+                                            </div>
+                                        </div>
+
                                         <!-- Overlay for popup GIFs -->
                                         <div class="popup-overlay" id="popupOverlay" style="display: none;">
                                             <div class="popup-content">
-                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF" id="happyGif"
-                                                    class="popup-gif" style="display: none;">
+                                                <img src="{{ asset('auth') }}/gif/happy.gif" alt="Happy GIF"
+                                                    id="happyGif" class="popup-gif" style="display: none;">
                                                 <img src="{{ asset('auth') }}/gif/sad.gif" alt="Sad GIF" id="sadGif"
                                                     class="popup-gif" style="display: none;">
                                                 <button class="popup-close btn btn-danger" id="popupClose">Close</button>
@@ -461,6 +482,12 @@
             const popupClose = document.getElementById('popupClose');
             const happyGif = document.getElementById('happyGif');
             const sadGif = document.getElementById('sadGif');
+            const indikatorContainer = document.querySelector('.indikator');
+            const submitContainer = document.getElementById('submitContainer');
+            const rotateNotification = document.getElementById('rotateNotification');
+            const closeNotification = document.getElementById('closeNotification');
+
+            let audio; // Reference to the audio object
 
             const checkConditions = () => {
                 happyGif.style.display = 'none';
@@ -470,14 +497,27 @@
                     if (hiddenSelect.value === 'Happy') {
                         happyGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
+                        // Putar suara
+                        audio = new Audio('{{ asset('auth') }}/sound/happy.mp3');
+                        audio.play();
                     } else if (hiddenSelect.value === 'Sad') {
                         sadGif.style.display = 'block';
                         popupOverlay.style.display = 'flex';
+                        // Putar suara
+                        audio = new Audio('{{ asset('auth') }}/sound/sad.mp3');
+                        audio.play();
                     } else {
                         popupOverlay.style.display = 'none';
                     }
                 } else {
                     popupOverlay.style.display = 'none';
+                }
+
+                // Tampilkan tombol submit jika opsi keterangan dipilih
+                if (hiddenSelect.value !== '') {
+                    submitContainer.style.display = 'block';
+                } else {
+                    submitContainer.style.display = 'none';
                 }
             };
 
@@ -487,6 +527,11 @@
                     images.forEach(img => img.style.border = 'none');
                     this.style.border = '2px solid blue';
                     checkConditions();
+
+                    // Tampilkan indikator setelah memilih keterangan
+                    if (hiddenSelect.value !== '') {
+                        indikatorContainer.style.display = 'block';
+                    }
                 });
             });
 
@@ -498,55 +543,49 @@
             popupClose.addEventListener('click', (event) => {
                 popupOverlay.style.display = 'none';
                 event.preventDefault();
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0; // Reset audio to the beginning
+                }
             });
 
             // Initial trigger to set the indicator based on the default select value and progress bar value
             checkConditions();
+
+            // Modal display handling
+            document.getElementById('openModalButton').onclick = function() {
+                if (window.innerWidth >= 640 && window.innerWidth <= 1024) {
+                    rotateNotification.style.display = 'flex';
+                } else {
+                    document.getElementById('formModal').style.display = 'block';
+                }
+            };
+
+            closeNotification.onclick = function() {
+                rotateNotification.style.display = 'none';
+            };
+
+            document.getElementById('closeModalButton').addEventListener('click', function() {
+                // Konfirmasi sebelum submit
+                const isConfirmed = confirm("Apakah yakin dengan isianmu?");
+                if (isConfirmed) {
+                    // Tutup modal
+                    document.getElementById('formModal').style.display = 'none';
+
+                    // Putar suara
+                    var audio = new Audio('{{ asset('auth') }}/sound/close.mp3');
+                    audio.play();
+
+                    // Tampilkan modal gambar
+                    var imageModal = document.getElementById('imageModal');
+                    imageModal.style.display = 'block';
+
+                    // Sembunyikan modal gambar setelah 5 detik
+                    setTimeout(function() {
+                        imageModal.style.display = 'none';
+                    }, 5000);
+                }
+            });
         });
-
-        // Modal display handling
-        document.getElementById('openModalButton').onclick = function() {
-            document.getElementById('formModal').style.display = 'block';
-        };
-
-        document.getElementById('closeModalButton').onclick = function() {
-            document.getElementById('formModal').style.display = 'none';
-        };
-
-        document.getElementById('submitFormButton').onclick = function() {
-            // Gather form data
-            const keterangan = document.getElementById('keterangan').value;
-            const indikator = document.getElementById('progressBar').value;
-
-            // Create a form to submit the data
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '{{ route('welcome.store') }}'; // Update the form action URL
-
-            // Add CSRF token if necessary
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-            const csrfInput = document.createElement('input');
-            csrfInput.type = 'hidden';
-            csrfInput.name = '_token';
-            csrfInput.value = csrfToken;
-            form.appendChild(csrfInput);
-
-            // Append form data
-            const keteranganInput = document.createElement('input');
-            keteranganInput.type = 'hidden';
-            keteranganInput.name = 'keterangan';
-            keteranganInput.value = keterangan;
-            form.appendChild(keteranganInput);
-
-            const indikatorInput = document.createElement('input');
-            indikatorInput.type = 'hidden';
-            indikatorInput.name = 'indikator';
-            indikatorInput.value = indikator;
-            form.appendChild(indikatorInput);
-
-            // Append the form to the body and submit
-            document.body.appendChild(form);
-            form.submit();
-        };
     </script>
 @endsection
