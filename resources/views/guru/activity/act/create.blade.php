@@ -46,8 +46,7 @@
 
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('act.store') }}" method="POST"
-                                        enctype="multipart/form-data">
+                                    <form action="{{ route('act.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="mb-3">
@@ -77,13 +76,13 @@
                                             <label for="practical" class="form-label">Practical Life</label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="practical" id="ya"
-                                                    value="Ya">
+                                                <input class="form-check-input" type="radio" name="practical"
+                                                    id="ya" value="Ya">
                                                 <label class="form-check-label" for="ya">Ya</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="practical" id="tidak"
-                                                    value="Tidak">
+                                                <input class="form-check-input" type="radio" name="practical"
+                                                    id="tidak" value="Tidak">
                                                 <label class="form-check-label" for="tidak">Tidak</label>
                                             </div>
                                         </div>
@@ -94,13 +93,13 @@
                                             <label for="sensorial" class="form-label">Sensorial</label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="sensorial" id="ya"
-                                                    value="Ya">
+                                                <input class="form-check-input" type="radio" name="sensorial"
+                                                    id="ya" value="Ya">
                                                 <label class="form-check-label" for="ya">Ya</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="sensorial" id="tidak"
-                                                    value="Tidak">
+                                                <input class="form-check-input" type="radio" name="sensorial"
+                                                    id="tidak" value="Tidak">
                                                 <label class="form-check-label" for="tidak">Tidak</label>
                                             </div>
                                         </div>
@@ -111,13 +110,13 @@
                                             <label for="language" class="form-label">Language</label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="language" id="ya"
-                                                    value="Ya">
+                                                <input class="form-check-input" type="radio" name="language"
+                                                    id="ya" value="Ya">
                                                 <label class="form-check-label" for="ya">Ya</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="language" id="tidak"
-                                                    value="Tidak">
+                                                <input class="form-check-input" type="radio" name="language"
+                                                    id="tidak" value="Tidak">
                                                 <label class="form-check-label" for="tidak">Tidak</label>
                                             </div>
                                         </div>
@@ -128,13 +127,13 @@
                                             <label for="math" class="form-label">Mathematics</label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="math" id="ya"
-                                                    value="Ya">
+                                                <input class="form-check-input" type="radio" name="math"
+                                                    id="ya" value="Ya">
                                                 <label class="form-check-label" for="ya">Ya</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="math" id="tidak"
-                                                    value="Tidak">
+                                                <input class="form-check-input" type="radio" name="math"
+                                                    id="tidak" value="Tidak">
                                                 <label class="form-check-label" for="tidak">Tidak</label>
                                             </div>
                                         </div>
@@ -145,13 +144,13 @@
                                             <label for="culture" class="form-label">Culture</label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="culture" id="ya"
-                                                    value="Ya">
+                                                <input class="form-check-input" type="radio" name="culture"
+                                                    id="ya" value="Ya">
                                                 <label class="form-check-label" for="ya">Ya</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="culture" id="tidak"
-                                                    value="Tidak">
+                                                <input class="form-check-input" type="radio" name="culture"
+                                                    id="tidak" value="Tidak">
                                                 <label class="form-check-label" for="tidak">Tidak</label>
                                             </div>
                                         </div>
@@ -161,12 +160,18 @@
 
                                         <div class="mb-3 mt-3">
                                             <label for="notifikasi" class="form-label">Notifikasi</label>
-                                            <select id="notifikasi" name="notifikasi" class="form-select">
-                                                <option selected>- Pilih -</option>
+                                            <select class="form-select" name="notifikasi"
+                                                onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                                                    toggleField(this,this.nextSibling);
+                                                    this.selectedIndex='0';
+                                                }">
+                                                <option selected>- Notifikasi -</option>
                                                 <option value="Tidur Cukup">Tidur Cukup</option>
                                                 <option value="Tidur Kurang">Tidur Kurang</option>
-                                                <option value="Lainnya">Lainnya</option>
-                                            </select>
+                                                <option value="customOption">[Lainnya]</option>
+                                            </select><input class="form-control" name="notifikasi" style="display:none;"
+                                                disabled="disabled"
+                                                onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
                                         </div>
                                         @error('notifikasi')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -190,5 +195,14 @@
                 dateInput.value = today;
             }
         });
+    </script>
+    <script>
+        function toggleField(hideObj, showObj) {
+            hideObj.disabled = true;
+            hideObj.style.display = 'none';
+            showObj.disabled = false;
+            showObj.style.display = 'inline';
+            showObj.focus();
+        }
     </script>
 @endsection

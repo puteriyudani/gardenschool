@@ -75,12 +75,19 @@
 
                                         <div class="mb-3 mt-3">
                                             <label for="menu_id" class="form-label">Menu</label>
-                                            <select id="menu_id" name="menu_id" class="form-select">
-                                                <option selected>- Pilih -</option>
+                                            <select class="form-select" name="menu_id"
+                                                onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                                                    toggleField(this,this.nextSibling);
+                                                    this.selectedIndex='0';
+                                                }">
+                                                <option selected>- Menu -</option>
                                                 @foreach ($menus as $menu)
                                                     <option value="{{ $menu->id }}">{{ $menu->menu }}</option>
                                                 @endforeach
-                                            </select>
+                                                <option value="customOption">[Lainnya]</option>
+                                            </select><input class="form-control" name="menu_id" style="display:none;"
+                                                disabled="disabled"
+                                                onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
                                         </div>
                                         @error('menu_id')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -125,12 +132,18 @@
 
                                         <div class="mb-3 mt-3">
                                             <label for="catatan" class="form-label">Catatan</label>
-                                            <select id="catatan" name="catatan" class="form-select">
-                                                <option selected>- Pilih -</option>
+                                            <select class="form-select" name="catatan"
+                                                onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                                                    toggleField(this,this.nextSibling);
+                                                    this.selectedIndex='0';
+                                                }">
+                                                <option selected>- Catatan -</option>
                                                 <option value="Tidur Cukup">Tidur Cukup</option>
                                                 <option value="Tidur Kurang">Tidur Kurang</option>
-                                                <option value="Lainnya">Lainnya</option>
-                                            </select>
+                                                <option value="customOption">[Lainnya]</option>
+                                            </select><input class="form-control" name="catatan" style="display:none;"
+                                                disabled="disabled"
+                                                onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
                                         </div>
                                         @error('catatan')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -156,7 +169,6 @@
             }
         });
     </script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const indikatorInput = document.getElementById('indikator');
@@ -174,5 +186,14 @@
                 });
             });
         });
+    </script>
+    <script>
+        function toggleField(hideObj, showObj) {
+            hideObj.disabled = true;
+            hideObj.style.display = 'none';
+            showObj.disabled = false;
+            showObj.style.display = 'inline';
+            showObj.focus();
+        }
     </script>
 @endsection

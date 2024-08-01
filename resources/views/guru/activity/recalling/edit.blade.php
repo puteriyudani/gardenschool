@@ -322,7 +322,8 @@
 
                                         <div class="mb-3">
                                             <label for="tanggal" class="form-label">Tanggal</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $recalling->tanggal }}">
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                                value="{{ $recalling->tanggal }}">
                                         </div>
                                         @error('tanggal')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -370,7 +371,8 @@
                                                         <label for="keterangan" class="form-label">My Mood</label>
                                                         <select id="keterangan" name="keterangan"
                                                             class="form-select hidden-select">
-                                                            <option value="{{ $recalling->keterangan }}" selected>{{ $recalling->keterangan }}</option>
+                                                            <option value="{{ $recalling->keterangan }}" selected>
+                                                                {{ $recalling->keterangan }}</option>
                                                             <option value="Happy">Happy</option>
                                                             <option value="Neutral">Bored</option>
                                                             <option value="Sad">Downed</option>
@@ -405,11 +407,12 @@
 
                                                     <div class="indikator mb-3 mt-2">
                                                         <label for="indikator" class="form-label"
-                                                            id="progressLabel">Indikator: {{ $recalling->indikator }}%</label>
+                                                            id="progressLabel">Indikator:
+                                                            {{ $recalling->indikator }}%</label>
                                                         <div class="range-container">
                                                             <input type="range" class="progress-bar" id="progressBar"
-                                                                name="indikator" value="{{ $recalling->indikator }}" min="0"
-                                                                max="100">
+                                                                name="indikator" value="{{ $recalling->indikator }}"
+                                                                min="0" max="100">
                                                         </div>
                                                     </div>
 
@@ -441,12 +444,19 @@
 
                                         <div class="mb-3 mt-3">
                                             <label for="notifikasi" class="form-label">Notifikasi</label>
-                                            <select id="notifikasi" name="notifikasi" class="form-select">
-                                                <option value="{{ $recalling->notifikasi }}" selected>{{ $recalling->notifikasi }}</option>
+                                            <select class="form-select" name="notifikasi"
+                                                onchange="if(this.options[this.selectedIndex].value=='customOption'){
+                                                    toggleField(this,this.nextSibling);
+                                                    this.selectedIndex='0';
+                                                }">
+                                                <option value="{{ $recalling->notifikasi }}" selected>-
+                                                    {{ $recalling->notifikasi }} -</option>
                                                 <option value="Tidur Cukup">Tidur Cukup</option>
                                                 <option value="Tidur Kurang">Tidur Kurang</option>
-                                                <option value="Lainnya">Lainnya</option>
-                                            </select>
+                                                <option value="customOption">[Lainnya]</option>
+                                            </select><input class="form-control" name="notifikasi" style="display:none;"
+                                                disabled="disabled"
+                                                onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
                                         </div>
                                         @error('notifikasi')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -588,5 +598,14 @@
                 }
             });
         });
+    </script>
+    <script>
+        function toggleField(hideObj, showObj) {
+            hideObj.disabled = true;
+            hideObj.style.display = 'none';
+            showObj.disabled = false;
+            showObj.style.display = 'inline';
+            showObj.focus();
+        }
     </script>
 @endsection
