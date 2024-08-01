@@ -809,7 +809,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-sm-8 col-md-9 col-lg-9">
+                                        <div class="col-8 col-md-9 col-lg-9">
                                             @foreach ($vocabularys as $vocabulary)
                                                 <div class="sub">
                                                     <div class="vocab">
@@ -842,7 +842,7 @@
                                             @endforeach
                                         </div>
 
-                                        <div class="col-sm-4 col-md-3 col-lg-3 aozora text-center" style="margin-top: -15px; color:white;">
+                                        <div class="col-4 col-md-3 col-lg-3 aozora text-center" style="margin-top: -15px; color:white;">
                                             <img src="{{ asset('auth') }}/images/english.png" class="mt-2" alt="">
                                             <p>Support By:</p>
                                             <br>

@@ -1184,6 +1184,139 @@
     font-weight: 200;
 }
 
+/* Tablet styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* bg-green */
+    .bg-green img {
+        width: 100px;
+    }
+
+    .bg-green h1 {
+        font-size: 45px;
+    }
+
+    .bg-green h2 {
+        font-size: 30px;
+    }
+
+    /* bg-yellow */
+    .bg-yellow .hadists .card {
+        height: 325px;
+    }
+
+    .bg-yellow .baby .hadists .card {
+        height: 200px;
+    }
+
+    .bg-yellow p {
+        font-size: 8px;
+    }
+
+    /* bg-orange */
+    .bg-orange {
+        height: 525px;
+    }
+    .bg-orange .persentase h1 {
+        border-radius: 30px;
+        padding: 35px 5px;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .bg-orange p {
+        font-size: 12px;
+    }
+
+    .bg-orange .sub p {
+        font-size: 10px;
+    }
+
+    .bg-orange .check,
+    .bg-orange .check-none {
+        width: 20px;
+        margin-top: -5px;
+    }
+
+    /* bg-black */
+    .bg-black {
+        height: 230px;
+    }
+
+    .bg-black .youtube iframe {
+        height: 100%;
+        width: 90%;
+    }
+
+    /* bg-brown */
+    .bg-brown {
+        height: 230px;
+    }
+
+    .bg-brown .sub p {
+        font-size: 12px;
+    }
+
+    .bg-brown .check,
+    .bg-brown .cross {
+        width: 20px;
+        margin-top: -5px;
+    }
+
+    .bg-brown .brown-notif p {
+        font-size: 12px;
+        height: 50px;
+    }
+
+    .bg-brown .brown-notif a {
+        font-size: 12px;
+    }
+
+    /* bg-grey */
+
+    .bg-grey .sub p {
+        font-size: 12px;
+    }
+
+    .bg-grey .check,
+    .bg-grey .cross {
+        width: 20px;
+        margin-top: -5px;
+    }
+
+    .bg-grey .grey-notif p {
+        font-size: 12px;
+        height: 70px;
+    }
+
+    .bg-grey .grey-notif a {
+        font-size: 12px;
+    }
+
+    /* bg-darkgreen */
+    .bg-darkgreen .darkgreen-catatan p {
+        height: 125px;
+    }
+
+    /* bg-mustard */
+    .bg-mustard img {
+        width: 100px;
+    }
+
+    .bg-mustard h1 {
+        font-size: 45px;
+    }
+
+    .bg-mustard h2 {
+        font-size: 30px;
+    }
+
+    /* bg-purple */
+    .bg-purple {
+        margin-top: -35px;
+    }
+}
+
 /* Mobile styles */
 @media (max-width: 767px) {
     .kepala .logo-img img {
