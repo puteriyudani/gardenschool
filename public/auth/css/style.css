@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Freakshow';
+    src: url('../font/Freakshow.ttf') format('truetype');
+}
+
 .row {
     margin: 0;
 }
@@ -34,7 +39,8 @@
 }
 
 .bg-green h1 {
-    font-size: 60px;
+    font-size: 55px;
+    font-family: 'Freakshow';
 }
 
 .bg-green h2 {
@@ -596,8 +602,9 @@
 }
 
 .bg-mustard h1 {
-    font-size: 60px;
+    font-size: 55px;
     color: white;
+    font-family: 'Freakshow';
 }
 
 .bg-mustard h2 {
@@ -1201,7 +1208,7 @@
     }
 
     .bg-green h1 {
-        font-size: 45px;
+        font-size: 40px;
     }
 
     .bg-green h2 {
@@ -1313,7 +1320,7 @@
     }
 
     .bg-mustard h1 {
-        font-size: 45px;
+        font-size: 40px;
     }
 
     .bg-mustard h2 {
@@ -1432,7 +1439,7 @@
     }
 
     .bg-green h1 {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .bg-green h2 {
@@ -1843,7 +1850,7 @@
     }
 
     .bg-mustard h1 {
-        font-size: 25px;
+        font-size: 20px;
     }
 
     .bg-mustard h2 {
