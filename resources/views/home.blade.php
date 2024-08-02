@@ -93,10 +93,9 @@
 @section('hero')
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex flex-column justify-content-center">
-        <div id="carousel" class="carousel slide">
+        <div id="carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true"
-                    aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
@@ -108,19 +107,13 @@
                         <div class="container" data-aos="zoom-in" data-aos-delay="100">
                             <p>d'happiest <span class="typed" data-typed-items="Islamic pre-school"></span></p>
                             <div class="social-links">
-                                <a href="https://wa.me/6282268081212" class="twitter" target="_blank"
-                                    style="color: #25D366"><i class="bx bxl-whatsapp"></i></a>
-                                <a href="https://www.facebook.com/gardenschool.gardenschool" class="facebook"
-                                    target="_blank" style="color: #4267B2"><i class="bx bxl-facebook"></i></a>
-                                <a href="https://www.instagram.com/gardenschool_official/" class="instagram" target="_blank"
-                                    style="color: #C13584"><i class="bx bxl-instagram"></i></a>
-                                <a href="https://www.tiktok.com/@gardenschool2" class="instagram" target="_blank"
-                                    style="color: #000000"><i class="bx bxl-tiktok"></i></a>
-                                <a href="https://www.youtube.com/@gardenschool2246" class="instagram" target="_blank"
-                                    style="color: #FF0000"><i class="bx bxl-youtube"></i></a>
+                                <a href="https://wa.me/6282268081212" class="twitter" target="_blank" style="color: #25D366"><i class="bx bxl-whatsapp"></i></a>
+                                <a href="https://www.facebook.com/gardenschool.gardenschool" class="facebook" target="_blank" style="color: #4267B2"><i class="bx bxl-facebook"></i></a>
+                                <a href="https://www.instagram.com/gardenschool_official/" class="instagram" target="_blank" style="color: #C13584"><i class="bx bxl-instagram"></i></a>
+                                <a href="https://www.tiktok.com/@gardenschool2" class="instagram" target="_blank" style="color: #000000"><i class="bx bxl-tiktok"></i></a>
+                                <a href="https://www.youtube.com/@gardenschool2246" class="instagram" target="_blank" style="color: #FF0000"><i class="bx bxl-youtube"></i></a>
                             </div>
-                            <a href="https://wa.me/6282268081212" class="btn btn-info" role="button" target="_blank">Join
-                                us</a>
+                            <a href="https://wa.me/6282268081212" class="btn btn-info" role="button" target="_blank">Join us</a>
                         </div>
                     </div>
                 </div>

@@ -151,12 +151,20 @@
 }
 
 .bg-yellow .status h3 {
-    background-color: #528332;
-    color: white;
     font-size: 14px;
     border-radius: 30px;
     padding: 3px 15px;
     text-align: center;
+}
+
+.bg-yellow .status.progress-status h3 {
+    background-color: orange;
+    color: white;
+}
+
+.bg-yellow .status.tuntas-status h3 {
+    background-color: #528332;
+    color: white;
 }
 
 .bg-yellow .yellow-notif {
@@ -1217,6 +1225,7 @@
     .bg-orange {
         height: 525px;
     }
+
     .bg-orange .persentase h1 {
         border-radius: 30px;
         padding: 35px 5px;

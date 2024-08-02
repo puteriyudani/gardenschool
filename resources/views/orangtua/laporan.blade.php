@@ -17,8 +17,8 @@
             <div class="container-fluid" id="download-container" style="background-color: rgb(207, 207, 207);">
                 <div class="row kepala">
                     <div class="col-2"><a class="text-nowrap logo-img">
-                        <img src="{{ asset('assets') }}/img/logo.png" alt="" />
-                    </a></div>
+                            <img src="{{ asset('assets') }}/img/logo.png" alt="" />
+                        </a></div>
                     <div class="col-10 d-flex justify-content-end align-items-center profile">
                         <p class="me-2">{{ $siswa->nama }}</p>
                         <img src="{{ asset('/storage/images/' . $siswa->image) }}" alt="" class="rounded-circle">
@@ -29,7 +29,8 @@
                     @csrf
                     <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
                     <div class="mb-3 d-flex align-items-center">
-                        <input class="form-control me-2" id="tanggal" name="tanggal" type="date" required value="{{ \Carbon\Carbon::parse($selected)->format('Y-m-d') }}">
+                        <input class="form-control me-2" id="tanggal" name="tanggal" type="date" required
+                            value="{{ \Carbon\Carbon::parse($selected)->format('Y-m-d') }}">
                         <button type="submit" class="btn btn-primary" hidden>Tanggal</button>
                     </div>
                 </form>
@@ -102,9 +103,11 @@
 
                                                     <div class="gap"></div>
 
-                                                    <div class="status">
+                                                    <div
+                                                        class="status {{ $islamic->hadist_stat == 'Progress' ? 'progress-status' : ($islamic->hadist_stat == 'Tuntas' ? 'tuntas-status' : '') }}">
                                                         <h3>{{ $islamic->hadist_stat }}</h3>
                                                     </div>
+
                                                 </div>
 
                                             </div>
@@ -136,7 +139,8 @@
 
                                                             <div class="gap"></div>
 
-                                                            <div class="status">
+                                                            <div
+                                                                class="status {{ $islamic->quran_stat == 'Progress' ? 'progress-status' : ($islamic->quran_stat == 'Tuntas' ? 'tuntas-status' : '') }}">
                                                                 <h3>{{ $islamic->quran_stat }}</h3>
                                                             </div>
                                                         </div>
@@ -164,7 +168,8 @@
                                                                 </div>
                                                             @endforeach
 
-                                                            <div class="status">
+                                                            <div
+                                                                class="status {{ $islamic->doa_stat == 'Progress' ? 'progress-status' : ($islamic->doa_stat == 'Tuntas' ? 'tuntas-status' : '') }}">
                                                                 <h3>{{ $islamic->doa_stat }}</h3>
                                                             </div>
                                                         </div>
@@ -815,7 +820,9 @@
                                                     <div class="vocab">
                                                         <div class="row mobile-no-gutters">
                                                             <div class="col-1">
-                                                                <img class="check" src="{{ asset('auth') }}/images/icon/check.png" alt="">
+                                                                <img class="check"
+                                                                    src="{{ asset('auth') }}/images/icon/check.png"
+                                                                    alt="">
                                                             </div>
                                                             <div class="col">
                                                                 <p>Vocabulary & Sentence</p>
@@ -842,8 +849,10 @@
                                             @endforeach
                                         </div>
 
-                                        <div class="col-4 col-md-3 col-lg-3 aozora text-center" style="margin-top: -15px; color:white;">
-                                            <img src="{{ asset('auth') }}/images/english.png" class="mt-2" alt="">
+                                        <div class="col-4 col-md-3 col-lg-3 aozora text-center"
+                                            style="margin-top: -15px; color:white;">
+                                            <img src="{{ asset('auth') }}/images/english.png" class="mt-2"
+                                                alt="">
                                             <p>Support By:</p>
                                             <br>
                                             <a>AOZORA</a>
@@ -953,7 +962,8 @@
 
                                                     <div class="gap"></div>
 
-                                                    <div class="status">
+                                                    <div
+                                                        class="status {{ $islamic->hadist_stat == 'Progress' ? 'progress-status' : ($islamic->hadist_stat == 'Tuntas' ? 'tuntas-status' : '') }}">
                                                         <h3>{{ $islamic->hadist_stat }}</h3>
                                                     </div>
                                                 </div>
@@ -987,7 +997,8 @@
 
                                                             <div class="gap"></div>
 
-                                                            <div class="status">
+                                                            <div
+                                                                class="status {{ $islamic->quran_stat == 'Progress' ? 'progress-status' : ($islamic->quran_stat == 'Tuntas' ? 'tuntas-status' : '') }}">
                                                                 <h3>{{ $islamic->quran_stat }}</h3>
                                                             </div>
                                                         </div>
@@ -1015,7 +1026,8 @@
                                                                 </div>
                                                             @endforeach
 
-                                                            <div class="status">
+                                                            <div
+                                                                class="status {{ $islamic->doa_stat == 'Progress' ? 'progress-status' : ($islamic->doa_stat == 'Tuntas' ? 'tuntas-status' : '') }}">
                                                                 <h3>{{ $islamic->doa_stat }}</h3>
                                                             </div>
                                                         </div>
@@ -1451,13 +1463,13 @@
                                     </div>
 
                                     @foreach ($videos as $video)
-                                    <div class="youtube text-center">
-                                        <iframe class="responsive-iframe" width="280" height="200" src="{{ $video->video }}"
-                                            title="YouTube video player" frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                    </div>
-                                @endforeach
+                                        <div class="youtube text-center">
+                                            <iframe class="responsive-iframe" width="280" height="200"
+                                                src="{{ $video->video }}" title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                        </div>
+                                    @endforeach
                                 </blockquote>
                             @endif
                         </div>
