@@ -125,8 +125,10 @@
                                                 }">
                                                 <option value="{{ $morning->notifikasi }}" selected>-
                                                     {{ $morning->notifikasi }} -</option>
-                                                <option value="Tidur Cukup">Tidur Cukup</option>
-                                                <option value="Tidur Kurang">Tidur Kurang</option>
+                                                    <option value="Ananda mengikuti kegiatan pagi dengan penuh semangat dan gembira">Ananda mengikuti kegiatan pagi dengan penuh semangat dan gembira</option>
+                                                    <option value="Ananda telat datang ke sekolah">Ananda telat datang ke sekolah</option>
+                                                    <option value="Ananda tidak ingin berdiri lama">Ananda tidak ingin berdiri lama</option>
+                                                    <option value="Ananda tidak menyukai kebisingan">Ananda tidak menyukai kebisingan</option>
                                                 <option value="customOption">[Lainnya]</option>
                                             </select><input class="form-control" name="notifikasi" style="display:none;"
                                                 disabled="disabled"

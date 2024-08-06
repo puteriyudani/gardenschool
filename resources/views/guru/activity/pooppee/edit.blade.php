@@ -121,8 +121,21 @@
                                                 }">
                                                 <option value="{{ $pooppee->catatan }}" selected>-
                                                     {{ $pooppee->catatan }} -</option>
-                                                <option value="Tidur Cukup">Tidur Cukup</option>
-                                                <option value="Tidur Kurang">Tidur Kurang</option>
+                                                <option value="Ananda sudah bisa membersihkan pee sendiri">Ananda sudah bisa
+                                                    membersihkan pee sendiri</option>
+                                                <option value="Ananda sudah bisa membersihkan poop sendiri">Ananda sudah
+                                                    bisa membersihkan poop sendiri</option>
+                                                <option value="Ananda sudah bisa mengenakan pakaiannya sendiri">Ananda sudah
+                                                    bisa mengenakan pakaiannya sendiri</option>
+                                                <option
+                                                    value="Ananda masih malu untuk mengatakan keinginan untuk poop & pee">
+                                                    Ananda masih malu untuk mengatakan keinginan untuk poop & pee</option>
+                                                <option value="Ananda masih dibantu miss/mister untuk membersihkan poop">
+                                                    Ananda masih dibantu miss/mister untuk membersihkan poop</option>
+                                                <option
+                                                    value="Ananda masih dibantu miss/mister untuk mengenakan pakaiannya kembali">
+                                                    Ananda masih dibantu miss/mister untuk mengenakan pakaiannya kembali
+                                                </option>
                                                 <option value="customOption">[Lainnya]</option>
                                             </select><input class="form-control" name="catatan" style="display:none;"
                                                 disabled="disabled"

@@ -560,14 +560,14 @@
 
                                         <div class="row gizi">
                                             <div class="col-4">
-                                                <p>Vit.Mineral</p>
+                                                <p>Kalori</p>
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menu->vitmineral }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $breakfast->menu->kalori }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $breakfast->menu->vitmineral }}%"></div>
+                                                        style="width: {{ $breakfast->menu->kalori }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1544,14 +1544,14 @@
 
                                         <div class="row gizi">
                                             <div class="col-4">
-                                                <p>Vit.Mineral</p>
+                                                <p>Kalori</p>
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menu->vitmineral }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $breakfast->menu->kalori }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $breakfast->menu->vitmineral }}%"></div>
+                                                        style="width: {{ $breakfast->menu->kalori }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1840,14 +1840,14 @@
 
                                         <div class="row gizi">
                                             <div class="col-4">
-                                                <p>Vit.Mineral</p>
+                                                <p>Kalori</p>
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $lunch->menu->vitmineral }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $lunch->menu->kalori }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $lunch->menu->vitmineral }}%"></div>
+                                                        style="width: {{ $lunch->menu->kalori }}%"></div>
                                                 </div>
                                             </div>
                                         </div>

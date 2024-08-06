@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('protein');
             $table->integer('lemak');
             $table->integer('serat');
-            $table->integer('vitmineral');
+            $table->integer('kalori');
             $table->timestamps();
         });
     }

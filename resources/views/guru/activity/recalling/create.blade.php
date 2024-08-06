@@ -446,8 +446,27 @@
                                                     this.selectedIndex='0';
                                                 }">
                                                 <option selected>- Notifikasi -</option>
-                                                <option value="Tidur Cukup">Tidur Cukup</option>
-                                                <option value="Tidur Kurang">Tidur Kurang</option>
+                                                <option value="Ananda semangat dan gembira mengikuti kegiatan hari ini">
+                                                    Ananda semangat dan gembira mengikuti kegiatan hari ini</option>
+                                                <option value="Ananda semangat menceritakan kembali kegiatan hari ini">
+                                                    Ananda semangat menceritakan kembali kegiatan hari ini</option>
+                                                <option value="Ananda masih mengikuti kegiatan berdasarkan mood nya">Ananda
+                                                    masih mengikuti kegiatan berdasarkan mood nya</option>
+                                                <option value="Ananda terjatuh sendiri">Ananda terjatuh sendiri</option>
+                                                <option value="Ananda didorong teman">Ananda didorong teman</option>
+                                                <option value="Ananda mendorong teman">Ananda mendorong teman</option>
+                                                <option value="Ananda digigit teman">Ananda digigit teman</option>
+                                                <option value="Ananda menggigit teman">Ananda menggigit teman</option>
+                                                <option value="Ananda berebut media pembelajaran sekolah">Ananda berebut
+                                                    media pembelajaran sekolah</option>
+                                                <option value="Ananda dicakar teman">Ananda dicakar teman</option>
+                                                <option value="Ananda mencakar teman">Ananda mencakar teman</option>
+                                                <option
+                                                    value="Ananda dimasukkan ke ruang berfikir karena melanggar aturan sekolah">
+                                                    Ananda dimasukkan ke ruang berfikir karena melanggar aturan sekolah
+                                                </option>
+                                                <option value="Ananda tidak mau masuk kelas">Ananda tidak mau masuk kelas
+                                                </option>
                                                 <option value="customOption">[Lainnya]</option>
                                             </select><input class="form-control" name="notifikasi" style="display:none;"
                                                 disabled="disabled"

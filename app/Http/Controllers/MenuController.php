@@ -35,7 +35,7 @@ class MenuController extends Controller
             'protein' => 'required',
             'lemak' => 'required',
             'serat' => 'required',
-            'vitmineral' => 'required',
+            'kalori' => 'required',
         ]);
 
         Menu::create($request->all());
@@ -70,7 +70,7 @@ class MenuController extends Controller
             'protein' => 'required',
             'lemak' => 'required',
             'serat' => 'required',
-            'vitmineral' => 'required',
+            'kalori' => 'required',
         ]);
 
         $menu->update($request->all());

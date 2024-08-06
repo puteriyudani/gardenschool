@@ -138,8 +138,9 @@
                                                     this.selectedIndex='0';
                                                 }">
                                                 <option selected>- Catatan -</option>
-                                                <option value="Tidur Cukup">Tidur Cukup</option>
-                                                <option value="Tidur Kurang">Tidur Kurang</option>
+                                                <option value="Ananda suka menu hari ini">Ananda suka menu hari ini</option>
+                                                <option value="Ananda masih merasa lapar">Ananda masih merasa lapar</option>
+                                                <option value="Ananda tidak suka menu hari ini">Ananda tidak suka menu hari ini</option>
                                                 <option value="customOption">[Lainnya]</option>
                                             </select><input class="form-control" name="catatan" style="display:none;"
                                                 disabled="disabled"

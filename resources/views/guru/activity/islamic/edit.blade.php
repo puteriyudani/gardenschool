@@ -196,8 +196,27 @@
                                                 }">
                                                 <option value="{{ $islamic->notifikasi }}" selected>-
                                                     {{ $islamic->notifikasi }} -</option>
-                                                <option value="Tidur Cukup">Tidur Cukup</option>
-                                                <option value="Tidur Kurang">Tidur Kurang</option>
+                                                @if ($siswa->kelompok === 'kindergarten' || $siswa->kelompok === 'playgroup')
+                                                    <option
+                                                        value="Ananda semangat menghafal surah pendek dan hadist, diharapkan ayah bunda memotivasi ananda untuk mengulang kembali hafalan dirumah.">
+                                                        Ananda semangat menghafal surah pendek dan hadist, diharapkan ayah
+                                                        bunda memotivasi ananda untuk mengulang kembali hafalan dirumah.
+                                                    </option>
+                                                    <option
+                                                        value="Ananda kurang tidur, sebaiknya ayah bunda mengajak ananda tidur lebih awal.">
+                                                        Ananda kurang tidur, sebaiknya ayah bunda mengajak ananda tidur
+                                                        lebih awal.</option>
+                                                @elseif ($siswa->kelompok === 'babycamp')
+                                                    <option
+                                                        value="Ananda sangat antusias mendengarkan bacaan hadist, surah pendek, dan doa.">
+                                                        Ananda sangat antusias mendengarkan bacaan hadist, surah pendek, dan
+                                                        doa.</option>
+                                                    <option
+                                                        value="Ananda mulai mengikuti ucapan dari bacaan hadist, surah pendek, dan doa.">
+                                                        Ananda mulai mengikuti ucapan dari bacaan hadist, surah pendek, dan
+                                                        doa.
+                                                    </option>
+                                                @endif
                                                 <option value="customOption">[Lainnya]</option>
                                             </select><input class="form-control" name="notifikasi" style="display:none;"
                                                 disabled="disabled"

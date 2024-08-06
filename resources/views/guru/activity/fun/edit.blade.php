@@ -156,8 +156,8 @@
                                                 }">
                                                 <option value="{{ $fun->notifikasi }}" selected>-
                                                     {{ $fun->notifikasi }} -</option>
-                                                <option value="Tidur Cukup">Tidur Cukup</option>
-                                                <option value="Tidur Kurang">Tidur Kurang</option>
+                                                    <option value="Ananda demam">Ananda demam</option>
+                                                    <option value="Ananda belum puas bermain">Ananda belum puas bermain</option>
                                                 <option value="customOption">[Lainnya]</option>
                                             </select><input class="form-control" name="notifikasi" style="display:none;"
                                                 disabled="disabled"

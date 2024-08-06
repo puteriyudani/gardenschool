@@ -77,9 +77,9 @@
                                                 value="{{ $menu->serat }}">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="vitmineral" class="form-label">Vit/Mineral</label>
-                                            <input type="number" class="form-control" id="vitmineral" name="vitmineral"
-                                                value="{{ $menu->vitmineral }}">
+                                            <label for="kalori" class="form-label">Kalori</label>
+                                            <input type="number" class="form-control" id="kalori" name="kalori"
+                                                value="{{ $menu->kalori }}">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>

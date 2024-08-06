@@ -50,7 +50,7 @@
                                     <td>{{ $menu->protein }}</td>
                                     <td>{{ $menu->lemak }}</td>
                                     <td>{{ $menu->serat }}</td>
-                                    <td>{{ $menu->vitmineral }}</td>
+                                    <td>{{ $menu->kalori }}</td>
                                     <td>
                                         <form action="{{ route('menu.destroy', $menu->id) }}" method="POST">
                                             <a href="{{ route('menu.edit', $menu->id) }}"

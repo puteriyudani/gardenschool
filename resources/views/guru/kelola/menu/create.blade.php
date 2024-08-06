@@ -70,8 +70,8 @@
                                             <input type="number" class="form-control" id="serat" name="serat">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="vitmineral" class="form-label">Vit/Mineral</label>
-                                            <input type="number" class="form-control" id="vitmineral" name="vitmineral">
+                                            <label for="kalori" class="form-label">Kalori</label>
+                                            <input type="number" class="form-control" id="kalori" name="kalori">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>

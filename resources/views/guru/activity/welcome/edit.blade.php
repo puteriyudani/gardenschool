@@ -451,7 +451,13 @@
                                                 }">
                                                 <option value="{{ $welcome->notifikasi }}" selected>- {{ $welcome->notifikasi }} -</option>
                                                 <option value="Tidur Cukup">Tidur Cukup</option>
+                                                <option value="Kenyang">Kenyang</option>
+                                                <option value="Excited ke Sekolah">Excited ke Sekolah</option>
                                                 <option value="Tidur Kurang">Tidur Kurang</option>
+                                                <option value="Rindu Orang tua">Rindu Orang tua</option>
+                                                <option value="Menangis ditinggal orang tua">Menangis ditinggal orang tua</option>
+                                                <option value="Lapar">Lapar</option>
+                                                <option value="Kurang Sehat">Kurang Sehat</option>
                                                 <option value="customOption">[Lainnya]</option>
                                             </select><input class="form-control" name="notifikasi" style="display:none;"
                                                 disabled="disabled"
