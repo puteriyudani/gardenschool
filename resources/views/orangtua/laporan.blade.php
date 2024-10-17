@@ -2144,6 +2144,12 @@
             var filename = 'Laporan-' + namaSiswa + '-' + tanggal + '.pdf';
 
             // Opsi untuk html2pdf.js
+            // Fungsi untuk mendeteksi perangkat mobile
+            function isMobileDevice() {
+                return (window.innerWidth <= 768); // Contoh deteksi mobile dengan lebar <= 768px
+            }
+
+            // Atur format dan konfigurasi berdasarkan perangkat
             var opt = {
                 margin: 0.5,
                 filename: filename,
@@ -2152,13 +2158,13 @@
                     quality: 0.98
                 },
                 html2canvas: {
-                    scale: 2
-                }, // Sesuaikan skala (default adalah 2)
+                    scale: isMobileDevice() ? 1 : 2 // Jika mobile, gunakan skala yang lebih kecil
+                },
                 jsPDF: {
                     unit: 'in',
-                    format: [13, 21],
+                    format: isMobileDevice() ? [5, 14] : [13, 21], // Format untuk mobile dan desktop
                     orientation: 'portrait'
-                } // Format halaman lebih besar
+                }
             };
 
             // Membuat PDF

@@ -17,7 +17,7 @@ class SiswaController extends Controller
         $kindergartens = Siswa::where('kelompok', 'kindergarten')->count();
         $playgroups = Siswa::where('kelompok', 'playgroup')->count();
         $babycamps = Siswa::where('kelompok', 'babycamp')->count();
-        return view('siswa.index', compact('kindergartens','playgroups', 'babycamps'));
+        return view('siswa.index', compact('kindergartens', 'playgroups', 'babycamps'));
     }
 
     /**
@@ -25,7 +25,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $ortus = User::where('level', '2')->get();
+        $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
         $tahuns = Tahun::get();
         return view('siswa.create', compact('ortus', 'tahuns'));
     }
@@ -50,7 +50,7 @@ class SiswaController extends Controller
             'nama_ayah' => 'required',
             'nama_ibu' => 'required',
             'alamat' => 'required',
-            'image' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
+            'image' => 'required|image|mimes:png,jpg,jpeg,webp,heic|max:2048',
         ]);
 
         $input = $request->all();
@@ -59,7 +59,7 @@ class SiswaController extends Controller
             $destinationPath = 'public/images';
             $image = $request->file('image');
             $image_name = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $path = $request->file('image')->storeAs($destinationPath,$image_name);
+            $path = $request->file('image')->storeAs($destinationPath, $image_name);
 
             $input['image'] = $image_name;
         }
@@ -67,25 +67,22 @@ class SiswaController extends Controller
         Siswa::create($input);
 
         return redirect()->route('siswa.index')
-                        ->with('success','Siswa created successfully.');
+            ->with('success', 'Siswa created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Siswa $siswa)
-    {
-
-    }
+    public function show(Siswa $siswa) {}
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Siswa $siswa)
     {
-        $ortus = User::where('level', '2')->get();
+        $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
         $tahuns = Tahun::get();
-        return view('siswa.edit',compact('siswa', 'ortus', 'tahuns'));
+        return view('siswa.edit', compact('siswa', 'ortus', 'tahuns'));
     }
 
     /**
@@ -108,7 +105,7 @@ class SiswaController extends Controller
             'nama_ayah' => 'required',
             'nama_ibu' => 'required',
             'alamat' => 'required',
-            'image.*' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
+            'image.*' => 'required|image|mimes:png,jpg,jpeg,webp,heic|max:2048',
         ]);
 
         $input = $request->only(['orangtua_id', 'tahun_id', 'nama', 'panggilan', 'noinduk', 'kelompok', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'anakke', 'nama_ayah', 'nama_ibu', 'alamat']);
@@ -130,7 +127,7 @@ class SiswaController extends Controller
         $siswa->update($input);
 
         return redirect()->route('siswa.index')
-                        ->with('success','Siswa updated successfully');
+            ->with('success', 'Siswa updated successfully');
     }
 
     /**
@@ -140,12 +137,12 @@ class SiswaController extends Controller
     {
         $siswa->delete();
 
-        return back()->with('success','Siswa deleted successfully');
+        return back()->with('success', 'Siswa deleted successfully');
     }
 
     public function showKindergarten()
     {
-        $ortus = User::where('level', '2')->get();
+        $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
         $siswas = Siswa::where('kelompok', 'kindergarten')->get();
         $tahuns = Tahun::get();
         return view('siswa.kindergarten', compact('siswas', 'ortus', 'tahuns'));
@@ -153,7 +150,7 @@ class SiswaController extends Controller
 
     public function showPlaygroup()
     {
-        $ortus = User::where('level', '2')->get();
+        $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
         $siswas = Siswa::where('kelompok', 'playgroup')->get();
         $tahuns = Tahun::get();
         return view('siswa.playgroup', compact('siswas', 'ortus', 'tahuns'));
@@ -161,7 +158,7 @@ class SiswaController extends Controller
 
     public function showBabycamp()
     {
-        $ortus = User::where('level', '2')->get();
+        $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
         $siswas = Siswa::where('kelompok', 'babycamp')->get();
         $tahuns = Tahun::get();
         return view('siswa.babycamp', compact('siswas', 'ortus', 'tahuns'));
