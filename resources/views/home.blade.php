@@ -7,6 +7,7 @@
             align-items: center;
             text-align: center;
         }
+
         .tree ul {
             padding-top: 20px;
             position: relative;
@@ -14,6 +15,7 @@
             -webkit-transition: all 0.5s;
             -moz-transition: all 0.5s;
         }
+
         .tree li {
             float: left;
             text-align: center;
@@ -24,7 +26,9 @@
             -webkit-transition: all 0.5s;
             -moz-transition: all 0.5s;
         }
-        .tree li::before, .tree li::after {
+
+        .tree li::before,
+        .tree li::after {
             content: '';
             position: absolute;
             top: 0;
@@ -33,27 +37,36 @@
             width: 50%;
             height: 20px;
         }
+
         .tree li::after {
             right: auto;
             left: 50%;
             border-left: 1px solid #ccc;
         }
-        .tree li:only-child::after, .tree li:only-child::before {
+
+        .tree li:only-child::after,
+        .tree li:only-child::before {
             display: none;
         }
+
         .tree li:only-child {
             padding-top: 0;
         }
-        .tree li:first-child::before, .tree li:last-child::after {
+
+        .tree li:first-child::before,
+        .tree li:last-child::after {
             border: 0 none;
         }
+
         .tree li:last-child::before {
             border-right: 1px solid #ccc;
             border-radius: 0 5px 0 0;
         }
+
         .tree li:first-child::after {
             border-radius: 5px 0 0 0;
         }
+
         .tree ul ul::before {
             content: '';
             position: absolute;
@@ -63,6 +76,7 @@
             width: 0;
             height: 20px;
         }
+
         .tree li a {
             border: 1px solid #ccc;
             padding: 5px 10px;
@@ -76,16 +90,19 @@
             -webkit-transition: all 0.5s;
             -moz-transition: all 0.5s;
         }
-        .tree li a:hover, .tree li a:hover+ul li a {
+
+        .tree li a:hover,
+        .tree li a:hover+ul li a {
             background: #c8e4f8;
             color: #000;
             border: 1px solid #94a0b4;
         }
+
         .tree li a:hover+ul li::after,
         .tree li a:hover+ul li::before,
         .tree li a:hover+ul::before,
         .tree li a:hover+ul ul::before {
-            border-color:  #94a0b4;
+            border-color: #94a0b4;
         }
     </style>
 @endsection
@@ -95,7 +112,8 @@
     <section id="hero" class="d-flex flex-column justify-content-center">
         <div id="carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true"
+                    aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
@@ -107,13 +125,19 @@
                         <div class="container" data-aos="zoom-in" data-aos-delay="100">
                             <p>d'happiest <span class="typed" data-typed-items="Islamic pre-school"></span></p>
                             <div class="social-links">
-                                <a href="https://wa.me/6282268081212" class="twitter" target="_blank" style="color: #25D366"><i class="bx bxl-whatsapp"></i></a>
-                                <a href="https://www.facebook.com/gardenschool.gardenschool" class="facebook" target="_blank" style="color: #4267B2"><i class="bx bxl-facebook"></i></a>
-                                <a href="https://www.instagram.com/gardenschool_official/" class="instagram" target="_blank" style="color: #C13584"><i class="bx bxl-instagram"></i></a>
-                                <a href="https://www.tiktok.com/@gardenschool2" class="instagram" target="_blank" style="color: #000000"><i class="bx bxl-tiktok"></i></a>
-                                <a href="https://www.youtube.com/@gardenschool2246" class="instagram" target="_blank" style="color: #FF0000"><i class="bx bxl-youtube"></i></a>
+                                <a href="https://wa.me/6282268081212" class="twitter" target="_blank"
+                                    style="color: #25D366"><i class="bx bxl-whatsapp"></i></a>
+                                <a href="https://www.facebook.com/gardenschool.gardenschool" class="facebook"
+                                    target="_blank" style="color: #4267B2"><i class="bx bxl-facebook"></i></a>
+                                <a href="https://www.instagram.com/gardenschool_official/" class="instagram" target="_blank"
+                                    style="color: #C13584"><i class="bx bxl-instagram"></i></a>
+                                <a href="https://www.tiktok.com/@gardenschool2" class="instagram" target="_blank"
+                                    style="color: #000000"><i class="bx bxl-tiktok"></i></a>
+                                <a href="https://www.youtube.com/@gardenschool2246" class="instagram" target="_blank"
+                                    style="color: #FF0000"><i class="bx bxl-youtube"></i></a>
                             </div>
-                            <a href="https://wa.me/6282268081212" class="btn btn-info" role="button" target="_blank">Join us</a>
+                            <a href="https://wa.me/6282268081212" class="btn btn-info" role="button" target="_blank">Join
+                                us</a>
                         </div>
                     </div>
                 </div>
@@ -271,93 +295,51 @@
         </section><!-- End About Section -->
 
         <!-- ======= Program Section ======= -->
-        {{-- <section id="program" class="program">
-            <div class="container" data-aos="fade-up">
-                <div class="tree">
-                    <ul>
-                        <li>
-                            <a href="#">John Doe</a>
-                            <ul>
-                                <li>
-                                    <a href="#">Michael Doe</a>
-                                    <ul>
-                                        <li><a href="#">Emma Doe</a></li>
-                                        <li><a href="#">James Doe</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Sarah Doe</a>
-                                    <ul>
-                                        <li><a href="#">Anna Doe</a></li>
-                                        <li><a href="#">Peter Doe</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section> --}}
-        <!-- End Program Section -->
-
-        <!-- ======= Testimonials Section ======= -->
-        {{-- <section id="services" class="testimonials section-bg">
+        {{-- <section id="portfolio" class="portfolio section-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>Montessory</h2>
+                    <h2>Portfolio</h2>
+                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+                        consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+                        fugiat sit in iste officiis commodi quidem hic quas.</p>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6 text-center">
-                        <h3><a href="{{ route('montessory.youtube') }}" target="_blank">Youtube</a></h3>
-                        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                            <div class="swiper-wrapper">
-
-                                @foreach ($youtubes as $youtube)
-                                    <div class="swiper-slide">
-                                        <div class="testimonial-item">
-                                            <iframe width="560" height="315" src="{{ $youtube->link }}"
-                                                title="YouTube video player" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                allowfullscreen></iframe>
-                                            <br>
-                                            <h3>{{ $youtube->judul }}</h3>
-                                            <p>{{ $youtube->keterangan }}</p>
-                                        </div>
-                                    </div>
-                                @endforeach
-
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 text-center">
-                        <h3><a href="{{ route('montessory.pdf') }}" target="_blank">PDF</a></h3>
-                        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                            <div class="swiper-wrapper">
-
-                                @foreach ($pdfs as $pdf)
-                                    <div class="swiper-slide">
-                                        <div class="testimonial-item">
-                                            <embed src="{{ asset('/storage/file/' . $pdf->file) }}"
-                                                type="application/pdf" width="500" height="300" />
-                                            <br>
-                                            <h3>{{ $pdf->judul }}</h3>
-                                            <p>{{ $pdf->keterangan }}</p>
-                                        </div>
-                                    </div>
-                                @endforeach
-
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
+                    <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                        <ul id="portfolio-flters">
+                            <li data-filter="*" class="filter-active">All</li>
+                            <li data-filter=".filter-app">App</li>
+                            <li data-filter=".filter-card">Card</li>
+                            <li data-filter=".filter-web">Web</li>
+                        </ul>
                     </div>
                 </div>
+
+                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>App 1</h4>
+                                <p>App</p>
+                                <div class="portfolio-links">
+                                    <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
+                                        class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                                    <a href="portfolio-details.html" class="portfolio-details-lightbox"
+                                        data-glightbox="type: external" title="Portfolio Details"><i
+                                            class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </section> --}}
-        <!-- End Testimonials Section -->
+        <!-- End Program Section -->
 
     </main><!-- End #main -->
 @endsection

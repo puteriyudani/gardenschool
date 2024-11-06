@@ -45,9 +45,9 @@ class PdfController extends Controller
 
             $input['file'] = $file_name;
         }
-    
+
         Pdf::create($input);
-    
+
         return redirect()->route('pdf.index')
                         ->with('success','PDF created successfully.');
     }
@@ -76,7 +76,7 @@ class PdfController extends Controller
         $request->validate([
             'judul' => 'required',
             'keterangan' => 'required',
-            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+            'file' => 'mimes:pdf,xlx,csv|max:2048',
         ]);
 
         $input = $request->all();
@@ -89,9 +89,9 @@ class PdfController extends Controller
 
             $input['file'] = $file_name;
         }
-    
+
         $pdf->update($input);
-    
+
         return redirect()->route('pdf.index')
                         ->with('success','PDF updated successfully');
     }
@@ -102,7 +102,7 @@ class PdfController extends Controller
     public function destroy(Pdf $pdf)
     {
         $pdf->delete();
-    
+
         return back()->with('success','PDF deleted successfully');
     }
 }
