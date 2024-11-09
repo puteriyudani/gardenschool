@@ -2,107 +2,38 @@
 
 @section('style')
     <style>
-        .tree {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+        /* PDF - Desktop tetap, Mobile/Tablet responsif */
+        .testimonial-item embed {
+            width: 100%;
+            height: 500px;
+            /* Ukuran tetap di desktop */
         }
 
-        .tree ul {
-            padding-top: 20px;
-            position: relative;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
+        @media (max-width: 768px) {
+            .testimonial-item embed {
+                height: auto;
+                /* Responsif di mobile/tablet */
+                width: 100%;
+            }
         }
 
-        .tree li {
-            float: left;
-            text-align: center;
-            list-style-type: none;
-            position: relative;
-            padding: 20px 5px 0 5px;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
+        /* Video - Desktop tetap, Mobile/Tablet responsif */
+        .testimonial-item iframe {
+            width: 560px;
+            /* Ukuran tetap di desktop */
+            height: 315px;
+            /* Ukuran tetap di desktop */
         }
 
-        .tree li::before,
-        .tree li::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 50%;
-            border-top: 1px solid #ccc;
-            width: 50%;
-            height: 20px;
-        }
-
-        .tree li::after {
-            right: auto;
-            left: 50%;
-            border-left: 1px solid #ccc;
-        }
-
-        .tree li:only-child::after,
-        .tree li:only-child::before {
-            display: none;
-        }
-
-        .tree li:only-child {
-            padding-top: 0;
-        }
-
-        .tree li:first-child::before,
-        .tree li:last-child::after {
-            border: 0 none;
-        }
-
-        .tree li:last-child::before {
-            border-right: 1px solid #ccc;
-            border-radius: 0 5px 0 0;
-        }
-
-        .tree li:first-child::after {
-            border-radius: 5px 0 0 0;
-        }
-
-        .tree ul ul::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            border-left: 1px solid #ccc;
-            width: 0;
-            height: 20px;
-        }
-
-        .tree li a {
-            border: 1px solid #ccc;
-            padding: 5px 10px;
-            text-decoration: none;
-            color: #666;
-            font-family: arial, verdana, tahoma;
-            font-size: 11px;
-            display: inline-block;
-            border-radius: 5px;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-
-        .tree li a:hover,
-        .tree li a:hover+ul li a {
-            background: #c8e4f8;
-            color: #000;
-            border: 1px solid #94a0b4;
-        }
-
-        .tree li a:hover+ul li::after,
-        .tree li a:hover+ul li::before,
-        .tree li a:hover+ul::before,
-        .tree li a:hover+ul ul::before {
-            border-color: #94a0b4;
+        @media (max-width: 768px) {
+            .testimonial-item iframe {
+                width: 100%;
+                /* Responsif di mobile/tablet */
+                height: auto;
+                /* Sesuaikan tinggi otomatis */
+                aspect-ratio: 16 / 9;
+                /* Tetap menjaga rasio aspek video */
+            }
         }
     </style>
 @endsection
@@ -168,7 +99,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="#" onclick="showPopup()">
+                    <a href="/#program">
                         <img src="{{ asset('assets') }}/img/buttonprogram.png" alt="...">
                     </a>
                 </div>
@@ -295,50 +226,59 @@
         </section><!-- End About Section -->
 
         <!-- ======= Program Section ======= -->
-        {{-- <section id="portfolio" class="portfolio section-bg">
+        <section id="program" class="testimonials section-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>Portfolio</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                        consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                        fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    <h2>Dokumen</h2>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                        <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-card">Card</li>
-                            <li data-filter=".filter-web">Web</li>
-                        </ul>
-                    </div>
-                </div>
+                <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                    <div class="swiper-wrapper">
 
-                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 1</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
-                                        class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                                    <a href="portfolio-details.html" class="portfolio-details-lightbox"
-                                        data-glightbox="type: external" title="Portfolio Details"><i
-                                            class="bx bx-link"></i></a>
+                        @foreach ($pdfs as $pdf)
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <h3>{{ $pdf->judul }}</h3>
+                                    <p>{{ $pdf->keterangan }}</p>
+                                    <object data="{{ asset('/storage/file/' . $pdf->file) }}" type="application/pdf"
+                                        width="100%" height="500">
+                                        <p>Browser Anda tidak dapat menampilkan PDF. <a
+                                                href="{{ asset('/storage/file/' . $pdf->file) }}" download>Klik di sini
+                                                untuk mengunduh PDF</a>.</p>
+                                    </object>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        @endforeach
 
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+                <div class="section-title mt-2">
+                    <h2>Video</h2>
+                </div>
+
+                <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                    <div class="swiper-wrapper">
+
+                        @foreach ($youtubes as $youtube)
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <iframe width="560" height="315" src="{{ $youtube->link }}"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
 
             </div>
-        </section> --}}
+        </section>
         <!-- End Program Section -->
 
     </main><!-- End #main -->
