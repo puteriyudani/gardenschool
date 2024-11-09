@@ -13,11 +13,11 @@
                         src="{{ asset('assets') }}/img/logo.svg" width="20px"></i>
                     <span>Hugs Me</span></a>
             </li>
-            <li><a href="#" onclick="showPopup()" class="nav-link scrollto"><i class="bx bx-support"></i>
+            <li><a href="/#support" class="nav-link scrollto"><i class="bx bx-support"></i>
                     <span>Support System</span></a>
             </li>
             <li><a href="#" onclick="showPopup()" class="nav-link scrollto"><i class="bx bx-cart"></i>
-                    <span>GS Shop</span></a>
+                    <span>Bie-Leaf</span></a>
             </li>
             <li><a href="{{ route('login') }}" class="nav-link scrollto" target="_blank"><i class="bx bx-log-in"></i>
                     <span>Login</span></a>

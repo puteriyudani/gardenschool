@@ -109,7 +109,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="#" onclick="showPopup()">
+                    <a href="/#support">
                         <img src="{{ asset('assets') }}/img/buttonsupport.png" alt="...">
                     </a>
                 </div>
@@ -282,6 +282,32 @@
             </div>
         </section>
         <!-- End Program Section -->
+
+        <!-- ======= Support Section ======= -->
+        <section id="support" class="skills section-bg">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Support</h2>
+                </div>
+
+                <div class="row skills-content text-center">
+
+                    <div class="col-lg-6">
+                        <img src="{{ asset('auth') }}/images/rcq.png" alt="" width="100" height="100">
+                        <h4><a>Rumah Cerdas Quran</a></h4>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <img src="{{ asset('auth') }}/images/english.png" alt="" width="100" height="100">
+                        <h4><a>Aozora</a></h4>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- End Support Section -->
 
     </main><!-- End #main -->
 @endsection
