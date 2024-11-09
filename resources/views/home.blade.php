@@ -265,6 +265,8 @@
                         @foreach ($youtubes as $youtube)
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
+                                    <h3>{{ $youtube->judul }}</h3>
+                                    <p>{{ $youtube->keterangan }}</p>
                                     <iframe width="560" height="315" src="{{ $youtube->link }}"
                                         title="YouTube video player" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
