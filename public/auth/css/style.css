@@ -669,7 +669,8 @@
 }
 
 .bg-purple .aozora img {
-    width: 100px;
+    margin-left: -5px;
+    width: 130px;
 }
 
 .bg-purple .aozora p {
@@ -1331,6 +1332,11 @@
     .bg-purple {
         margin-top: -35px;
     }
+
+    .bg-purple .aozora img {
+        margin-left: -15px;
+        width: 110px;
+    }
 }
 
 /* Mobile styles */
@@ -1905,7 +1911,8 @@
     }
 
     .bg-purple .aozora img {
-        width: 50px;
+        margin-left: -13px;
+        width: 80px;
     }
 
     .bg-purple .aozora p {
