@@ -293,12 +293,12 @@
 
                 <div class="row skills-content text-center">
 
-                    <div class="col-lg-6">
+                    <div class="col-6">
                         <img src="{{ asset('auth') }}/images/rcq.png" alt="" width="100" height="100">
                         <h4><a target="_blank" href="#">Rumah Cerdas Quran</a></h4>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-6">
                         <img src="{{ asset('auth') }}/images/english.png" alt="" width="100" height="100">
                         <h4><a target="_blank" href="https://www.instagram.com/aozoralearningcenter/profilecard/?igsh=MWd1NzY4OW12NHh3aw==">Aozora</a></h4>
                     </div>
