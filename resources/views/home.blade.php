@@ -295,7 +295,7 @@
 
                     <div class="col-6">
                         <img src="{{ asset('auth') }}/images/rcq.png" alt="" width="100" height="100">
-                        <h4><a target="_blank" href="#">Rumah Cerdas Quran</a></h4>
+                        <h4><a target="_blank" href="https://www.instagram.com/rcqbengkalisofficial/profilecard/?igsh=a253NjA0dGYzZmNy">Rumah Cerdas Quran</a></h4>
                     </div>
 
                     <div class="col-6">
