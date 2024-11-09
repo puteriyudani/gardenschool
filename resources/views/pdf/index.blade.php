@@ -37,8 +37,12 @@
                                     <td>{{ $pdf->judul }}</td>
                                     <td>{{ $pdf->keterangan }}</td>
                                     <td>
-                                        <embed src="{{ asset('/storage/file/' . $pdf->file) }}" type="application/pdf" width="400" height="300" />
-                                        {{-- <iframe src="{{ asset('/storage/file/' . $pdf->file) }}" width="500" height="600"></iframe> --}}
+                                        <object data="{{ asset('/storage/file/' . $pdf->file) }}" type="application/pdf"
+                                            width="100%" height="300">
+                                            <p>Browser Anda tidak dapat menampilkan PDF. <a
+                                                    href="{{ asset('/storage/file/' . $pdf->file) }}" download>Klik di sini
+                                                    untuk mengunduh PDF</a>.</p>
+                                        </object>
                                     </td>
                                     <td>
                                         <form action="{{ route('pdf.destroy', $pdf->id) }}" method="POST">
