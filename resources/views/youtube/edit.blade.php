@@ -34,29 +34,36 @@
                                     <form action="{{ route('youtube.update', $youtube->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
+
+                                        <!-- Dropdown untuk memilih PDF -->
                                         <div class="mb-3">
-                                            <label for="judul" class="form-label">Judul</label>
-                                            <select class="form-control" id="judul" name="judul"
-                                                aria-describedby="judulHelp">
-                                                <option value="" disabled>Pilih Judul</option>
+                                            <label for="pdf_id" class="form-label">Pilih PDF</label>
+                                            <select class="form-control" id="pdf_id" name="pdf_id"
+                                                aria-describedby="pdfHelp" required>
+                                                <option value="" disabled>Pilih PDF</option>
                                                 @foreach ($pdfs as $pdf)
-                                                    <option value="{{ $pdf->judul }}"
-                                                        {{ $pdf->judul == $youtube->judul ? 'selected' : '' }}>
+                                                    <option value="{{ $pdf->id }}"
+                                                        {{ $pdf->id == $youtube->pdf_id ? 'selected' : '' }}>
                                                         {{ $pdf->judul }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </div>
 
+                                        <!-- Keterangan -->
                                         <div class="mb-3">
                                             <label for="keterangan" class="form-label">Keterangan</label>
-                                            <textarea class="form-control" placeholder="keterangan" id="keterangan" name="keterangan" style="height: 100px">{{ $youtube->keterangan }}</textarea>
+                                            <textarea class="form-control" placeholder="Masukkan keterangan" id="keterangan" name="keterangan" style="height: 100px"
+                                                required>{{ $youtube->keterangan }}</textarea>
                                         </div>
+
+                                        <!-- Link -->
                                         <div class="mb-3">
                                             <label for="link" class="form-label">Link</label>
-                                            <textarea class="form-control" placeholder="keterangan" id="link" name="link" style="height: 100px">{{ $youtube->link }}</textarea>
+                                            <textarea class="form-control" placeholder="Masukkan link" id="link" name="link" style="height: 100px" required>{{ $youtube->link }}</textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </form>
                                 </div>
                             </div>

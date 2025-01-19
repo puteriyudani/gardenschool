@@ -10,6 +10,16 @@ class Youtube extends Model
     use HasFactory;
 
     protected $table = 'youtubes';
-    protected $guarded = [];
-    protected $fillable = ['judul', 'keterangan', 'link'];
+
+    // Kolom yang boleh diisi
+    protected $fillable = ['pdf_id', 'judul', 'keterangan', 'link'];
+
+    /**
+     * Relasi ke model Pdf.
+     * Setiap entri Youtube terkait dengan satu entri Pdf.
+     */
+    public function pdf()
+    {
+        return $this->belongsTo(Pdf::class, 'pdf_id');
+    }
 }

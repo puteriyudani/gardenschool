@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('youtubes', function (Blueprint $table) {
             $table->id();
-            $table->foreign('judul')->references('judul')->on('pdfs')->onDelete('cascade');
+            $table->unsignedBigInteger('pdf_id'); // Kolom untuk foreign key
+            $table->string('judul');
             $table->string('keterangan');
             $table->string('link');
             $table->timestamps();
+
+            // Definisi foreign key
+            $table->foreign('pdf_id')->references('id')->on('pdfs')->onDelete('cascade');
         });
     }
 

@@ -13,7 +13,7 @@ class YoutubeController extends Controller
      */
     public function index()
     {
-        $youtubes = Youtube::paginate(5);
+        $youtubes = Youtube::with('pdf')->paginate(5); // Include related Pdf data
         return view('youtube.index', compact('youtubes'));
     }
 
@@ -32,23 +32,20 @@ class YoutubeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required',
+            'pdf_id' => 'required|exists:pdfs,id', // Ensure pdf_id exists in Pdf table
             'keterangan' => 'required',
-            'link' => 'required',
+            'link' => 'required|url',
         ]);
 
-        Youtube::create($request->all());
+        // Fetch the judul from the related Pdf
+        $pdf = Pdf::findOrFail($request->pdf_id);
+        $requestData = $request->all();
+        $requestData['judul'] = $pdf->judul; // Automatically set judul from Pdf
+
+        Youtube::create($requestData);
 
         return redirect()->route('youtube.index')
-                        ->with('success','Youtube created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+                         ->with('success', 'Youtube created successfully.');
     }
 
     /**
@@ -57,7 +54,7 @@ class YoutubeController extends Controller
     public function edit(Youtube $youtube)
     {
         $pdfs = Pdf::all();
-        return view('youtube.edit',compact('youtube', 'pdfs'));
+        return view('youtube.edit', compact('youtube', 'pdfs'));
     }
 
     /**
@@ -66,15 +63,20 @@ class YoutubeController extends Controller
     public function update(Request $request, Youtube $youtube)
     {
         $request->validate([
-            'judul' => 'required',
+            'pdf_id' => 'required|exists:pdfs,id', // Ensure pdf_id exists in Pdf table
             'keterangan' => 'required',
-            'link' => 'required',
+            'link' => 'required|url',
         ]);
 
-        $youtube->update($request->all());
+        // Fetch the updated judul from the related Pdf
+        $pdf = Pdf::findOrFail($request->pdf_id);
+        $requestData = $request->all();
+        $requestData['judul'] = $pdf->judul; // Automatically update judul from Pdf
+
+        $youtube->update($requestData);
 
         return redirect()->route('youtube.index')
-                        ->with('success','Youtube updated successfully');
+                         ->with('success', 'Youtube updated successfully.');
     }
 
     /**
@@ -84,6 +86,6 @@ class YoutubeController extends Controller
     {
         $youtube->delete();
 
-        return back()->with('success','Youtube deleted successfully');
+        return back()->with('success', 'Youtube deleted successfully.');
     }
 }

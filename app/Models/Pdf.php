@@ -10,6 +10,16 @@ class Pdf extends Model
     use HasFactory;
 
     protected $table = 'pdfs';
-    protected $guarded = [];
+
+    // Kolom yang boleh diisi
     protected $fillable = ['judul', 'keterangan', 'file'];
+
+    /**
+     * Relasi ke model Youtube.
+     * Setiap entri Pdf dapat memiliki banyak entri Youtube.
+     */
+    public function youtubes()
+    {
+        return $this->hasMany(Youtube::class, 'pdf_id');
+    }
 }
