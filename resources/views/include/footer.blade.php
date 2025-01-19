@@ -13,7 +13,7 @@
             &copy; Copyright <strong><span>Gardenschool Indonesia</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Created by <a href="#">IMAGI</a>
+            Created by <a href="https://www.instagram.com/pt.imagi/" target="_blank">IMAGI</a>
         </div>
     </div>
 </footer><!-- End Footer -->

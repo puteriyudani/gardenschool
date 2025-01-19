@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('youtubes', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
+            $table->foreign('judul')->references('judul')->on('pdfs')->onDelete('cascade');
             $table->string('keterangan');
             $table->string('link');
             $table->timestamps();

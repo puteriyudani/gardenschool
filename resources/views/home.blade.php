@@ -99,12 +99,12 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="/#program">
+                    <a href="{{ route('program.index') }}">
                         <img src="{{ asset('assets') }}/img/buttonprogram.png" alt="...">
                     </a>
                 </div>
                 <div class="col hugsme">
-                    <a href="{{ route('login') }}">
+                    <a href="{{ route('login') }}" target="_blank">
                         <img src="{{ asset('assets') }}/img/buttonhugs.png" alt="...">
                     </a>
                 </div>
@@ -226,7 +226,7 @@
         </section><!-- End About Section -->
 
         <!-- ======= Program Section ======= -->
-        <section id="program" class="testimonials section-bg">
+        {{-- <section id="program" class="testimonials section-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -280,7 +280,7 @@
                 </div>
 
             </div>
-        </section>
+        </section> --}}
         <!-- End Program Section -->
 
         <!-- ======= Support Section ======= -->

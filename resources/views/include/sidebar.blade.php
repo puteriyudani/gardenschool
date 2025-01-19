@@ -30,7 +30,7 @@
                     <span class="hide-menu">Data</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('showAkun') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('akun.admin') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-plus"></i>
                         </span>

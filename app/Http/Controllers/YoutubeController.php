@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pdf;
 use App\Models\Youtube;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class YoutubeController extends Controller
      */
     public function create()
     {
-        return view('youtube.create');
+        $pdfs = Pdf::all();
+        return view('youtube.create', compact('pdfs'));
     }
 
     /**
@@ -54,7 +56,8 @@ class YoutubeController extends Controller
      */
     public function edit(Youtube $youtube)
     {
-        return view('youtube.edit',compact('youtube'));
+        $pdfs = Pdf::all();
+        return view('youtube.edit',compact('youtube', 'pdfs'));
     }
 
     /**

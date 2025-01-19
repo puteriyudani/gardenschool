@@ -23,6 +23,7 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PlaygroupController;
 use App\Http\Controllers\PoopPeeController;
 use App\Http\Controllers\PreschoolController;
+use App\Http\Controllers\ProgramControler;
 use App\Http\Controllers\QuranBabyController;
 use App\Http\Controllers\QuranController;
 use App\Http\Controllers\RecallingController;
@@ -49,8 +50,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/montessory-youtube', [HomeController::class, 'youtube'])->name('montessory.youtube');
-Route::get('/montessory-pdf', [HomeController::class, 'pdf'])->name('montessory.pdf');
+Route::resource('program', ProgramControler::class);
 
 // login
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -67,15 +67,17 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     // home admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
+    //list akun
+    Route::get('/list-akun/admin', [AdminController::class, 'indexAdmin'])->name('akun.admin');
+    Route::get('/list-akun/guru', [AdminController::class, 'indexGuru'])->name('akun.guru');
+    Route::get('/list-akun/orangtua', [AdminController::class, 'indexOrtu'])->name('akun.ortu');
+
     // akun
-    Route::get('/list-akun', [AdminController::class, 'showAkun'])->name('showAkun');
     Route::get('akun/{user}', [AdminController::class, 'editAkun'])->name('editAkun');
     Route::put('akun/{user}', [AdminController::class, 'updateAkun'])->name('updateAkun');
     Route::delete('akun/{user}', [AdminController::class, 'destroyAkun'])->name('destroyAkun');
     Route::get('password/{user}', [PasswordController::class, 'edit'])->name('editPassword');
     Route::put('password/{user}', [PasswordController::class, 'update'])->name('updatePassword');
-
-
 
     // tahun
     Route::resource('tahun', TahunController::class);

@@ -36,9 +36,18 @@
                                         @method('PUT')
                                         <div class="mb-3">
                                             <label for="judul" class="form-label">Judul</label>
-                                            <input type="text" class="form-control" id="judul" name="judul"
-                                                aria-describedby="judulHelp" value="{{ $youtube->judul }}">
+                                            <select class="form-control" id="judul" name="judul"
+                                                aria-describedby="judulHelp">
+                                                <option value="" disabled>Pilih Judul</option>
+                                                @foreach ($pdfs as $pdf)
+                                                    <option value="{{ $pdf->judul }}"
+                                                        {{ $pdf->judul == $youtube->judul ? 'selected' : '' }}>
+                                                        {{ $pdf->judul }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
+
                                         <div class="mb-3">
                                             <label for="keterangan" class="form-label">Keterangan</label>
                                             <textarea class="form-control" placeholder="keterangan" id="keterangan" name="keterangan" style="height: 100px">{{ $youtube->keterangan }}</textarea>
