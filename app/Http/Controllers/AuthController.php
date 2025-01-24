@@ -47,20 +47,23 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if(Auth::attempt(['nohp' => $request->nohp, 'password' => $request->password])) {
+        if (Auth::attempt(['nohp' => $request->nohp, 'password' => $request->password])) {
             // Simpan nama pengguna dalam sesi
             $request->session()->put('name', Auth::user()->name);
 
-            if(Auth::user()->level == 'admin') {
+            // Memperbarui waktu login terakhir user
+            User::updateLastLogin(Auth::user()->id);
+
+            if (Auth::user()->level == 'admin') {
                 return redirect()->route('admin');
-            } else if(Auth::user()->level == 'guru') {
+            } else if (Auth::user()->level == 'guru') {
                 return redirect()->route('teacher.index');
-            } else if(Auth::user()->level == 'ortu') {
+            } else if (Auth::user()->level == 'ortu') {
                 return redirect()->route('ortu');
             } else {
                 return redirect()->route('register');
             }
-        } else{
+        } else {
             return back()->withErrors([
                 'password' => 'Wrong nohp or password',
             ]);
