@@ -11,6 +11,7 @@
             opacity: 1;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection
 
 @section('content')
@@ -49,50 +50,25 @@
                     </div>
                 </div>
 
-
                 <!-- Card Wrapper - Welcome Mood -->
                 <div class="card mt-4" style="background-color: #f8f2d6; border-radius: 10px; padding: 20px;">
                     <h3 class="text-center">Welcome Mood</h3>
-                    <!-- Tampilan Rekapan Data -->
+                    <!-- Tampilan Grafik -->
                     <div class="row mt-4">
-                        @php
-                            $images = [
-                                'Sad' => 'auth/images/face/sad.png',
-                                'Neutral' => 'auth/images/face/neutral.png',
-                                'Happy' => 'auth/images/face/happy.png',
-                            ];
-                        @endphp
-                        @foreach ($images as $key => $image)
-                            <div class="col-md-4 text-center">
-                                <img src="{{ asset($image) }}" alt="{{ $key }}" class="img-fluid"
-                                    style="max-width: 150px;">
-                                <h6 class="mt-2">{{ $key }}</h6>
-                                <p>{{ round($persentaseWelcome[$key] ?? 0, 2) }}%</p>
-                            </div>
-                        @endforeach
+                        <div class="col-md-12">
+                            <canvas id="welcomeMoodChart" style="max-width: 100%; height: 300px;"></canvas>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Card Wrapper - Recalling -->
                 <div class="card mt-4" style="background-color: #f1d6f8; border-radius: 10px; padding: 20px;">
                     <h3 class="text-center">Recalling</h3>
-                    <!-- Tampilan Rekapan Data -->
+                    <!-- Tampilan Grafik -->
                     <div class="row mt-4">
-                        @php
-                            $images = [
-                                'Sad' => 'auth/images/face/sad.png',
-                                'Neutral' => 'auth/images/face/neutral.png',
-                                'Happy' => 'auth/images/face/happy.png',
-                            ];
-                        @endphp
-                        @foreach ($images as $key => $image)
-                            <div class="col-md-4 text-center">
-                                <img src="{{ asset($image) }}" alt="{{ $key }}" class="img-fluid"
-                                    style="max-width: 150px;">
-                                <h6 class="mt-2">{{ $key }}</h6>
-                                <p>{{ round($persentaseRecalling[$key] ?? 0, 2) }}%</p>
-                            </div>
-                        @endforeach
+                        <div class="col-md-12">
+                            <canvas id="recallingChart" style="max-width: 100%; height: 300px;"></canvas>
+                        </div>
                     </div>
                 </div>
 
@@ -129,4 +105,74 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Data untuk Welcome Mood
+        var welcomeMoodData = {
+            labels: ['Sad', 'Neutral', 'Happy'],
+            datasets: [{
+                label: 'Persentase Welcome Mood',
+                data: [{{ round($persentaseWelcome['Sad'] ?? 0, 2) }},
+                    {{ round($persentaseWelcome['Neutral'] ?? 0, 2) }},
+                    {{ round($persentaseWelcome['Happy'] ?? 0, 2) }}
+                ],
+                backgroundColor: ['#ff6f61', '#f8b400', '#4caf50'],
+                borderColor: ['#ff6f61', '#f8b400', '#4caf50'],
+                borderWidth: 2,
+                fill: false, // Menghapus pengisian area di bawah grafik
+                tension: 0.4 // Membuat garis sedikit melengkung
+            }]
+        };
+
+        // Data untuk Recalling
+        var recallingData = {
+            labels: ['Sad', 'Neutral', 'Happy'],
+            datasets: [{
+                label: 'Persentase Recalling',
+                data: [{{ round($persentaseRecalling['Sad'] ?? 0, 2) }},
+                    {{ round($persentaseRecalling['Neutral'] ?? 0, 2) }},
+                    {{ round($persentaseRecalling['Happy'] ?? 0, 2) }}
+                ],
+                backgroundColor: ['#ff6f61', '#f8b400', '#4caf50'],
+                borderColor: ['#ff6f61', '#f8b400', '#4caf50'],
+                borderWidth: 2,
+                fill: false, // Menghapus pengisian area di bawah grafik
+                tension: 0.4 // Membuat garis sedikit melengkung
+            }]
+        };
+
+        // Konfigurasi untuk Welcome Mood - Line Chart
+        var ctxWelcomeMood = document.getElementById('welcomeMoodChart').getContext('2d');
+        var welcomeMoodChart = new Chart(ctxWelcomeMood, {
+            type: 'line', // Ubah tipe menjadi line
+            data: welcomeMoodData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMin: 0, // Menentukan nilai minimal y-axis
+                        suggestedMax: 100 // Menentukan nilai maksimal y-axis
+                    }
+                }
+            }
+        });
+
+        // Konfigurasi untuk Recalling - Line Chart
+        var ctxRecalling = document.getElementById('recallingChart').getContext('2d');
+        var recallingChart = new Chart(ctxRecalling, {
+            type: 'line', // Ubah tipe menjadi line
+            data: recallingData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMin: 0, // Menentukan nilai minimal y-axis
+                        suggestedMax: 100 // Menentukan nilai maksimal y-axis
+                    }
+                }
+            }
+        });
+    </script>
 @endsection
