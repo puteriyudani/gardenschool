@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelompok;
 use App\Models\Siswa;
 use App\Models\Tahun;
 use App\Models\User;
@@ -14,9 +15,10 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $kindergartens = Siswa::where('kelompok', 'kindergarten')->count();
-        $playgroups = Siswa::where('kelompok', 'playgroup')->count();
-        $babycamps = Siswa::where('kelompok', 'babycamp')->count();
+        $kindergartens = Siswa::whereIn('kelompok', Kelompok::where('kategori', 'TK')->pluck('id'))->count();
+        $playgroups = Siswa::whereIn('kelompok', Kelompok::where('kategori', 'KB')->pluck('id'))->count();
+        $babycamps = Siswa::whereIn('kelompok', Kelompok::where('kategori', 'BC')->pluck('id'))->count();
+
         return view('siswa.index', compact('kindergartens', 'playgroups', 'babycamps'));
     }
 
@@ -27,7 +29,8 @@ class SiswaController extends Controller
     {
         $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
         $tahuns = Tahun::get();
-        return view('siswa.create', compact('ortus', 'tahuns'));
+        $kelompok = Kelompok::all();  // Ambil semua kelompok dari tabel Kelompok
+        return view('siswa.create', compact('ortus', 'tahuns', 'kelompok'));
     }
 
     /**
@@ -82,7 +85,8 @@ class SiswaController extends Controller
     {
         $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
         $tahuns = Tahun::get();
-        return view('siswa.edit', compact('siswa', 'ortus', 'tahuns'));
+        $kelompok = Kelompok::all();  // Ambil data kelompok dari tabel Kelompok
+        return view('siswa.edit', compact('siswa', 'ortus', 'tahuns', 'kelompok'));
     }
 
     /**
@@ -143,7 +147,10 @@ class SiswaController extends Controller
     public function showKindergarten()
     {
         $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
-        $siswas = Siswa::where('kelompok', 'kindergarten')->get();
+        // Ambil ID kelompok dengan kategori 'TK'
+        $kelompokTK = Kelompok::where('kategori', 'TK')->pluck('id');
+        // Ambil siswa yang memiliki kelompok dengan ID yang sesuai
+        $siswas = Siswa::whereIn('kelompok', $kelompokTK)->paginate(10);
         $tahuns = Tahun::get();
         return view('siswa.kindergarten', compact('siswas', 'ortus', 'tahuns'));
     }
@@ -151,7 +158,10 @@ class SiswaController extends Controller
     public function showPlaygroup()
     {
         $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
-        $siswas = Siswa::where('kelompok', 'playgroup')->get();
+        // Ambil ID kelompok dengan kategori 'KB'
+        $kelompokKB = Kelompok::where('kategori', 'KB')->pluck('id');
+        // Ambil siswa yang memiliki kelompok dengan ID yang sesuai
+        $siswas = Siswa::whereIn('kelompok', $kelompokKB)->paginate(10);
         $tahuns = Tahun::get();
         return view('siswa.playgroup', compact('siswas', 'ortus', 'tahuns'));
     }
@@ -159,7 +169,10 @@ class SiswaController extends Controller
     public function showBabycamp()
     {
         $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
-        $siswas = Siswa::where('kelompok', 'babycamp')->get();
+        // Ambil ID kelompok dengan kategori 'BC'
+        $kelompokBC = Kelompok::where('kategori', 'BC')->pluck('id');
+        // Ambil siswa yang memiliki kelompok dengan ID yang sesuai
+        $siswas = Siswa::whereIn('kelompok', $kelompokBC)->paginate(10);
         $tahuns = Tahun::get();
         return view('siswa.babycamp', compact('siswas', 'ortus', 'tahuns'));
     }

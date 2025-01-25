@@ -51,7 +51,7 @@
 
 
                 <!-- Card Wrapper - Welcome Mood -->
-                <div class="card mt-4" style="background-color: #D6EAF8; border-radius: 10px; padding: 20px;">
+                <div class="card mt-4" style="background-color: #f8f2d6; border-radius: 10px; padding: 20px;">
                     <h3 class="text-center">Welcome Mood</h3>
                     <!-- Tampilan Rekapan Data -->
                     <div class="row mt-4">

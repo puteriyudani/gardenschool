@@ -12,7 +12,7 @@ class TahunController extends Controller
      */
     public function index()
     {
-        $tahuns = Tahun::get();
+        $tahuns = Tahun::all();
         return view('tahun.index', compact('tahuns'));
     }
 
@@ -32,9 +32,9 @@ class TahunController extends Controller
         $request->validate([
             'tahun' => 'required',
         ]);
-    
+
         Tahun::create($request->all());
-    
+
         return redirect()->route('tahun.index')
                         ->with('success','Tahun created successfully.');
     }
@@ -63,9 +63,9 @@ class TahunController extends Controller
         $request->validate([
             'tahun' => 'required',
         ]);
-    
+
         $tahun->update($request->all());
-    
+
         return redirect()->route('tahun.index')
                         ->with('success','Tahun updated successfully');
     }
@@ -76,7 +76,7 @@ class TahunController extends Controller
     public function destroy(Tahun $tahun)
     {
         $tahun->delete();
-    
+
         return back()->with('success','Tahun deleted successfully');
     }
 }

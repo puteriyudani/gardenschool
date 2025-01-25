@@ -74,9 +74,9 @@
                                             <select id="kelompok" name="kelompok" class="form-select"
                                                 aria-label="Default select example">
                                                 <option selected>- Pilih -</option>
-                                                <option value="kindergarten">Kindergarten</option>
-                                                <option value="playgroup">Play Group</option>
-                                                <option value="babycamp">Baby Camp</option>
+                                                @foreach ($kelompok as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->kelompok }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-3">

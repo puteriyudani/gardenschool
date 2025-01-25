@@ -17,20 +17,14 @@ class Siswa extends Model
     {
         return $this->belongsTo(User::class, 'orangtua_id');
     }
+    public function kelompoks()
+    {
+        return $this->belongsTo(Kelompok::class, 'kelompok', 'id');
+    }
 
     public function tahun()
     {
         return $this->belongsTo(Tahun::class);
-    }
-
-    public function catatanguru()
-    {
-        return $this->belongsTo(Catatanguru::class);
-    }
-
-    public function catatanorangtua()
-    {
-        return $this->belongsTo(Catatanorangtua::class);
     }
 
     public function breakfasts()

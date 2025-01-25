@@ -46,6 +46,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('kelompok.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-id-badge"></i>
+                        </span>
+                        <span class="hide-menu">Kelas</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('tahun.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>

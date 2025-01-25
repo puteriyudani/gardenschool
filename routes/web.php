@@ -13,6 +13,7 @@ use App\Http\Controllers\HadistBabyController;
 use App\Http\Controllers\HadistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IslamicController;
+use App\Http\Controllers\KelompokController;
 use App\Http\Controllers\KindergartenController;
 use App\Http\Controllers\LunchController;
 use App\Http\Controllers\MenuController;
@@ -81,6 +82,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     // tahun
     Route::resource('tahun', TahunController::class);
+
+    // kelompok
+    Route::resource('kelompok', KelompokController::class);
 
     // siswa
     Route::resource('siswa', SiswaController::class);

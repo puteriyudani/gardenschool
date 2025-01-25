@@ -43,9 +43,10 @@
                         <tbody>
                             @foreach ($siswas as $siswa)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td><img src="{{ asset('storage/images/' . $siswa->image) }}"
-                                        class="img-thumbnail" style="width:200px" /></td>
+                                    <!-- Menambahkan offset berdasarkan halaman -->
+                                    <td>{{ $loop->iteration + ($siswas->currentPage() - 1) * $siswas->perPage() }}</td>
+                                    <td><img src="{{ asset('storage/images/' . $siswa->image) }}" class="img-thumbnail"
+                                            style="width:200px" /></td>
                                     @foreach ($tahuns as $tahun)
                                         @if ($tahun->id == $siswa->tahun_id)
                                             <td>{{ $tahun->tahun }}</td>
@@ -54,7 +55,7 @@
                                     <td>{{ $siswa->nama }}</td>
                                     <td>{{ $siswa->panggilan }}</td>
                                     <td>{{ $siswa->noinduk }}</td>
-                                    <td>{{ $siswa->kelompok }}</td>
+                                    <td>{{ $siswa->kelompoks ? $siswa->kelompoks->kelompok : 'Tidak Ada' }}</td>
                                     <td>{{ $siswa->tempat_lahir }}</td>
                                     <td>{{ $siswa->tanggal_lahir }}</td>
                                     <td>{{ $siswa->jenis_kelamin }}</td>
@@ -70,22 +71,23 @@
                                     @endforeach
                                     <td>
                                         <form action="{{ route('siswa.destroy', $siswa->id) }}" method="POST">
-                                            <a href="{{ route('siswa.edit', $siswa->id) }}" style="text-decoration: none;">
-                                                edit
-                                            </a>
+                                            <a href="{{ route('siswa.edit', $siswa->id) }}"
+                                                style="text-decoration: none;">edit</a>
 
                                             @csrf
                                             @method('DELETE')
 
-                                            <button class="btn mb-1" type="submit" style="color: red">
-                                                hapus
-                                            </button>
+                                            <button class="btn mb-1" type="submit" style="color: red">hapus</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+
+                <div class="d-flex mt-4">
+                    {{ $siswas->links() }}
                 </div>
             </div>
         </div>

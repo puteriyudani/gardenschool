@@ -82,11 +82,13 @@
                                             <label for="kelompok" class="form-label">Kelompok</label>
                                             <select id="kelompok" name="kelompok" class="form-select"
                                                 aria-label="Default select example">
-                                                <option value="{{ $siswa->kelompok }}" selected>{{ $siswa->kelompok }}
-                                                </option>
-                                                <option value="kindergarten">Kindergarten</option>
-                                                <option value="playgroup">Play Group</option>
-                                                <option value="babycamp">Baby Camp</option>
+                                                <option selected>- Pilih -</option>
+                                                @foreach ($kelompok as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        @if ($siswa->kelompok == $item->id) selected @endif>
+                                                        {{ $item->kelompok }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-3">
@@ -140,7 +142,8 @@
                                             <div class="col-sm-10">
                                                 <!-- Display the existing image -->
                                                 <div>
-                                                    <img id="existingImage" src="{{ asset('storage/images/' . $siswa->image) }}"
+                                                    <img id="existingImage"
+                                                        src="{{ asset('storage/images/' . $siswa->image) }}"
                                                         alt="Gambar Sebelumnya"
                                                         style="max-width: 200px; max-height: 200px;">
                                                 </div>
