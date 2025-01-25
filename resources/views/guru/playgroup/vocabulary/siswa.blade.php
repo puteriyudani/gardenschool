@@ -34,21 +34,32 @@
                             <h5 class="card-title fw-semibold mb-4">Playgroup - Vocabulary</h5>
 
                             <div class="row text-center">
-                                @foreach ($siswas as $siswa)
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-3">
-                                        <div class="card d-inline-block rounded-circle"
-                                            style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden;">
-                                            <a target="_blank" href="{{ route('tpvocabulary.index', $siswa->id) }}">
-                                                <img src="{{ asset('storage/images/' . $siswa->image) }}"
-                                                    class="img-fluid rounded-circle" alt="..."
-                                                    style="width: 100%; height: 100%; object-fit: cover;">
-                                            </a>
+                                @foreach ($siswas as $kelompokNama => $siswaList)
+                                    <div class="mt-4">
+                                        <h4 class="text-center">{{ $kelompokNama }}</h4> <!-- Nama Kelompok -->
+                                        <div class="row">
+                                            @foreach ($siswaList as $siswa)
+                                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-3">
+                                                    <div class="card d-inline-block rounded-circle"
+                                                        style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden;">
+                                                        <a target="_blank"
+                                                            href="{{ route('tpvocabulary.index', $siswa->id) }}">
+                                                            <img src="{{ asset('storage/images/' . $siswa->image) }}"
+                                                                class="img-fluid rounded-circle" alt="..."
+                                                                style="width: 100%; height: 100%; object-fit: cover;">
+                                                        </a>
+                                                    </div>
+                                                    <div class="nama">
+                                                        <a target="_blank"
+                                                            href="{{ route('tpvocabulary.index', $siswa->id) }}"
+                                                            class="btn"
+                                                            style="background-color: #6FAC45; color: white">{{ $siswa->nama }}</a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="nama">
-                                            <a target="_blank" href="{{ route('tpvocabulary.index', $siswa->id) }}"
-                                                class="btn"
-                                                style="background-color: #6FAC45; color: white">{{ $siswa->nama }}</a>
-                                        </div>
+                                        <!-- Menampilkan pagination untuk setiap kelompok -->
+                                        {{ $siswaList->links() }}
                                     </div>
                                 @endforeach
                             </div>
