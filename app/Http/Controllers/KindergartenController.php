@@ -13,11 +13,14 @@ class KindergartenController extends Controller
         // Ambil kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'TK'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokTK as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.kindergarten.welcome.siswa', compact('siswas'));
@@ -28,11 +31,14 @@ class KindergartenController extends Controller
         // Ambil kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'TK'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokTK as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.kindergarten.morning.siswa', compact('siswas'));
@@ -43,11 +49,14 @@ class KindergartenController extends Controller
         // Ambil kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'TK'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokTK as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.kindergarten.breakfast.siswa', compact('siswas'));
@@ -58,11 +67,14 @@ class KindergartenController extends Controller
         // Ambil kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'TK'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokTK as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.kindergarten.islamic.siswa', compact('siswas'));
@@ -73,11 +85,14 @@ class KindergartenController extends Controller
         // Ambil kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'TK'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokTK as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.kindergarten.preschool.siswa', compact('siswas'));
@@ -88,11 +103,14 @@ class KindergartenController extends Controller
         // Ambil kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'TK'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokTK as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.kindergarten.tematik.siswa', compact('siswas'));
@@ -103,11 +121,14 @@ class KindergartenController extends Controller
         // Ambil kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'TK'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokTK as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.kindergarten.pooppee.siswa', compact('siswas'));
@@ -118,11 +139,14 @@ class KindergartenController extends Controller
         // Ambil kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'TK'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokTK as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.kindergarten.recalling.siswa', compact('siswas'));
@@ -133,11 +157,14 @@ class KindergartenController extends Controller
         // Ambil kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'TK'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokTK as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.kindergarten.vocabulary.siswa', compact('siswas'));

@@ -11,7 +11,7 @@ class Tahun extends Model
 
     protected $table = 'tahuns';
     protected $guarded = [];
-    protected $fillable = ['tahun'];
+    protected $fillable = ['tahun', 'status'];
 
     public function siswa()
     {

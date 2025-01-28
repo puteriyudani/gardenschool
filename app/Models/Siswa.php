@@ -24,7 +24,7 @@ class Siswa extends Model
 
     public function tahun()
     {
-        return $this->belongsTo(Tahun::class);
+        return $this->belongsTo(Tahun::class, 'tahun_id');
     }
 
     public function breakfasts()

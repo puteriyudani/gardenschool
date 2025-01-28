@@ -25,6 +25,7 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Tahun</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -33,10 +34,14 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $tahun->tahun }}</td>
+                                    <td>{{ $tahun->status }}</td>
                                     <td>
                                         <form action="{{ route('tahun.destroy', $tahun->id) }}" method="POST">
-                                            <a href="{{ route('tahun.edit', $tahun->id) }}" style="text-decoration: none;">
+                                            <a class="me-2" href="{{ route('tahun.edit', $tahun->id) }}" style="text-decoration: none;">
                                                 edit
+                                            </a>
+                                            <a href="{{ route('tahun.editStatus', $tahun->id) }}" style="text-decoration: none; color: green;">
+                                                edit status
                                             </a>
 
                                             @csrf

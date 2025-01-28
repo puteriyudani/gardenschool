@@ -82,6 +82,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     // tahun
     Route::resource('tahun', TahunController::class);
+    Route::get('/tahun/{tahun}/edit-status', [TahunController::class, 'editStatus'])->name('tahun.editStatus');
+    Route::put('/tahun/{tahun}/update-status', [TahunController::class, 'updateStatus'])->name('tahun.updateStatus');
 
     // kelompok
     Route::resource('kelompok', KelompokController::class);

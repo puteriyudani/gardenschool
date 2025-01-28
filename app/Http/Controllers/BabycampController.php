@@ -13,11 +13,14 @@ class BabycampController extends Controller
         // Ambil kelompok dengan kategori 'BC'
         $kelompokBC = Kelompok::where('kategori', 'BC')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'BC'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokBC as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.babycamp.welcome.siswa', compact('siswas'));
@@ -28,11 +31,14 @@ class BabycampController extends Controller
         // Ambil kelompok dengan kategori 'BC'
         $kelompokBC = Kelompok::where('kategori', 'BC')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'BC'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokBC as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.babycamp.morning.siswa', compact('siswas'));
@@ -43,11 +49,14 @@ class BabycampController extends Controller
         // Ambil kelompok dengan kategori 'BC'
         $kelompokBC = Kelompok::where('kategori', 'BC')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'BC'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokBC as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.babycamp.breakfast.siswa', compact('siswas'));
@@ -58,11 +67,14 @@ class BabycampController extends Controller
         // Ambil kelompok dengan kategori 'BC'
         $kelompokBC = Kelompok::where('kategori', 'BC')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'BC'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokBC as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.babycamp.islamic.siswa', compact('siswas'));
@@ -73,11 +85,14 @@ class BabycampController extends Controller
         // Ambil kelompok dengan kategori 'BC'
         $kelompokBC = Kelompok::where('kategori', 'BC')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'BC'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokBC as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.babycamp.act.siswa', compact('siswas'));
@@ -88,11 +103,14 @@ class BabycampController extends Controller
         // Ambil kelompok dengan kategori 'BC'
         $kelompokBC = Kelompok::where('kategori', 'BC')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'BC'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokBC as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.babycamp.fun.siswa', compact('siswas'));
@@ -103,11 +121,14 @@ class BabycampController extends Controller
         // Ambil kelompok dengan kategori 'BC'
         $kelompokBC = Kelompok::where('kategori', 'BC')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'BC'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokBC as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.babycamp.lunch.siswa', compact('siswas'));
@@ -118,11 +139,14 @@ class BabycampController extends Controller
         // Ambil kelompok dengan kategori 'BC'
         $kelompokBC = Kelompok::where('kategori', 'BC')->get();
 
-        // Ambil siswa yang memiliki kelompok berdasarkan kategori 'BC'
+        // Ambil siswa yang memiliki kelompok dan hanya tahun aktif
         $siswas = [];
         foreach ($kelompokBC as $kelompok) {
-            // Menyimpan siswa dalam objek paginator
-            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)->paginate(10);
+            $siswas[$kelompok->kelompok] = Siswa::where('kelompok', $kelompok->id)
+                ->whereHas('tahun', function ($query) {
+                    $query->where('status', 'active'); // Filter berdasarkan tahun aktif
+                })
+                ->paginate(10); // Pagination untuk siswa per kelompok
         }
 
         return view('guru.babycamp.recalling.siswa', compact('siswas'));

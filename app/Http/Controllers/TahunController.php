@@ -36,7 +36,7 @@ class TahunController extends Controller
         Tahun::create($request->all());
 
         return redirect()->route('tahun.index')
-                        ->with('success','Tahun created successfully.');
+            ->with('success', 'Tahun created successfully.');
     }
 
     /**
@@ -52,7 +52,7 @@ class TahunController extends Controller
      */
     public function edit(Tahun $tahun)
     {
-        return view('tahun.edit',compact('tahun'));
+        return view('tahun.edit', compact('tahun'));
     }
 
     /**
@@ -67,7 +67,30 @@ class TahunController extends Controller
         $tahun->update($request->all());
 
         return redirect()->route('tahun.index')
-                        ->with('success','Tahun updated successfully');
+            ->with('success', 'Tahun updated successfully');
+    }
+
+    /**
+     * Show the form for editing the status of the specified resource.
+     */
+    public function editStatus(Tahun $tahun)
+    {
+        return view('tahun.editstatus', compact('tahun'));
+    }
+
+    /**
+     * Update the status of the specified resource in storage.
+     */
+    public function updateStatus(Request $request, Tahun $tahun)
+    {
+        $request->validate([
+            'status' => 'required|in:active,inactive', // Validasi untuk hanya menerima status tertentu
+        ]);
+
+        $tahun->update(['status' => $request->status]);
+
+        return redirect()->route('tahun.index')
+            ->with('success', 'Status updated successfully');
     }
 
     /**
@@ -77,6 +100,6 @@ class TahunController extends Controller
     {
         $tahun->delete();
 
-        return back()->with('success','Tahun deleted successfully');
+        return back()->with('success', 'Tahun deleted successfully');
     }
 }
