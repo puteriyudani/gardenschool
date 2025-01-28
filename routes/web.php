@@ -72,6 +72,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/list-akun/admin', [AdminController::class, 'indexAdmin'])->name('akun.admin');
     Route::get('/list-akun/guru', [AdminController::class, 'indexGuru'])->name('akun.guru');
     Route::get('/list-akun/orangtua', [AdminController::class, 'indexOrtu'])->name('akun.ortu');
+    Route::get('/list-akun/pembeli', [AdminController::class, 'indexPembeli'])->name('akun.pembeli');
 
     // akun
     Route::get('akun/{user}', [AdminController::class, 'editAkun'])->name('editAkun');

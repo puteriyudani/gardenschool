@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('judul')
-    <title>Akun Orang Tua</title>
+    <title>Akun Pembeli Modul</title>
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <a href="{{ route('register') }}"><button type="button" class="btn btn-success m-1 mb-3">Tambah Akun</button></a>
 
-                <h5>Orang Tua</h5>
+                <h5>Pembeli Modul</h5>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -27,18 +27,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($ortus as $ortu)
+                            @foreach ($pembelis as $pembeli)
                                 <tr>
                                     <td class="col-md-1">{{ $loop->iteration }}</td>
-                                    <td class="col-md-2">{{ $ortu->name }}</td>
-                                    <td class="col-md-2">{{ $ortu->nohp }}</td>
+                                    <td class="col-md-2">{{ $pembeli->name }}</td>
+                                    <td class="col-md-2">{{ $pembeli->nohp }}</td>
                                     <td class="col-md-2">
-                                        <form action="{{ route('destroyAkun', $ortu->id) }}" method="POST">
-                                            <a href="{{ route('editAkun', $ortu->id) }}" class="me-2" style="text-decoration: none;">
+                                        <form action="{{ route('destroyAkun', $pembeli->id) }}" method="POST">
+                                            <a href="{{ route('editAkun', $pembeli->id) }}" class="me-2" style="text-decoration: none;">
                                                 edit
                                             </a>
 
-                                            <a href="{{ route('editPassword', $ortu->id) }}" style="text-decoration: none; color: green;">
+                                            <a href="{{ route('editPassword', $pembeli->id) }}" style="text-decoration: none; color: green;">
                                                 ubah password
                                             </a>
 
@@ -56,7 +56,7 @@
                     </table>
                 </div>
                 <div>
-                    {{ $ortus->links() }}
+                    {{ $pembelis->links() }}
                 </div>
 
                 <div>

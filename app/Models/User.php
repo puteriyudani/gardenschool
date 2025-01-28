@@ -32,7 +32,7 @@ class User extends Authenticatable
     protected function level(): Attribute
     {
         return new Attribute(
-            get: fn ($value) =>  ["admin", "guru", "ortu"][$value],
+            get: fn ($value) =>  ["admin", "guru", "ortu", "pembeli"][$value],
         );
     }
 

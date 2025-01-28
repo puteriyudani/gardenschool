@@ -13,6 +13,12 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
+                @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+
                 <a href="{{ route('register') }}"><button type="button" class="btn btn-success m-1 mb-3">Tambah
                         Akun</button></a>
 
@@ -66,6 +72,7 @@
                     <a href="{{ route('akun.admin') }}" class="btn btn-primary">Admin</a>
                     <a href="{{ route('akun.guru') }}" class="btn btn-primary">Guru</a>
                     <a href="{{ route('akun.ortu') }}" class="btn btn-primary">Orangtua</a>
+                    <a href="{{ route('akun.pembeli') }}" class="btn btn-primary">Pembeli Modul</a>
                 </div>
 
             </div>

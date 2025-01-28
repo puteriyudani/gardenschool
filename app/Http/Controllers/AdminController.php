@@ -35,6 +35,12 @@ class AdminController extends Controller
         return view('akun.ortu', compact('ortus'));
     }
 
+    public function indexPembeli()
+    {
+        $pembelis = User::where('level', '3')->paginate(10);
+        return view('akun.pembeli', compact('pembelis'));
+    }
+
     public function editAkun(User $user)
     {
         return view('admin.edit', compact('user'));

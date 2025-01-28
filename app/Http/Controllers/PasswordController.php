@@ -58,7 +58,7 @@ class PasswordController extends Controller
             'old_password' => 'required',
             'new_password' => 'required|confirmed',
         ]);
-    
+
         // Memeriksa apakah kata sandi saat ini benar
         if (!Hash::check($request->old_password, $user->password)) {
             return back()->with('error', 'Kata sandi saat ini salah.');
@@ -71,8 +71,7 @@ class PasswordController extends Controller
         // Regenerasi sesi untuk menghindari akses ilegal
         $request->session()->regenerate();
 
-        return redirect()->route('showAkun')->with('success', 'Password updated successfully');
-        
+        return redirect()->route('akun.admin')->with('success', 'Password updated successfully');
     }
 
     /**
