@@ -19,17 +19,13 @@
                         <div class="alert alert-success mb-0" role="alert">
                             Selamat datang, {{ auth()->user()->name }}! Anda login sebagai pembeli.
                         </div>
-                    @elseif(auth()->check())
-                        <div class="alert alert-warning mb-0" role="alert">
-                            Selamat datang, {{ auth()->user()->name }}!
-                        </div>
                     @else
                         <div class="alert alert-info mb-0" role="alert">
                             Anda belum login. Login untuk mengakses fitur lengkap.
                         </div>
                     @endif
 
-                    @if (auth()->check())
+                    @if (auth()->check() && auth()->user()->level == 'pembeli')
                         <form action="{{ route('logoutpembeli') }}" style="margin: 0;">
                             <button type="submit" class="btn btn-danger btn-sm">Logout</button>
                         </form>
