@@ -179,14 +179,4 @@ class OrtuController extends Controller
             return redirect()->back()->with('error', 'Siswa tidak ditemukan untuk orangtua ini.');
         }
     }
-
-    public function siswa()
-    {
-        $ortu = Auth::user();
-        $kindergarten = $ortu->siswa()->where('kelompok', 'kindergarten')->get();
-        $playgroup = $ortu->siswa()->where('kelompok', 'playgroup')->get();
-        $babycamp = $ortu->siswa()->where('kelompok', 'babycamp')->get();
-
-        return view('orangtua.siswa', compact('kindergarten', 'playgroup', 'babycamp'));
-    }
 }

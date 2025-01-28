@@ -29,7 +29,8 @@
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Data</span>
                 </li>
-                <li class="sidebar-item">
+                <li
+                    class="sidebar-item {{ in_array(Route::currentRouteName(), ['akun.admin', 'akun.guru', 'akun.ortu', 'akun.pembeli', 'editAkun', 'editPassword']) ? 'selected' : '' }}">
                     <a class="sidebar-link" href="{{ route('akun.admin') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-plus"></i>
@@ -37,7 +38,7 @@
                         <span class="hide-menu">Akun</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['siswa.index', 'siswa.create', 'siswa.edit', 'showKindergarten', 'showPlaygroup', 'showBabycamp']) ? 'selected' : '' }}">
                     <a class="sidebar-link" href="{{ route('siswa.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user"></i>
@@ -45,7 +46,7 @@
                         <span class="hide-menu">Siswa</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['kelompok.index', 'kelompok.create', 'kelompok.edit']) ? 'selected' : '' }}">
                     <a class="sidebar-link" href="{{ route('kelompok.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-id-badge"></i>
@@ -53,7 +54,7 @@
                         <span class="hide-menu">Kelas</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['tahun.index', 'tahun.create', 'tahun.edit', 'tahun.editStatus']) ? 'selected' : '' }}">
                     <a class="sidebar-link" href="{{ route('tahun.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>
@@ -65,7 +66,7 @@
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Montessory</span>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['pdf.index', 'pdf.create', 'pdf.edit']) ? 'selected' : '' }}">
                     <a class="sidebar-link" href="{{ route('pdf.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-book"></i>
@@ -73,7 +74,7 @@
                         <span class="hide-menu">Pdf</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['youtube.index', 'youtube.create', 'youtube.edit']) ? 'selected' : '' }}">
                     <a class="sidebar-link" href="{{ route('youtube.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-video"></i>
