@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -60,7 +58,7 @@ class AdminController extends Controller
 
         $user->update($request->all());
 
-        return redirect()->route('showAkun')
+        return redirect()->route('akun.admin')
             ->with('success', 'Akun updated successfully');
         // $user = User::find(Auth::id());
         // $user->password = Hash::make($request->new_password);

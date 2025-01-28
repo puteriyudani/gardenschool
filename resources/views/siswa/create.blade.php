@@ -128,6 +128,7 @@
                                             <div class="col-sm-10">
                                                 <input class="form-control" name="image" id="image" type="file"
                                                     placeholder="image">
+                                                <small class="text-muted">Ukuran maksimal gambar adalah 2 MB.</small>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>

@@ -17,6 +17,23 @@
             <div class="container-fluid">
 
                 <h5>Kindergarten</h5>
+
+                <form action="{{ route('showKindergarten') }}" method="GET" class="mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select name="tahun" class="form-select" onchange="this.form.submit()">
+                                <option value="">Pilih Tahun</option>
+                                @foreach ($tahuns as $tahun)
+                                    <option value="{{ $tahun->id }}"
+                                        {{ request('tahun') == $tahun->id ? 'selected' : '' }}>
+                                        {{ $tahun->tahun }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>

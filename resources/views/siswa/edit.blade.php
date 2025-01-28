@@ -150,6 +150,7 @@
                                                 <!-- Input for uploading a new image -->
                                                 <input class="form-control mt-3" name="image[]" id="image"
                                                     type="file" placeholder="image">
+                                                <small class="text-muted">Ukuran maksimal gambar adalah 2 MB.</small>
                                             </div>
                                         </div>
 

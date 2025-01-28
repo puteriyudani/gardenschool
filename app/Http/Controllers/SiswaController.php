@@ -144,36 +144,60 @@ class SiswaController extends Controller
         return back()->with('success', 'Siswa deleted successfully');
     }
 
-    public function showKindergarten()
+    public function showKindergarten(Request $request)
     {
         $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
-        // Ambil ID kelompok dengan kategori 'TK'
         $kelompokTK = Kelompok::where('kategori', 'TK')->pluck('id');
-        // Ambil siswa yang memiliki kelompok dengan ID yang sesuai
-        $siswas = Siswa::whereIn('kelompok', $kelompokTK)->paginate(10);
         $tahuns = Tahun::get();
+
+        // Ambil tahun dari request
+        $tahunId = $request->get('tahun');
+
+        // Filter siswa berdasarkan kelompok TK dan tahun jika tersedia
+        $siswas = Siswa::whereIn('kelompok', $kelompokTK)
+            ->when($tahunId, function ($query) use ($tahunId) {
+                $query->where('tahun_id', $tahunId);
+            })
+            ->paginate(10);
+
         return view('siswa.kindergarten', compact('siswas', 'ortus', 'tahuns'));
     }
 
-    public function showPlaygroup()
+    public function showPlaygroup(Request $request)
     {
         $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
-        // Ambil ID kelompok dengan kategori 'KB'
         $kelompokKB = Kelompok::where('kategori', 'KB')->pluck('id');
-        // Ambil siswa yang memiliki kelompok dengan ID yang sesuai
-        $siswas = Siswa::whereIn('kelompok', $kelompokKB)->paginate(10);
         $tahuns = Tahun::get();
+
+        // Ambil tahun dari request
+        $tahunId = $request->get('tahun');
+
+        // Filter siswa berdasarkan kelompok KB dan tahun jika tersedia
+        $siswas = Siswa::whereIn('kelompok', $kelompokKB)
+            ->when($tahunId, function ($query) use ($tahunId) {
+                $query->where('tahun_id', $tahunId);
+            })
+            ->paginate(10);
+
         return view('siswa.playgroup', compact('siswas', 'ortus', 'tahuns'));
     }
 
-    public function showBabycamp()
+    public function showBabycamp(Request $request)
     {
         $ortus = User::where('level', '2')->orderBy('name', 'asc')->get();
-        // Ambil ID kelompok dengan kategori 'BC'
         $kelompokBC = Kelompok::where('kategori', 'BC')->pluck('id');
-        // Ambil siswa yang memiliki kelompok dengan ID yang sesuai
-        $siswas = Siswa::whereIn('kelompok', $kelompokBC)->paginate(10);
         $tahuns = Tahun::get();
+
+        // Ambil tahun dari request
+        $tahunId = $request->get('tahun');
+
+        // Filter siswa berdasarkan kelompok BC dan tahun jika tersedia
+        $siswas = Siswa::whereIn('kelompok', $kelompokBC)
+            ->when($tahunId, function ($query) use ($tahunId) {
+                $query->where('tahun_id', $tahunId);
+            })
+            ->paginate(10);
+
         return view('siswa.babycamp', compact('siswas', 'ortus', 'tahuns'));
     }
 }
