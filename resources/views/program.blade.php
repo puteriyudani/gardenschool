@@ -13,6 +13,29 @@
         <section id="program" class="testimonials section-bg">
             <div class="container" data-aos="fade-up">
 
+                <!-- Tanda Login -->
+                <div class="mb-4 d-flex justify-content-between align-items-center">
+                    @if (auth()->check() && auth()->user()->level == 'pembeli')
+                        <div class="alert alert-success mb-0" role="alert">
+                            Selamat datang, {{ auth()->user()->name }}! Anda login sebagai pembeli.
+                        </div>
+                    @elseif(auth()->check())
+                        <div class="alert alert-warning mb-0" role="alert">
+                            Selamat datang, {{ auth()->user()->name }}!
+                        </div>
+                    @else
+                        <div class="alert alert-info mb-0" role="alert">
+                            Anda belum login. Login untuk mengakses fitur lengkap.
+                        </div>
+                    @endif
+
+                    @if (auth()->check())
+                        <form action="{{ route('logoutpembeli') }}" style="margin: 0;">
+                            <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                        </form>
+                    @endif
+                </div>
+
                 <!-- Tabel Gabungan Montessory -->
                 <div class="section-title">
                     <h2>Montessory</h2>
@@ -33,10 +56,15 @@
                                     <td>{{ $item['judul'] }}</td>
                                     <td>{{ $item['pdf_keterangan'] }}</td>
                                     <td>
-                                        <a href="{{ asset('/storage/file/' . $item['pdf_file']) }}"
-                                            download="{{ $item['judul'] }}.pdf">
-                                            <i class="bx bxs-file-pdf" style="font-size: 24px; color: rgb(73, 73, 73);"></i>
-                                        </a>
+                                        @if (auth()->check() && auth()->user()->level == 'pembeli')
+                                            <a href="{{ asset('/storage/file/' . $item['pdf_file']) }}"
+                                                download="{{ $item['judul'] }}.pdf">
+                                                <i class="bx bxs-file-pdf"
+                                                    style="font-size: 24px; color: rgb(73, 73, 73);"></i>
+                                            </a>
+                                        @else
+                                            <span>Harus login untuk mengakses PDF</span>
+                                        @endif
                                     </td>
                                     <td>
                                         @if ($item['youtube_link'])
@@ -52,6 +80,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
+
                     </table>
                 </div>
 

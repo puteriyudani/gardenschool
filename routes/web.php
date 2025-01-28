@@ -59,12 +59,17 @@ Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// register
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+// login pembeli
+Route::get('/loginpembeli', [AuthController::class, 'loginpembeli'])->name('loginpembeli');
+Route::post('/loginpembeli', [AuthController::class, 'loginpembeliPost'])->name('loginpembeli');
+Route::get('/logoutpembeli', [AuthController::class, 'logoutpembeli'])->name('logoutpembeli');
 
 //admin
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    // register
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+
     // home admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 

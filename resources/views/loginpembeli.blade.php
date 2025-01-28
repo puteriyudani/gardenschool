@@ -19,12 +19,12 @@
                                         {{ Session::get('error') }}
                                     </div>
                                 @endif
-                                <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                {{-- <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="{{ asset('assets') }}/img/logo.png" width="180"
                                         alt="">
-                                </a>
+                                </a> --}}
                                 <p class="text-center">Login</p>
-                                <form action="{{ route('login') }}" method="POST">
+                                <form action="{{ route('loginpembeli') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="nohp" class="form-label">No HP</label>
@@ -39,10 +39,6 @@
                                     <input name="login" id="login"
                                         class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" type="submit"
                                         value="Login">
-                                    {{-- <div class="d-flex align-items-center justify-content-center">
-                                        <p class="fs-4 mb-0 fw-bold">Don't have an account?</p>
-                                        <a class="text-primary fw-bold ms-2" href="{{ route('register') }}">Register</a>
-                                    </div> --}}
                                 </form>
                             </div>
                         </div>

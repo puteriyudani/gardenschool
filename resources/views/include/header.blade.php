@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('login') }}" class="nav-link scrollto" target="_blank">
+                <a href="{{ route('loginpembeli') }}" class="nav-link scrollto" target="_blank">
                     <i class="bx bx-log-in"></i> <span>Login</span>
                 </a>
             </li>
