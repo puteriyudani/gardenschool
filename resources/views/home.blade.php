@@ -49,6 +49,8 @@
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active item1">
@@ -79,6 +81,10 @@
                 <div class="carousel-item item4">
                 </div>
                 <div class="carousel-item item5">
+                </div>
+                <div class="carousel-item item6">
+                </div>
+                <div class="carousel-item item7">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -135,7 +141,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 text-center">
                         <img src="{{ asset('assets') }}/img/gs.png" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-8 pt-4 pt-lg-0 content">
@@ -224,64 +230,6 @@
 
             </div>
         </section><!-- End About Section -->
-
-        <!-- ======= Program Section ======= -->
-        {{-- <section id="program" class="testimonials section-bg">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Dokumen</h2>
-                </div>
-
-                <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                    <div class="swiper-wrapper">
-
-                        @foreach ($pdfs as $pdf)
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <h3>{{ $pdf->judul }}</h3>
-                                    <p>{{ $pdf->keterangan }}</p>
-                                    <object data="{{ asset('/storage/file/' . $pdf->file) }}" type="application/pdf"
-                                        width="100%" height="500">
-                                        <p>Browser Anda tidak dapat menampilkan PDF. <a
-                                                href="{{ asset('/storage/file/' . $pdf->file) }}" download>Klik di sini
-                                                untuk mengunduh PDF</a>.</p>
-                                    </object>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-                <div class="section-title mt-2">
-                    <h2>Video</h2>
-                </div>
-
-                <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                    <div class="swiper-wrapper">
-
-                        @foreach ($youtubes as $youtube)
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <h3>{{ $youtube->judul }}</h3>
-                                    <p>{{ $youtube->keterangan }}</p>
-                                    <iframe width="560" height="315" src="{{ $youtube->link }}"
-                                        title="YouTube video player" frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowfullscreen></iframe>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-            </div>
-        </section> --}}
-        <!-- End Program Section -->
 
         <!-- ======= Support Section ======= -->
         <section id="support" class="skills section-bg">
