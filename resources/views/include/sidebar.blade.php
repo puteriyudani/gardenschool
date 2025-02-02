@@ -64,12 +64,28 @@
                 </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Montessory</span>
+                    <span class="hide-menu">Program</span>
+                </li>
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['tema.index', 'tema.create', 'tema.edit']) ? 'selected' : '' }}">
+                    <a class="sidebar-link" href="{{ route('tema.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-star"></i>
+                        </span>
+                        <span class="hide-menu">Tema</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['topik.index', 'topik.create', 'topik.edit', 'subtopik.index', 'subtopik.create', 'subtopik.edit']) ? 'selected' : '' }}">
+                    <a class="sidebar-link" href="{{ route('topik.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">Topik & Sub Topik</span>
+                    </a>
                 </li>
                 <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['pdf.index', 'pdf.create', 'pdf.edit']) ? 'selected' : '' }}">
                     <a class="sidebar-link" href="{{ route('pdf.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-book"></i>
+                            <i class="ti ti-file"></i>
                         </span>
                         <span class="hide-menu">Pdf</span>
                     </a>

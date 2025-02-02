@@ -32,9 +32,9 @@
                     @endif
                 </div>
 
-                <!-- Tabel Gabungan Montessory -->
+                <!-- Tabel Program Garden School Indonesia -->
                 <div class="section-title">
-                    <h2>Montessory</h2>
+                    <h2>Program Garden School Indonesia</h2>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">

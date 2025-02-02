@@ -29,8 +29,11 @@ use App\Http\Controllers\QuranBabyController;
 use App\Http\Controllers\QuranController;
 use App\Http\Controllers\RecallingController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\SubTopikController;
 use App\Http\Controllers\TahunController;
+use App\Http\Controllers\TemaController;
 use App\Http\Controllers\TematikController;
+use App\Http\Controllers\TopikController;
 use App\Http\Controllers\VideosController;
 use App\Http\Controllers\VocabularyController;
 use App\Http\Controllers\WelcomeController;
@@ -101,6 +104,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/siswa-babycamp', [SiswaController::class, 'showBabycamp'])->name('showBabycamp');
 
     // montessory
+    Route::resource('tema', TemaController::class);
+    Route::resource('topik', TopikController::class);
+    Route::resource('subtopik', SubTopikController::class);
     Route::resource('youtube', YoutubeController::class);
     Route::resource('pdf', PdfController::class);
 });
