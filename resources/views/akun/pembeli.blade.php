@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('judul')
-    <title>Akun Pembeli Modul</title>
+    <title>Akun Mitra</title>
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <a href="{{ route('register') }}"><button type="button" class="btn btn-success m-1 mb-3">Tambah Akun</button></a>
 
-                <h5>Pembeli Modul</h5>
+                <h5>Mitra</h5>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -63,7 +63,7 @@
                     <a href="{{ route('akun.admin') }}" class="btn btn-primary">Admin</a>
                     <a href="{{ route('akun.guru') }}" class="btn btn-primary">Guru</a>
                     <a href="{{ route('akun.ortu') }}" class="btn btn-primary">Orangtua</a>
-                    <a href="{{ route('akun.pembeli') }}" class="btn btn-primary">Pembeli Modul</a>
+                    <a href="{{ route('akun.pembeli') }}" class="btn btn-primary">Mitra</a>
                 </div>
 
             </div>

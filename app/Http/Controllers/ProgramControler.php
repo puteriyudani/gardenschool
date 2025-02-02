@@ -8,23 +8,35 @@ use Illuminate\Http\Request;
 
 class ProgramControler extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pdfs = Pdf::all(); // Ambil semua data PDF
-        $youtubes = Youtube::all(); // Ambil semua data YouTube
+        // Ambil semua kelompok unik dari tema yang berhubungan dengan PDF
+        $kelompokList = Pdf::with(['subtopik.topik.tema'])->get()->pluck('subtopik.topik.tema.kelompok')->unique();
 
-        // Gabungkan data berdasarkan judul yang sama
-        $data = $pdfs->map(function ($pdf) use ($youtubes) {
-            $youtube = $youtubes->firstWhere('judul', $pdf->judul); // Cari video YouTube dengan judul yang sama
-            return [
-                'judul' => $pdf->judul,
-                'pdf_keterangan' => $pdf->keterangan,
-                'pdf_file' => $pdf->file,
-                'youtube_keterangan' => $youtube->keterangan ?? null,
-                'youtube_link' => $youtube->link ?? null,
-            ];
-        });
+        // Ambil kelompok dari query string (default ke kelompok pertama jika tidak ada)
+        $selectedKelompok = $request->query('kelompok', $kelompokList->first());
 
-        return view('program', compact('data'));
+        // Filter PDF berdasarkan kelompok yang dipilih
+        $groupedPdfs = Pdf::when($selectedKelompok, function ($query) use ($selectedKelompok) {
+            return $query->whereHas('subtopik.topik.tema', function ($query) use ($selectedKelompok) {
+                $query->where('kelompok', $selectedKelompok);
+            });
+        })
+            ->with(['subtopik.topik.tema', 'youtubes']) // Memuat relasi subtopik, topik, tema, dan youtubes
+            ->get()
+            ->groupBy(function ($pdf) {
+                return $pdf->subtopik->topik->tema->kelompok; // Kelompok berdasarkan tema
+            })
+            ->map(function ($kelompokGroup) {
+                return $kelompokGroup->groupBy(function ($pdf) {
+                    return $pdf->subtopik->topik->tema->tema; // Group berdasarkan tema
+                })->map(function ($temaGroup) {
+                    return $temaGroup->groupBy(function ($pdf) {
+                        return $pdf->subtopik->topik->topik; // Group berdasarkan topik
+                    });
+                });
+            });
+
+        return view('program', compact('groupedPdfs', 'kelompokList', 'selectedKelompok'));
     }
 }

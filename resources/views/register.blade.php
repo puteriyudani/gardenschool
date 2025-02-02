@@ -73,7 +73,7 @@
                                             <option value="0" {{ old('level') == 0 ? 'selected' : '' }}>Admin</option>
                                             <option value="1" {{ old('level') == 1 ? 'selected' : '' }}>Guru</option>
                                             <option value="2" {{ old('level') == 2 ? 'selected' : '' }}>Ortu</option>
-                                            <option value="3" {{ old('level') == 3 ? 'selected' : '' }}>Pembeli</option>
+                                            <option value="3" {{ old('level') == 3 ? 'selected' : '' }}>Mitra</option>
                                         </select>
                                         @error('level')
                                             <div class="text-danger">{{ $message }}</div>
