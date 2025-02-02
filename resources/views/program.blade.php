@@ -12,6 +12,11 @@
         <!-- ======= Program Section ======= -->
         <section id="program" class="testimonials section-bg">
             <div class="container" data-aos="fade-up">
+                @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
 
                 <!-- Tanda Login -->
                 <div class="mb-4 d-flex justify-content-between align-items-center">

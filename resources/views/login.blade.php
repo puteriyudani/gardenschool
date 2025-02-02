@@ -19,9 +19,14 @@
                                         {{ Session::get('error') }}
                                     </div>
                                 @endif
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @endif
+
                                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('assets') }}/img/logo.png" width="180"
-                                        alt="">
+                                    <img src="{{ asset('assets') }}/img/logo.png" width="180" alt="">
                                 </a>
                                 <p class="text-center">Login</p>
                                 <form action="{{ route('login') }}" method="POST">

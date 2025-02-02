@@ -13,6 +13,12 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
+                @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+
                 <a href="{{ route('register') }}"><button type="button" class="btn btn-success m-1 mb-3">Tambah Akun</button></a>
 
                 <h5>Mitra</h5>

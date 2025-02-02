@@ -15,6 +15,11 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
+                @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
 
                 <h5>Baby Camp</h5>
 

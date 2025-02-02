@@ -24,6 +24,12 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
+                @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+
                 <a href="{{ route('menu.create') }}"><button type="button"
                         class="btn btn-primary m-1 mb-3">Tambah</button></a>
 
@@ -37,7 +43,7 @@
                                 <th scope="col">Protein</th>
                                 <th scope="col">Lemak</th>
                                 <th scope="col">Serat</th>
-                                <th scope="col">Vit/Mineral</th>
+                                <th scope="col">Kalori</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>

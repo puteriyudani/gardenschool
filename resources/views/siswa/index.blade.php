@@ -15,6 +15,12 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
+                @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+
                 <div class="data-siswa">
                     <h5>Data Siswa <span><a href="{{ route('siswa.create') }}"><i class="mx-1 ti ti-plus" style="color: #28a745"></i></a></span></h5>
                 </div>
