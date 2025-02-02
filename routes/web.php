@@ -109,6 +109,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('subtopik', SubTopikController::class);
     Route::resource('youtube', YoutubeController::class);
     Route::resource('pdf', PdfController::class);
+
 });
 
 //guru

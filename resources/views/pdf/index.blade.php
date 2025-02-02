@@ -15,56 +15,86 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
+                @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
 
                 <h5>PDF</h5>
                 <br>
-                <a href="{{ route('pdf.create') }}">Tambah Data</a>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Judul</th>
-                                <th scope="col">Keterangan</th>
-                                <th scope="col">File</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($pdfs as $pdf)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $pdf->judul }}</td>
-                                    <td>{{ $pdf->keterangan }}</td>
-                                    <td>
-                                        <object data="{{ asset('/storage/file/' . $pdf->file) }}" type="application/pdf"
-                                            width="100%" height="300">
-                                            <p>Browser Anda tidak dapat menampilkan PDF. <a
-                                                    href="{{ asset('/storage/file/' . $pdf->file) }}" download>Klik di sini
-                                                    untuk mengunduh PDF</a>.</p>
-                                        </object>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('pdf.destroy', $pdf->id) }}" method="POST">
-                                            <a href="{{ route('pdf.edit', $pdf->id) }}" style="text-decoration: none;">
-                                                edit
-                                            </a>
+                <a href="{{ route('pdf.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
 
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button class="btn mb-1" type="submit" style="color: red">
-                                                hapus
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <!-- Pilih Kelompok -->
+                <div class="mb-3">
+                    <strong>Pilih Kelompok:</strong>
+                    @foreach ($kelompokList as $kelompok)
+                        <a href="{{ route('pdf.index', ['kelompok' => $kelompok]) }}"
+                            class="btn {{ $kelompok == $selectedKelompok ? 'btn-primary' : 'btn-outline-primary' }}">
+                            {{ $kelompok }}
+                        </a>
+                    @endforeach
                 </div>
 
-                {{ $pdfs->links() }}
+                <div class="table-responsive">
+                    @foreach ($groupedPdfs as $kelompok => $temaGroup)
+                        <h6><u>Kelompok: {{ $kelompok }}</u></h6>
+                        @foreach ($temaGroup as $tema => $topikGroup)
+                            <h6><u>Tema: {{ $tema }}</u></h6>
+                            @foreach ($topikGroup as $topik => $pdfs)
+                                <h6 class="ms-3 text-primary"><strong>Topik: {{ $topik }}</strong></h6>
+
+                                <!-- Variabel untuk nomor urut per Topik -->
+                                @php $counter = 1; @endphp
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Judul</th>
+                                            <th scope="col">Sub Topik</th>
+                                            <th scope="col">Keterangan</th>
+                                            <th scope="col">File</th>
+                                            <th scope="col">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($pdfs as $pdf)
+                                            <tr>
+                                                <td>{{ $counter++ }}</td>
+                                                <td>{{ $pdf->judul }}</td>
+                                                <td>{{ $pdf->subtopik->subtopik }}</td>
+                                                <td>{{ $pdf->keterangan }}</td>
+                                                <td>
+                                                    <object data="{{ asset('/storage/file/' . $pdf->file) }}"
+                                                        type="application/pdf" width="100%" height="300">
+                                                        <p>Browser Anda tidak dapat menampilkan PDF. <a
+                                                                href="{{ asset('/storage/file/' . $pdf->file) }}"
+                                                                download>Klik di sini untuk mengunduh PDF</a>.</p>
+                                                    </object>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('pdf.edit', $pdf->id) }}"
+                                                        class="btn btn-warning btn-sm">
+                                                        Edit
+                                                    </a>
+                                                    <form action="{{ route('pdf.destroy', $pdf->id) }}" method="POST"
+                                                        style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endforeach
+                        @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

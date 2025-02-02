@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pdf;
+use App\Models\SubTopik;
 use Illuminate\Http\Request;
 
 class PdfController extends Controller
@@ -10,10 +11,30 @@ class PdfController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request, $kelompok = null)
     {
-        $pdfs = Pdf::paginate(5);
-        return view('pdf.index', compact('pdfs'));
+        // Ambil semua kelompok unik dari tema yang berhubungan dengan topik
+        $kelompokList = Pdf::with(['subtopik.topik.tema'])->get()->pluck('subtopik.topik.tema.kelompok')->unique();
+
+        // Ambil kelompok dari query string (default ke kelompok pertama jika tidak ada)
+        $selectedKelompok = $request->query('kelompok', $kelompokList->first());
+
+        // Filter PDF berdasarkan kelompok yang dipilih
+        $groupedPdfs = Pdf::when($selectedKelompok, function ($query) use ($selectedKelompok) {
+            return $query->whereHas('subtopik.topik.tema', function ($query) use ($selectedKelompok) {
+                $query->where('kelompok', $selectedKelompok);
+            });
+        })
+            ->get()
+            ->groupBy('subtopik.topik.tema.kelompok')
+            ->map(function ($kelompokGroup) {
+                return $kelompokGroup->groupBy('subtopik.topik.tema.tema')
+                    ->map(function ($temaGroup) {
+                        return $temaGroup->groupBy('subtopik.topik.topik');
+                    });
+            });
+
+        return view('pdf.index', compact('groupedPdfs', 'kelompokList', 'selectedKelompok'));
     }
 
     /**
@@ -21,7 +42,10 @@ class PdfController extends Controller
      */
     public function create()
     {
-        return view('pdf.create');
+        // Mengambil semua subtopik dengan relasi topik, tema, dan kelompok
+        $subtopiks = SubTopik::with(['topik.tema'])->get();
+
+        return view('pdf.create', compact('subtopiks'));
     }
 
     /**
@@ -33,6 +57,7 @@ class PdfController extends Controller
             'judul' => 'required',
             'keterangan' => 'required',
             'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+            'subtopik_id' => 'required|exists:sub_topiks,id', // Validasi untuk subtopik_id
         ]);
 
         $input = $request->all();
@@ -41,7 +66,7 @@ class PdfController extends Controller
             $destinationPath = 'public/file';
             $file = $request->file('file');
             $file_name = date('YmdHis') . "." . $file->getClientOriginalExtension();
-            $path = $request->file('file')->storeAs($destinationPath,$file_name);
+            $path = $request->file('file')->storeAs($destinationPath, $file_name);
 
             $input['file'] = $file_name;
         }
@@ -49,15 +74,7 @@ class PdfController extends Controller
         Pdf::create($input);
 
         return redirect()->route('pdf.index')
-                        ->with('success','PDF created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+            ->with('success', 'PDF created successfully.');
     }
 
     /**
@@ -65,7 +82,9 @@ class PdfController extends Controller
      */
     public function edit(Pdf $pdf)
     {
-        return view('pdf.edit',compact('pdf'));
+        // Mengambil semua subtopik dengan relasi topik, tema, dan kelompok
+        $subtopiks = SubTopik::with(['topik.tema'])->get();
+        return view('pdf.edit', compact('pdf', 'subtopiks'));
     }
 
     /**
@@ -76,7 +95,8 @@ class PdfController extends Controller
         $request->validate([
             'judul' => 'required',
             'keterangan' => 'required',
-            'file' => 'mimes:pdf,xlx,csv|max:2048',
+            'file' => 'nullable|mimes:pdf,xlx,csv|max:2048',
+            'subtopik_id' => 'required|exists:sub_topiks,id', // Validasi untuk subtopik_id
         ]);
 
         $input = $request->all();
@@ -85,15 +105,18 @@ class PdfController extends Controller
             $destinationPath = 'public/file';
             $file = $request->file('file');
             $file_name = date('YmdHis') . "." . $file->getClientOriginalExtension();
-            $path = $request->file('file')->storeAs($destinationPath,$file_name);
+            $path = $request->file('file')->storeAs($destinationPath, $file_name);
 
             $input['file'] = $file_name;
+        } else {
+            // Jika tidak ada file yang diupload, biarkan field 'file' tidak berubah
+            unset($input['file']);
         }
 
         $pdf->update($input);
 
         return redirect()->route('pdf.index')
-                        ->with('success','PDF updated successfully');
+            ->with('success', 'PDF updated successfully');
     }
 
     /**
@@ -103,6 +126,6 @@ class PdfController extends Controller
     {
         $pdf->delete();
 
-        return back()->with('success','PDF deleted successfully');
+        return back()->with('success', 'PDF deleted successfully');
     }
 }

@@ -12,7 +12,16 @@ class Pdf extends Model
     protected $table = 'pdfs';
 
     // Kolom yang boleh diisi
-    protected $fillable = ['judul', 'keterangan', 'file'];
+    protected $fillable = ['judul', 'keterangan', 'file', 'subtopik_id'];
+
+    /**
+     * Relasi ke model Subtopik.
+     * Setiap entri Pdf dapat memiliki satu entri Subtopik.
+     */
+    public function subtopik()
+    {
+        return $this->belongsTo(Subtopik::class, 'subtopik_id');
+    }
 
     /**
      * Relasi ke model Youtube.

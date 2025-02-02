@@ -11,10 +11,36 @@ class YoutubeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $youtubes = Youtube::with('pdf')->paginate(5); // Include related Pdf data
-        return view('youtube.index', compact('youtubes'));
+        // Ambil semua kelompok unik dari tema yang berhubungan dengan PDF
+        $kelompokList = Pdf::with(['subtopik.topik.tema'])->get()->pluck('subtopik.topik.tema.kelompok')->unique();
+
+        // Ambil kelompok dari query string (default ke kelompok pertama jika tidak ada)
+        $selectedKelompok = $request->query('kelompok', $kelompokList->first());
+
+        // Filter YouTube berdasarkan kelompok yang dipilih
+        $groupedYoutubes = Youtube::when($selectedKelompok, function ($query) use ($selectedKelompok) {
+            return $query->whereHas('pdf.subtopik.topik.tema', function ($query) use ($selectedKelompok) {
+                $query->where('kelompok', $selectedKelompok);
+            });
+        })
+            ->with('pdf.subtopik.topik.tema') // Memuat relasi PDF, subtopik, topik, dan tema
+            ->get()
+            ->groupBy(function ($youtube) {
+                return $youtube->pdf->subtopik->topik->tema->kelompok; // Kelompok berdasarkan PDF
+            })
+            ->map(function ($kelompokGroup) {
+                return $kelompokGroup->groupBy(function ($youtube) {
+                    return $youtube->pdf->subtopik->topik->tema->tema; // Group berdasarkan tema
+                })->map(function ($temaGroup) {
+                    return $temaGroup->groupBy(function ($youtube) {
+                        return $youtube->pdf->subtopik->topik->topik; // Group berdasarkan topik
+                    });
+                });
+            });
+
+        return view('youtube.index', compact('groupedYoutubes', 'kelompokList', 'selectedKelompok'));
     }
 
     /**
@@ -45,7 +71,7 @@ class YoutubeController extends Controller
         Youtube::create($requestData);
 
         return redirect()->route('youtube.index')
-                         ->with('success', 'Youtube created successfully.');
+            ->with('success', 'Youtube created successfully.');
     }
 
     /**
@@ -76,7 +102,7 @@ class YoutubeController extends Controller
         $youtube->update($requestData);
 
         return redirect()->route('youtube.index')
-                         ->with('success', 'Youtube updated successfully.');
+            ->with('success', 'Youtube updated successfully.');
     }
 
     /**

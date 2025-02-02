@@ -43,15 +43,30 @@
                                             <label for="keterangan" class="form-label">Keterangan</label>
                                             <textarea class="form-control" placeholder="keterangan" id="keterangan" name="keterangan" style="height: 100px"></textarea>
                                         </div>
+                                        <!-- Pilihan Subtopik -->
+                                        <div class="mb-3">
+                                            <label for="subtopik_id" class="form-label">Pilih Subtopik</label>
+                                            <select class="form-control" id="subtopik_id" name="subtopik_id">
+                                                <option value="">Pilih Subtopik</option>
+                                                @foreach ($subtopiks as $subtopik)
+                                                    <option value="{{ $subtopik->id }}">
+                                                        {{ $subtopik->subtopik }} -
+                                                        {{ $subtopik->topik->topik }} (Topik) -
+                                                        {{ $subtopik->topik->tema->tema }} (Tema) -
+                                                        {{ $subtopik->topik->tema->kelompok }} (Kelompok)
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <div class="mb-3">
                                             <label for="file" class="form-label">Pilih file:</label>
-                                            <input type="file" id="file" name="file" class="form-control @error('file') is-invalid @enderror">
-
+                                            <input type="file" id="file" name="file"
+                                                class="form-control @error('file') is-invalid @enderror">
                                             @error('file')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
-
                                         </div>
+
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
                                 </div>
