@@ -20,7 +20,7 @@ class Pdf extends Model
      */
     public function subtopik()
     {
-        return $this->belongsTo(Subtopik::class, 'subtopik_id');
+        return $this->belongsTo(SubTopik::class, 'subtopik_id');
     }
 
     /**
