@@ -42,7 +42,13 @@
                                                 <option value="" disabled selected>Pilih PDF</option>
                                                 @foreach ($pdfs as $pdf)
                                                     <option value="{{ $pdf->id }}" data-judul="{{ $pdf->judul }}">
-                                                        {{ $pdf->judul }}</option>
+                                                        {{ Str::limit($pdf->judul, 20) }} -
+                                                        {{ Str::limit($pdf->subtopik->subtopik, 15) }} -
+                                                        {{ Str::limit($pdf->subtopik->topik->topik, 15) }} (Topik) -
+                                                        {{ Str::limit($pdf->subtopik->topik->tema->tema, 15) }} (Tema) -
+                                                        {{ Str::limit($pdf->subtopik->topik->tema->kelompok, 15) }}
+                                                        (Kelompok)
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>

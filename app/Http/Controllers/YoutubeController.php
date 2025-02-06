@@ -48,7 +48,7 @@ class YoutubeController extends Controller
      */
     public function create()
     {
-        $pdfs = Pdf::all();
+        $pdfs = Pdf::with(['subtopik.topik.tema'])->get();
         return view('youtube.create', compact('pdfs'));
     }
 
@@ -79,7 +79,7 @@ class YoutubeController extends Controller
      */
     public function edit(Youtube $youtube)
     {
-        $pdfs = Pdf::all();
+        $pdfs = Pdf::with(['subtopik.topik.tema'])->get();
         return view('youtube.edit', compact('youtube', 'pdfs'));
     }
 

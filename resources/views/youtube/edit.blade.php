@@ -39,12 +39,17 @@
                                         <div class="mb-3">
                                             <label for="pdf_id" class="form-label">Pilih PDF</label>
                                             <select class="form-control" id="pdf_id" name="pdf_id"
-                                                aria-describedby="pdfHelp" required>
+                                                aria-describedby="pdfHelp" required onchange="updateJudul()">
                                                 <option value="" disabled>Pilih PDF</option>
                                                 @foreach ($pdfs as $pdf)
-                                                    <option value="{{ $pdf->id }}"
+                                                    <option value="{{ $pdf->id }}" data-judul="{{ $pdf->judul }}"
                                                         {{ $pdf->id == $youtube->pdf_id ? 'selected' : '' }}>
-                                                        {{ $pdf->judul }}
+                                                        {{ Str::limit($pdf->judul, 20) }} -
+                                                        {{ Str::limit($pdf->subtopik->subtopik, 15) }} -
+                                                        {{ Str::limit($pdf->subtopik->topik->topik, 15) }} (Topik) -
+                                                        {{ Str::limit($pdf->subtopik->topik->tema->tema, 15) }} (Tema) -
+                                                        {{ Str::limit($pdf->subtopik->topik->tema->kelompok, 15) }}
+                                                        (Kelompok)
                                                     </option>
                                                 @endforeach
                                             </select>
