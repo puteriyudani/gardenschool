@@ -3,6 +3,7 @@
 @section('style')
 @endsection
 
+
 @section('hero')
 @endsection
 
@@ -53,13 +54,17 @@
                     @foreach ($groupedPdfs as $kelompok => $temaGroup)
                         <h6><u>Kelompok: {{ $kelompok }}</u></h6>
                         @foreach ($temaGroup as $tema => $topikGroup)
-                            <h6><u>Tema: {{ $tema }}</u></h6>
+                            <h6 class="mt-4 text-success fw-bold">Tema {{ $loop->iteration }}: {{ $tema }}</h6>
                             @foreach ($topikGroup as $topik => $pdfs)
-                                <h6 class="ms-3 text-primary"><strong>Topik: {{ $topik }}</strong></h6>
+                                <h6 class="ms-3 text-primary"><strong>Topik {{ $loop->iteration }}:
+                                        {{ $topik }}</strong>
+                                </h6>
 
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
+                                            <th>Sub Topik</th>
                                             <th>Judul</th>
                                             <th>Keterangan</th>
                                             <th>Dokumen</th>
@@ -69,13 +74,9 @@
                                     <tbody>
                                         @foreach ($pdfs as $pdf)
                                             <tr>
-                                                <td>
-                                                    @if (auth()->check() && auth()->user()->level == 'pembeli')
-                                                        {{ $pdf->judul }}
-                                                    @else
-                                                        <span>Harus login untuk mengakses judul</span>
-                                                    @endif
-                                                </td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td class="text-warning fw-bold">{{ $pdf->subtopik->subtopik ?? '-' }}</td>
+                                                <td>{{ $pdf->judul }}</td>
                                                 <td>
                                                     @if (auth()->check() && auth()->user()->level == 'pembeli')
                                                         {{ $pdf->keterangan }}
@@ -96,7 +97,6 @@
                                                 </td>
                                                 <td>
                                                     @if (auth()->check() && auth()->user()->level == 'pembeli')
-                                                        <!-- Tampilkan video YouTube jika sudah login -->
                                                         @if ($pdf->youtubes->isNotEmpty())
                                                             @foreach ($pdf->youtubes as $youtube)
                                                                 <iframe width="auto" height="auto"
@@ -110,18 +110,15 @@
                                                             Tidak ada video
                                                         @endif
                                                     @else
-                                                        <!-- Tampilkan thumbnail jika belum login -->
                                                         @if ($pdf->youtubes->isNotEmpty())
                                                             @foreach ($pdf->youtubes as $youtube)
                                                                 @php
-                                                                    // Ekstrak video ID dari link embed YouTube
                                                                     preg_match(
                                                                         '/\/embed\/([^?]*)/',
                                                                         $youtube->link,
                                                                         $matches,
                                                                     );
                                                                     $videoId = $matches[1] ?? null;
-                                                                    // Thumbnail URL YouTube
                                                                     $thumbnailUrl = $videoId
                                                                         ? "https://img.youtube.com/vi/{$videoId}/maxresdefault.jpg"
                                                                         : null;
@@ -162,7 +159,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                <a href="{{ route('loginpembeli') }}" class="btn btn-primary">Buat Akun</a>
+                                <a href="{{ route('loginpembeli') }}" class="btn btn-primary">Login</a>
                             </div>
                         </div>
                     </div>

@@ -23,7 +23,7 @@
 
                 <h5>PDF</h5>
                 <br>
-                <a href="{{ route('pdf.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+                <a href="{{ route('pdf.create') }}" class="btn btn-success mb-3">Tambah Data</a>
 
                 <!-- Pilih Kelompok -->
                 <div class="mb-3">
@@ -40,9 +40,10 @@
                     @foreach ($groupedPdfs as $kelompok => $temaGroup)
                         <h6><u>Kelompok: {{ $kelompok }}</u></h6>
                         @foreach ($temaGroup as $tema => $topikGroup)
-                            <h6><u>Tema: {{ $tema }}</u></h6>
+                            <h6 class="mt-4 text-success fw-bold">Tema {{ $loop->iteration }}: {{ $tema }}</h6>
                             @foreach ($topikGroup as $topik => $pdfs)
-                                <h6 class="ms-3 text-primary"><strong>Topik: {{ $topik }}</strong></h6>
+                                <h6 class="ms-3 text-primary"><strong>Topik {{ $loop->iteration }}:
+                                        {{ $topik }}</strong></h6>
 
                                 <!-- Variabel untuk nomor urut per Topik -->
                                 @php $counter = 1; @endphp

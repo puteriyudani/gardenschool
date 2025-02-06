@@ -23,7 +23,7 @@
 
                 <h5>Youtube</h5>
                 <br>
-                <a href="{{ route('youtube.create') }}">Tambah Data</a>
+                <a href="{{ route('youtube.create') }}" class="btn btn-success mb-3">Tambah Data</a>
 
                 <!-- Pilih Kelompok -->
                 <div class="mb-3">
@@ -40,9 +40,10 @@
                     @foreach ($groupedYoutubes as $kelompok => $temaGroup)
                         <h6><u>Kelompok: {{ $kelompok }}</u></h6>
                         @foreach ($temaGroup as $tema => $topikGroup)
-                            <h6><u>Tema: {{ $tema }}</u></h6>
+                            <h6 class="mt-4 text-success fw-bold">Tema {{ $loop->iteration }}: {{ $tema }}</h6>
                             @foreach ($topikGroup as $topik => $youtubes)
-                                <h6 class="ms-3 text-primary"><strong>Topik: {{ $topik }}</strong></h6>
+                                <h6 class="ms-3 text-primary"><strong>Topik {{ $loop->iteration }}:
+                                        {{ $topik }}</strong></h6>
 
                                 <table class="table table-striped">
                                     <thead>
