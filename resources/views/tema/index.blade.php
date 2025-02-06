@@ -23,7 +23,7 @@
 
                 <h5>Tema</h5>
                 <br>
-                <a href="{{ route('tema.create') }}" class="btn btn-primary">Tambah Data</a>
+                <a href="{{ route('tema.create') }}" class="btn btn-success mb-3">Tambah Data</a>
                 <br><br>
 
                 @foreach (['TK' => $tkTemas, 'KB' => $kbTemas, 'BC' => $bcTemas] as $kelompok => $temas)

@@ -23,7 +23,7 @@
 
                 <h5>Kelas</h5>
                 <br>
-                <a href="{{ route('kelompok.create') }}">Tambah Data</a>
+                <a href="{{ route('kelompok.create') }}" class="btn btn-success mb-3">Tambah Data</a>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
