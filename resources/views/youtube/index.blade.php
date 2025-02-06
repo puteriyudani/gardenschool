@@ -41,50 +41,55 @@
                         <h6><u>Kelompok: {{ $kelompok }}</u></h6>
                         @foreach ($temaGroup as $tema => $topikGroup)
                             <h6 class="mt-4 text-success fw-bold">Tema {{ $loop->iteration }}: {{ $tema }}</h6>
-                            @foreach ($topikGroup as $topik => $youtubes)
+                            @foreach ($topikGroup as $topik => $subtopikGroup)
                                 <h6 class="ms-3 text-primary"><strong>Topik {{ $loop->iteration }}:
                                         {{ $topik }}</strong></h6>
 
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Judul</th>
-                                            <th scope="col">Keterangan</th>
-                                            <th scope="col">Video</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($youtubes as $youtube)
+                                @foreach ($subtopikGroup as $subtopik => $youtubes)
+                                    <h6 class="ms-5 text-warning"><strong>Subtopik {{ $loop->iteration }}:
+                                            {{ $subtopik }}</strong></h6>
+
+                                    <table class="table table-striped">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $youtube->judul }}</td>
-                                                <td>{{ $youtube->keterangan }}</td>
-                                                <td>
-                                                    <iframe width="320" height="180" src="{{ $youtube->link }}"
-                                                        title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                        allowfullscreen></iframe>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('youtube.edit', $youtube->id) }}"
-                                                        class="btn btn-warning btn-sm">
-                                                        Edit
-                                                    </a>
-                                                    <form action="{{ route('youtube.destroy', $youtube->id) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            Hapus
-                                                        </button>
-                                                    </form>
-                                                </td>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Judul</th>
+                                                <th scope="col">Keterangan</th>
+                                                <th scope="col">Video</th>
+                                                <th scope="col">Aksi</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($youtubes as $youtube)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $youtube->judul }}</td>
+                                                    <td>{{ $youtube->keterangan }}</td>
+                                                    <td>
+                                                        <iframe width="320" height="180" src="{{ $youtube->link }}"
+                                                            title="YouTube video player" frameborder="0"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                            allowfullscreen></iframe>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('youtube.edit', $youtube->id) }}"
+                                                            class="btn btn-warning btn-sm">
+                                                            Edit
+                                                        </a>
+                                                        <form action="{{ route('youtube.destroy', $youtube->id) }}"
+                                                            method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                Hapus
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endforeach
                             @endforeach
                         @endforeach
                     @endforeach

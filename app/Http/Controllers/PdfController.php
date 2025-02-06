@@ -26,11 +26,14 @@ class PdfController extends Controller
             });
         })
             ->get()
-            ->groupBy('subtopik.topik.tema.kelompok')
+            ->groupBy('subtopik.topik.tema.kelompok') // Grouping berdasarkan kelompok
             ->map(function ($kelompokGroup) {
-                return $kelompokGroup->groupBy('subtopik.topik.tema.tema')
+                return $kelompokGroup->groupBy('subtopik.topik.tema.tema') // Grouping berdasarkan tema
                     ->map(function ($temaGroup) {
-                        return $temaGroup->groupBy('subtopik.topik.topik');
+                        return $temaGroup->groupBy('subtopik.topik.topik') // Grouping berdasarkan topik
+                            ->map(function ($topikGroup) {
+                                return $topikGroup->groupBy('subtopik.subtopik'); // Grouping berdasarkan subtopik
+                            });
                     });
             });
 

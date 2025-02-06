@@ -13,8 +13,11 @@ class YoutubeController extends Controller
      */
     public function index(Request $request)
     {
-        // Ambil semua kelompok unik dari tema yang berhubungan dengan PDF
-        $kelompokList = Pdf::with(['subtopik.topik.tema'])->get()->pluck('subtopik.topik.tema.kelompok')->unique();
+        // Ambil semua kelompok unik dari tema yang berhubungan dengan video YouTube
+        $kelompokList = Youtube::with(['pdf.subtopik.topik.tema'])
+            ->get()
+            ->pluck('pdf.subtopik.topik.tema.kelompok')
+            ->unique();
 
         // Ambil kelompok dari query string (default ke kelompok pertama jika tidak ada)
         $selectedKelompok = $request->query('kelompok', $kelompokList->first());
@@ -27,17 +30,15 @@ class YoutubeController extends Controller
         })
             ->with('pdf.subtopik.topik.tema') // Memuat relasi PDF, subtopik, topik, dan tema
             ->get()
-            ->groupBy(function ($youtube) {
-                return $youtube->pdf->subtopik->topik->tema->kelompok; // Kelompok berdasarkan PDF
-            })
+            ->groupBy('pdf.subtopik.topik.tema.kelompok') // Kelompok
             ->map(function ($kelompokGroup) {
-                return $kelompokGroup->groupBy(function ($youtube) {
-                    return $youtube->pdf->subtopik->topik->tema->tema; // Group berdasarkan tema
-                })->map(function ($temaGroup) {
-                    return $temaGroup->groupBy(function ($youtube) {
-                        return $youtube->pdf->subtopik->topik->topik; // Group berdasarkan topik
+                return $kelompokGroup->groupBy('pdf.subtopik.topik.tema.tema') // Tema
+                    ->map(function ($temaGroup) {
+                        return $temaGroup->groupBy('pdf.subtopik.topik.topik') // Topik
+                            ->map(function ($topikGroup) {
+                                return $topikGroup->groupBy('pdf.subtopik.subtopik'); // Subtopik
+                            });
                     });
-                });
             });
 
         return view('youtube.index', compact('groupedYoutubes', 'kelompokList', 'selectedKelompok'));
