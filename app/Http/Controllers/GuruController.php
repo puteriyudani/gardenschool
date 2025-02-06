@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Download;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -21,6 +22,21 @@ class GuruController extends Controller
             ->where('level', 2) // User dengan level "guru" (level = 2)
             ->whereDate('last_login', Carbon::today()->toDateString()) // Hanya yang login hari ini
             ->count();
+
+        // Hitung jumlah download laporan hari ini
+        $jumlahDownloadHariIni = Download::whereDate('tanggal', $tanggal)->count();
+
+        // Ambil data pengguna yang mengklik tombol download berdasarkan tanggal
+        $downloadData = DB::table('downloads')
+            ->join('users', 'downloads.user_id', '=', 'users.id')
+            ->select('users.name', DB::raw('count(downloads.id) as jumlah'))
+            ->where('users.level', 2)
+            ->whereDate('downloads.tanggal', $tanggal)
+            ->groupBy('users.name')
+            ->get();
+
+        $downloadLabels = $downloadData->pluck('name');
+        $downloadCounts = $downloadData->pluck('jumlah');
 
         // Data untuk "Welcome Mood"
         $totalWelcome = DB::table('welcomes')
@@ -67,7 +83,7 @@ class GuruController extends Controller
             }
         }
 
-        return view('guru', compact('persentaseWelcome', 'persentaseRecalling', 'statusKeberhasilan', 'tanggal', 'jumlahUserLevel2'));
+        return view('guru', compact('persentaseWelcome', 'persentaseRecalling', 'statusKeberhasilan', 'tanggal', 'jumlahUserLevel2', 'downloadLabels', 'downloadCounts', 'jumlahDownloadHariIni'));
     }
 
     public function kindergarten()

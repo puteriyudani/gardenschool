@@ -7,6 +7,7 @@ use App\Http\Controllers\BabycampController;
 use App\Http\Controllers\BreakfastController;
 use App\Http\Controllers\DoaBabyController;
 use App\Http\Controllers\DoaController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\FunController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HadistBabyController;
@@ -240,4 +241,5 @@ Route::middleware(['auth', 'user-access:ortu'])->group(function () {
 
     Route::get('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'showLaporan'])->name('ortu.laporan');
     Route::post('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'laporan'])->name('laporan.tanggal');
+    Route::post('/save-download', [DownloadController::class, 'store'])->name('saveDownload');
 });

@@ -2130,26 +2130,25 @@
 
     <script>
         document.getElementById('download-button').addEventListener('click', function() {
-            // Pilih elemen yang ingin Anda unduh sebagai PDF
-            var element = document.getElementById(
-                'download-container'); // Pilih elemen dengan ID 'download-container'
+            var userId = "{{ auth()->user()->id }}"; // Ambil ID user dari session Laravel
 
-            // Ambil nilai tanggal dari input
-            var tanggal = document.getElementById('tanggal').value;
+            // Simpan klik download ke database dengan AJAX
+            fetch("{{ route('saveDownload') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    tanggal: new Date().toISOString().split('T')[0] // Format YYYY-MM-DD
+                })
+            });
 
-            // Dapatkan nama siswa dari PHP menggunakan sintaks Blade
-            var namaSiswa = "{{ $siswa->nama }}";
+            // Proses download PDF tetap berjalan
+            var element = document.getElementById('download-container');
+            var filename = 'Laporan-' + userId + '-' + new Date().toISOString().split('T')[0] + '.pdf';
 
-            // Buat nama file berdasarkan nama siswa dan tanggal
-            var filename = 'Laporan-' + namaSiswa + '-' + tanggal + '.pdf';
-
-            // Opsi untuk html2pdf.js
-            // Fungsi untuk mendeteksi perangkat mobile
-            function isMobileDevice() {
-                return (window.innerWidth <= 768); // Contoh deteksi mobile dengan lebar <= 768px
-            }
-
-            // Atur format dan konfigurasi berdasarkan perangkat
             var opt = {
                 margin: 0.5,
                 filename: filename,
@@ -2158,18 +2157,16 @@
                     quality: 0.98
                 },
                 html2canvas: {
-                    scale: isMobileDevice() ? 1 : 2 // Jika mobile, gunakan skala yang lebih kecil
+                    scale: window.innerWidth <= 768 ? 1 : 2
                 },
                 jsPDF: {
                     unit: 'in',
-                    format: isMobileDevice() ? [5, 14] : [13, 21], // Format untuk mobile dan desktop
+                    format: [13, 21],
                     orientation: 'portrait'
                 }
             };
 
-            // Membuat PDF
             html2pdf().set(opt).from(element).save();
         });
     </script>
-
 @endsection

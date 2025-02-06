@@ -42,10 +42,30 @@
                 <!-- Card untuk Menampilkan Jumlah Orang Tua yang Login -->
                 <div class="card mt-4" style="background-color: #e1f5fe; border-radius: 10px; padding: 20px;">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0" style="font-weight: bold; color: #0288d1;">Jumlah Orang Tua yang Login Hari
-                            Ini</h5>
+                        <h5 class="mb-0" style="font-weight: bold; color: #0288d1;">Jumlah Orang Tua yang Login Hari Ini
+                        </h5>
                         <div class="badge bg-success text-white p-2" style="font-size: 18px; font-weight: bold;">
                             {{ $jumlahUserLevel2 }} User
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card untuk Menampilkan Jumlah Download Laporan Hari Ini -->
+                <div class="card mt-4" style="background-color: #ffecb3; border-radius: 10px; padding: 20px;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0" style="font-weight: bold; color: #ff9800;">Jumlah Download Laporan Hari Ini</h5>
+                        <div class="badge bg-warning text-white p-2" style="font-size: 18px; font-weight: bold;">
+                            {{ $jumlahDownloadHariIni }} Download
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Wrapper - Statistik Download -->
+                <div class="card mt-4" style="background-color: #d6eaf8; border-radius: 10px; padding: 20px;">
+                    <h3 class="text-center">Statistik Download Laporan</h3>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <canvas id="downloadChart" style="max-width: 100%; height: 300px;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -107,6 +127,32 @@
     </div>
 
     <script>
+        // Data untuk orangtua yang klik download
+        var ctxDownload = document.getElementById('downloadChart').getContext('2d');
+        var downloadChart = new Chart(ctxDownload, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($downloadLabels) !!},
+                datasets: [{
+                    label: 'Jumlah Download',
+                    data: {!! json_encode($downloadCounts) !!},
+                    backgroundColor: '#42A5F5',
+                    borderColor: '#1E88E5',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMin: 0, // Menentukan nilai minimal y-axis
+                        suggestedMax: 100 // Menentukan nilai maksimal y-axis
+                    }
+                }
+            }
+        });
+
         // Data untuk Welcome Mood
         var welcomeMoodData = {
             labels: ['Sad', 'Neutral', 'Happy'],
