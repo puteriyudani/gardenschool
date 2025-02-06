@@ -54,10 +54,16 @@
                     @foreach ($groupedPdfs as $kelompok => $temaGroup)
                         <h6><u>Kelompok: {{ $kelompok }}</u></h6>
                         @foreach ($temaGroup as $tema => $topikGroup)
-                            <h6 class="mt-4 text-success fw-bold">Tema {{ $loop->iteration }}: {{ $tema }}</h6>
+                            <h6
+                                class="mt-4 fw-bold
+                        {{ auth()->check() && auth()->user()->level == 'pembeli' ? 'text-success' : 'text-muted' }}">
+                                Tema {{ $loop->iteration }}: {{ $tema }}
+                            </h6>
                             @foreach ($topikGroup as $topik => $pdfs)
-                                <h6 class="ms-3 text-primary"><strong>Topik {{ $loop->iteration }}:
-                                        {{ $topik }}</strong>
+                                <h6
+                                    class="ms-3 fw-bold
+                            {{ auth()->check() && auth()->user()->level == 'pembeli' ? 'text-primary' : 'text-muted' }}">
+                                    Topik {{ $loop->iteration }}: {{ $topik }}
                                 </h6>
 
                                 <table class="table table-striped">
@@ -75,7 +81,20 @@
                                         @foreach ($pdfs as $pdf)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td class="text-warning fw-bold">{{ $pdf->subtopik->subtopik ?? '-' }}</td>
+                                                <td class="text-warning fw-bold">
+                                                    @if (auth()->check() && auth()->user()->level == 'pembeli')
+                                                        {{ $pdf->subtopik->subtopik ?? '-' }}
+                                                    @else
+                                                        @if (!empty($pdf->subtopik->subtopik))
+                                                            <a style="text-decoration: none;" data-bs-toggle="modal"
+                                                                data-bs-target="#loginModal">
+                                                                {{ $pdf->subtopik->subtopik }}
+                                                            </a>
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    @endif
+                                                </td>
                                                 <td>{{ $pdf->judul }}</td>
                                                 <td>
                                                     @if (auth()->check() && auth()->user()->level == 'pembeli')
