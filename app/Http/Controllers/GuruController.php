@@ -129,7 +129,7 @@ class GuruController extends Controller
         return response()->json(['downloads' => $result]);
     }
 
-    public function sendNotification($id)
+    public function sendNotification(Request $request, $id)
     {
         $user = User::find($id);
 
@@ -137,15 +137,18 @@ class GuruController extends Controller
             return response()->json(['message' => 'User tidak ditemukan'], 404);
         }
 
+        // Ambil tanggal dari inputan form atau gunakan tanggal yang diterima dari parameter request
+        $tanggal = $request->input('tanggal', Carbon::today()->toDateString());
+
         // Hapus notifikasi sebelumnya yang belum dibaca
         Notification::where('user_id', $user->id)
             ->where('is_read', false)
             ->delete();
 
-        // Simpan notifikasi baru
+        // Simpan notifikasi baru dengan pesan yang berisi tanggal
         Notification::create([
             'user_id' => $user->id,
-            'message' => 'Harap melihat laporan hari ini',
+            'message' => "Harap melihat laporan tanggal {$tanggal}",
             'is_read' => false
         ]);
 

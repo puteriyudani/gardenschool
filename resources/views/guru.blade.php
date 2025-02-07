@@ -309,7 +309,10 @@
                             btnNotif.textContent = "Kirim Notifikasi";
                             btnNotif.onclick = function() {
                                 console.log("ID yang akan dikirim: " + item.id); // Memastikan ID ada
-                                fetch(`/send-notification/${item.id}`, {
+                                const tanggal = document.getElementById("tanggal")
+                                .value; // Ambil tanggal dari form
+
+                                fetch(`/send-notification/${item.id}?tanggal=${tanggal}`, {
                                         method: "POST",
                                         headers: {
                                             "X-CSRF-TOKEN": document.querySelector(
