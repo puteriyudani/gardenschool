@@ -2,6 +2,10 @@
 
 @section('style')
     <style>
+        .flyer {
+            margin-top: -100px;
+        }
+
         /* PDF - Desktop tetap, Mobile/Tablet responsif */
         .testimonial-item embed {
             width: 100%;
@@ -132,6 +136,21 @@
 @section('main')
     <main id="main">
 
+        <!-- ======= Flyer Section ======= -->
+        <section id="flyer" class="flyer">
+            <div class="container text-center" data-aos="fade-up">
+                <div class="row">
+                    <div class="col-md-6 col-12 mb-3">
+                        <img src="{{ asset('assets') }}/img/flyer1.png" class="img-fluid" alt="Flyer 1">
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <img src="{{ asset('assets') }}/img/flyer2.png" class="img-fluid" alt="Flyer 2">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Flyer Section -->
+
         <!-- ======= About Section ======= -->
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
@@ -243,12 +262,16 @@
 
                     <div class="col-4">
                         <img src="{{ asset('auth') }}/images/rcq.png" alt="" width="100" height="100">
-                        <h4><a target="_blank" href="https://www.instagram.com/rcqbengkalisofficial/profilecard/?igsh=a253NjA0dGYzZmNy">Rumah Cerdas Quran</a></h4>
+                        <h4><a target="_blank"
+                                href="https://www.instagram.com/rcqbengkalisofficial/profilecard/?igsh=a253NjA0dGYzZmNy">Rumah
+                                Cerdas Quran</a></h4>
                     </div>
 
                     <div class="col-4">
                         <img src="{{ asset('auth') }}/images/english.png" alt="" width="100" height="100">
-                        <h4><a target="_blank" href="https://www.instagram.com/aozoralearningcenter/profilecard/?igsh=MWd1NzY4OW12NHh3aw==">Aozora</a></h4>
+                        <h4><a target="_blank"
+                                href="https://www.instagram.com/aozoralearningcenter/profilecard/?igsh=MWd1NzY4OW12NHh3aw==">Aozora</a>
+                        </h4>
                     </div>
 
                     <div class="col-4">
