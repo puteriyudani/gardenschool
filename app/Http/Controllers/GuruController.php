@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Download;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -84,6 +85,46 @@ class GuruController extends Controller
         }
 
         return view('guru', compact('persentaseWelcome', 'persentaseRecalling', 'statusKeberhasilan', 'tanggal', 'jumlahUserLevel2', 'downloadLabels', 'downloadCounts', 'jumlahDownloadHariIni'));
+    }
+
+    public function getDownloadStatistics(Request $request)
+    {
+        // Ambil tanggal dari input atau gunakan hari ini sebagai default
+        $tanggal = $request->input('tanggal', Carbon::today()->toDateString());
+
+        // Ambil semua pengguna dengan level "ortu"
+        $users = DB::table('users')
+            ->where('level', 2) // Hanya pengguna dengan level "ortu"
+            ->get();
+
+        // Ambil data download untuk setiap pengguna berdasarkan tanggal yang dipilih
+        $downloadData = DB::table('downloads')
+            ->join('users', 'downloads.user_id', '=', 'users.id')
+            ->select('users.id', 'users.name', DB::raw('count(downloads.id) as jumlah'))
+            ->whereDate('downloads.tanggal', $tanggal) // Filter berdasarkan tanggal
+            ->groupBy('users.id', 'users.name')
+            ->get();
+
+        // Gabungkan data download dengan pengguna ortu
+        $result = $users->map(function ($user) use ($downloadData) {
+            // Cari data download untuk pengguna ini
+            $download = $downloadData->firstWhere('id', $user->id);
+
+            // Jika tidak ada data download, set jumlah menjadi 0
+            $jumlahDownload = $download ? $download->jumlah : 0;
+
+            // Tentukan apakah notifikasi perlu dikirim
+            $kirimNotifikasi = $jumlahDownload == 0 ? true : false;
+
+            return [
+                'name' => $user->name,
+                'jumlah' => $jumlahDownload,
+                'kirim_notifikasi' => $kirimNotifikasi
+            ];
+        });
+
+        // Kirim data dalam format JSON
+        return response()->json(['downloads' => $result]);
     }
 
     public function kindergarten()

@@ -110,12 +110,13 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('subtopik', SubTopikController::class);
     Route::resource('youtube', YoutubeController::class);
     Route::resource('pdf', PdfController::class);
-
 });
 
 //guru
 Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::get('/teacher', [GuruController::class, 'index'])->name('teacher.index');
+
+    Route::get('/get-download-statistics', [GuruController::class, 'getDownloadStatistics']);
 
     // KINDERGARTEN
     Route::get('/teacher-kindergarten', [GuruController::class, 'kindergarten'])->name('teacher.kindergarten');

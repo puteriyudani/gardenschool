@@ -10,6 +10,43 @@
             pointer-events: none;
             opacity: 1;
         }
+
+        .modal {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection
@@ -63,10 +100,30 @@
                 <!-- Card Wrapper - Statistik Download -->
                 <div class="card mt-4" style="background-color: #d6eaf8; border-radius: 10px; padding: 20px;">
                     <h3 class="text-center">Statistik Download Laporan</h3>
+                    <a style="font-size: 12px; color: #0288d1; cursor: pointer;" id="showModal">Selengkapnya</a>
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <canvas id="downloadChart" style="max-width: 100%; height: 300px;"></canvas>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Modal Detail Download -->
+                <div id="downloadModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <span class="close" id="closeModal">&times;</span>
+                        <h4>Detail Download Laporan</h4>
+                        <table id="downloadTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Jumlah Klik</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data download akan diisi oleh JavaScript -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -220,5 +277,41 @@
                 }
             }
         });
+    </script>
+
+    <!-- JavaScript untuk menangani klik dan menampilkan modal detail download -->
+    <script>
+        document.getElementById("showModal").onclick = function() {
+            const tanggal = document.getElementById("tanggal").value;
+
+            fetch(`/get-download-statistics?tanggal=${tanggal}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.getElementById('downloadTable').getElementsByTagName('tbody')[0];
+                    tbody.innerHTML = ''; // Kosongkan tabel sebelum menambahkan data baru
+
+                    data.downloads.forEach(item => {
+                        const row = tbody.insertRow();
+                        const cellName = row.insertCell(0);
+                        const cellCount = row.insertCell(1);
+
+                        cellName.textContent = item.name;
+                        cellCount.textContent = item.jumlah;
+                    });
+
+                    document.getElementById("downloadModal").style.display = "flex";
+                });
+        };
+
+        document.getElementById("closeModal").onclick = function() {
+            document.getElementById("downloadModal").style.display = "none";
+        };
+
+        // Tutup modal jika area di luar modal diklik
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("downloadModal")) {
+                document.getElementById("downloadModal").style.display = "none";
+            }
+        };
     </script>
 @endsection
