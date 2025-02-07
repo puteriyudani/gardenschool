@@ -17,9 +17,9 @@ class GuruController extends Controller
         // Ambil tanggal dari input atau gunakan hari ini sebagai default
         $tanggal = $request->input('tanggal', Carbon::today()->toDateString());
 
-        // Query untuk menghitung jumlah user level "guru" (level = 2) yang login hari ini
+        // Query untuk menghitung jumlah user level "ortu" (level = 2) yang login hari ini
         $jumlahUserLevel2 = DB::table('users')
-            ->where('level', 2) // User dengan level "guru" (level = 2)
+            ->where('level', 2) // User dengan level "ortu" (level = 2)
             ->whereDate('last_login', Carbon::today()->toDateString()) // Hanya yang login hari ini
             ->count();
 
