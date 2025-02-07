@@ -117,6 +117,7 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
     Route::get('/teacher', [GuruController::class, 'index'])->name('teacher.index');
 
     Route::get('/get-download-statistics', [GuruController::class, 'getDownloadStatistics']);
+    Route::post('/send-notification/{id}', [GuruController::class, 'sendNotification'])->name('send.notification');
 
     // KINDERGARTEN
     Route::get('/teacher-kindergarten', [GuruController::class, 'kindergarten'])->name('teacher.kindergarten');
@@ -243,4 +244,7 @@ Route::middleware(['auth', 'user-access:ortu'])->group(function () {
     Route::get('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'showLaporan'])->name('ortu.laporan');
     Route::post('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'laporan'])->name('laporan.tanggal');
     Route::post('/save-download', [DownloadController::class, 'store'])->name('saveDownload');
+
+    Route::get('/mark-and-delete-notification/{id}', [OrtuController::class, 'markAndDeleteNotification'])
+        ->name('mark-and-delete-notification');
 });

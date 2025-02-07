@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Download;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -117,6 +118,7 @@ class GuruController extends Controller
             $kirimNotifikasi = $jumlahDownload == 0 ? true : false;
 
             return [
+                'id' => $user->id,  // Menambahkan ID pengguna
                 'name' => $user->name,
                 'jumlah' => $jumlahDownload,
                 'kirim_notifikasi' => $kirimNotifikasi
@@ -125,6 +127,29 @@ class GuruController extends Controller
 
         // Kirim data dalam format JSON
         return response()->json(['downloads' => $result]);
+    }
+
+    public function sendNotification($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User tidak ditemukan'], 404);
+        }
+
+        // Hapus notifikasi sebelumnya yang belum dibaca
+        Notification::where('user_id', $user->id)
+            ->where('is_read', false)
+            ->delete();
+
+        // Simpan notifikasi baru
+        Notification::create([
+            'user_id' => $user->id,
+            'message' => 'Harap melihat laporan hari ini',
+            'is_read' => false
+        ]);
+
+        return response()->json(['message' => 'Notifikasi berhasil dikirim']);
     }
 
     public function kindergarten()

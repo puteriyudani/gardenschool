@@ -15,6 +15,22 @@
         <div class="body-wrapper">
             @include('include.header-admin')
             <div class="container-fluid">
+                @if ($notifications->isNotEmpty())
+                    <div class="alert alert-danger">
+                        <h6>Notifikasi</h6>
+                        @foreach ($notifications as $notification)
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="mb-0">
+                                    {{ $notification->message }}
+                                </p>
+                                <a href="{{ route('mark-and-delete-notification', $notification->id) }}" class="text-danger" style="text-decoration: none;">
+                                    <i class="ti ti-trash"></i>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+
                 <h5>Siswa</h5>
                 <table class="table table-striped">
                     <thead>

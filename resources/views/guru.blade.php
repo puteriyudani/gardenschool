@@ -287,16 +287,51 @@
             fetch(`/get-download-statistics?tanggal=${tanggal}`)
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data); // Cek struktur data yang diterima
+
                     const tbody = document.getElementById('downloadTable').getElementsByTagName('tbody')[0];
                     tbody.innerHTML = ''; // Kosongkan tabel sebelum menambahkan data baru
 
                     data.downloads.forEach(item => {
+                        console.log(item); // Debugging untuk melihat apakah `item.id` ada
+
                         const row = tbody.insertRow();
                         const cellName = row.insertCell(0);
                         const cellCount = row.insertCell(1);
+                        const cellAction = row.insertCell(2);
 
                         cellName.textContent = item.name;
                         cellCount.textContent = item.jumlah;
+
+                        if (item.kirim_notifikasi) {
+                            const btnNotif = document.createElement("button");
+                            btnNotif.classList.add("btn", "btn-danger");
+                            btnNotif.textContent = "Kirim Notifikasi";
+                            btnNotif.onclick = function() {
+                                console.log("ID yang akan dikirim: " + item.id); // Memastikan ID ada
+                                fetch(`/send-notification/${item.id}`, {
+                                        method: "POST",
+                                        headers: {
+                                            "X-CSRF-TOKEN": document.querySelector(
+                                                'meta[name="csrf-token"]').content
+                                        }
+                                    })
+                                    .then(response => response.json())
+                                    .then(result => {
+                                        console.log(result); // Debugging untuk melihat hasil
+                                        alert(result.message);
+                                        btnNotif.textContent = "Notifikasi Terkirim";
+                                        btnNotif.disabled = true;
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error); // Jika ada error di fetch
+                                    });
+                            };
+
+                            cellAction.appendChild(btnNotif);
+                        } else {
+                            cellAction.textContent = "Sudah Mendownload";
+                        }
                     });
 
                     document.getElementById("downloadModal").style.display = "flex";

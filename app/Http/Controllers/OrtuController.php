@@ -12,6 +12,7 @@ use App\Models\HadistBaby;
 use App\Models\Islamic;
 use App\Models\Lunch;
 use App\Models\Morning;
+use App\Models\Notification;
 use App\Models\Pooppee;
 use App\Models\Preschool;
 use App\Models\Quran;
@@ -32,7 +33,27 @@ class OrtuController extends Controller
         $ortu = Auth::user();
         $siswas = $ortu->siswa()->get();
 
-        return view('orangtua.index', compact('siswas'));
+        // Ambil notifikasi terbaru
+        $notifications = Notification::where('user_id', $ortu->id)
+            ->where('is_read', false)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('orangtua.index', compact('siswas', 'notifications'));
+    }
+
+    public function markAndDeleteNotification($notificationId)
+    {
+        $notification = Notification::find($notificationId);
+
+        // Pastikan notifikasi ditemukan dan milik user yang sesuai
+        if ($notification && $notification->user_id === Auth::id()) {
+            // Tandai sebagai dibaca dan hapus
+            $notification->update(['is_read' => true]);
+            $notification->delete(); // Menghapus notifikasi setelah dibaca
+        }
+
+        return redirect()->back(); // Kembali ke halaman sebelumnya
     }
 
     public function showLaporan($id)
