@@ -173,11 +173,11 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Keterangan lebih lanjut mengenai program ini hanya bisa diakses bagi mitra GS. Segera buat
+                                Halaman ini hanya bisa di akses oleh mitra franchise. Segera buat
                                 akun Anda untuk bermitra.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                <a href="#" class="btn btn-success">Pelajari Lebih Lanjut</a>
                                 <a href="{{ route('loginpembeli') }}" class="btn btn-primary">Login</a>
                             </div>
                         </div>
