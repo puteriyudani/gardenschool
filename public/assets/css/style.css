@@ -547,6 +547,10 @@ h6 {
         left: 10%;
     }
 
+    .carousel-caption .social-links a{
+        font-size: 20px !important;
+    }
+
     .carousel-item {
         width: 100%;
         max-height: 600px !important;
