@@ -1,41 +1,6 @@
 @extends('layouts.layout')
 
 @section('style')
-    <style>
-        /* PDF - Desktop tetap, Mobile/Tablet responsif */
-        .testimonial-item embed {
-            width: 100%;
-            height: 500px;
-            /* Ukuran tetap di desktop */
-        }
-
-        @media (max-width: 768px) {
-            .testimonial-item embed {
-                height: auto;
-                /* Responsif di mobile/tablet */
-                width: 100%;
-            }
-        }
-
-        /* Video - Desktop tetap, Mobile/Tablet responsif */
-        .testimonial-item iframe {
-            width: 560px;
-            /* Ukuran tetap di desktop */
-            height: 315px;
-            /* Ukuran tetap di desktop */
-        }
-
-        @media (max-width: 768px) {
-            .testimonial-item iframe {
-                width: 100%;
-                /* Responsif di mobile/tablet */
-                height: auto;
-                /* Sesuaikan tinggi otomatis */
-                aspect-ratio: 16 / 9;
-                /* Tetap menjaga rasio aspek video */
-            }
-        }
-    </style>
 @endsection
 
 @section('hero')
