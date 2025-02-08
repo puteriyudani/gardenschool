@@ -58,7 +58,6 @@ class PdfController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'keterangan' => 'required',
             'file' => 'required|mimes:pdf,xlx,csv|max:2048',
             'subtopik_id' => 'required|exists:sub_topiks,id', // Validasi untuk subtopik_id
         ]);
@@ -97,7 +96,6 @@ class PdfController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'keterangan' => 'required',
             'file' => 'nullable|mimes:pdf,xlx,csv|max:2048',
             'subtopik_id' => 'required|exists:sub_topiks,id', // Validasi untuk subtopik_id
         ]);

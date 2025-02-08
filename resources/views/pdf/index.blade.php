@@ -57,7 +57,6 @@
                                             <tr>
                                                 <th scope="col">No</th>
                                                 <th scope="col">Judul</th>
-                                                <th scope="col">Keterangan</th>
                                                 <th scope="col">File</th>
                                                 <th scope="col">Aksi</th>
                                             </tr>
@@ -67,7 +66,6 @@
                                                 <tr>
                                                     <td>{{ $counter++ }}</td>
                                                     <td>{{ $pdf->judul }}</td>
-                                                    <td>{{ $pdf->keterangan }}</td>
                                                     <td>
                                                         <object data="{{ asset('/storage/file/' . $pdf->file) }}"
                                                             type="application/pdf" width="100%" height="300">

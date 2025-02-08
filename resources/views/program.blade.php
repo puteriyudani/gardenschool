@@ -72,7 +72,6 @@
                                             <th>No</th>
                                             <th>Sub Topik</th>
                                             <th>Judul</th>
-                                            <th>Keterangan</th>
                                             <th>Dokumen</th>
                                             <th>Video</th>
                                         </tr>
@@ -96,13 +95,6 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $pdf->judul }}</td>
-                                                <td>
-                                                    @if (auth()->check() && auth()->user()->level == 'pembeli')
-                                                        {{ $pdf->keterangan }}
-                                                    @else
-                                                        <span>Harus login untuk mengakses keterangan</span>
-                                                    @endif
-                                                </td>
                                                 <td>
                                                     @if (auth()->check() && auth()->user()->level == 'pembeli')
                                                         <a href="{{ asset('/storage/file/' . $pdf->file) }}"

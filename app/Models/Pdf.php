@@ -12,7 +12,7 @@ class Pdf extends Model
     protected $table = 'pdfs';
 
     // Kolom yang boleh diisi
-    protected $fillable = ['judul', 'keterangan', 'file', 'subtopik_id'];
+    protected $fillable = ['judul', 'file', 'subtopik_id'];
 
     /**
      * Relasi ke model Subtopik.

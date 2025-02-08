@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('pdfs', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('keterangan');
             $table->string('file');
             $table->timestamps();
         });

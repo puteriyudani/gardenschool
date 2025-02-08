@@ -39,10 +39,6 @@
                                             <input type="text" class="form-control" id="judul" name="judul"
                                                 aria-describedby="judulHelp">
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="keterangan" class="form-label">Keterangan</label>
-                                            <textarea class="form-control" placeholder="keterangan" id="keterangan" name="keterangan" style="height: 100px"></textarea>
-                                        </div>
                                         <!-- Pilihan Subtopik -->
                                         <div class="mb-3">
                                             <label for="subtopik_id" class="form-label">Pilih Subtopik</label>
