@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BabycampController;
 use App\Http\Controllers\BreakfastController;
+use App\Http\Controllers\BrosurController;
 use App\Http\Controllers\DoaBabyController;
 use App\Http\Controllers\DoaController;
 use App\Http\Controllers\DownloadController;
@@ -110,6 +111,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('subtopik', SubTopikController::class);
     Route::resource('youtube', YoutubeController::class);
     Route::resource('pdf', PdfController::class);
+
+    // brosur
+    Route::resource('brosur', BrosurController::class);
 });
 
 //guru

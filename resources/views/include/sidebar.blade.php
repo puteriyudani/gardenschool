@@ -98,6 +98,18 @@
                         <span class="hide-menu">Youtube</span>
                     </a>
                 </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Join Us</span>
+                </li>
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['brosur.index', 'brosur.create', 'brosur.edit']) ? 'selected' : '' }}">
+                    <a class="sidebar-link" href="{{ route('brosur.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-bookmark"></i>
+                        </span>
+                        <span class="hide-menu">Brosur</span>
+                    </a>
+                </li>
             </ul>
             <br><br>
         </nav>
