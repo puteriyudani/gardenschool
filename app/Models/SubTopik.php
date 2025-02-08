@@ -17,4 +17,14 @@ class SubTopik extends Model
     {
         return $this->belongsTo(Topik::class, 'topik_id');
     }
+
+    public function youtubes()
+    {
+        return $this->hasMany(Youtube::class, 'subtopik_id');
+    }
+
+    public function instagrams()
+    {
+        return $this->hasMany(Instagram::class, 'subtopik_id');
+    }
 }

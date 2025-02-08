@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\SubTopik;
-use App\Models\Youtube;
+use App\Models\Instagram;
 use Illuminate\Http\Request;
 
-class YoutubeController extends Controller
+class InstagramController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,8 +26,8 @@ class YoutubeController extends Controller
             $selectedKelompok = $kelompokList->first();
         }
 
-        // Ambil dan kelompokkan data YouTube berdasarkan hierarki kelompok → tema → topik → subtopik
-        $groupedYoutubes = Youtube::when($selectedKelompok, function ($query) use ($selectedKelompok) {
+        // Ambil dan kelompokkan data Instagram berdasarkan hierarki kelompok → tema → topik → subtopik
+        $groupedInstagrams = Instagram::when($selectedKelompok, function ($query) use ($selectedKelompok) {
             return $query->whereHas('subtopik.topik.tema', function ($query) use ($selectedKelompok) {
                 $query->where('kelompok', $selectedKelompok);
             });
@@ -45,7 +45,7 @@ class YoutubeController extends Controller
                     });
             });
 
-        return view('youtube.index', compact('groupedYoutubes', 'kelompokList', 'selectedKelompok'));
+        return view('instagram.index', compact('groupedInstagrams', 'kelompokList', 'selectedKelompok'));
     }
 
     /**
@@ -54,7 +54,7 @@ class YoutubeController extends Controller
     public function create()
     {
         $subtopiks = SubTopik::with(['topik.tema'])->get();
-        return view('youtube.create', compact('subtopiks'));
+        return view('instagram.create', compact('subtopiks'));
     }
 
     /**
@@ -72,25 +72,25 @@ class YoutubeController extends Controller
         $requestData = $request->all();
         $requestData['judul'] = $subtopik->subtopik; // Automatically set judul from SubTopik
 
-        Youtube::create($requestData);
+        Instagram::create($requestData);
 
-        return redirect()->route('youtube.index')
-            ->with('success', 'Youtube created successfully.');
+        return redirect()->route('instagram.index')
+            ->with('success', 'Instagram post created successfully.');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Youtube $youtube)
+    public function edit(Instagram $instagram)
     {
         $subtopiks = SubTopik::with(['topik.tema'])->get();
-        return view('youtube.edit', compact('youtube', 'subtopiks'));
+        return view('instagram.edit', compact('instagram', 'subtopiks'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Youtube $youtube)
+    public function update(Request $request, Instagram $instagram)
     {
         $request->validate([
             'subtopik_id' => 'required|exists:sub_topiks,id', // Ensure subtopik_id exists in SubTopik table
@@ -102,19 +102,19 @@ class YoutubeController extends Controller
         $requestData = $request->all();
         $requestData['judul'] = $subtopik->subtopik; // Automatically update judul from SubTopik
 
-        $youtube->update($requestData);
+        $instagram->update($requestData);
 
-        return redirect()->route('youtube.index')
-            ->with('success', 'Youtube updated successfully.');
+        return redirect()->route('instagram.index')
+            ->with('success', 'Instagram post updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Youtube $youtube)
+    public function destroy(Instagram $instagram)
     {
-        $youtube->delete();
+        $instagram->delete();
 
-        return back()->with('success', 'Youtube deleted successfully.');
+        return back()->with('success', 'Instagram post deleted successfully.');
     }
 }

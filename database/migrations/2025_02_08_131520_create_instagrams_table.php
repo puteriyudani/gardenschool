@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('youtubes', function (Blueprint $table) {
+        Schema::create('instagrams', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('subtopik_id'); // Kolom untuk foreign key
             $table->string('judul');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('youtubes');
+        Schema::dropIfExists('instagrams');
     }
 };

@@ -15,6 +15,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HadistBabyController;
 use App\Http\Controllers\HadistController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstagramController;
 use App\Http\Controllers\IslamicController;
 use App\Http\Controllers\KelompokController;
 use App\Http\Controllers\KindergartenController;
@@ -124,6 +125,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('subtopik', SubTopikController::class);
     Route::resource('youtube', YoutubeController::class);
     Route::resource('pdf', PdfController::class);
+    Route::resource('instagram', InstagramController::class);
 
     // brosur
     Route::resource('brosur', BrosurController::class);

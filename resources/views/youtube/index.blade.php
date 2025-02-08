@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('judul')
-    <title>Montessory - Youtube</title>
+    <title>Montessory - YouTube</title>
 @endsection
 
 @section('content')
@@ -21,8 +21,7 @@
                     </div>
                 @endif
 
-                <h5>Youtube</h5>
-                <br>
+                <h5 class="mb-4">Daftar Video YouTube</h5>
                 <a href="{{ route('youtube.create') }}" class="btn btn-success mb-3">Tambah Data</a>
 
                 <!-- Pilih Kelompok -->
@@ -30,7 +29,7 @@
                     <strong>Pilih Kelompok:</strong>
                     @foreach ($kelompokList as $kelompok)
                         <a href="{{ route('youtube.index', ['kelompok' => $kelompok]) }}"
-                            class="btn {{ $kelompok == $selectedKelompok ? 'btn-primary' : 'btn-outline-primary' }}">
+                            class="btn {{ $kelompok == $selectedKelompok ? 'btn-primary' : 'btn-outline-primary' }} mb-1">
                             {{ $kelompok }}
                         </a>
                     @endforeach
@@ -38,9 +37,9 @@
 
                 <div class="table-responsive">
                     @foreach ($groupedYoutubes as $kelompok => $temaGroup)
-                        <h6><u>Kelompok: {{ $kelompok }}</u></h6>
+                        <h5 class="text-dark"><u>Kelompok: {{ $kelompok }}</u></h5>
                         @foreach ($temaGroup as $tema => $topikGroup)
-                            <h6 class="mt-4 text-success fw-bold">Tema {{ $loop->iteration }}: {{ $tema }}</h6>
+                            <h5 class="mt-4 text-success fw-bold">Tema {{ $loop->iteration }}: {{ $tema }}</h5>
                             @foreach ($topikGroup as $topik => $subtopikGroup)
                                 <h6 class="ms-3 text-primary"><strong>Topik {{ $loop->iteration }}:
                                         {{ $topik }}</strong></h6>
@@ -49,12 +48,11 @@
                                     <h6 class="ms-5 text-warning"><strong>Subtopik {{ $loop->iteration }}:
                                             {{ $subtopik }}</strong></h6>
 
-                                    <table class="table table-striped">
+                                    <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">No</th>
                                                 <th scope="col">Judul</th>
-                                                <th scope="col">Keterangan</th>
                                                 <th scope="col">Video</th>
                                                 <th scope="col">Aksi</th>
                                             </tr>
@@ -64,7 +62,6 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $youtube->judul }}</td>
-                                                    <td>{{ $youtube->keterangan }}</td>
                                                     <td>
                                                         <iframe width="320" height="180" src="{{ $youtube->link }}"
                                                             title="YouTube video player" frameborder="0"
@@ -77,7 +74,9 @@
                                                             Edit
                                                         </a>
                                                         <form action="{{ route('youtube.destroy', $youtube->id) }}"
-                                                            method="POST" style="display:inline;">
+                                                            method="POST"
+                                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus video ini?');"
+                                                            style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm">

@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('judul')
-    <title>Edit Youtube</title>
+    <title>Edit Instagram</title>
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
                             <h5 class="card-title fw-semibold mb-4">Forms</h5>
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('youtube.update', $youtube->id) }}" method="POST">
+                                    <form action="{{ route('instagram.update', $instagram->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
 
@@ -44,7 +44,7 @@
                                                 @foreach ($subtopiks as $subtopik)
                                                     <option value="{{ $subtopik->id }}"
                                                         data-judul="{{ $subtopik->subtopik }}"
-                                                        {{ $subtopik->id == $youtube->subtopik_id ? 'selected' : '' }}>
+                                                        {{ $subtopik->id == $instagram->subtopik_id ? 'selected' : '' }}>
                                                         {{ Str::limit($subtopik->subtopik, 20) }} -
                                                         {{ Str::limit($subtopik->topik->topik, 15) }} (Topik) -
                                                         {{ Str::limit($subtopik->topik->tema->tema, 15) }} (Tema) -
@@ -58,7 +58,7 @@
                                         <div class="mb-3">
                                             <label for="judul" class="form-label">Judul</label>
                                             <input type="text" class="form-control" id="judul" name="judul"
-                                                readonly value="{{ $youtube->judul }}">
+                                                readonly value="{{ $instagram->judul }}">
                                         </div>
 
                                         <script>
@@ -72,7 +72,7 @@
                                         <!-- Link -->
                                         <div class="mb-3">
                                             <label for="link" class="form-label">Link</label>
-                                            <textarea class="form-control" placeholder="Masukkan link" id="link" name="link" style="height: 100px" required>{{ $youtube->link }}</textarea>
+                                            <textarea class="form-control" placeholder="Masukkan link" id="link" name="link" style="height: 100px" required>{{ $instagram->link }}</textarea>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Update</button>

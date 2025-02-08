@@ -12,14 +12,10 @@ class Youtube extends Model
     protected $table = 'youtubes';
 
     // Kolom yang boleh diisi
-    protected $fillable = ['pdf_id', 'judul', 'keterangan', 'link'];
+    protected $fillable = ['subtopik_id', 'judul', 'link'];
 
-    /**
-     * Relasi ke model Pdf.
-     * Setiap entri Youtube terkait dengan satu entri Pdf.
-     */
-    public function pdf()
+    public function subtopik()
     {
-        return $this->belongsTo(Pdf::class, 'pdf_id');
+        return $this->belongsTo(SubTopik::class, 'subtopik_id');
     }
 }

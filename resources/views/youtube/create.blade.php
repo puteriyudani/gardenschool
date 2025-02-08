@@ -34,19 +34,19 @@
                                     <form action="{{ route('youtube.store') }}" method="POST">
                                         @csrf
 
-                                        <!-- Dropdown for selecting PDF -->
+                                        <!-- Dropdown for selecting SubTopik -->
                                         <div class="mb-3">
-                                            <label for="pdf_id" class="form-label">Pilih PDF</label>
-                                            <select class="form-control" id="pdf_id" name="pdf_id"
-                                                aria-describedby="pdfHelp" required onchange="updateJudul()">
-                                                <option value="" disabled selected>Pilih PDF</option>
-                                                @foreach ($pdfs as $pdf)
-                                                    <option value="{{ $pdf->id }}" data-judul="{{ $pdf->judul }}">
-                                                        {{ Str::limit($pdf->judul, 20) }} -
-                                                        {{ Str::limit($pdf->subtopik->subtopik, 15) }} -
-                                                        {{ Str::limit($pdf->subtopik->topik->topik, 15) }} (Topik) -
-                                                        {{ Str::limit($pdf->subtopik->topik->tema->tema, 15) }} (Tema) -
-                                                        {{ Str::limit($pdf->subtopik->topik->tema->kelompok, 15) }}
+                                            <label for="subtopik_id" class="form-label">Pilih SubTopik</label>
+                                            <select class="form-control" id="subtopik_id" name="subtopik_id"
+                                                aria-describedby="subTopikHelp" required onchange="updateJudul()">
+                                                <option value="" disabled selected>Pilih SubTopik</option>
+                                                @foreach ($subtopiks as $subtopik)
+                                                    <option value="{{ $subtopik->id }}"
+                                                        data-judul="{{ $subtopik->subtopik }}">
+                                                        {{ Str::limit($subtopik->subtopik, 20) }} -
+                                                        {{ Str::limit($subtopik->topik->topik, 15) }} (Topik) -
+                                                        {{ Str::limit($subtopik->topik->tema->tema, 15) }} (Tema) -
+                                                        {{ Str::limit($subtopik->topik->tema->kelompok, 15) }}
                                                         (Kelompok)
                                                     </option>
                                                 @endforeach
@@ -62,19 +62,11 @@
 
                                         <script>
                                             function updateJudul() {
-                                                var selectedPdf = document.getElementById('pdf_id');
-                                                var judul = selectedPdf.options[selectedPdf.selectedIndex].getAttribute('data-judul');
+                                                var selectedSubTopik = document.getElementById('subtopik_id');
+                                                var judul = selectedSubTopik.options[selectedSubTopik.selectedIndex].getAttribute('data-judul');
                                                 document.getElementById('judul').value = judul;
                                             }
                                         </script>
-
-
-                                        <!-- Keterangan -->
-                                        <div class="mb-3">
-                                            <label for="keterangan" class="form-label">Keterangan</label>
-                                            <textarea class="form-control" placeholder="Masukkan keterangan" id="keterangan" name="keterangan" style="height: 100px"
-                                                required></textarea>
-                                        </div>
 
                                         <!-- Link -->
                                         <div class="mb-3">

@@ -11,7 +11,10 @@ class ProgramControler extends Controller
     public function index(Request $request)
     {
         // Ambil semua kelompok unik dari tema yang berhubungan dengan PDF
-        $kelompokList = Pdf::with(['subtopik.topik.tema'])->get()->pluck('subtopik.topik.tema.kelompok')->unique();
+        $kelompokList = Pdf::with(['subtopik.topik.tema'])
+            ->get()
+            ->pluck('subtopik.topik.tema.kelompok')
+            ->unique();
 
         // Ambil kelompok dari query string (default ke kelompok pertama jika tidak ada)
         $selectedKelompok = $request->query('kelompok', $kelompokList->first());
@@ -22,20 +25,17 @@ class ProgramControler extends Controller
                 $query->where('kelompok', $selectedKelompok);
             });
         })
-            ->with(['subtopik.topik.tema', 'youtubes']) // Memuat relasi subtopik, topik, tema, dan youtubes
+            ->with(['subtopik.topik.tema', 'subtopik.youtubes', 'subtopik.instagrams']) // Tambahkan 'subtopik.instagrams'
             ->get()
-            ->groupBy(function ($pdf) {
-                return $pdf->subtopik->topik->tema->kelompok; // Kelompok berdasarkan tema
-            })
-            ->map(function ($kelompokGroup) {
-                return $kelompokGroup->groupBy(function ($pdf) {
-                    return $pdf->subtopik->topik->tema->tema; // Group berdasarkan tema
-                })->map(function ($temaGroup) {
-                    return $temaGroup->groupBy(function ($pdf) {
-                        return $pdf->subtopik->topik->topik; // Group berdasarkan topik
-                    });
-                });
-            });
+            ->groupBy(fn($pdf) => $pdf->subtopik->topik->tema->kelompok) // Group berdasarkan kelompok
+            ->map(
+                fn($kelompokGroup) =>
+                $kelompokGroup->groupBy(fn($pdf) => $pdf->subtopik->topik->tema->tema) // Group berdasarkan tema
+                    ->map(
+                        fn($temaGroup) =>
+                        $temaGroup->groupBy(fn($pdf) => $pdf->subtopik->topik->topik) // Group berdasarkan topik
+                    )
+            );
 
         return view('program', compact('groupedPdfs', 'kelompokList', 'selectedKelompok'));
     }

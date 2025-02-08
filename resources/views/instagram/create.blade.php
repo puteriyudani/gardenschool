@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('judul')
-    <title>Edit Youtube</title>
+    <title>Tambah Instagram</title>
 @endsection
 
 @section('content')
@@ -31,34 +31,33 @@
                             <h5 class="card-title fw-semibold mb-4">Forms</h5>
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('youtube.update', $youtube->id) }}" method="POST">
+                                    <form action="{{ route('instagram.store') }}" method="POST">
                                         @csrf
-                                        @method('PUT')
 
-                                        <!-- Dropdown untuk memilih SubTopik -->
+                                        <!-- Dropdown for selecting SubTopik -->
                                         <div class="mb-3">
                                             <label for="subtopik_id" class="form-label">Pilih SubTopik</label>
                                             <select class="form-control" id="subtopik_id" name="subtopik_id"
                                                 aria-describedby="subTopikHelp" required onchange="updateJudul()">
-                                                <option value="" disabled>Pilih SubTopik</option>
+                                                <option value="" disabled selected>Pilih SubTopik</option>
                                                 @foreach ($subtopiks as $subtopik)
                                                     <option value="{{ $subtopik->id }}"
-                                                        data-judul="{{ $subtopik->subtopik }}"
-                                                        {{ $subtopik->id == $youtube->subtopik_id ? 'selected' : '' }}>
+                                                        data-judul="{{ $subtopik->subtopik }}">
                                                         {{ Str::limit($subtopik->subtopik, 20) }} -
                                                         {{ Str::limit($subtopik->topik->topik, 15) }} (Topik) -
                                                         {{ Str::limit($subtopik->topik->tema->tema, 15) }} (Tema) -
-                                                        {{ Str::limit($subtopik->topik->tema->kelompok, 15) }} (Kelompok)
+                                                        {{ Str::limit($subtopik->topik->tema->kelompok, 15) }}
+                                                        (Kelompok)
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </div>
 
-                                        <!-- Input Judul -->
+                                        <!-- Input for Judul -->
                                         <div class="mb-3">
                                             <label for="judul" class="form-label">Judul</label>
                                             <input type="text" class="form-control" id="judul" name="judul"
-                                                readonly value="{{ $youtube->judul }}">
+                                                readonly>
                                         </div>
 
                                         <script>
@@ -72,10 +71,10 @@
                                         <!-- Link -->
                                         <div class="mb-3">
                                             <label for="link" class="form-label">Link</label>
-                                            <textarea class="form-control" placeholder="Masukkan link" id="link" name="link" style="height: 100px" required>{{ $youtube->link }}</textarea>
+                                            <textarea class="form-control" placeholder="Masukkan link" id="link" name="link" style="height: 100px" required></textarea>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
                                 </div>
                             </div>

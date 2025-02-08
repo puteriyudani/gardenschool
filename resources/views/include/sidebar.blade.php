@@ -90,10 +90,18 @@
                         <span class="hide-menu">Pdf</span>
                     </a>
                 </li>
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['instagram.index', 'instagram.create', 'instagram.edit']) ? 'selected' : '' }}">
+                    <a class="sidebar-link" href="{{ route('instagram.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-brand-instagram"></i>
+                        </span>
+                        <span class="hide-menu">Instagram</span>
+                    </a>
+                </li>
                 <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['youtube.index', 'youtube.create', 'youtube.edit']) ? 'selected' : '' }}">
                     <a class="sidebar-link" href="{{ route('youtube.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-video"></i>
+                            <i class="ti ti-brand-youtube"></i>
                         </span>
                         <span class="hide-menu">Youtube</span>
                     </a>
