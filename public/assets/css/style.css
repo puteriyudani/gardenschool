@@ -399,6 +399,10 @@ h6 {
 }
 
 @media (max-width: 1024px) {
+    .carousel-caption .join {
+        justify-content: center;
+    }
+
     #hero .item1 {
         text-align: center;
         width: 100%;

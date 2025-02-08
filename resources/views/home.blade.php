@@ -34,8 +34,12 @@
                                 <a href="https://www.youtube.com/@gardenschool2246" class="instagram" target="_blank"
                                     style="color: #FF0000"><i class="bx bxl-youtube"></i></a>
                             </div>
-                            <a href="https://wa.me/6282268081212" class="btn btn-info" role="button" target="_blank">Join
-                                us</a>
+                            <div class="d-flex join">
+                                <a href="#" class="btn btn-info me-2" role="button"
+                                    target="_blank">Join us</a>
+                                <a href="#" class="btn btn-warning" role="button"
+                                    target="_blank">Franchise</a>
+                            </div>
                         </div>
                     </div>
                 </div>
