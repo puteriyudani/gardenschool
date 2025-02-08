@@ -9,6 +9,7 @@ use App\Http\Controllers\BrosurController;
 use App\Http\Controllers\DoaBabyController;
 use App\Http\Controllers\DoaController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\FileBrosurController;
 use App\Http\Controllers\FunController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HadistBabyController;
@@ -57,6 +58,18 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
 Route::resource('program', ProgramControler::class);
+Route::get('/join-us', [HomeController::class, 'joinus'])->name('joinus');
+
+// download file brosur
+Route::get('/download-brosur/{filename}', function ($filename) {
+    $path = storage_path('app/public/file/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404, 'File not found.');
+    }
+
+    return response()->download($path);
+})->name('download.filebrosur');
 
 // login
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -114,6 +127,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     // brosur
     Route::resource('brosur', BrosurController::class);
+    Route::resource('filebrosur', FileBrosurController::class);
 });
 
 //guru

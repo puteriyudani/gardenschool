@@ -110,6 +110,14 @@
                         <span class="hide-menu">Brosur</span>
                     </a>
                 </li>
+                <li class="sidebar-item {{ in_array(Route::currentRouteName(), ['filebrosur.index', 'filebrosur.create', 'filebrosur.edit']) ? 'selected' : '' }}">
+                    <a class="sidebar-link" href="{{ route('filebrosur.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-file"></i>
+                        </span>
+                        <span class="hide-menu">File Brosur</span>
+                    </a>
+                </li>
             </ul>
             <br><br>
         </nav>

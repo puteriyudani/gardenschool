@@ -35,7 +35,7 @@
                                     style="color: #FF0000"><i class="bx bxl-youtube"></i></a>
                             </div>
                             <div class="d-flex join">
-                                <a href="#" class="btn btn-info me-2" role="button"
+                                <a href="{{ route('joinus') }}" class="btn btn-info me-2" role="button"
                                     target="_blank">Join us</a>
                                 <a href="#" class="btn btn-warning" role="button"
                                     target="_blank">Franchise</a>
