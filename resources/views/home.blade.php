@@ -125,7 +125,7 @@
                                     <li><i class="bi bi-chevron-right"></i> <strong>Tahun Berdiri:</strong> <span>7 Juli
                                             2021</span></li>
                                     <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong>
-                                        <span>www.example.com</span>
+                                        <span>https://gardenschoolindonesia.com</span>
                                     </li>
                                     <li><i class="bi bi-chevron-right"></i> <strong>Alamat:</strong> <span>Gg. Cahaya, Desa
                                             Senggoro, Kab.Bengkalis, Riau</span></li>
