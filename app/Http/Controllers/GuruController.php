@@ -19,26 +19,30 @@ class GuruController extends Controller
         // Ambil tanggal dari input atau gunakan hari ini sebagai default
         $tanggal = $request->input('tanggal', Carbon::today()->toDateString());
 
-        // Query untuk menghitung jumlah user level "ortu" (level = 2) yang login hari ini
-        $jumlahUserLevel2 = DB::table('users')
-            ->where('level', 2) // User dengan level "ortu" (level = 2)
-            ->whereDate('last_login', Carbon::today()->toDateString()) // Hanya yang login hari ini
-            ->count();
-
-        // Hitung jumlah download laporan hari ini
-        $jumlahDownloadHariIni = Download::whereDate('tanggal', $tanggal)->count();
-
-        // Ambil data pengguna yang mengklik tombol download berdasarkan tanggal
-        $downloadData = DB::table('downloads')
-            ->join('users', 'downloads.user_id', '=', 'users.id')
-            ->select('users.name', DB::raw('count(downloads.id) as jumlah'))
-            ->where('users.level', 2)
-            ->whereDate('downloads.tanggal', $tanggal)
-            ->groupBy('users.name')
+        // Ambil semua pengguna dengan level "ortu"
+        $users = DB::table('users')
+            ->where('level', 2) // Hanya pengguna dengan level "ortu"
             ->get();
 
-        $downloadLabels = $downloadData->pluck('name');
-        $downloadCounts = $downloadData->pluck('jumlah');
+        // Ambil data pengguna yang telah mendownload berdasarkan tanggal yang dipilih
+        $downloadedUsers = DB::table('downloads')
+            ->join('users', 'downloads.user_id', '=', 'users.id')
+            ->select('users.id', 'users.name')
+            ->whereDate('downloads.tanggal', $tanggal)
+            ->groupBy('users.id', 'users.name')
+            ->get();
+
+        // Identifikasi pengguna yang belum mendownload
+        $downloadedUserIds = $downloadedUsers->pluck('id')->toArray();
+        $notDownloadedUsers = $users->reject(function ($user) use ($downloadedUserIds) {
+            return in_array($user->id, $downloadedUserIds);
+        });
+
+        // Hitung jumlah user level "ortu" yang login hari ini
+        $jumlahUserLevel2 = DB::table('users')
+            ->where('level', 2)
+            ->whereDate('last_login', Carbon::today()->toDateString())
+            ->count();
 
         // Data untuk "Welcome Mood"
         $totalWelcome = DB::table('welcomes')
@@ -85,7 +89,15 @@ class GuruController extends Controller
             }
         }
 
-        return view('guru', compact('persentaseWelcome', 'persentaseRecalling', 'statusKeberhasilan', 'tanggal', 'jumlahUserLevel2', 'downloadLabels', 'downloadCounts', 'jumlahDownloadHariIni'));
+        return view('guru', compact(
+            'tanggal',
+            'downloadedUsers',
+            'notDownloadedUsers',
+            'jumlahUserLevel2',
+            'persentaseWelcome',
+            'persentaseRecalling',
+            'statusKeberhasilan'
+        ));
     }
 
     public function getDownloadStatistics(Request $request)

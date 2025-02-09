@@ -87,16 +87,6 @@
                     </div>
                 </div>
 
-                <!-- Card untuk Menampilkan Jumlah Download Laporan Hari Ini -->
-                <div class="card mt-4" style="background-color: #ffecb3; border-radius: 10px; padding: 20px;">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0" style="font-weight: bold; color: #ff9800;">Jumlah Download Laporan Hari Ini</h5>
-                        <div class="badge bg-warning text-white p-2" style="font-size: 18px; font-weight: bold;">
-                            {{ $jumlahDownloadHariIni }} Download
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Card Wrapper - Statistik Download -->
                 <div class="card mt-4" style="background-color: #d6eaf8; border-radius: 10px; padding: 20px;">
                     <h3 class="text-center">Statistik Download Laporan</h3>
@@ -108,6 +98,21 @@
                     </div>
                 </div>
 
+                <!-- Card untuk Orang Tua yang Belum Mendownload -->
+                <div class="card mt-4" style="background-color: #ffebee; border-radius: 10px; padding: 20px;">
+                    <h5 class="text-center" style="color: #d32f2f;">Orang Tua yang Belum Mendownload</h5>
+                    <ul class="list-group">
+                        @foreach ($notDownloadedUsers as $user)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ $user->name }}
+                                <button class="btn btn-sm btn-danger send-notification" data-id="{{ $user->id }}">
+                                    Kirim Notifikasi
+                                </button>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
                 <!-- Modal Detail Download -->
                 <div id="downloadModal" class="modal" style="display: none;">
                     <div class="modal-content">
@@ -117,7 +122,8 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Jumlah Klik</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -184,32 +190,6 @@
     </div>
 
     <script>
-        // Data untuk orangtua yang klik download
-        var ctxDownload = document.getElementById('downloadChart').getContext('2d');
-        var downloadChart = new Chart(ctxDownload, {
-            type: 'line',
-            data: {
-                labels: {!! json_encode($downloadLabels) !!},
-                datasets: [{
-                    label: 'Jumlah Download',
-                    data: {!! json_encode($downloadCounts) !!},
-                    backgroundColor: '#42A5F5',
-                    borderColor: '#1E88E5',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        suggestedMin: 0, // Menentukan nilai minimal y-axis
-                        suggestedMax: 100 // Menentukan nilai maksimal y-axis
-                    }
-                }
-            }
-        });
-
         // Data untuk Welcome Mood
         var welcomeMoodData = {
             labels: ['Sad', 'Neutral', 'Happy'],
@@ -279,7 +259,35 @@
         });
     </script>
 
-    <!-- JavaScript untuk menangani klik dan menampilkan modal detail download -->
+    <script>
+        // Data untuk orang tua yang download vs tidak
+        var ctxDownload = document.getElementById('downloadChart').getContext('2d');
+        var downloadChart = new Chart(ctxDownload, {
+            type: 'bar',
+            data: {
+                labels: ['Sudah Mendownload', 'Belum Mendownload'],
+                datasets: [{
+                    label: 'Jumlah Orang Tua',
+                    data: [
+                        {{ count($downloadedUsers) }},
+                        {{ count($notDownloadedUsers) }}
+                    ],
+                    backgroundColor: ['#42A5F5', '#EF5350'],
+                    borderColor: ['#1E88E5', '#D32F2F'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
     <script>
         document.getElementById("showModal").onclick = function() {
             const tanggal = document.getElementById("tanggal").value;
@@ -287,31 +295,26 @@
             fetch(`/get-download-statistics?tanggal=${tanggal}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data); // Cek struktur data yang diterima
+                    console.log(data);
 
                     const tbody = document.getElementById('downloadTable').getElementsByTagName('tbody')[0];
                     tbody.innerHTML = ''; // Kosongkan tabel sebelum menambahkan data baru
 
                     data.downloads.forEach(item => {
-                        console.log(item); // Debugging untuk melihat apakah `item.id` ada
-
                         const row = tbody.insertRow();
                         const cellName = row.insertCell(0);
-                        const cellCount = row.insertCell(1);
+                        const cellStatus = row.insertCell(1);
                         const cellAction = row.insertCell(2);
 
                         cellName.textContent = item.name;
-                        cellCount.textContent = item.jumlah;
+                        cellStatus.textContent = item.jumlah > 0 ? "Sudah Mendownload" :
+                            "Belum Mendownload";
 
                         if (item.kirim_notifikasi) {
                             const btnNotif = document.createElement("button");
                             btnNotif.classList.add("btn", "btn-danger");
                             btnNotif.textContent = "Kirim Notifikasi";
                             btnNotif.onclick = function() {
-                                console.log("ID yang akan dikirim: " + item.id); // Memastikan ID ada
-                                const tanggal = document.getElementById("tanggal")
-                                .value; // Ambil tanggal dari form
-
                                 fetch(`/send-notification/${item.id}?tanggal=${tanggal}`, {
                                         method: "POST",
                                         headers: {
@@ -321,25 +324,47 @@
                                     })
                                     .then(response => response.json())
                                     .then(result => {
-                                        console.log(result); // Debugging untuk melihat hasil
                                         alert(result.message);
                                         btnNotif.textContent = "Notifikasi Terkirim";
                                         btnNotif.disabled = true;
                                     })
                                     .catch(error => {
-                                        console.error('Error:', error); // Jika ada error di fetch
+                                        console.error('Error:', error);
                                     });
                             };
-
                             cellAction.appendChild(btnNotif);
                         } else {
-                            cellAction.textContent = "Sudah Mendownload";
+                            cellAction.textContent = "Tidak Perlu Notifikasi";
                         }
                     });
 
                     document.getElementById("downloadModal").style.display = "flex";
                 });
         };
+
+        // Event listener untuk tombol notifikasi di daftar orang tua yang belum mendownload
+        document.querySelectorAll(".send-notification").forEach(button => {
+            button.addEventListener("click", function() {
+                const userId = this.getAttribute("data-id");
+                const tanggal = document.getElementById("tanggal").value;
+
+                fetch(`/send-notification/${userId}?tanggal=${tanggal}`, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        alert(result.message);
+                        this.textContent = "Notifikasi Terkirim";
+                        this.disabled = true;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
 
         document.getElementById("closeModal").onclick = function() {
             document.getElementById("downloadModal").style.display = "none";
