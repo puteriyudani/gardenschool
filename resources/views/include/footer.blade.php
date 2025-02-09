@@ -14,9 +14,9 @@
         </div>
         <div class="mb-4">
             <h6 style="font-weight: bold; color: #0563bb;">Jumlah Pengunjung:</h6>
-            <a href="https://www.freecounterstat.com" title="website counter" target="_blank"><img
-                    src="https://counter6.optistats.ovh/private/freecounterstat.php?c=9dhpx729jsnljaa7em442z73d1fzjjbs"
-                    border="0" title="website counter" alt="website counter"></a>
+            <a href="https://www.freecounterstat.com" title="free page counter" target="_blank"><img
+                    src="https://counter6.optistats.ovh/private/freecounterstat.php?c=ss6pzr4a9ct7t3juwzz4yu85cxkaesk3"
+                    border="0" title="free page counter" alt="free page counter"></a>
         </div>
         <div class="copyright">
             &copy; Copyright <strong><span>Gardenschool Indonesia</span></strong>. All Rights Reserved

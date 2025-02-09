@@ -21,7 +21,6 @@
                 <div class="carousel-item active item1">
                     <div class="carousel-caption d-md-block">
                         <div class="container" data-aos="zoom-in" data-aos-delay="100">
-                            <p>d'happiest <span class="typed" data-typed-items="Islamic pre-school"></span></p>
                             <div class="social-links">
                                 <a href="https://wa.me/6282268081212" class="twitter" target="_blank"
                                     style="color: #25D366"><i class="bx bxl-whatsapp"></i></a>
