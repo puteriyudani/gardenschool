@@ -352,6 +352,14 @@ h6 {
     position: relative;
 }
 
+#hero .item8 {
+    width: 100%;
+    height: 100vh;
+    background: url("../img/hero-bg16.png") top right no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
 #hero h1 {
     margin: 0;
     font-size: 64px;
@@ -472,6 +480,14 @@ h6 {
         background-size: cover;
         position: relative;
     }
+
+    #hero .item8 {
+        text-align: center;
+        width: 100%;
+        background: url("../img/hero-bg17.png") no-repeat;
+        background-size: cover;
+        position: relative;
+    }
 }
 
 @media (max-width: 640px) {
@@ -550,6 +566,14 @@ h6 {
         text-align: center;
         width: 100%;
         background: url("../img/hero-bg15.png") no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    #hero .item8 {
+        text-align: center;
+        width: 100%;
+        background: url("../img/hero-bg17.png") no-repeat;
         background-size: cover;
         position: relative;
     }
