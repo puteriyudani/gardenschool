@@ -561,6 +561,11 @@ h6 {
         left: 10%;
     }
 
+    .carousel-caption .join {
+        justify-content: center;
+        margin-bottom: 20px !important;
+    }
+
     .carousel-caption .join a {
         font-size: 16px !important;
         min-width: 100px !important;
