@@ -16,20 +16,35 @@ class GuruController extends Controller
      */
     public function index(Request $request)
     {
-        // Ambil tanggal dari input atau gunakan hari ini sebagai default
-        $tanggal = $request->input('tanggal', Carbon::today()->toDateString());
+        // Cek apakah ada input tanggal atau bulan
+        $tanggal = $request->input('tanggal');
+        $bulan = $request->input('bulan');
+
+        // Validasi format tanggal jika ada input tanggal
+        if ($tanggal && !strtotime($tanggal)) {
+            return response()->json(['error' => 'Format tanggal tidak valid'], 400);
+        }
+
+        // Validasi format bulan jika ada input bulan
+        if ($bulan && !preg_match('/^\d{4}-\d{2}$/', $bulan)) { // Format harus YYYY-MM
+            return response()->json(['error' => 'Format bulan tidak valid'], 400);
+        }
 
         // Ambil semua pengguna dengan level "ortu"
-        $users = DB::table('users')
-            ->where('level', 2) // Hanya pengguna dengan level "ortu"
-            ->get();
+        $users = DB::table('users')->where('level', 2)->get();
 
-        // Ambil data pengguna yang telah mendownload berdasarkan tanggal yang dipilih
+        // Ambil data pengguna yang telah mendownload berdasarkan tanggal atau bulan yang dipilih
         $downloadedUsers = DB::table('downloads')
             ->join('users', 'downloads.user_id', '=', 'users.id')
             ->select('users.id', 'users.name')
-            ->whereDate('downloads.tanggal', $tanggal)
-            ->groupBy('users.id', 'users.name')
+            ->distinct()
+            ->when($tanggal, function ($query, $tanggal) {
+                return $query->whereDate('downloads.tanggal', $tanggal);
+            })
+            ->when($bulan, function ($query, $bulan) {
+                return $query->whereMonth('downloads.tanggal', Carbon::createFromFormat('Y-m', $bulan)->month)
+                    ->whereYear('downloads.tanggal', Carbon::createFromFormat('Y-m', $bulan)->year);
+            })
             ->get();
 
         // Identifikasi pengguna yang belum mendownload
@@ -38,20 +53,38 @@ class GuruController extends Controller
             return in_array($user->id, $downloadedUserIds);
         });
 
-        // Hitung jumlah user level "ortu" yang login hari ini
+        // Hitung jumlah user level "ortu" yang login
         $jumlahUserLevel2 = DB::table('users')
             ->where('level', 2)
-            ->whereDate('last_login', Carbon::today()->toDateString())
+            ->when($tanggal, function ($query, $tanggal) {
+                return $query->whereDate('last_login', $tanggal);
+            })
+            ->when($bulan, function ($query, $bulan) {
+                return $query->whereMonth('last_login', Carbon::createFromFormat('Y-m', $bulan)->month)
+                    ->whereYear('last_login', Carbon::createFromFormat('Y-m', $bulan)->year);
+            })
             ->count();
 
         // Data untuk "Welcome Mood"
         $totalWelcome = DB::table('welcomes')
-            ->whereDate('tanggal', $tanggal)
+            ->when($tanggal, function ($query, $tanggal) {
+                return $query->whereDate('tanggal', Carbon::parse($tanggal)->toDateString());
+            })
+            ->when($bulan, function ($query, $bulan) {
+                return $query->whereMonth('tanggal', Carbon::parse($bulan)->month)
+                    ->whereYear('tanggal', Carbon::parse($bulan)->year);
+            })
             ->count();
 
         $welcomeData = DB::table('welcomes')
             ->select('keterangan', DB::raw('count(*) as count'))
-            ->whereDate('tanggal', $tanggal)
+            ->when($tanggal, function ($query, $tanggal) {
+                return $query->whereDate('tanggal', Carbon::parse($tanggal)->toDateString());
+            })
+            ->when($bulan, function ($query, $bulan) {
+                return $query->whereMonth('tanggal', Carbon::parse($bulan)->month)
+                    ->whereYear('tanggal', Carbon::parse($bulan)->year);
+            })
             ->groupBy('keterangan')
             ->get();
 
@@ -61,12 +94,24 @@ class GuruController extends Controller
 
         // Data untuk "Recalling"
         $totalRecalling = DB::table('recallings')
-            ->whereDate('tanggal', $tanggal)
+            ->when($tanggal, function ($query, $tanggal) {
+                return $query->whereDate('tanggal', Carbon::parse($tanggal)->toDateString());
+            })
+            ->when($bulan, function ($query, $bulan) {
+                return $query->whereMonth('tanggal', Carbon::parse($bulan)->month)
+                    ->whereYear('tanggal', Carbon::parse($bulan)->year);
+            })
             ->count();
 
         $recallingData = DB::table('recallings')
             ->select('keterangan', DB::raw('count(*) as count'))
-            ->whereDate('tanggal', $tanggal)
+            ->when($tanggal, function ($query, $tanggal) {
+                return $query->whereDate('tanggal', Carbon::parse($tanggal)->toDateString());
+            })
+            ->when($bulan, function ($query, $bulan) {
+                return $query->whereMonth('tanggal', Carbon::parse($bulan)->month)
+                    ->whereYear('tanggal', Carbon::parse($bulan)->year);
+            })
             ->groupBy('keterangan')
             ->get();
 
@@ -91,6 +136,7 @@ class GuruController extends Controller
 
         return view('guru', compact(
             'tanggal',
+            'bulan', // Menambahkan bulan ke dalam data yang dikirim ke view
             'downloadedUsers',
             'notDownloadedUsers',
             'jumlahUserLevel2',
@@ -102,42 +148,36 @@ class GuruController extends Controller
 
     public function getDownloadStatistics(Request $request)
     {
-        // Ambil tanggal dari input atau gunakan hari ini sebagai default
-        $tanggal = $request->input('tanggal', Carbon::today()->toDateString());
+        // Ambil bulan dari input atau gunakan bulan ini sebagai default
+        $bulan = $request->input('bulan', Carbon::now()->format('Y-m'));
+
+        // Validasi format bulan yang dikirim
+        if ($bulan && !preg_match('/^\d{4}-\d{2}$/', $bulan)) { // Format harus YYYY-MM
+            return response()->json(['error' => 'Format bulan tidak valid'], 400);
+        }
 
         // Ambil semua pengguna dengan level "ortu"
-        $users = DB::table('users')
-            ->where('level', 2) // Hanya pengguna dengan level "ortu"
-            ->get();
+        $users = DB::table('users')->where('level', 2)->get();
 
-        // Ambil data download untuk setiap pengguna berdasarkan tanggal yang dipilih
+        // Ambil data download untuk setiap pengguna berdasarkan bulan yang dipilih
         $downloadData = DB::table('downloads')
             ->join('users', 'downloads.user_id', '=', 'users.id')
             ->select('users.id', 'users.name', DB::raw('count(downloads.id) as jumlah'))
-            ->whereDate('downloads.tanggal', $tanggal) // Filter berdasarkan tanggal
+            ->whereMonth('downloads.tanggal', Carbon::createFromFormat('Y-m', $bulan)->month)
+            ->whereYear('downloads.tanggal', Carbon::createFromFormat('Y-m', $bulan)->year)
             ->groupBy('users.id', 'users.name')
             ->get();
 
         // Gabungkan data download dengan pengguna ortu
         $result = $users->map(function ($user) use ($downloadData) {
-            // Cari data download untuk pengguna ini
-            $download = $downloadData->firstWhere('id', $user->id);
-
-            // Jika tidak ada data download, set jumlah menjadi 0
-            $jumlahDownload = $download ? $download->jumlah : 0;
-
-            // Tentukan apakah notifikasi perlu dikirim
-            $kirimNotifikasi = $jumlahDownload == 0 ? true : false;
-
             return [
-                'id' => $user->id,  // Menambahkan ID pengguna
+                'id' => $user->id,
                 'name' => $user->name,
-                'jumlah' => $jumlahDownload,
-                'kirim_notifikasi' => $kirimNotifikasi
+                'jumlah' => $downloadData->where('id', $user->id)->sum('jumlah'),
+                'kirim_notifikasi' => $downloadData->where('id', $user->id)->sum('jumlah') == 0
             ];
         });
 
-        // Kirim data dalam format JSON
         return response()->json(['downloads' => $result]);
     }
 

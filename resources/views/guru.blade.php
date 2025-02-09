@@ -64,13 +64,20 @@
             <div class="container-fluid">
                 <h5 class="mt-5">Selamat datang di halaman guru</h5>
 
-                <!-- Form Pilih Tanggal -->
+                <!-- Form Pilih Tanggal dan Bulan -->
                 <form action="{{ route('teacher.index') }}" method="GET" class="mb-4 d-flex align-items-end">
                     <div class="me-2">
                         <label for="tanggal" class="form-label">Pilih Tanggal:</label>
                         <input type="date" name="tanggal" id="tanggal" value="{{ $tanggal }}" class="form-control"
-                            style="max-width: 300px;">
+                            style="max-width: 300px;" onchange="resetBulan()">
                     </div>
+
+                    <div class="me-2">
+                        <label for="bulan" class="form-label">Pilih Bulan:</label>
+                        <input type="month" name="bulan" id="bulan" value="{{ $bulan }}" class="form-control"
+                            style="max-width: 300px;" onchange="resetTanggal()">
+                    </div>
+
                     <div>
                         <button type="submit" class="btn btn-primary mt-2">Tampilkan</button>
                     </div>
@@ -260,7 +267,19 @@
     </script>
 
     <script>
-        // Data untuk orang tua yang download vs tidak
+        // Fungsi untuk mereset bulan jika tanggal dipilih
+        function resetBulan() {
+            document.getElementById('bulan').value = '';
+        }
+
+        // Fungsi untuk mereset tanggal jika bulan dipilih
+        function resetTanggal() {
+            document.getElementById('tanggal').value = '';
+        }
+    </script>
+
+    <script>
+        // Data untuk orang tua yang download vs tidak, bisa disesuaikan dengan bulan atau tanggal
         var ctxDownload = document.getElementById('downloadChart').getContext('2d');
         var downloadChart = new Chart(ctxDownload, {
             type: 'bar',
@@ -291,14 +310,19 @@
     <script>
         document.getElementById("showModal").onclick = function() {
             const tanggal = document.getElementById("tanggal").value;
+            const bulan = document.getElementById("bulan").value;
 
-            fetch(`/get-download-statistics?tanggal=${tanggal}`)
+            let url = `/get-download-statistics?tanggal=${tanggal}`;
+            if (bulan) {
+                url = `/get-download-statistics?bulan=${bulan}`;
+            }
+
+            fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
-
+                    // Update the modal with the new data
                     const tbody = document.getElementById('downloadTable').getElementsByTagName('tbody')[0];
-                    tbody.innerHTML = ''; // Kosongkan tabel sebelum menambahkan data baru
+                    tbody.innerHTML = ''; // Clear existing table rows
 
                     data.downloads.forEach(item => {
                         const row = tbody.insertRow();
@@ -310,12 +334,13 @@
                         cellStatus.textContent = item.jumlah > 0 ? "Sudah Mendownload" :
                             "Belum Mendownload";
 
+                        // Add button for sending notifications if needed
                         if (item.kirim_notifikasi) {
                             const btnNotif = document.createElement("button");
                             btnNotif.classList.add("btn", "btn-danger");
                             btnNotif.textContent = "Kirim Notifikasi";
                             btnNotif.onclick = function() {
-                                fetch(`/send-notification/${item.id}?tanggal=${tanggal}`, {
+                                fetch(`/send-notification/${item.id}?tanggal=${tanggal}&bulan=${bulan}`, {
                                         method: "POST",
                                         headers: {
                                             "X-CSRF-TOKEN": document.querySelector(
