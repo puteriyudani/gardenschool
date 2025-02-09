@@ -16,16 +16,14 @@ class GuruController extends Controller
      */
     public function index(Request $request)
     {
-        // Cek apakah ada input tanggal atau bulan
+        // Ambil input tanggal dan bulan dari request
         $tanggal = $request->input('tanggal');
         $bulan = $request->input('bulan');
 
-        // Validasi format tanggal jika ada input tanggal
+        // Validasi input tanggal dan bulan
         if ($tanggal && !strtotime($tanggal)) {
             return response()->json(['error' => 'Format tanggal tidak valid'], 400);
         }
-
-        // Validasi format bulan jika ada input bulan
         if ($bulan && !preg_match('/^\d{4}-\d{2}$/', $bulan)) { // Format harus YYYY-MM
             return response()->json(['error' => 'Format bulan tidak valid'], 400);
         }
@@ -33,7 +31,7 @@ class GuruController extends Controller
         // Ambil semua pengguna dengan level "ortu"
         $users = DB::table('users')->where('level', 2)->get();
 
-        // Ambil data pengguna yang telah mendownload berdasarkan tanggal atau bulan yang dipilih
+        // Ambil pengguna yang sudah mendownload
         $downloadedUsers = DB::table('downloads')
             ->join('users', 'downloads.user_id', '=', 'users.id')
             ->select('users.id', 'users.name')
@@ -52,6 +50,24 @@ class GuruController extends Controller
         $notDownloadedUsers = $users->reject(function ($user) use ($downloadedUserIds) {
             return in_array($user->id, $downloadedUserIds);
         });
+
+        // Grafik jumlah download per hari dalam bulan
+        $dailyDownloadData = [];
+        if ($bulan) {
+            $daysInMonth = Carbon::createFromFormat('Y-m', $bulan)->daysInMonth;
+            for ($day = 1; $day <= $daysInMonth; $day++) {
+                $date = Carbon::createFromFormat('Y-m-d', "{$bulan}-" . str_pad($day, 2, '0', STR_PAD_LEFT));
+
+                $downloadCount = DB::table('downloads')
+                    ->whereDate('tanggal', $date)
+                    ->count();
+
+                $dailyDownloadData[] = [
+                    'tanggal' => $date->format('Y-m-d'),
+                    'jumlah' => $downloadCount
+                ];
+            }
+        }
 
         // Hitung jumlah user level "ortu" yang login
         $jumlahUserLevel2 = DB::table('users')
@@ -136,49 +152,15 @@ class GuruController extends Controller
 
         return view('guru', compact(
             'tanggal',
-            'bulan', // Menambahkan bulan ke dalam data yang dikirim ke view
+            'bulan',
             'downloadedUsers',
             'notDownloadedUsers',
             'jumlahUserLevel2',
             'persentaseWelcome',
             'persentaseRecalling',
-            'statusKeberhasilan'
+            'statusKeberhasilan',
+            'dailyDownloadData' // Tambahkan data grafik ke view
         ));
-    }
-
-    public function getDownloadStatistics(Request $request)
-    {
-        // Ambil bulan dari input atau gunakan bulan ini sebagai default
-        $bulan = $request->input('bulan', Carbon::now()->format('Y-m'));
-
-        // Validasi format bulan yang dikirim
-        if ($bulan && !preg_match('/^\d{4}-\d{2}$/', $bulan)) { // Format harus YYYY-MM
-            return response()->json(['error' => 'Format bulan tidak valid'], 400);
-        }
-
-        // Ambil semua pengguna dengan level "ortu"
-        $users = DB::table('users')->where('level', 2)->get();
-
-        // Ambil data download untuk setiap pengguna berdasarkan bulan yang dipilih
-        $downloadData = DB::table('downloads')
-            ->join('users', 'downloads.user_id', '=', 'users.id')
-            ->select('users.id', 'users.name', DB::raw('count(downloads.id) as jumlah'))
-            ->whereMonth('downloads.tanggal', Carbon::createFromFormat('Y-m', $bulan)->month)
-            ->whereYear('downloads.tanggal', Carbon::createFromFormat('Y-m', $bulan)->year)
-            ->groupBy('users.id', 'users.name')
-            ->get();
-
-        // Gabungkan data download dengan pengguna ortu
-        $result = $users->map(function ($user) use ($downloadData) {
-            return [
-                'id' => $user->id,
-                'name' => $user->name,
-                'jumlah' => $downloadData->where('id', $user->id)->sum('jumlah'),
-                'kirim_notifikasi' => $downloadData->where('id', $user->id)->sum('jumlah') == 0
-            ];
-        });
-
-        return response()->json(['downloads' => $result]);
     }
 
     public function sendNotification(Request $request, $id)

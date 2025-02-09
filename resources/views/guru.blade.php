@@ -97,7 +97,6 @@
                 <!-- Card Wrapper - Statistik Download -->
                 <div class="card mt-4" style="background-color: #d6eaf8; border-radius: 10px; padding: 20px;">
                     <h3 class="text-center">Statistik Download Laporan</h3>
-                    <a style="font-size: 12px; color: #0288d1; cursor: pointer;" id="showModal">Selengkapnya</a>
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <canvas id="downloadChart" style="max-width: 100%; height: 300px;"></canvas>
@@ -118,26 +117,6 @@
                             </li>
                         @endforeach
                     </ul>
-                </div>
-
-                <!-- Modal Detail Download -->
-                <div id="downloadModal" class="modal" style="display: none;">
-                    <div class="modal-content">
-                        <span class="close" id="closeModal">&times;</span>
-                        <h4>Detail Download Laporan</h4>
-                        <table id="downloadTable" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Data download akan diisi oleh JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
 
                 <!-- Card Wrapper - Welcome Mood -->
@@ -279,94 +258,72 @@
     </script>
 
     <script>
-        // Data untuk orang tua yang download vs tidak, bisa disesuaikan dengan bulan atau tanggal
         var ctxDownload = document.getElementById('downloadChart').getContext('2d');
-        var downloadChart = new Chart(ctxDownload, {
-            type: 'bar',
-            data: {
-                labels: ['Sudah Mendownload', 'Belum Mendownload'],
-                datasets: [{
-                    label: 'Jumlah Orang Tua',
-                    data: [
-                        {{ count($downloadedUsers) }},
-                        {{ count($notDownloadedUsers) }}
-                    ],
-                    backgroundColor: ['#42A5F5', '#EF5350'],
-                    borderColor: ['#1E88E5', '#D32F2F'],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+        var bulanDipilih = "{{ $bulan }}"; // Ambil nilai bulan dari Blade
+        var tanggalDipilih = "{{ $tanggal }}"; // Ambil nilai tanggal dari Blade
+
+        if (bulanDipilih) {
+            // Menampilkan grafik jumlah download per hari dalam bulan
+            var labels = [];
+            var data = [];
+
+            @foreach ($dailyDownloadData as $data)
+                labels.push("{{ \Carbon\Carbon::parse($data['tanggal'])->format('d M') }}");
+                data.push({{ $data['jumlah'] }});
+            @endforeach
+
+            var downloadChart = new Chart(ctxDownload, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Jumlah Download Per Hari',
+                        data: data,
+                        backgroundColor: 'rgba(66, 165, 245, 0.2)',
+                        borderColor: '#1E88E5',
+                        borderWidth: 2,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
+            });
+        } else if (tanggalDipilih) {
+            // Menampilkan grafik jumlah orang tua yang sudah dan belum mendownload
+            var downloadChart = new Chart(ctxDownload, {
+                type: 'bar',
+                data: {
+                    labels: ['Sudah Mendownload', 'Belum Mendownload'],
+                    datasets: [{
+                        label: 'Jumlah Orang Tua',
+                        data: [
+                            {{ count($downloadedUsers) }},
+                            {{ count($notDownloadedUsers) }}
+                        ],
+                        backgroundColor: ['#42A5F5', '#EF5350'],
+                        borderColor: ['#1E88E5', '#D32F2F'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
     </script>
 
     <script>
-        document.getElementById("showModal").onclick = function() {
-            const tanggal = document.getElementById("tanggal").value;
-            const bulan = document.getElementById("bulan").value;
-
-            let url = `/get-download-statistics?tanggal=${tanggal}`;
-            if (bulan) {
-                url = `/get-download-statistics?bulan=${bulan}`;
-            }
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Update the modal with the new data
-                    const tbody = document.getElementById('downloadTable').getElementsByTagName('tbody')[0];
-                    tbody.innerHTML = ''; // Clear existing table rows
-
-                    data.downloads.forEach(item => {
-                        const row = tbody.insertRow();
-                        const cellName = row.insertCell(0);
-                        const cellStatus = row.insertCell(1);
-                        const cellAction = row.insertCell(2);
-
-                        cellName.textContent = item.name;
-                        cellStatus.textContent = item.jumlah > 0 ? "Sudah Mendownload" :
-                            "Belum Mendownload";
-
-                        // Add button for sending notifications if needed
-                        if (item.kirim_notifikasi) {
-                            const btnNotif = document.createElement("button");
-                            btnNotif.classList.add("btn", "btn-danger");
-                            btnNotif.textContent = "Kirim Notifikasi";
-                            btnNotif.onclick = function() {
-                                fetch(`/send-notification/${item.id}?tanggal=${tanggal}&bulan=${bulan}`, {
-                                        method: "POST",
-                                        headers: {
-                                            "X-CSRF-TOKEN": document.querySelector(
-                                                'meta[name="csrf-token"]').content
-                                        }
-                                    })
-                                    .then(response => response.json())
-                                    .then(result => {
-                                        alert(result.message);
-                                        btnNotif.textContent = "Notifikasi Terkirim";
-                                        btnNotif.disabled = true;
-                                    })
-                                    .catch(error => {
-                                        console.error('Error:', error);
-                                    });
-                            };
-                            cellAction.appendChild(btnNotif);
-                        } else {
-                            cellAction.textContent = "Tidak Perlu Notifikasi";
-                        }
-                    });
-
-                    document.getElementById("downloadModal").style.display = "flex";
-                });
-        };
-
         // Event listener untuk tombol notifikasi di daftar orang tua yang belum mendownload
         document.querySelectorAll(".send-notification").forEach(button => {
             button.addEventListener("click", function() {
@@ -390,16 +347,5 @@
                     });
             });
         });
-
-        document.getElementById("closeModal").onclick = function() {
-            document.getElementById("downloadModal").style.display = "none";
-        };
-
-        // Tutup modal jika area di luar modal diklik
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("downloadModal")) {
-                document.getElementById("downloadModal").style.display = "none";
-            }
-        };
     </script>
 @endsection
