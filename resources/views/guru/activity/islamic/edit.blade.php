@@ -196,7 +196,7 @@
                                                 }">
                                                 <option value="{{ $islamic->notifikasi }}" selected>-
                                                     {{ $islamic->notifikasi }} -</option>
-                                                @if ($siswa->kelompok === 'kindergarten' || $siswa->kelompok === 'playgroup')
+                                                @if ($siswa->kelompoks->kategori === 'TK' || $siswa->kelompoks->kategori === 'KB')
                                                     <option
                                                         value="Ananda semangat menghafal surah pendek dan hadist, diharapkan ayah bunda memotivasi ananda untuk mengulang kembali hafalan dirumah.">
                                                         Ananda semangat menghafal surah pendek dan hadist, diharapkan ayah
@@ -206,7 +206,7 @@
                                                         value="Ananda kurang tidur, sebaiknya ayah bunda mengajak ananda tidur lebih awal.">
                                                         Ananda kurang tidur, sebaiknya ayah bunda mengajak ananda tidur
                                                         lebih awal.</option>
-                                                @elseif ($siswa->kelompok === 'babycamp')
+                                                @elseif ($siswa->kelompoks->kategori === 'BC')
                                                     <option
                                                         value="Ananda sangat antusias mendengarkan bacaan hadist, surah pendek, dan doa.">
                                                         Ananda sangat antusias mendengarkan bacaan hadist, surah pendek, dan

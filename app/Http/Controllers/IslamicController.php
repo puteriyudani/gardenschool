@@ -53,7 +53,7 @@ class IslamicController extends Controller
     public function create()
     {
         $siswa_id = session('siswa_id');
-        $siswa = Siswa::findOrFail($siswa_id);
+        $siswa = Siswa::with('kelompoks')->findOrFail($siswa_id);
         $hadists = Hadist::get();
         $qurans = Quran::get();
         $doas = Doa::get();
@@ -63,7 +63,7 @@ class IslamicController extends Controller
     public function createbaby()
     {
         $siswa_id = session('siswa_id');
-        $siswa = Siswa::findOrFail($siswa_id);
+        $siswa = Siswa::with('kelompoks')->findOrFail($siswa_id);
         $hadists = HadistBaby::get();
         $qurans = QuranBaby::get();
         $doas = DoaBaby::get();
@@ -122,7 +122,7 @@ class IslamicController extends Controller
     public function edit(Islamic $islamic)
     {
         $siswa_id = session('siswa_id');
-        $siswa = Siswa::findOrFail($siswa_id);
+        $siswa = Siswa::with('kelompoks')->findOrFail($siswa_id);
         $hadists = Hadist::get();
         $qurans = Quran::get();
         $doas = Doa::get();
@@ -133,7 +133,7 @@ class IslamicController extends Controller
     public function editbaby(Islamic $islamic)
     {
         $siswa_id = session('siswa_id');
-        $siswa = Siswa::findOrFail($siswa_id);
+        $siswa = Siswa::with('kelompoks')->findOrFail($siswa_id);
         $hadists = HadistBaby::get();
         $qurans = QuranBaby::get();
         $doas = DoaBaby::get();
