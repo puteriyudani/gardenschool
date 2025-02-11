@@ -19,19 +19,19 @@ class AdminController extends Controller
 
     public function indexAdmin()
     {
-        $admins = User::where('level', '0')->paginate(10);
+        $admins = User::where('level', '0')->orderBy('name', 'asc')->paginate(10);
         return view('akun.admin', compact('admins'));
     }
 
     public function indexGuru()
     {
-        $gurus = User::where('level', '1')->paginate(10);
+        $gurus = User::where('level', '1')->orderBy('name', 'asc')->paginate(10);
         return view('akun.guru', compact('gurus'));
     }
 
     public function indexOrtu()
     {
-        $ortus = User::where('level', '2')->paginate(10);
+        $ortus = User::where('level', '2')->orderBy('name', 'asc')->paginate(10);
         return view('akun.ortu', compact('ortus'));
     }
 
