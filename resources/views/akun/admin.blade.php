@@ -19,7 +19,7 @@
                     </div>
                 @endif
 
-                <a href="{{ route('register') }}"><button type="button" class="btn btn-success m-1 mb-3">Tambah
+                <a href="{{ route('register') }}" target="_blank"><button type="button" class="btn btn-success m-1 mb-3">Tambah
                         Akun</button></a>
 
                 <h5>Admin</h5>
