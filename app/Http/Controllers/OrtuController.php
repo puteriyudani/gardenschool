@@ -62,13 +62,13 @@ class OrtuController extends Controller
         session(['orangtua_id' => $user->id]);
 
         // Ambil siswa terkait orangtua yang sedang login
-        $siswa = Siswa::findOrFail($id);
+        $siswa = Siswa::with('kelompoks')->findOrFail($id);
 
         if ($siswa) {
             session(['siswa_id' => $siswa->id]);
 
             // Tentukan kelompok siswa
-            $kelompok = $siswa->kelompok;
+            $kelompok = $siswa->kelompoks->kategori;
 
             // Default selected date is today
             $selected = date('Y-m-d');
@@ -131,7 +131,7 @@ class OrtuController extends Controller
         session(['orangtua_id' => $user->id]);
 
         // Ambil siswa terkait orangtua yang sedang login
-        $siswa = Siswa::findOrFail($id);
+        $siswa = Siswa::with('kelompoks')->findOrFail($id);
 
         if ($siswa) {
             session(['siswa_id' => $siswa->id]);
@@ -164,7 +164,7 @@ class OrtuController extends Controller
             $doababy_list = DoaBaby::all();
 
             // Tentukan kelompok siswa
-            $kelompok = $siswa->kelompok;
+            $kelompok = $siswa->kelompoks->kategori;
 
             // Set the selected date
             $selected = $today;

@@ -35,7 +35,7 @@
                     </div>
                 </form>
 
-                @if ($kelompok == 'kindergarten' || $kelompok == 'playgroup')
+                @if ($kelompok == 'TK' || $kelompok == 'KB')
                     <div class="row align-items-start mobile-no-gutters">
                         <div class="col-8">
                             @if ($welcomes->isNotEmpty())
@@ -893,7 +893,7 @@
                             @endif
                         </div>
                     </div>
-                @elseif ($kelompok == 'babycamp')
+                @elseif ($kelompok == 'BC')
                     <div class="row align-items-start mobile-no-gutters">
                         <div class="col-8">
                             @if ($welcomes->isNotEmpty())
