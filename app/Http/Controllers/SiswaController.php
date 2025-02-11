@@ -158,6 +158,7 @@ class SiswaController extends Controller
             ->when($tahunId, function ($query) use ($tahunId) {
                 $query->where('tahun_id', $tahunId);
             })
+            ->orderBy('nama', 'asc')
             ->paginate(10);
 
         return view('siswa.kindergarten', compact('siswas', 'ortus', 'tahuns'));
@@ -177,6 +178,7 @@ class SiswaController extends Controller
             ->when($tahunId, function ($query) use ($tahunId) {
                 $query->where('tahun_id', $tahunId);
             })
+            ->orderBy('nama', 'asc')
             ->paginate(10);
 
         return view('siswa.playgroup', compact('siswas', 'ortus', 'tahuns'));
@@ -196,6 +198,7 @@ class SiswaController extends Controller
             ->when($tahunId, function ($query) use ($tahunId) {
                 $query->where('tahun_id', $tahunId);
             })
+            ->orderBy('nama', 'asc')
             ->paginate(10);
 
         return view('siswa.babycamp', compact('siswas', 'ortus', 'tahuns'));
