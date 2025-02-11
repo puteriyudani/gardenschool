@@ -93,6 +93,24 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
+                                        <div class="mb-3">
+                                            <label for="tale" class="form-label">Tale</label>
+                                            <input type="text" class="form-control" id="tale" name="tale"
+                                                value="{{ $vocabulary->tale }}">
+                                        </div>
+                                        @error('tale')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
+                                        <div class="mb-3">
+                                            <label for="song" class="form-label">Song</label>
+                                            <input type="text" class="form-control" id="song" name="song"
+                                                value="{{ $vocabulary->song }}">
+                                        </div>
+                                        @error('song')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
                                 </div>
