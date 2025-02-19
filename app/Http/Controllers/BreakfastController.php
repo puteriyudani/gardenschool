@@ -16,7 +16,7 @@ class BreakfastController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         session(['siswa_id' => $id]);
-        $breakfasts = Breakfast::with('menu')
+        $breakfasts = Breakfast::with('menuData')
             ->where('siswa_id', $siswa->id)
             ->get();
         return view('guru.kindergarten.breakfast.index', compact('siswa', 'breakfasts'));
@@ -26,7 +26,7 @@ class BreakfastController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         session(['siswa_id' => $id]);
-        $breakfasts = Breakfast::with('menu')
+        $breakfasts = Breakfast::with('menuData')
             ->where('siswa_id', $siswa->id)
             ->get();
         return view('guru.playgroup.breakfast.index', compact('siswa', 'breakfasts'));
@@ -36,7 +36,7 @@ class BreakfastController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         session(['siswa_id' => $id]);
-        $breakfasts = Breakfast::with('menu')
+        $breakfasts = Breakfast::with('menuData')
             ->where('siswa_id', $siswa->id)
             ->get();
         return view('guru.babycamp.breakfast.index', compact('siswa', 'breakfasts'));

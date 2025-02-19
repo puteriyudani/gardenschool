@@ -499,7 +499,7 @@
 
                                     @foreach ($breakfasts as $breakfast)
                                         <div class="menu">
-                                            <p class="mb-2 mt-2">Menu : <a>{{ $breakfast->menu->menu }}</a></p>
+                                            <p class="mb-2 mt-2">Menu : <a>{{ $breakfast->menuData->menu ?? $breakfast->menu }}</a></p>
                                         </div>
 
                                         <div class="row gizi">
@@ -508,10 +508,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menu->karbohidrat }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $breakfast->menuData->karbohidrat ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $breakfast->menu->karbohidrat }}%"></div>
+                                                        style="width: {{ $breakfast->menuData->karbohidrat ?? 0 }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -522,10 +522,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menu->protein }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $breakfast->menuData->protein ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $breakfast->menu->protein }}%"></div>
+                                                        style="width: {{ $breakfast->menuData->protein ?? 0 }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -536,10 +536,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menu->lemak }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $breakfast->menuData->lemak ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $breakfast->menu->lemak }}%"></div>
+                                                        style="width: {{ $breakfast->menuData->lemak ?? 0 }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -550,10 +550,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menu->serat }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $breakfast->menuData->serat ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $breakfast->menu->serat }}%"></div>
+                                                        style="width: {{ $breakfast->menuData->serat ?? 0 }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -564,10 +564,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menu->kalori }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $breakfast->menuData->kalori ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $breakfast->menu->kalori }}%"></div>
+                                                        style="width: {{ $breakfast->menuData->kalori ?? 0 }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1778,7 +1778,7 @@
 
                                     @foreach ($lunchs as $lunch)
                                         <div class="menu">
-                                            <p class="mb-2 mt-2">Menu : <a>{{ $lunch->menu->menu }}</a></p>
+                                            <p class="mb-2 mt-2">Menu : <a>{{ $lunch->menuData->menu ?? $lunch->menu }}</a></p>
                                         </div>
 
                                         <div class="row gizi">
@@ -1787,10 +1787,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $lunch->menu->karbohidrat }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $lunch->menuData->karbohidrat ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $lunch->menu->karbohidrat }}%">
+                                                        style="width: {{ $lunch->menuData->karbohidrat ?? 0 }}%">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1802,10 +1802,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $lunch->menu->protein }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $lunch->menuData->protein ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $lunch->menu->protein }}%"></div>
+                                                        style="width: {{ $lunch->menuData->protein ?? 0 }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1816,10 +1816,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $lunch->menu->lemak }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $lunch->menuData->lemak ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $lunch->menu->lemak }}%"></div>
+                                                        style="width: {{ $lunch->menuData->lemak ?? 0 }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1830,10 +1830,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $lunch->menu->serat }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $lunch->menuData->serat ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $lunch->menu->serat }}%"></div>
+                                                        style="width: {{ $lunch->menuData->serat ?? 0 }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1844,10 +1844,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $lunch->menu->kalori }}" aria-valuemin="0"
+                                                    aria-valuenow="{{ $lunch->menuData->kalori ?? 0 }}" aria-valuemin="0"
                                                     aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $lunch->menu->kalori }}%"></div>
+                                                        style="width: {{ $lunch->menuData->kalori ?? 0 }}%"></div>
                                                 </div>
                                             </div>
                                         </div>

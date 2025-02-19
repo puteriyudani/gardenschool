@@ -16,7 +16,7 @@ class LunchController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         session(['siswa_id' => $id]);
-        $lunchs = Lunch::with('menu')
+        $lunchs = Lunch::with('menuData')
             ->where('siswa_id', $siswa->id)
             ->get();
         return view('guru.babycamp.lunch.index', compact('siswa', 'lunchs'));
