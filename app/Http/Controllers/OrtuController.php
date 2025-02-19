@@ -152,7 +152,7 @@ class OrtuController extends Controller
             $videos = Video::whereDate('tanggal', $today)->get();
             $acts = Act::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
             $funs = Fun::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $lunchs = Lunch::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $lunchs = Lunch::with('menu')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
 
             // Ambil data islamic dari database
             $hadist_list = Hadist::all();
@@ -168,6 +168,8 @@ class OrtuController extends Controller
 
             // Set the selected date
             $selected = $today;
+
+            // dd($breakfasts->toArray());
 
             return view('orangtua.laporan', compact(
                 'user',
