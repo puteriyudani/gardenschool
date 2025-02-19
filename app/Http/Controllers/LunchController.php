@@ -41,7 +41,7 @@ class LunchController extends Controller
         $request->validate([
             'tanggal' => 'required',
             'siswa_id' => 'required',
-            'menu_id' => 'required',
+            'menu' => 'required',
             'keterangan' => 'required',
             'indikator' => 'required',
             'catatan' => 'required',
@@ -79,7 +79,7 @@ class LunchController extends Controller
         $request->validate([
             'tanggal' => 'required',
             'siswa_id' => 'required',
-            'menu_id' => 'required',
+            'menu' => 'required',
             'keterangan' => 'required',
             'indikator' => 'required',
             'catatan' => 'required',

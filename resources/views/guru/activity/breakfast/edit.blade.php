@@ -77,23 +77,23 @@
                                         @enderror
 
                                         <div class="mb-3 mt-3">
-                                            <label for="menu_id" class="form-label">Menu</label>
-                                            <select class="form-select" name="menu_id"
+                                            <label for="menu" class="form-label">Menu</label>
+                                            <select class="form-select" name="menu"
                                                 onchange="if(this.options[this.selectedIndex].value=='customOption'){
                                                     toggleField(this,this.nextSibling);
                                                     this.selectedIndex='0';
                                                 }">
-                                                <option value="{{ $breakfast->menu_id }}" selected>-
-                                                    {{ $breakfast->menu_id }} -</option>
+                                                <option value="{{ $breakfast->menu }}" selected>-
+                                                    {{ $breakfast->menu }} -</option>
                                                 @foreach ($menus as $menu)
-                                                    <option value="{{ $menu->id }}">{{ $menu->menu }}</option>
+                                                    <option value="{{ $menu->menu }}">{{ $menu->menu }}</option>
                                                 @endforeach
                                                 <option value="customOption">[Lainnya]</option>
-                                            </select><input class="form-control" name="menu_id" style="display:none;"
+                                            </select><input class="form-control" name="menu" style="display:none;"
                                                 disabled="disabled"
                                                 onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
                                         </div>
-                                        @error('menu_id')
+                                        @error('menu')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 

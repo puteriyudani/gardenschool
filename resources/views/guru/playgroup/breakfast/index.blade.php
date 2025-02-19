@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $breakfast->tanggal }}</td>
-                                    <td>{{ $breakfast->menu->menu }}</td>
+                                    <td>{{ $breakfast->menu }}</td>
                                     <td>{{ $breakfast->keterangan }}</td>
                                     <td>{{ $breakfast->indikator }}%</td>
                                     <td>{{ $breakfast->catatan }}</td>
