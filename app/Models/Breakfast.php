@@ -18,7 +18,7 @@ class Breakfast extends Model
         return $this->belongsTo(Siswa::class);
     }
 
-    public function menu()
+    public function menuData()
     {
         return $this->belongsTo(Menu::class, 'menu', 'menu');
     }

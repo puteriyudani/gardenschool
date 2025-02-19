@@ -142,7 +142,7 @@ class OrtuController extends Controller
             // Ambil data laporan terkait siswa untuk tanggal yang dipilih
             $welcomes = Welcome::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
             $mornings = Morning::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $breakfasts = Breakfast::with('menu')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $breakfasts = Breakfast::with('menuData')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
             $islamics = Islamic::with('hadist', 'quran', 'doa')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
             $preschools = Preschool::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
             $pooppees = Pooppee::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
@@ -152,7 +152,7 @@ class OrtuController extends Controller
             $videos = Video::whereDate('tanggal', $today)->get();
             $acts = Act::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
             $funs = Fun::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $lunchs = Lunch::with('menu')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+            $lunchs = Lunch::with('menuData')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
 
             // Ambil data islamic dari database
             $hadist_list = Hadist::all();
