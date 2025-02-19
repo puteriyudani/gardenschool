@@ -602,6 +602,13 @@
                     }, 5000);
                 }
             });
+
+            // Tutup modal gambar dengan klik di luar modal
+            document.getElementById('imageModal').addEventListener('click', function(event) {
+                if (event.target === this) { // Pastikan yang diklik adalah overlay, bukan konten modal
+                    this.style.display = 'none';
+                }
+            });
         });
     </script>
     <script>

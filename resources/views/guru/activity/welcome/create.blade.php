@@ -451,11 +451,13 @@
                                                 <option value="Excited ke Sekolah">Excited ke Sekolah</option>
                                                 <option value="Tidur Kurang">Tidur Kurang</option>
                                                 <option value="Rindu Orang tua">Rindu Orang tua</option>
-                                                <option value="Menangis ditinggal orang tua">Menangis ditinggal orang tua</option>
+                                                <option value="Menangis ditinggal orang tua">Menangis ditinggal orang tua
+                                                </option>
                                                 <option value="Lapar">Lapar</option>
                                                 <option value="Kurang Sehat">Kurang Sehat</option>
                                                 <option value="customOption">[Lainnya]</option>
-                                            </select><input class="form-control" name="notifikasi" style="display:none;" disabled="disabled"
+                                            </select><input class="form-control" name="notifikasi" style="display:none;"
+                                                disabled="disabled"
                                                 onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
                                         </div>
                                         @error('notifikasi')
@@ -595,6 +597,13 @@
                     setTimeout(function() {
                         imageModal.style.display = 'none';
                     }, 5000);
+                }
+            });
+
+            // Tutup modal gambar dengan klik di luar modal
+            document.getElementById('imageModal').addEventListener('click', function(event) {
+                if (event.target === this) { // Pastikan yang diklik adalah overlay, bukan konten modal
+                    this.style.display = 'none';
                 }
             });
         });
