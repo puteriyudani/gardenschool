@@ -25,12 +25,11 @@
                     </div>
                 </div>
 
-                <form method="POST" action="{{ route('laporan.tanggal', ['id' => $siswa->id]) }}" id="tanggalForm">
-                    @csrf
+                <form method="GET" action="{{ route('laporan.tanggal', ['id' => $siswa->id]) }}" id="tanggalForm">
                     <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
                     <div class="mb-3 d-flex align-items-center">
                         <input class="form-control me-2" id="tanggal" name="tanggal" type="date" required
-                            value="{{ \Carbon\Carbon::parse($selected)->format('Y-m-d') }}">
+                            value="{{ request('tanggal', \Carbon\Carbon::today()->format('Y-m-d')) }}">
                         <button type="submit" class="btn btn-primary" hidden>Tanggal</button>
                     </div>
                 </form>
@@ -499,7 +498,9 @@
 
                                     @foreach ($breakfasts as $breakfast)
                                         <div class="menu">
-                                            <p class="mb-2 mt-2">Menu : <a>{{ $breakfast->menuData->menu ?? $breakfast->menu }}</a></p>
+                                            <p class="mb-2 mt-2">Menu :
+                                                <a>{{ $breakfast->menuData->menu ?? $breakfast->menu }}</a>
+                                            </p>
                                         </div>
 
                                         <div class="row gizi">
@@ -508,10 +509,11 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menuData->karbohidrat ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $breakfast->menuData->karbohidrat ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ $breakfast->menuData->karbohidrat ?? 0 }}%"></div>
+                                                        style="width: {{ $breakfast->menuData->karbohidrat ?? 0 }}%">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -522,8 +524,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menuData->protein ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $breakfast->menuData->protein ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $breakfast->menuData->protein ?? 0 }}%"></div>
                                                 </div>
@@ -536,8 +538,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menuData->lemak ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $breakfast->menuData->lemak ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $breakfast->menuData->lemak ?? 0 }}%"></div>
                                                 </div>
@@ -550,8 +552,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menuData->serat ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $breakfast->menuData->serat ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $breakfast->menuData->serat ?? 0 }}%"></div>
                                                 </div>
@@ -564,8 +566,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menuData->kalori ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $breakfast->menuData->kalori ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $breakfast->menuData->kalori ?? 0 }}%"></div>
                                                 </div>
@@ -1482,7 +1484,9 @@
 
                                     @foreach ($breakfasts as $breakfast)
                                         <div class="menu">
-                                            <p class="mb-2 mt-2">Menu : <a>{{ $breakfast->menuData->menu ?? $breakfast->menu }}</a></p>
+                                            <p class="mb-2 mt-2">Menu :
+                                                <a>{{ $breakfast->menuData->menu ?? $breakfast->menu }}</a>
+                                            </p>
                                         </div>
 
                                         <div class="row gizi">
@@ -1506,8 +1510,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menuData->protein ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $breakfast->menuData->protein ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $breakfast->menuData->protein ?? 0 }}%"></div>
                                                 </div>
@@ -1520,8 +1524,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menuData->lemak ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $breakfast->menuData->lemak ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $breakfast->menuData->lemak ?? 0 }}%"></div>
                                                 </div>
@@ -1534,8 +1538,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menuData->serat ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $breakfast->menuData->serat ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $breakfast->menuData->serat ?? 0 }}%"></div>
                                                 </div>
@@ -1548,8 +1552,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $breakfast->menuData->kalori ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $breakfast->menuData->kalori ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $breakfast->menuData->kalori ?? 0 }}%"></div>
                                                 </div>
@@ -1778,7 +1782,9 @@
 
                                     @foreach ($lunchs as $lunch)
                                         <div class="menu">
-                                            <p class="mb-2 mt-2">Menu : <a>{{ $lunch->menuData->menu ?? $lunch->menu }}</a></p>
+                                            <p class="mb-2 mt-2">Menu :
+                                                <a>{{ $lunch->menuData->menu ?? $lunch->menu }}</a>
+                                            </p>
                                         </div>
 
                                         <div class="row gizi">
@@ -1787,8 +1793,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $lunch->menuData->karbohidrat ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $lunch->menuData->karbohidrat ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $lunch->menuData->karbohidrat ?? 0 }}%">
                                                     </div>
@@ -1802,8 +1808,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $lunch->menuData->protein ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $lunch->menuData->protein ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $lunch->menuData->protein ?? 0 }}%"></div>
                                                 </div>
@@ -1844,8 +1850,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="progress" role="progressbar" aria-label="Success example"
-                                                    aria-valuenow="{{ $lunch->menuData->kalori ?? 0 }}" aria-valuemin="0"
-                                                    aria-valuemax="100">
+                                                    aria-valuenow="{{ $lunch->menuData->kalori ?? 0 }}"
+                                                    aria-valuemin="0" aria-valuemax="100">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ $lunch->menuData->kalori ?? 0 }}%"></div>
                                                 </div>
@@ -2113,17 +2119,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dateInput = document.getElementById('tanggal');
+            const form = document.getElementById('tanggalForm');
+            const urlParams = new URLSearchParams(window.location.search);
 
-            // Set today's date if the input is empty
-            if (!dateInput.value) {
-                const today = new Date();
-                const formattedToday = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
-                dateInput.value = formattedToday;
+            // Jika URL tidak memiliki parameter 'tanggal', tambahkan tanggal hari ini dan redirect
+            if (!urlParams.has('tanggal')) {
+                const today = new Date().toISOString().split('T')[0];
+                urlParams.set('tanggal', today);
+
+                // Redirect ke URL yang sudah memiliki parameter tanggal
+                window.location.search = urlParams.toString();
             }
 
-            // Submit form when date is changed
+            // Submit form otomatis ketika pengguna mengubah tanggal
             dateInput.addEventListener('change', function() {
-                document.getElementById('tanggalForm').submit();
+                form.submit();
             });
         });
     </script>

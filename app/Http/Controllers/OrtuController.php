@@ -25,6 +25,7 @@ use App\Models\Vocabulary;
 use App\Models\Welcome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class OrtuController extends Controller
 {
@@ -127,79 +128,62 @@ class OrtuController extends Controller
 
     public function laporan(Request $request, $id)
     {
+        // Cek apakah tanggal sudah ada di request, jika tidak redirect ke tanggal hari ini
+        if (!$request->has('tanggal')) {
+            return redirect()->route('laporan.tanggal', ['id' => $id, 'tanggal' => Carbon::today()->toDateString()]);
+        }
+
+        // Ambil user yang login dan set session
         $user = Auth::user();
         session(['orangtua_id' => $user->id]);
 
-        // Ambil siswa terkait orangtua yang sedang login
+        // Ambil data siswa berdasarkan ID
         $siswa = Siswa::with('kelompoks')->findOrFail($id);
 
-        if ($siswa) {
-            session(['siswa_id' => $siswa->id]);
+        // Set session siswa jika ditemukan
+        session(['siswa_id' => $siswa->id]);
 
-            // Ambil tanggal yang dipilih dari form
-            $today = $request->input('tanggal');
+        // Ambil tanggal dari request
+        $today = $request->input('tanggal');
 
-            // Ambil data laporan terkait siswa untuk tanggal yang dipilih
-            $welcomes = Welcome::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $mornings = Morning::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $breakfasts = Breakfast::with('menuData')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $islamics = Islamic::with('hadist', 'quran', 'doa')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $preschools = Preschool::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $pooppees = Pooppee::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $tematiks = Tematik::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $recallings = Recalling::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $vocabularys = Vocabulary::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $videos = Video::whereDate('tanggal', $today)->get();
-            $acts = Act::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $funs = Fun::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
-            $lunchs = Lunch::with('menuData')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get();
+        // Ambil semua data laporan berdasarkan tanggal
+        $dataLaporan = [
+            'welcomes' => Welcome::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'mornings' => Morning::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'breakfasts' => Breakfast::with('menuData')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'islamics' => Islamic::with('hadist', 'quran', 'doa')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'preschools' => Preschool::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'pooppees' => Pooppee::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'tematiks' => Tematik::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'recallings' => Recalling::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'vocabularys' => Vocabulary::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'videos' => Video::whereDate('tanggal', $today)->get(),
+            'acts' => Act::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'funs' => Fun::where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+            'lunchs' => Lunch::with('menuData')->where('siswa_id', $siswa->id)->whereDate('tanggal', $today)->get(),
+        ];
 
-            // Ambil data islamic dari database
-            $hadist_list = Hadist::all();
-            $quran_list = Quran::all();
-            $doa_list = Doa::all();
+        // Ambil data islamic dari database
+        $islamicData = [
+            'hadist_list' => Hadist::all(),
+            'quran_list' => Quran::all(),
+            'doa_list' => Doa::all(),
+            'hadistbaby_list' => HadistBaby::all(),
+            'quranbaby_list' => QuranBaby::all(),
+            'doababy_list' => DoaBaby::all(),
+        ];
 
-            $hadistbaby_list = HadistBaby::all();
-            $quranbaby_list = QuranBaby::all();
-            $doababy_list = DoaBaby::all();
+        // Tentukan kelompok siswa
+        $kelompok = $siswa->kelompoks->kategori;
 
-            // Tentukan kelompok siswa
-            $kelompok = $siswa->kelompoks->kategori;
+        // Set tanggal yang dipilih
+        $selected = $today;
 
-            // Set the selected date
-            $selected = $today;
-
-            // dd($breakfasts->toArray());
-
-            return view('orangtua.laporan', compact(
-                'user',
-                'siswa',
-                'welcomes',
-                'mornings',
-                'breakfasts',
-                'islamics',
-                'preschools',
-                'pooppees',
-                'tematiks',
-                'recallings',
-                'vocabularys',
-                'videos',
-                'acts',
-                'funs',
-                'lunchs',
-                'today',
-                'kelompok',
-                'hadist_list',
-                'quran_list',
-                'doa_list',
-                'hadistbaby_list',
-                'quranbaby_list',
-                'doababy_list',
-                'selected'
-            ));
-        } else {
-            // Jika siswa tidak ditemukan, kembalikan pesan kesalahan atau tindakan lainnya
-            return redirect()->back()->with('error', 'Siswa tidak ditemukan untuk orangtua ini.');
-        }
+        // Kirim data ke view
+        return view('orangtua.laporan', array_merge(
+            compact('user', 'siswa', 'today', 'kelompok', 'selected'),
+            $dataLaporan,
+            $islamicData
+        ));
     }
 }

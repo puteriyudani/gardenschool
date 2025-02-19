@@ -261,8 +261,12 @@ Route::middleware(['auth', 'user-access:guru'])->group(function () {
 Route::middleware(['auth', 'user-access:ortu'])->group(function () {
     Route::get('/halaman-orangtua', [OrtuController::class, 'index'])->name('ortu')->middleware('auth');
 
-    Route::get('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'showLaporan'])->name('ortu.laporan');
+    // Gunakan GET agar redirect tanggal bisa bekerja dengan baik
+    Route::get('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'laporan'])->name('ortu.laporan');
+
+    // Hapus POST jika tidak diperlukan, kecuali jika ingin meng-handle submit form dengan metode POST.
     Route::post('/halaman-orangtua-laporan/{id}', [OrtuController::class, 'laporan'])->name('laporan.tanggal');
+
     Route::post('/save-download', [DownloadController::class, 'store'])->name('saveDownload');
 
     Route::get('/mark-and-delete-notification/{id}', [OrtuController::class, 'markAndDeleteNotification'])
