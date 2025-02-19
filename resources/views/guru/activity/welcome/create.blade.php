@@ -381,12 +381,12 @@
                                                                 <p>Happy</p>
                                                             </div>
                                                             <div class="custom-select-item">
-                                                                <img src="{{ asset('auth') }}/images/face/neutral.png"
+                                                                <img src="{{ asset('auth') }}/images/face/bored.png"
                                                                     alt="Neutral" data-value="Neutral">
                                                                 <p>Bored</p>
                                                             </div>
                                                             <div class="custom-select-item">
-                                                                <img src="{{ asset('auth') }}/images/face/sad.png"
+                                                                <img src="{{ asset('auth') }}/images/face/downed.png"
                                                                     alt="Sad" data-value="Sad">
                                                                 <p>Downed</p>
                                                             </div>
