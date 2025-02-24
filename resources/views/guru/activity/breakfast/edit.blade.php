@@ -147,9 +147,16 @@
                                                 }">
                                                 <option value="{{ $breakfast->catatan }}" selected>-
                                                     {{ $breakfast->catatan }} -</option>
-                                                    <option value="Ananda suka menu hari ini">Ananda suka menu hari ini</option>
-                                                    <option value="Ananda masih merasa lapar">Ananda masih merasa lapar</option>
-                                                    <option value="Ananda tidak suka menu hari ini">Ananda tidak suka menu hari ini</option>
+                                                <option value="Ananda suka menu hari ini">Ananda suka menu hari ini
+                                                </option>
+                                                <option value="Ananda masih merasa lapar">Ananda masih merasa lapar
+                                                </option>
+                                                <option value="Ananda tidak suka menu hari ini">Ananda tidak suka menu hari
+                                                    ini</option>
+                                                <option value="Ananda hanya makan nasi saja">Ananda hanya makan nasi saja
+                                                </option>
+                                                <option value="Ananda hanya makan lauk saja">Ananda hanya makan lauk saja
+                                                </option>
                                                 <option value="customOption">[Lainnya]</option>
                                             </select><input class="form-control" name="catatan" style="display:none;"
                                                 disabled="disabled"
